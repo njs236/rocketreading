@@ -4,6 +4,7 @@ As a User
   So that I can progress to level 2
   
 Scenario: Playing Game 1
-  Given I press the Game 1 Button
+  Given 
   When I succesfully match words to sounds
+  When I press the Game 1 Button
   Then I will get a Gold star

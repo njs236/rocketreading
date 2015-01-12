@@ -1,3 +1,4 @@
+Feature: Play Games
 As a User
   I want to test my reading skills
   So that I can progress to level 2

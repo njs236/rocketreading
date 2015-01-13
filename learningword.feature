@@ -35,7 +35,9 @@ Scenario: chooses incorrect word
 Scenario: After the events attached to selecting the Learn Word is selected, selects incorrect word
   Given word is incorrect
   when Word is selected
+  then select 1/3 of previously displayed words and remove from screen
   then repeat main flow
+
 
 Scenario: After 2 attempts
   Given the word is incorrect

@@ -8,3 +8,5 @@ Scenario: Playing Game 1
   When I succesfully match words to sounds
   When I press the Game 1 Button
   Then I will get a Gold star
+
+Scenario: Playing Game 2 (Michael H has added this)

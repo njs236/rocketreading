@@ -10,3 +10,5 @@ Scenario: Playing Game 1
   Then I will get a Gold star
 
 Scenario: Playing Game 2 (Michael H has added this)
+
+Scenario: Playing Game 3 (Michael H has added this)

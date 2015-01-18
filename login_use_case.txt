@@ -2,14 +2,14 @@ Cucumber-style syntax
 
 Title: Student attempts to login to the system
 
-As a user
+As a user (student?)
 I want log in to the system
 So that I can start playing the word-recognition games
 
 Scenarios:
 
 Scenario 1: User enters correct username and password
-Given the user has loaded up the app 
+Given the system has loaded up the app 
 And the login screen has been launched
 And the user's username and password exist in the database
 When a user enters a username and the correct password into the login fields 
@@ -19,7 +19,7 @@ And the system will load up the home page
 And the user's name will be displayed in the appropriate position on the home page (good idea?)
 
 Scenario 2: User enters correct username and incorrect password
-Given the user has loaded up the app 
+Given the system has loaded up the app 
 And the login screen has been launched
 And the user's username and password exist in the database
 When a user enters their username and an incorrect password into the login fields 
@@ -28,7 +28,7 @@ And the system prevents the user from logging in
 And the system alerts the user that he or she has entered an invalid username and / or invalid password into the login fields
 
 Scenario 3: User enters incorrect username and correct password
-Given the user has loaded up the app 
+Given the system has loaded up the app 
 And the login screen has been launched
 And the user's username and password exist in the database
 When a user enters a different username and the correct password into the login fields 
@@ -37,7 +37,7 @@ And the system prevents the user from logging in
 And the system alerts the user that he or she has entered an invalid username and / or invalid password into the login fields
 
 Scenario 4: The user does not have a username and password in the system
-Given the user has loaded up the app
+Given the system has loaded up the app
 And the login screen has been launched
 And a username and password do not exist for the user in the database
 When a user enters a username and a password into the login fields 

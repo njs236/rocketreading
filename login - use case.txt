@@ -12,7 +12,7 @@ Scenario 1: User enters correct username and password
 Given the system has loaded up the app 
 And the login screen has been launched
 And the user's username and password exist in the database
-When a user enters a username and the correct password into the login fields and clicks the login button
+When a user enters a username and the correct password into the login fields
 Then the system validates the username and firstname 
 And logs in the player successfully
 And the system will load up the home page
@@ -22,34 +22,30 @@ Scenario 2: User enters correct username and incorrect password
 Given the system has loaded up the app 
 And the login screen has been launched
 And the user's username and password exist in the database
-When a user enters their username and an incorrect password into the login fields and clicks the login button
+When a user enters their username and an incorrect password into the login fields 
 Then the system does not validate the username and firstname 
-And the system prevents the user from logging in
 And the system alerts the user that he or she has entered an invalid username and / or invalid password into the login fields
 
 Scenario 3: User enters incorrect username and correct password
 Given the system has loaded up the app 
 And the login screen has been launched
 And the user's username and password exist in the database
-When a user enters a different username and the correct password into the login fields and clicks the login button
+When a user enters a different username and the correct password into the login fields
 Then the system does not validate the username and firstname 
-And the system prevents the user from logging in
 And the system alerts the user that he or she has entered an invalid username and / or invalid password into the login fields
 
 Scenario 4: User fails to include data in one or all of the fields
 Given the system has loaded up the app 
 And the login screen has been launched
 And the user's username and password exist in the database
-When a user enters data into only one or none of the login fields and clicks the login button
+When a user enters data into only one or none of the login fields
 Then the system does not validate the username and firstname 
-And the system prevents the user from logging in
 And the system alerts the user that he or she has entered an invalid username and / or invalid password into the login fields
 
 Scenario 5: The user does not have a username and password in the system
 Given the system has loaded up the app
 And the login screen has been launched
 And a username and password do not exist for the user in the database
-When a user enters a username and a password into the login fields and clicks the login button
+When a user enters a username and a password into the login fields
 Then the system does not validate the username and firstname 
-And the system prevents the user from logging in
 And the system alerts the user that he or she has entered an invalid username and / or invalid password into the login fields

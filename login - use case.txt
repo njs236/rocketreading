@@ -49,3 +49,6 @@ And a username and password do not exist for the user in the database
 When a user enters a username and a password into the login fields
 Then the system does not validate the username and firstname 
 And the system alerts the user that he or she has entered an invalid username and / or invalid password into the login fields
+
+
+N.B.: However, the use case talks about the user providing a username and firstname (instead of password) to login - so 'password' may have to be replaced with 'firstname'. How well is this going to work with an app?

@@ -42,3 +42,5 @@ And the system asks whether the user has already registered a user profile for t
 N.B. 
 1: The school and class fields could have a select list for the user to choose an item from.
 2: Fields of the registration form: first name, last name, username, password, duplicate password, class and school. Should they all the required? Probably.
+
+3. The original form does not have a field for password - the system relies upon the user logging in with a username and a password

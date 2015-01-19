@@ -13,6 +13,7 @@ Feature: Finishing and completing a level
     When the user clicks the 'Next' button
     Then the system hides the previous screen information
     And the system displays a message that the user must complete a bonus game before proceeding to the next level
+    And the system displays a button which will open up the bonus game screen
     
   Scenario 2: User can advance to the next level
     Given the user has just finished the last game in a level
@@ -30,12 +31,12 @@ Feature: Finishing and completing a level
     Given the user has just finished the last game in a level
     And the system has calculated the user's total points for that level as being under 450
     And the system has displayed on the screen a message that the user has finished game 4 
-    AAnd the system has displayed on the screen the user's total points for that level
+    And the system has displayed on the screen the user's total points for that level
     And the system has displayed on the screen the user's total points for all levels
     When the user clicks the 'Next' button
     Then the system hides the previous screen information
     And the system displays a message that the user has insufficient points to proceed to the next level
     And the system advises the user to replay some of the games in this level
-    And the system displays a button for displaying the level-game options for that level
+    And the system displays a button for displaying the game options for that level
     
    

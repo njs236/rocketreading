@@ -1,7 +1,7 @@
 Title: Learning words
-As a child
-  I want to learn a word
-  so that I will learn a word
+  As a child (user)
+  I want the app to test me on words I have failed to identify correctly
+  so that I can learn words I do not know well
 
 Scenario: Learn word after timer finishes
   Given timer is over 8 secs

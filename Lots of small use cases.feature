@@ -26,7 +26,7 @@ Feature: User views the high scores
 
 *
 
-Feature: Exiting the game
+Feature: Exiting the game validation page
 
   As a user of the Rocket Reading app
   I want to be able to exit the app
@@ -51,7 +51,7 @@ Feature: Exiting the game
 
 *
 
-Feature: Viewing the Levels page
+Feature: Viewing the Levels Screen
 
   As a user of the Rocket Reading app
   I want to be able to view the levels page

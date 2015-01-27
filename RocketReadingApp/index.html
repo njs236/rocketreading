@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<script type="text/javascript" src="scripts.js"></script>
-		<link rel="stylesheet" href="layout.css">
+		<script type="text/javascript" src="tempScript.js"></script>
+		<link rel="stylesheet" href="tempLayout.css">
 		<title>Rocket Reading Prototype</title>
 	</head>
 
@@ -15,54 +15,27 @@
 			<div id="gamesScreen">
 			</div>
 			<div id="highScoresScreen">
-                <div>
+                <div id="highHeader">
                     <h1>High Scores</h1>
-                    <table id="highLevelGamestable"> <!--
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>-->
-                    </table>
-                    <table id="highBonus">
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </table>
+                </div>
+                <div class="highTables">
+                    <div id="highLeftTable" class="highTableSections">
+                        <div id="highTopLeftTable">
+                            <h2>Level Game High Scores</h2>
+                            <h3>Games</h3>
+                        </div>
+                        <div id="containerTable">
+                            <div class="highSideLeftTable">
+                                <h3 id="highlevelCaption">Levels</h3>
+                            </div>
+                            <table id="highLevelGamesTable"></table>
+                            <div class="highSideLeftTable"></div>
+                        </div>
+                    </div>
+                    <div id="highRightTable" class="highTableSections">
+                        <h2>Bonus Game High Scores</h2>
+                        <table id="highBonusTable"></table>
+                    </div>
                 </div>
 			</div>
 			<div id="gameSelectScreen">
@@ -71,4 +44,7 @@
 			</div>
 		</div><!-- closes border div -->
 	</body>
+    <script>
+        initialise();
+    </script>
 </html>

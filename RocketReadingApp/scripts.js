@@ -2,10 +2,6 @@
 
 // var HTMLTABLE; // mapped to table that displays words
 
-function showPage1() {
-	console.log("hi");
-};
-
 var createHighTable = function (tableDim, type, tableId) {
 	"use strict";
 	var newRow,
@@ -72,7 +68,7 @@ var setStandardCellSize = function (cellClass) {
 	console.log("Widest cell: " + widestCellWidth); // test
     for (count = 0; count < cellArray.length; count += 1) {
         cellArray[count].style.width = "calc(" + widestCellWidth + "px + 0.5em)";
-        cellArray[count].style.height = highestCellHeight + "px"; // This does not make the score cells the same height as the heading cells
+        cellArray[count].style.height = highestCellHeight + "px"; // This does not make the score cells the same overall height as the heading cells
     }
 };
 

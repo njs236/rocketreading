@@ -14,3 +14,7 @@
 	margin:1em;
 	border-color:#aaa;
 }
+
+div.dummy {
+	clear:both;
+}

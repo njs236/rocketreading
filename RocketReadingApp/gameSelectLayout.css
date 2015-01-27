@@ -1,0 +1,21 @@
+#gameSelectScreen {
+	height: 100%;
+}
+
+.gameSelectRow {
+	float: left;
+	clear: left;
+	height: 30%;
+	width: 100%;
+}
+
+.gameSelectDivIconContainer {
+	float: left;
+	width: 33.3%;
+	background-color: red;
+}
+
+.gameSelectIcon {
+	max-height: 75px;
+	max-width: 100%;
+}

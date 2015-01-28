@@ -1,15 +1,15 @@
-#gameSelectScreen {
+#levelSelectScreen {
 	height: 100%;
 }
 
-.gameSelectRow {
+.levelSelectRow {
 	float: left;
 	clear: left;
 	height: calc(30%-1em);
 	width: 100%;
 }
 
-.gameSelectDivIconContainer {
+.levelSelectDivIconContainer {
 	float: left;
 	position: relative;
 	left: -3%;
@@ -17,16 +17,16 @@
 	height: 100%;
 }
 
-#gameSelectDivLevel {
+#levelSelectDivLevel {
 	width: 100%;
 }
 
-.gameSelectDivIconContainer p {
+.levelSelectDivIconContainer p {
 	text-align: center;
 	height: 1em;
 }
 
-.gameSelectIcon {
+.levelSelectIcon {
 	height: 80%;
 	width: 100%;
 	margin: 0 auto;

@@ -3,7 +3,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<script type="text/javascript" src="scripts.js"></script>
 		<link rel="stylesheet" href="layout.css">
-		<link rel="stylesheet" href="gameSelectLayout.css">
+		<link rel="stylesheet" href="levelSelectLayout.css">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -25,58 +25,64 @@
 			</div>
 			<div id="highScoresScreen">
 			</div>
-			<div id="gameSelectScreen" hidden='true'>
-				<div id="gameSelectHeader">
+			<div id="levelSelectScreen" hidden>
+				<div id="levelSelectHeader">
 					<h1>Level Select</h1>
 				</div>
-				<div class="gameSelectRow" id="gameSelectTopRow">
-					<div class="gameSelectDivIconContainer" id="gameSelectDivLevel1">
-						<img class="gameSelectIcon" src="images/gameSelectImgIcecream.png" alt="Level 1 Select"></img>
+				<div class="levelSelectRow" id="levelSelectTopRow">
+					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel1">
+						<img class="levelSelectIcon" src="images/levelSelectImgIcecream.png" alt="Level 1 Select"></img>
 						<p>Level 1</p>
 					</div>
 				
-					<div class="gameSelectDivIconContainer" id="gameSelectDivLevel2">
-						<img class="gameSelectIcon" src="images/gameSelectImgTree.png" alt="Level 2 Select"></img>
+					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel2">
+						<img class="levelSelectIcon" src="images/levelSelectImgTree.png" alt="Level 2 Select"></img>
 						<p>Level 2</p>
 					</div>
-					<div class="gameSelectDivIconContainer" id="gameSelectDivLevel3">
-						<img class="gameSelectIcon" src="images/gameSelectImgRainCloud.png" alt="Level 3 Select"></img>
+					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel3">
+						<img class="levelSelectIcon" src="images/levelSelectImgRainCloud.png" alt="Level 3 Select"></img>
 						<p>Level 3</p>
 					</div>
 				</div>
 				
-				<div class="gameSelectRow" id="gameSelectMiddleRow">
-					<div class="gameSelectDivIconContainer" id="gameSelectDivLevel4">
-						<img class="gameSelectIcon" src="images/gameSelectImgLollypop.png" alt="Level 4 Select"></img>
+				<div class="levelSelectRow" id="levelSelectMiddleRow">
+					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel4">
+						<img class="levelSelectIcon" src="images/levelSelectImgLollypop.png" alt="Level 4 Select"></img>
 						<p>Level 4</p>
 					</div>
-					<div class="gameSelectDivIconContainer" id="gameSelectDivLevel5">
-						<img class="gameSelectIcon" src="images/gameSelectImgPirate.png" alt="Level 5 Select"></img>
+					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel5">
+						<img class="levelSelectIcon" src="images/levelSelectImgPirate.png" alt="Level 5 Select"></img>
 						<p>Level 5</p>
 					</div>
-					<div class="gameSelectDivIconContainer" id="gameSelectDivLevel6">
-						<img class="gameSelectIcon" src="images/gameSelectImgCar.png" alt="Level 6 Select"></img>
+					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel6">
+						<img class="levelSelectIcon" src="images/levelSelectImgCar.png" alt="Level 6 Select"></img>
 						<p>Level 6</p>
 					</div>
 				</div>
 				
-				<div class="gameSelectRow" id="gameSelectBottomRow">
-					<div class="gameSelectDivIconContainer" id="gameSelectDivSpacerLeft">
+				<div class="levelSelectRow" id="levelSelectBottomRow">
+					<div class="levelSelectDivIconContainer" id="levelSelectDivSpacerLeft">
 					.
 					</div>
 	
-					<div class="gameSelectDivIconContainer" id="gameSelectDivLevel7">
-						<img class="gameSelectIcon" src="images/gameSelectImgStar.png" alt="Level 7 Select"></img>
+					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel7">
+						<img class="levelSelectIcon" src="images/levelSelectImgStar.png" alt="Level 7 Select"></img>
 						<p>Bonus Games</p>
 					</div>
 					
-					<div class="gameSelectDivIconContainer" id="gameSelectDivSpacerRight">
+					<div class="levelSelectDivIconContainer" id="levelSelectDivSpacerRight">
 					.
 					</div>
 					
 				</div>
 			</div>
-			<div id="gameScreen">
+			<div id="gameScreen" hidden>
+				<button class="button" id="gameScreenButton1">Game 1</button>
+				<button class="button" id="gameScreenButton2">Game 2</button>
+				<button class="button" id="gameScreenButton3">Game 3</button>
+				<button class="button" id="gameScreenButton4">Game 4</button>
+				<button class="button" id="gameScreenButton5" hidden>Game 5</button>
+				<button class="button" id="gameScreenButton6" hidden>Game 6</button>
 			</div>
 		</div><!-- closes border div -->
 	</body>

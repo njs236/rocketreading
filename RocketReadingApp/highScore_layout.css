@@ -134,7 +134,7 @@ div.highSideLeftTable{
     transform: translateY(-50%);
 }
 
-#highLevelGamesTable1, #highLevelGamesTable {
+#highLevelGamesTable1, #highLevelGamesTable2 {
     float: left;
 }
 

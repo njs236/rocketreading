@@ -78,9 +78,9 @@ var setStandardCellSize = function (cellClass) {
 	};
 	
 	console.log("Widest cell: " + widestCellWidth); // test
+    // The box-sizing of the bonus table cells has been set to content-box to enable the following line to make all the cells the same width and height as the heading cells.
     for (count = 0; count < cellArray.length; count += 1) {
         cellArray[count].style.width = "calc(" + widestCellWidth + "px + 0.5em)";
-        // The box-sizing of the bonus table cells has been set to content-box to enable the following line to make all the cells the same height as the heading cells
         cellArray[count].style.height = highestCellHeight + "px"; 
     }
 };
@@ -93,13 +93,13 @@ var resizeDivSize = function () {
     console.log("var highInnerLeftTable: " + mainDivWidth); //test
     console.log("var highLevelGamesTable: " + sideTableDivWidth); //test
     document.getElementsByClassName("highSideLeftTable")[0].style.width = "calc((" + mainDivWidth + "px - " + sideTableDivWidth + "px) / 2)";
-    //document.getElementsByClassName("highSideLeftTable")[1].style.width = "calc((" + mainDivWidth + "px - " + sideTableDivWidth + "px) / 2)";
-    document.getElementsByClassName("highSideLeftTable")[1].style.width = "calc((" + mainDivWidth + "px - " + sideTableDivWidth + "px) / 2)";
-   // document.getElementsByClassName("highSideLeftTable")[3].style.width = "calc((" + mainDivWidth + "px - " + sideTableDivWidth + "px) / 2)";
+    document.getElementsByClassName("highSideLeftTable")[1].style.width = "calc((" + mainDivWidth + "px - " + sideTableDivWidth + "px) / 2 - 0.1em)";
+    document.getElementsByClassName("highSideLeftTable")[2].style.width = "calc((" + mainDivWidth + "px - " + sideTableDivWidth + "px) / 2)";
+    document.getElementsByClassName("highSideLeftTable")[3].style.width = "calc((" + mainDivWidth + "px - " + sideTableDivWidth + "px) / 2 - 0.1em)";
     document.getElementsByClassName("highSideLeftTable")[0].style.height = mainDivHeight + 'px';
     document.getElementsByClassName("highSideLeftTable")[1].style.height = mainDivHeight + 'px';
-    //document.getElementsByClassName("highSideLeftTable")[2].style.height = mainDivHeight + 'px';
-    //document.getElementsByClassName("highSideLeftTable")[3].style.height = mainDivHeight + 'px';
+    document.getElementsByClassName("highSideLeftTable")[2].style.height = mainDivHeight + 'px';
+    document.getElementsByClassName("highSideLeftTable")[3].style.height = mainDivHeight + 'px';
     console.log("RESIZE side table divs"); //test
 };
 

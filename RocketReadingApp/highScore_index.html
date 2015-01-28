@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script type="text/javascript" src="highScore_script.js"></script>
+		<link rel="stylesheet" href="highScore_layout.css">
+		<title>Rocket Reading Prototype</title>
+	</head>
+
+	<body>
+		<div id="borderDiv">
+			<div id="loginScreen">
+			</div>
+			<div id="homeScreen">
+			</div>
+			<div id="gamesScreen">
+			</div>
+			<div id="highScoresScreen">
+                <div id="highHeader">
+                    <h1>High Scores</h1>
+                </div>
+                <div class="highTables">
+                    <div class="highTableSections">
+                        <div id="highContainer">
+                            <div id="highLevelTables"> 
+                                <div id="highTopLeftTable">
+                                    <h2>Level Game High Scores</h2>
+                                </div>
+                                <div class="highInnerLeftTable">
+                                    <h4>Games</h4>
+                                    <div class="highSideLeftTable">
+                                        <h4 class="highlevelCaption">Levels</h4>
+                                    </div>
+                                    <table id="highLevelGamesTable1"></table>
+                                    <!-- <div class="highSideLeftTable"></div> -->
+                                </div>
+                                <div class="highInnerLeftTable">
+                                    <h4>Games</h4>
+                                    <div class="highSideLeftTable">
+                                        <h4 class="highlevelCaption">Levels</h4>
+                                    </div>
+                                    <table id="highLevelGamesTable2"></table>
+                                    <!-- <div class="highSideLeftTable"></div> -->
+                                </div>
+                            </div>
+                            <div id="highBonusTableContainer" class="highTableSections">
+                                <h2>Bonus Game High Scores</h2>
+                                <table id="highBonusTable"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div id="gameSelectScreen">
+			</div>
+			<div id="gameScreen">
+			</div>
+		</div><!-- closes border div -->
+	</body>
+    <script>
+        initialise();
+    </script>
+</html>

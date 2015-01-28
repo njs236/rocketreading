@@ -1,0 +1,33 @@
+#gameSelectScreen {
+	height: 100%;
+}
+
+.gameSelectRow {
+	float: left;
+	clear: left;
+	height: calc(30%-1em);
+	width: 100%;
+}
+
+.gameSelectDivIconContainer {
+	float: left;
+	position: relative;
+	left: -3%;
+	width: 33.3%;
+	height: 100%;
+}
+
+#gameSelectDivLevel {
+	width: 100%;
+}
+
+.gameSelectDivIconContainer p {
+	text-align: center;
+	height: 1em;
+}
+
+.gameSelectIcon {
+	height: 80%;
+	width: 100%;
+	margin: 0 auto;
+}

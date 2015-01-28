@@ -5,17 +5,29 @@
 .gameSelectRow {
 	float: left;
 	clear: left;
-	height: 30%;
+	height: calc(30%-1em);
 	width: 100%;
 }
 
 .gameSelectDivIconContainer {
 	float: left;
+	position: relative;
+	left: -3%;
 	width: 33.3%;
-	background-color: red;
+	height: 100%;
+}
+
+#gameSelectDivLevel {
+	width: 100%;
+}
+
+.gameSelectDivIconContainer p {
+	text-align: center;
+	height: 1em;
 }
 
 .gameSelectIcon {
-	max-height: 75px;
-	max-width: 100%;
+	height: 80%;
+	width: 100%;
+	margin: 0 auto;
 }

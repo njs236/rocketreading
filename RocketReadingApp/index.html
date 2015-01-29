@@ -1,18 +1,103 @@
 <!DOCTYPE html>
+<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<script type="text/javascript" src="scripts.js"></script>
 		<link rel="stylesheet" href="layout.css">
 		<link rel="stylesheet" href="levelSelectLayout.css">
 		<link rel="stylesheet" href="gameScreen.css">
+
+		<script type="text/javascript" src="Home_scripts.js"></script>
+        <script type="text/javascript" src="Login_scripts.js"></script>
+        <script type="text/javascript" src="highScore_script.js"></script>
+        
+        <link rel="stylesheet" href="Login_layout.css">
+		<link rel="stylesheet" href="Home_layout.css">
+        <link rel="stylesheet" href="highScore_layout.css">
+
 		<title>Rocket Reading Prototype</title>
 	</head>
 
 	<body>
 		<div id="borderDiv">
 			<div id="loginScreen">
+                <form id="loginForm">
+                    <fieldset id="loginFieldset">
+                        <h1>Rocket Reading</h1>
+                   
+                        <h2>Please login</h2>
+                        
+                        <div id="loginFormLabelDiv">
+                            
+                                <label for "loginUserName" class="loginLabel">Username:</label>                   
+                                <input type="text" id="loginUserName" name="loginUserName" class="loginInputField"></input>
+                                <br>
+                                
+                                <label for "loginPassword" class="loginLabel">Password:</label>
+                                
+                                <input type="text" id="loginPassword" name="loginPassword" class="loginInputField"></input>
+                                <br>
+                                
+                                <label></label>
+                                <input type="button" value="Login" id="loginEnterBtn"></input>
+                           
+                        </div>
+                        
+                        <div>
+                            <p>If you do not have an account, you will need to register.</p>
+                        </div>
+                        
+                        <input type="button" value="Exit" id="loginExit" ></input>
+                        
+                    </fieldset>
+                </form>
 			</div>
-			<div id="homeScreen">
+			<div id="homeScreen" hidden="hidden">
+                <div id="homeContainer">
+                    <div id="homeLeft">
+                        <div class="homeSideDivs">
+                            <div id="homePlayGame" class="homeOptions homeOptionsLeft">
+                                <h2>Play Game</h2>
+                            </div>
+                        </div>
+                        <div class="homeSideDivs">
+                            <div id="homeContinue" class="homeOptions homeOptionsLeft">
+                                <h2>Continue</h2>
+                            </div>
+                        </div>
+                        <div class="homeSideDivs">
+                            <div id="homeHighScores" class="homeOptions homeOptionsLeft">
+                                <h2>High Scores</h2>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="homeAvatarContainer">
+                        <div id="homeAvatar">
+                            <h1>Welcome to Rocket Reading!</h1>
+                            <input type="image" alt="Conan having a quiet moment" src="images_Home/Conan_Marvel.jpg" title="Conan thinking ..." id="homeAvatarPic" disabled="true"></input>
+                            <p>Even barbarians need to learn how to read :)</p>
+                        </div>
+                    </div>
+                
+                    <div id="homeRight">
+                        <div class="homeSideDivs">
+                            <div id="homeInstructions" class="homeOptions homeOptionsRight">
+                                <h2>Instructions</h2>
+                            </div>
+                        </div>
+                        <div class="homeSideDivs">   
+                            <div id="homeDemo" class="homeOptions homeOptionsRight">
+                                <h2>Demo</h2>
+                            </div>
+                        </div>
+                        <div class="homeSideDivs">
+                            <div id="homeExit" class="homeOptions homeOptionsRight">
+                                <h2>Exit</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 			<div id="gamesScreen" hidden>
 				<div id="gameModal">
@@ -71,7 +156,41 @@
 				</div>
 				<!-- closes gameGame div -->
 			</div>
-			<div id="highScoresScreen">
+            <div id="highScoresScreen" hidden="hidden">
+                <div id="highHeader">
+                    <h1>High Scores</h1>
+                </div>
+                <div class="highTables">
+                    <div class="highTableSections">
+                        <div id="highContainer">
+                            <div id="highLevelTables" class="highTableSections"> 
+                                <div id="highTopLeftTable" >
+                                    <h2>Level Game High Scores</h2>
+                                </div>
+                                <div class="highInnerLeftTable">
+                                    <h4>Games</h4>
+                                    <div class="highSideLeftTable">
+                                        <h4 class="highlevelCaption">Levels</h4>
+                                    </div>
+                                    <table id="highLevelGamesTable1"></table>
+                                    <div class="highSideLeftTable"></div>
+                                </div>
+                                <div class="highInnerLeftTable">
+                                    <h4>Games</h4>
+                                    <div class="highSideLeftTable">
+                                        <h4 class="highlevelCaption">Levels</h4>
+                                    </div>
+                                    <table id="highLevelGamesTable2"></table>
+                                    <div class="highSideLeftTable"></div>
+                                </div>
+                            </div>
+                            <div id="highBonusTableContainer" class="highTableSections">
+                                <h2>Bonus Game High Scores</h2>
+                                <table id="highBonusTable"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 			<div id="levelSelectScreen" hidden>
 				<div id="levelSelectHeader">
@@ -133,6 +252,12 @@
 				<button class="button" id="gameScreenButton6">Game 6</button>
 			</div>
 		</div><!-- closes border div -->
-		<script> window.onload = initialise</script>
+		<script> window.onload = initialise
+            window.onload = highInitialise;
+            window.onload = homeInitialise;
+            window.onload = loginInitialise;
+        </script>
+
 	</body>
+    
 </html>

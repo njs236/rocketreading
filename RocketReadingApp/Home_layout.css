@@ -1,0 +1,107 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing:border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#borderDiv {
+	position:absolute;
+	border: solid 1px;
+	border-radius:0.5em;
+	width:calc(100% - 2em);
+	height:calc(100% - 2.1em);
+	margin:1em;
+	border-color:#aaa;
+}
+
+#homeContainer {
+	position:absolute;
+	height:100%;
+	width:100%;
+	background-color: gray;
+}
+
+#homeLeft, #homeRight {
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+
+div.homeSideDivs {
+    height: 33.33%;
+    width: 100%;
+}
+
+div.homeOptions {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width:calc(100% - 2em);
+	padding: 1.5em 0em;
+	text-align:center;
+	border: solid 1px;
+	border-color:#aaa;
+	border-radius:0.5em;
+}
+
+div.homeOptionsLeft {
+    margin-left: 2em;
+}
+
+#homePlayGame {
+    background-color: Blueviolet;
+}
+
+#homeContinue {
+    background-color: Coral;
+}
+
+#homeHighScores {
+    background-color: Cyan;
+}
+
+#homeAvatarContainer {
+    height: 100%;
+    width: 40%;
+    float: left;
+}
+
+#homeAvatar {
+    margin-left: 2em;
+    margin-top: 1em;
+    height:calc(100% - 2em);
+    width:calc(100% - 4em);
+    background-color: GoldenRod;
+    border: solid 1px;
+	border-color:#aaa;
+	border-radius:1em;
+    text-align: center;
+    padding: 0.5em 0;
+    color: DarkSlateBlue;
+}
+
+#homeAvatar h1 {
+    padding-bottom: 0.25em;
+}
+
+/* This does not seem to work ... */
+#homeAvatarPic {
+    cursor: pointer;
+}
+
+div.homeOptionsRight {
+    margin-right: 2em;
+}
+
+#homeInstructions {
+    background-color: DodgerBlue;
+}
+
+#homeDemo {
+    background-color: Fuchsia;
+}
+
+#homeExit {
+    background-color: LawnGreen;
+}

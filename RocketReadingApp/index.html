@@ -4,14 +4,7 @@
 		<script type="text/javascript" src="scripts.js"></script>
 		<link rel="stylesheet" href="layout.css">
 		<link rel="stylesheet" href="levelSelectLayout.css">
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="gameScreen.css">
 		<title>Rocket Reading Prototype</title>
 	</head>
 
@@ -21,7 +14,62 @@
 			</div>
 			<div id="homeScreen">
 			</div>
-			<div id="gamesScreen">
+			<div id="gamesScreen" hidden>
+				<div id="gameModal">
+				</div>
+				<!-- closes gameModal div -->
+				<div id="gameGame">
+					<div id="gameLeftSide">
+						<div id="gameTimerDiv" class="gameInfoBox">
+							<h1 id="gameTimer">0:24:3</h1>
+						</div>
+						<div id="gameScoreDiv" class="gameInfoBox">
+							<h1 id="gameScore">120</h1>
+						</div>
+						<div id="gameMedalsDiv" class="gameInfoBox">
+								<div class="medalIconDiv">
+									<img class="medalIcon"><h2>2</h2>
+								</div>
+								<div class="medalIconDiv">
+									<img class="medalIcon"><h2>5</h2>
+								</div>
+								<div class="medalIconDiv">
+									<img class="medalIcon"><h2>4</h2>
+								</div>
+						</div>
+					</div>
+					<!-- closes gameLeftSide div -->
+					<div id="gameRightSide">
+						<div id="gameRightSideTop">
+							<div id="gameRightSideTopLeft">
+								<h1> ICe cream man</h1>
+							</div>
+							<div id="gameRightSideTopMiddle">
+								<h1 id="learnWordText">Learn Word</h1>
+							</div>
+							<div id="gameRightSideTopRight">
+								<h1 id="gameLevelIDText">Game 1-1</h1>
+								<br>
+								<h1 id="gameProgressText">12/25 Words Complete</h1>
+								<br>
+								<h1 id ="homeButtonText">HOME</h1>
+							</div>
+							<div class="dummy"></div>
+						</div>
+						<div id="gameRightSideBottom">
+							<table id="gameWordTable">
+								<tr><td>I</td><td>am</td><td>the</td><td>go</td><td>going</td></tr>
+								<tr><td>to</td><td>shop</td><td>car</td><td>at</td><td>in</td></tr>
+								<tr><td>is</td><td>mum</td><td>here</td><td>and</td><td>see</td></tr>
+								<tr><td>dad</td><td>a</td><td>cat</td><td>can</td><td>said</td></tr>
+								<tr><td>run</td><td>running</td><td>jump</td><td>jumping</td><td>school</td></tr>
+							</table>
+						</div>
+					</div>
+					<!-- closes gameRightSide div -->
+					<div class="dummy"></div>
+				</div>
+				<!-- closes gameGame div -->
 			</div>
 			<div id="highScoresScreen">
 			</div>
@@ -81,9 +129,10 @@
 				<button class="button" id="gameScreenButton2">Game 2</button>
 				<button class="button" id="gameScreenButton3">Game 3</button>
 				<button class="button" id="gameScreenButton4">Game 4</button>
-				<button class="button" id="gameScreenButton5" hidden>Game 5</button>
-				<button class="button" id="gameScreenButton6" hidden>Game 6</button>
+				<button class="button" id="gameScreenButton5">Game 5</button>
+				<button class="button" id="gameScreenButton6">Game 6</button>
 			</div>
 		</div><!-- closes border div -->
+		<script> window.onload = initialise</script>
 	</body>
 </html>

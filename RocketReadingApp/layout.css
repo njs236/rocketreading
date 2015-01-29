@@ -1,0 +1,20 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing:border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#borderDiv {
+	position:absolute;
+	border: solid 1px;
+	border-radius:0.5em;
+	width:calc(100% - 2em);
+	height:calc(100% - 2.1em);
+	margin:1em;
+	border-color:#aaa;
+}
+
+div.dummy {
+	clear:both;
+}

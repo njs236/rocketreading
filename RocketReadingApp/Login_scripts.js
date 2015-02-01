@@ -10,7 +10,7 @@ var resizeForm = function () {
     console.log("Resize");
 };
 
-var loginInitialise = function () {
+function loginInitialise() {
     "use strict";
     // Set the size of the left padding of the inputs field
     resizeForm();

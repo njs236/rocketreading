@@ -8,7 +8,7 @@ var resizeImage = function () {
     document.getElementById("homeAvatarPic").style.width = avatarDivWidth + 'px';
 };
 
-var homeInitialise = function () {
+function homeInitialise() {
 	"use strict";
     // Set the size of the image of the avatar on the home page
     resizeImage();

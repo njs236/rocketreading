@@ -31,10 +31,8 @@ var initialise = function () {
 	
 	generateLists();
 	
-	//document.getElementById("homeScreen").hidden = true;
-	document.getElementById("gamesScreen").hidden = true;
-	//document.getElementById("highScoresScreen").hidden = true;
-	//document.getElementById("gameSelectScreen").hidden = true;document.getElementById("gamesScreen").hidden = true;
-	//document.getElementById("").hidden = true;
 	navigationInitialise();
+	highInitialise();
+	homeInitialise();
+	loginInitialise();
 }

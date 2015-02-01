@@ -123,7 +123,7 @@ var setTablesContainerHeight = function () {
     console.log("Setting height of tables container divs");
 };
 
-var highInitialise = function () {
+function highInitialise() {
 	"use strict";
     var highCells = [20, 5],
         bonusCells = [12, 2],

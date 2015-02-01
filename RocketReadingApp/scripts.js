@@ -36,4 +36,5 @@ var initialise = function () {
 	//document.getElementById("highScoresScreen").hidden = true;
 	//document.getElementById("gameSelectScreen").hidden = true;document.getElementById("gamesScreen").hidden = true;
 	//document.getElementById("").hidden = true;
+	navigationInitialise();
 }

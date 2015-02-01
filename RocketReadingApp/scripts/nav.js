@@ -44,11 +44,11 @@ var showLoginScreen = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("loginScreen").hidden = false;
-}
+};
 
 function navigationInitialise() {
 	"use strict";
-	console.log("navigationInitialise : Runing");
+	console.log("navigationInitialise() : Runing");
 	document.getElementById("loginEnterBtn").addEventListener("click", showHomeScreen);
 	document.getElementById("homePlayGame").addEventListener("click", showLevelScreen);
 	document.getElementById("levelSelectDivLevel1").addEventListener("click", showGameSelectScreen);

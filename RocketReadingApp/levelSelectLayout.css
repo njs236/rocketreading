@@ -1,11 +1,11 @@
 #levelSelectScreen {
-	height: 100%;
+	height: 90%;
 }
 
 .levelSelectRow {
 	float: left;
 	clear: left;
-	height: calc(30%-1em);
+	height: calc(33.3% - 0.666em);
 	width: 100%;
 }
 
@@ -27,7 +27,8 @@
 }
 
 .levelSelectIcon {
-	height: 80%;
+	height: calc(100% - 4em);
 	width: 100%;
 	margin: 0 auto;
+	margin-bottom: 1em;
 }

@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 		<script type="text/javascript" src="scripts/nav.js"></script>
 		<script type="text/javascript" src="scripts.js"></script>
 		<link rel="stylesheet" href="layout.css">
@@ -21,7 +22,7 @@
 
 	<body>
 		<div id="borderDiv">
-			<div id="loginScreen" class="navScreen">
+			<div id="loginScreen" class="navScreen" hidden>
                 <form id="loginForm">
                     <fieldset id="loginFieldset">
                         <h1>Rocket Reading</h1>
@@ -193,7 +194,9 @@
                     </div>
                 </div>
 			</div>
-			<div id="levelSelectScreen" class="navScreen" hidden>
+			
+			<!-- Level Select Screen -->
+			<div id="levelSelectScreen" class="navScreen">
 				<div id="levelSelectHeader">
 					<h1>Level Select</h1>
 				</div>
@@ -230,7 +233,7 @@
 				
 				<div class="levelSelectRow" id="levelSelectBottomRow">
 					<div class="levelSelectDivIconContainer" id="levelSelectDivSpacerLeft">
-					.
+					&nbsp
 					</div>
 	
 					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel7">
@@ -239,7 +242,7 @@
 					</div>
 					
 					<div class="levelSelectDivIconContainer" id="levelSelectDivSpacerRight">
-					.
+					&nbsp
 					</div>
 					
 				</div>

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="Login_layout.css">
 		<link rel="stylesheet" href="Home_layout.css">
         <link rel="stylesheet" href="highScore_layout.css">
+		<link rel="stylesheet" href="gameSelectScreenLayout.css">
 
 		<title>Rocket Reading Prototype</title>
 	</head>
@@ -256,12 +257,14 @@
 				</div>
 			</div>
 			<div id="gameSelectScreen" class="navScreen" hidden>
-				<button class="button" id="gameScreenButton1">Game 1</button>
-				<button class="button" id="gameScreenButton2">Game 2</button>
-				<button class="button" id="gameScreenButton3">Game 3</button>
-				<button class="button" id="gameScreenButton4">Game 4</button>
-				<button class="button" id="gameScreenButton5">Game 5</button>
-				<button class="button" id="gameScreenButton6">Game 6</button>
+				<div id="gameSelectButtonContainer">
+					<button class="button" id="gameScreenButton1">Game 1</button>
+					<button class="button" id="gameScreenButton2">Game 2</button>
+					<button class="button" id="gameScreenButton3">Game 3</button>
+					<button class="button" id="gameScreenButton4">Game 4</button>
+					<button class="button" id="gameScreenButton5">Game 5</button>
+					<button class="button" id="gameScreenButton6">Game 6</button>
+				</div>
 			</div>
 		</div><!-- closes border div -->
 		<script> window.onload = initialise;

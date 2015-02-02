@@ -1,0 +1,22 @@
+#gameSelectScreen {
+	position:absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#gameSelectScreen .button {
+	margin: 5% calc(25% - 2.5em);
+	float: left;
+	width: 5em;
+}
+
+#gameSelectButtonContainer {
+	position: fixed;
+	left: calc(50% - 7em);
+	top: calc(50% - 4em);
+	overflow: auto;
+	height: 8em;
+	width: 14em;
+}
+

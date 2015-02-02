@@ -1,147 +1,68 @@
-* {
-	padding: 0px;
-	margin: 0px;
-	box-sizing:border-box;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-#borderDiv {
+#highScoresScreen {
 	position:absolute;
-	border: solid 1px;
-	border-radius:0.5em;
-	width:calc(100% - 2em);
-	height:calc(100% - 2.1em);
-	margin:1em;
-	border-color:#aaa;
-}
-
-div.dummy {
-	clear:both;
-}
-
-table {
-    border: solid 1px;
-	border-collapse:collapse;
-}
-
-#highBonusTableContainer table {
-    margin: 0 auto;
-} 
-
-td, th {
-	padding:1.25em;
-	border : solid 1px;
-	border-color:#222;
+	width:100%;
+	height:100%;
 	text-align:center;
 }
 
-#highBonusTable td, #highBonusTable th {
-    box-sizing:content-box;
-    padding: 0.32em;
-}
-
-#highHeader  h1 {
-    /*position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    /*padding: 1em;*/
-    text-align: center;
-}
-
-div.highTables h2, div.highTables h4 {
-    padding-bottom: 0.2em;
-    text-align: center;
-    /*margin: 0 auto;*/
-}
-
-#highBonusTableContainer  h2{
-    padding-bottom: 1.25em;
-}
-
 #highHeader {
-    position: relative;
-    width: 100%;
-    height: 10%;
-    background-color: blue;
+	vertical-align:middle;
+	height:10%;
+	border:solid 1px red;
 }
 
-div.highTables {
-    /*position: relative;*/
-    background-color: yellow;
-    height: 90%;
-    width: 100%;
+#highScoresIcons {
+	height:30%;
+	padding-top:2%;
+	border:solid 1px green;
 }
 
-div.highTableSections {
-    /*display: block;*/
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+#highScoresTableArea {
+	padding-top:2%;
+	height:50%;
+	border:solid 1px red;
 }
 
-#highContainer {
-    width: 100%;
-    background-color: red;
+#highScoreScreenFooter {
+	height:10%;
+	border:solid 1px cyan;
 }
 
-#highLevelTables {
-    background-color: pink;
-    width: 70%;
-    float: left;
+div.highScoreIcon {
+	float:left;
+	height:100%;
+	width:calc(100% / 7);
+	border:1px solid blue;
 }
 
-#highBonusTableContainer {
-    background-color: green;
-    width: 30%;
-    float: left;
+img.highScoresLevelImage {
+	display:block;
+	height:100%;
+	width:auto;
+	margin:auto;
+	max-width:100%;
 }
 
-.highInnerLeftTable {
-    /*box-sizing: content-box;*/
-    background-color: gray;
-    float:left;
-    width: 50%;
-    height: 100%;
+#highScoreslevel06 {
+	width:100%;
+	height:auto;
 }
 
-#highScoresScreen {
-    position: absolute;
-    /*left: 2.5em;
-    width: 95%;
-    width:calc(100% - 5em);*/
-    width: 100%;
-    height: 100%;
+#highScoresTableDisplay {
+	margin:0px auto;
+	width:70%;
+	height:50%;
+	border-collapse:collapse;
+	border:1px solid black;
 }
 
-#highBonusTable {
-    margin-top: 2em;
+#highScoresTableDisplay td{
+	border:1px solid black;
+	text-align:center;
+	padding:2em 0em;
 }
 
-#highTopLeftTable{
-    padding-bottom: 0.2em;
-    text-align: center;
-    margin: 0 auto;
-}
-
-div.highSideLeftTable{
-    background-color: purple;
-    height: 100%;
-    width: 100%;
-    float: left;
-}
-
-.highlevelCaption {
-    padding-right: 0.5em; /* Don't use margin-right for text*/
-    float: right; 
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-#highLevelGamesTable1, #highLevelGamesTable2 {
-    float: left;
-}
-
-div.highClearFloats {
-    clear: both;
+#highScoresTableDisplay th{
+	border:1px solid black;
+	padding:2em 0em;
 }

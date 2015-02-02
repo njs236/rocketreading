@@ -57,4 +57,6 @@ function navigationInitialise() {
 	document.getElementById("homeExit").addEventListener("click", showLoginScreen);
 	
 	document.getElementById("gameHomeLink").addEventListener("click", showHomeScreen);
+	
+	document.getElementById("highScoreScreenHomeButton").addEventListener("click", showHomeScreen);
 }

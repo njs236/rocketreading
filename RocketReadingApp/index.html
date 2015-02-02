@@ -12,7 +12,7 @@
 
 		<script type="text/javascript" src="Home_scripts.js"></script>
         <script type="text/javascript" src="Login_scripts.js"></script>
-        <script type="text/javascript" src="highScore_script.js"></script>
+        <!-- <script type="text/javascript" src="highScore_script.js"></script> -->
         
         <link rel="stylesheet" href="Login_layout.css">
 		<link rel="stylesheet" href="Home_layout.css">
@@ -137,7 +137,7 @@
 					<div id="gameRightSide">
 						<div id="gameRightSideTop">
 							<div id="gameRightSideTopLeft">
-								<img id="gameAvatar" src="images/avatarIceCream.png">
+								<img id="gameAvatar" src="images/icecream.png">
 							</div>
 							<div id="gameRightSideTopMiddle">
 								<h1 id="learnWordText">Learn Word</h1>
@@ -170,37 +170,40 @@
                 <div id="highHeader">
                     <h1>High Scores</h1>
                 </div>
-                <div class="highTables">
-                    <div class="highTableSections">
-                        <div id="highContainer">
-                            <div id="highLevelTables" class="highTableSections"> 
-                                <div id="highTopLeftTable" >
-                                    <h2>Level Game High Scores</h2>
-                                </div>
-                                <div class="highInnerLeftTable">
-                                    <h4>Games</h4>
-                                    <div class="highSideLeftTable">
-                                        <h4 class="highlevelCaption">Levels</h4>
-                                    </div>
-                                    <table id="highLevelGamesTable1"></table>
-                                    <div class="highSideLeftTable"></div>
-                                </div>
-                                <div class="highInnerLeftTable">
-                                    <h4>Games</h4>
-                                    <div class="highSideLeftTable">
-                                        <h4 class="highlevelCaption">Levels</h4>
-                                    </div>
-                                    <table id="highLevelGamesTable2"></table>
-                                    <div class="highSideLeftTable"></div>
-                                </div>
-                            </div>
-                            <div id="highBonusTableContainer" class="highTableSections">
-                                <h2>Bonus Game High Scores</h2>
-                                <table id="highBonusTable"></table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="highScoresIcons">
+					<div class="highScoreIcon">
+						<img class="highScoresLevelImage" id="highScoreslevel01" src="images/icecream.png" alt="level01">
+					</div>
+					<div class="highScoreIcon">
+						<img class="highScoresLevelImage" id="highScoreslevel02" src="images/tree.png" alt="level02">
+					</div>
+					<div class="highScoreIcon">
+						<img class="highScoresLevelImage" id="highScoreslevel03" src="images/cloud.png" alt="level03">
+					</div>
+					<div class="highScoreIcon">
+						<img class="highScoresLevelImage" id="highScoreslevel04" src="images/lollipop.png" alt="level04">
+					</div>
+					<div class="highScoreIcon">
+						<img class="highScoresLevelImage" id="highScoreslevel05" src="images/pirate.png" alt="level05">
+					</div>
+					<div class="highScoreIcon">
+						<img class="highScoresLevelImage" id="highScoreslevel06" src="images/car.png" alt="level06">
+					</div>
+					<div class="highScoreIcon">
+						<img class="highScoresLevelImage" id="highScoreslevel00" src="images/star.png" alt="level00">
+					</div>
+				</div>
+				<div class="dummy"></div>
+				<div id="highScoresTableArea">
+					<table id="highScoresTableDisplay">
+						<tr><th>Game 01</th><th>Game 02</th><th>Game 03</th><th>Game 04</th><th>Total</th></tr>
+						<tr><td>200</td><td>190</td><td>210</td><td>170</td><td>770</td></tr>
+					</table>
+					<br>
+				</div>
+				<div id="highScoreScreenFooter">
+					<h1 id="highScoreScreenHomeButton">HOME</h1>
+				</div>
 			</div>
 			
 			<!-- Level Select Screen -->

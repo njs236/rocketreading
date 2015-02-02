@@ -97,7 +97,7 @@ var initialise = function () {
 	generateLists();
 	
 	navigationInitialise();
-	highInitialise();
+	//highInitialise();
 	homeInitialise();
 	loginInitialise();
     

@@ -48,8 +48,8 @@ var showLoginScreen = function () {
 
 function navigationInitialise() {
 	"use strict";
-	console.log("navigationInitialise() : Runing");
-	document.getElementById("loginEnterBtn").addEventListener("click", showHomeScreen);
+	console.log("navigationInitialise() : Running");
+	document.getElementById("loginEnterBtn").addEventListener("click", processLogin, false);
 	document.getElementById("homePlayGame").addEventListener("click", showLevelScreen);
 	document.getElementById("levelSelectDivLevel1").addEventListener("click", showGameSelectScreen);
 	document.getElementById("gameScreenButton1").addEventListener("click", showGameScreen);

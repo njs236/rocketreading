@@ -15,7 +15,7 @@
 	border-color:#aaa;
 }
 
-p, h2 {
+#loginForm p, #loginForm h2 {
     color: DarkGreen;
 }
 
@@ -49,7 +49,7 @@ p, h2 {
     color: DarkSlateBlue; 
 }
 
-#loginFieldset h2, #loginFieldset h1, p{
+#loginFieldset h2, #loginFieldset h1, #loginFieldset p{
     padding: 0.5em 0;
     text-align: center;
 }

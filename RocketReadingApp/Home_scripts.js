@@ -11,8 +11,8 @@ var resizeImage = function () {
 function homeInitialise() {
 	"use strict";
     // Set the size of the image of the avatar on the home page
-    resizeImage();
+    // resizeImage();
     
     // Add an event listener for resizing the side divs of the left hand table
-    window.addEventListener("resize", resizeImage);
+    // window.addEventListener("resize", resizeImage);
 };

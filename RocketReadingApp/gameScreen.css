@@ -45,6 +45,17 @@
 	height:100%;
 	background-color:orange;
 	float:left;
+	text-align:center;
+	position:relative;
+}
+
+#learnWordText {
+	vertical-align:middle;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
 }
 
 #gameRightSideTopRight {
@@ -67,6 +78,11 @@ div.gameInfoBox {
 	border-radius:0.5em;
 }
 
+#gameMedalsDiv {
+	height:45%;
+
+}
+
 #gameWordTable {
 	margin-left:5em;
 	position:absolute;
@@ -82,10 +98,26 @@ div.gameInfoBox {
 
 div.medalIconDiv {
 	width:100%;
-	height:5em;
+	height:calc(33% - 0.6em);
 	background-color:orange;
+	padding-left:20%;
 }
 
 div.medalIconDiv:nth-child(2) {
 	margin:1em 0em;
+}
+
+img.medalIcon {
+	height:100%;
+	width:auto;
+	float:left;
+}
+
+.medalCounter {
+	float:left;
+	margin-top:20%;
+}
+#gameAvatar {
+	height:100%;
+	width:auto;
 }

@@ -55,4 +55,6 @@ function navigationInitialise() {
 	document.getElementById("gameScreenButton1").addEventListener("click", showGameScreen);
 	document.getElementById("homeHighScores").addEventListener("click", showHighScoresScreen);
 	document.getElementById("homeExit").addEventListener("click", showLoginScreen);
+	
+	document.getElementById("gameHomeLink").addEventListener("click", showHomeScreen);
 }

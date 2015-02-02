@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="layout.css">
 		<link rel="stylesheet" href="levelSelectLayout.css">
 		<link rel="stylesheet" href="gameScreen.css">
+		<link rel="stylesheet" href="css/gameScreenModal.css">
 
 		<script type="text/javascript" src="Home_scripts.js"></script>
         <script type="text/javascript" src="Login_scripts.js"></script>
@@ -101,7 +102,14 @@
                 </div>
 			</div>
 			<div id="gamesScreen" class="navScreen" hidden>
-				<div id="gameModal">
+				<div id="gameModal" class="modalDialog">
+					<div id="gameModalDialog">
+							<ul id="gameModalList">
+								<li id="gameButtonResume"><a href="#Close" title="Close">Resume</a></li>
+								<li id="gameButtonReplay">Replay</li>
+								<li id="gameButtonGoHome"><a id="gameHomeLink" href="#Close" title="Home">Home</a></li>
+							</ul>
+					</div>
 				</div>
 				<!-- closes gameModal div -->
 				<div id="gameGame">
@@ -114,13 +122,13 @@
 						</div>
 						<div id="gameMedalsDiv" class="gameInfoBox">
 								<div class="medalIconDiv">
-									<img class="medalIcon"><h2>2</h2>
+									<img class="medalIcon" src="images/goldStar.svg"><h1 class="medalCounter">2</h1>
 								</div>
 								<div class="medalIconDiv">
-									<img class="medalIcon"><h2>5</h2>
+									<img class="medalIcon" src="images/silverStar.svg"><h1 class="medalCounter">5</h1>
 								</div>
 								<div class="medalIconDiv">
-									<img class="medalIcon"><h2>4</h2>
+									<img class="medalIcon" src="images/bronzeStar.svg"><h1 class="medalCounter">4</h1>
 								</div>
 						</div>
 					</div>
@@ -128,7 +136,7 @@
 					<div id="gameRightSide">
 						<div id="gameRightSideTop">
 							<div id="gameRightSideTopLeft">
-								<h1> ICe cream man</h1>
+								<img id="gameAvatar" src="images/avatarIceCream.png">
 							</div>
 							<div id="gameRightSideTopMiddle">
 								<h1 id="learnWordText">Learn Word</h1>
@@ -138,7 +146,7 @@
 								<br>
 								<h1 id="gameProgressText">12/25 Words Complete</h1>
 								<br>
-								<h1 id ="homeButtonText">HOME</h1>
+								<h1 id ="homeButtonText"><a id="openLink" href="#gameModal">HOME</a></h1>
 							</div>
 							<div class="dummy"></div>
 						</div>

@@ -1,34 +1,69 @@
 var Myapp = function() {
 this.levelCount = 0;
 this.allMyLevels = [];
-this.playerCount = 0;
-this.allMyPlayers = [];
 };
+/*
+var CreatePlayerCollection = function (userName) {
+"use strict"
+var collectionProperties = {
+	playerCount : 0,
+	allMyPlayers : [],
+}
+localStorage.setItem(userName, JSON.stringify(collectionProperties))
+}
+*/
+myGameController = new Myapp();
 
-Myapp.prototype.addLevel = function() {
+Myapp.prototype.addLevel = function(newName) {
 "use strict";
-var newLevel = new Level();
+var newLevel = new Level(newName);
 this.allMyLevels.push (newLevel);
 this.levelCount += 1;
 }
 
-Myapp.prototype.addPlayer = function (newName, newUser) {
+Myapp.prototype.addPlayer = function (newName, newLastName, newUser, newSchool, newClass) {
 "use strict";
-var newPlayer = new Player ();
-this.allMyPlayers.push (newPlayer);
-this.playerCount += 1;
+var currentUserData = {
+	firstName : newName,
+	lastName : newLastName,
+	userName : newUser,
+	school : newSchool,
+	classRoom : newClass
 }
+localStorage.setItem(newUser, JSON.stringify(currentUserData));
+var x = JSON.parse(localStorage.getItem('playerCollection'));
+/*var newPlayer = JSON.parse(localStorage.getItem(newUser));
+x.allMyPlayers.push(newPlayer);
+x.playerCount += 1;
+localStorage.setItem('playerCollection', JSON.stringify(x));*/
+};
 
 Myapp.prototype.addGame = function (list, newName) {
 "use strict";
 var myList = list || {},
-	newGame = new Game ();
+	newGame = new Game (newName);
 this.allMyGames.push (newGame);
 this.gameCount += 1;
 }
 
-Myapp.prototype.findLevel = function (place) {
-return this.allMyLevels[place];
+Myapp.prototype.findLevel = function (name) {
+	for (aLevel of this.allMyLevels) {
+		if (aLevel.name = name) {
+			return aLevel;
+		}
+	}
+		alert("Level Not Found");
+}
+
+Myapp.prototype.findGame = function (name) {
+	for (aLevel of this.allMyLevels) {
+		for (aGame of aLevel.allMyGames) {
+			if (aGame.name = name) {
+				return aGame;
+			}
+		}
+	};
+		alert("Game Not Found");
 }
 
 Myapp.prototype.addList = function (level, game, inputlist) {

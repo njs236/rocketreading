@@ -8,13 +8,13 @@ var gameLists = [],
         commonMethod: {
             validateLogin: function (nameElement, passwordElement) {
                 "use strict";
-                if  (( JSON.parse(localStorage.getItem(nameElement.value)).username === nameElement.value) && ( JSON.parse(localStorage.getItem(nameElement.value)).password === passwordElement.value )) {
+                if  (( JSON.parse(localStorage.getItem(nameElement.value)).userName === nameElement.value) && ( JSON.parse(localStorage.getItem(nameElement.value)).firstName === passwordElement.value )) {
                     // The system lets the user login
                     console.log("Through!");
                     showHomeScreen();
                 } else {
-                    password.value = "";
-                    password.focus();
+                    passwordElement.value = "";
+                    passwordElement.focus();
                     document.getElementById("loginMessage").innerHTML = "Invalid username or password. Please try again";
                 }  
             },
@@ -70,7 +70,7 @@ var processLogin = function () {
 
 var addUserLS = function () {
     "use strict";
-    localStorage.setItem("Maccas", JSON.stringify({username:"Maccas", password:"bloppy400"}));
+    myGameController.addPlayer('bloppy400', 'squishy', 'Maccas', 'lincoln primary', 'b1');
 };
 
 // load lists

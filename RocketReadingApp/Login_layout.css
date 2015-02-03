@@ -15,14 +15,9 @@
 	border-color:#aaa;
 }
 
-#loginForm p, #loginForm h2 {
-    color: DarkGreen;
-}
-
 #loginScreen {
     height: 100%;
     width: 100%;
-    background-color: PaleGreen;
 }
 
 #loginForm {
@@ -54,8 +49,15 @@
     text-align: center;
 }
 
+#loginFieldset h2 {
+   color: white;
+}
+   
 #loginFormLabelDiv {
     display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #loginFormLabelDiv label {
@@ -65,13 +67,6 @@
     text-align: right;
     height: 2em;
     padding:0.25em 0.5em 0.75em 0;
-}
-
-#loginInputContainer {
-    /*width: 55%;
-    padding-bottom: 0.5em;
-    float: left;*/
-    display: inline;
 }
 
 .loginInputField {
@@ -84,6 +79,10 @@
     width: 7em;
     height: 2em;
 }
+/*
+#loginMessage {
+    margin-top: 0.5em;
+}*/
 
 #loginExit {
     float: right;

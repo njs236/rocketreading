@@ -13,8 +13,8 @@ var resizeForm = function () {
 function loginInitialise() {
     "use strict";
     // Set the size of the left padding of the inputs field
-    resizeForm();
+    // resizeForm();
     
     // Add an event listener for resizing the side divs of the left hand table
-    window.addEventListener("resize", resizeForm);
+    // window.addEventListener("resize", resizeForm);
 };

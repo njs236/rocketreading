@@ -132,9 +132,9 @@ var initialise = function () {
 	generateLists();
 	
 	navigationInitialise();
-	//highInitialise();
-	homeInitialise();
-	loginInitialise();
+	// highInitialise();
+	// homeInitialise();
+	// loginInitialise();
     
     addUserLS();
 

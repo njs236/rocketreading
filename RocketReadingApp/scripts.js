@@ -13,8 +13,8 @@ var gameLists = [],
                     console.log("Through!");
                     showHomeScreen();
                 } else {
-                    password.value = "";
-                    password.focus();
+                    passwordElement.value = "";
+                    passwordElement.focus();
                     document.getElementById("loginMessage").innerHTML = "Invalid username or password. Please try again";
                 }  
             },

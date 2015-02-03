@@ -4,8 +4,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 		<meta name="mobile-web-app-capable" content="yes">
-		<script type="text/javascript" src="scripts/nav.js"></script>
-		<script type="text/javascript" src="scripts.js"></script>
 		<link rel="stylesheet" href="layout.css">
 		<link rel="stylesheet" href="levelSelectLayout.css">
 		<link rel="stylesheet" href="gameScreen.css">
@@ -14,6 +12,8 @@
 		<script type="text/javascript" src="src/List.js"></script>
 		<script type="text/javascript" src="src/Level.js"></script>
 		<script type="text/javascript" src="src/myApp.js"></script>
+		<script type="text/javascript" src="scripts/nav.js"></script>
+		<script type="text/javascript" src="scripts.js"></script>
 
 		<script type="text/javascript" src="Home_scripts.js"></script>
         <script type="text/javascript" src="Login_scripts.js"></script>
@@ -24,12 +24,16 @@
 		<link rel="stylesheet" href="Home_layout.css">
         <link rel="stylesheet" href="highScore_layout.css">
 		<link rel="stylesheet" href="gameSelectScreenLayout.css">
+		<link rel="stylesheet" href="pingpong_layout.css">
 
 		<title>Rocket Reading Prototype</title>
 	</head>
 
 	<body>
 		<div id="borderDiv">
+			<div id="pingpong" class="navScreen" hidden>
+			<p></p>
+			</div>
 			<div id="loginScreen" class="navScreen">
                 <form id="loginForm">
                     <fieldset id="loginFieldset">

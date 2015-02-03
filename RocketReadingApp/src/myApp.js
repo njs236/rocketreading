@@ -1,6 +1,10 @@
 var Myapp = function() {
 this.levelCount = 0;
 this.allMyLevels = [];
+this.listCount = 0
+this.allMyLists = [];
+this.gameCount = 0;
+this.allMyGames = [];
 };
 /*
 var CreatePlayerCollection = function (userName) {
@@ -38,12 +42,14 @@ x.playerCount += 1;
 localStorage.setItem('playerCollection', JSON.stringify(x));*/
 };
 
-Myapp.prototype.addGame = function (list, newName) {
+Myapp.prototype.addGame = function (level, newName) {
 "use strict";
-var myList = list || {},
+var myLevel = this.allMyLevels[level],
 	newGame = new Game (newName);
 this.allMyGames.push (newGame);
 this.gameCount += 1;
+myLevel.allMyGames.push (newGame);
+myLevel.gameCount += 1;
 }
 
 Myapp.prototype.findLevel = function (name) {
@@ -70,8 +76,8 @@ Myapp.prototype.addList = function (level, game, inputlist) {
 "use strict";
 
 //This is a reference to the game that the List is part of.
-myGame = Myapp.allMyLevels[level].allMyGames[game]
-var wordsArray = inputlist.split(',');
+var myGame = myGameController.allMyLevels[level].allMyGames[game],
+    wordsArray = inputlist.split(',');
 //This is relating the game to the List and feeding in an CSV line.
 var newList = new List(myGame, wordsArray);
 this.allMyLists.push (newList);

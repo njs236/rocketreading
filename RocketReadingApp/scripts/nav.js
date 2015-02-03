@@ -10,6 +10,12 @@ function hideAll() {
 	};
 }
 
+var showPingPong = function () {
+	"use strict";
+	hideAll();
+	document.getElementById("pingpong").hidden = false;
+}
+
 var showHomeScreen = function () {
 	"use strict";
 	hideAll();

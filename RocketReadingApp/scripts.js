@@ -63,7 +63,7 @@ var processLogin = function () {
 
 // Adding a user to local storage and loading up the data in the system
 
-var loadData = function () {
+var loadGameData = function () {
     "use strict";
     var theLevel,
         wordList1 = ["I","am","the","go","going","to","shop","car","at","in","is","Mum","here","and","see","Dad","a","cat","can","said","run","running","jump","jumping","school"],
@@ -138,6 +138,8 @@ var loadData = function () {
     theLevel.addGame(2, wordList22);
     theLevel.addGame(3, wordList23);
     theLevel.addGame(4, wordList24);
+    
+    myGameController.addCurrentGameData(0, [1, 1]);
 };
 
 // load lists
@@ -168,5 +170,5 @@ var initialise = function () {
 	// homeInitialise();
 	// loginInitialise();
     
-    loadData();
+    loadGameData();
 };

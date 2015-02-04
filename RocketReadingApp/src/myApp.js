@@ -62,6 +62,8 @@ Myapp.prototype.findLevel = function (name) {
 }
 
 Myapp.prototype.findGame = function (name) {
+    "use strict";
+    var aLevel;
 	for (aLevel of this.allMyLevels) {
 		for (aGame of aLevel.allMyGames) {
 			if (aGame.name = name) {
@@ -70,16 +72,24 @@ Myapp.prototype.findGame = function (name) {
 		}
 	};
 		alert("Game Not Found");
-}
+};
 
 Myapp.prototype.addList = function (level, game, inputlist) {
 "use strict";
+    //This is a reference to the game that the List is part of.
+    myGame = Myapp.allMyLevels[level].allMyGames[game]
+    var wordsArray = inputlist.split(',');
+    //This is relating the game to the List and feeding in an CSV line.
+    var newList = new List(myGame, wordsArray);
+    this.allMyLists.push (newList);
+    this.listCount += 1;
+};
 
-//This is a reference to the game that the List is part of.
-var myGame = myGameController.allMyLevels[level].allMyGames[game],
-    wordsArray = inputlist.split(',');
-//This is relating the game to the List and feeding in an CSV line.
-var newList = new List(myGame, wordsArray);
-this.allMyLists.push (newList);
-this.listCount += 1;
+/*
+var CreatePlayerCollection = function (userName) {
+"use strict"
+var collectionProperties = {
+	playerCount : 0,
+	allMyPlayers : [],
 }
+localStorage.setItem(userName, JSON.stringify(collectionProperties))*/

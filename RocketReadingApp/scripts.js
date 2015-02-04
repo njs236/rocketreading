@@ -164,40 +164,6 @@ var loadGameData = function () {
     theLevel.addGame(4, wordList24);
 };
 
-
-//Load Level and Games
-
-var addLevel = function () {
-	"use strict";
-	myGameController.addLevel("Secret Level");
-	myGameController.addLevel("Icecream");
-	myGameController.addGame(1, "Fruity Loops");
-}
-// load lists
-
-function generateLists() {
-	"use strict"
-	var wordList = ''
-	// Bonus Game
-	wordList = 'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z';
-	myGameController.addList(1,0,wordList);
-	// List 1
-	wordList = "I,am,the,go,going,to,shop,car,at,in,is,Mum,here,and,see,Dad,a,cat,can,said,run,running,jump,jumping,school";
-	myGameController.addList(1,1,wordList)
-	// List 2
-	wordList = "we,are,look,dog,come,bus,play,this,there,went,with,asked,bat,hit,ball,kicked,red,boy,girls,big,like,computer,TV,watch,home";
-	myGameController.addList(1,2,wordList)
-	// List 3
-	wordList = "an,away,books,call,called,came,eat,father,food,for,from,green,has,have,he,help,house,lost,mother,my,off,on,was,will,you";
-	myGameController.addList(1,3,wordList)
-	// List 4
-	wordList = "children,door,game,had,if,man,old,one,other,over,plane,please,road,saw,she,thankyou,that,then,they,town,two,what,when,where,yes";
-	myGameController.addList(1,4,wordList)
-	// List 5
-	wordList = "all,apple,bad,bed,bee,but,cold,did,do,get,good,happy,her,his,into,it,little,no,put,smiled,sun,up,were,why,your";
-	myGameController.addList(1,5,wordList)
-};
-
 var initialise = function () {
 	"use strict";
 	addLevel();

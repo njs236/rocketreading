@@ -162,12 +162,14 @@ var loadGameData = function () {
     theLevel.addGame(2, wordList22);
     theLevel.addGame(3, wordList23);
     theLevel.addGame(4, wordList24);
+    
+    myGameController.addCurrentGameData(0, [1, 1]);
 };
 
 var initialise = function () {
 	"use strict";
-	addLevel();
-	generateLists();
+	//addLevel();
+	//generateLists();
 	
 	navigationInitialise();
 	// highInitialise();

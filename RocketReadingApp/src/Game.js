@@ -1,3 +1,4 @@
-var Game = function(newName) {
-this.name = newName || 'unnamed';
+var Game = function (newNumber, newList) {
+    this.gameNumber = newNumber || 'unnamed';
+    this.myWordList = newList || [];
 };

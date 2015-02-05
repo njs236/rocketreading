@@ -116,54 +116,54 @@ var loadGameData = function () {
         wordList24 = ["preview","protein","roast","spill","shoulder","skull","scared","towel","salt","soup","hundred","seize","sulk","stung","cellphone","cracked","float","fainted","fetch","internet","browse","world","wrong","galaxy","wrapped"];
     
     // The system will delete any old instances of objects in the system
-    // myGameController.deleteAll(); This isn't necessary
+    // rocketReadingController.deleteAll(); This isn't necessary
     // It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
-    myGameController.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400, null, null);
+    rocketReadingController.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400, null, null);
     // Load up a list
-    myGameController.addLevel("Ice Cream World", 1, []);
-    myGameController.addLevel("Nature World", 2, []);
-    myGameController.addLevel("Water World", 3, []);
-    myGameController.addLevel("Lollipop World", 4, []);
-    myGameController.addLevel("Pirate World", 5, []);
-    myGameController.addLevel("Car World", 6, []);
+    rocketReadingController.addLevel("Ice Cream World", 1, []);
+    rocketReadingController.addLevel("Nature World", 2, []);
+    rocketReadingController.addLevel("Water World", 3, []);
+    rocketReadingController.addLevel("Lollipop World", 4, []);
+    rocketReadingController.addLevel("Pirate World", 5, []);
+    rocketReadingController.addLevel("Car World", 6, []);
     
-    theLevel = myGameController.findLevel("Ice Cream World");
+    theLevel = rocketReadingController.findLevel("Ice Cream World");
     theLevel.addGame(1, wordList1);
     theLevel.addGame(2, wordList2);
     theLevel.addGame(3, wordList3);
     theLevel.addGame(4, wordList4);
     
-    theLevel = myGameController.findLevel("Nature World");
+    theLevel = rocketReadingController.findLevel("Nature World");
     theLevel.addGame(1, wordList5);
     theLevel.addGame(2, wordList6);
     theLevel.addGame(3, wordList7);
     theLevel.addGame(4, wordList8);
     
-    theLevel = myGameController.findLevel("Water World");
+    theLevel = rocketReadingController.findLevel("Water World");
     theLevel.addGame(1, wordList9);
     theLevel.addGame(2, wordList10);
     theLevel.addGame(3, wordList11);
     theLevel.addGame(4, wordList12);
     
-    theLevel = myGameController.findLevel("Lollipop World");
+    theLevel = rocketReadingController.findLevel("Lollipop World");
     theLevel.addGame(1, wordList13);
     theLevel.addGame(2, wordList14);
     theLevel.addGame(3, wordList15);
     theLevel.addGame(4, wordList16);
     
-    theLevel = myGameController.findLevel("Pirate World");
+    theLevel = rocketReadingController.findLevel("Pirate World");
     theLevel.addGame(1, wordList17);
     theLevel.addGame(2, wordList18);
     theLevel.addGame(3, wordList19);
     theLevel.addGame(4, wordList20);
     
-    theLevel = myGameController.findLevel("Car World");
+    theLevel = rocketReadingController.findLevel("Car World");
     theLevel.addGame(1, wordList21);
     theLevel.addGame(2, wordList22);
     theLevel.addGame(3, wordList23);
     theLevel.addGame(4, wordList24);
     
-    myGameController.addCurrentGameData(0, [1, 1]);
+    rocketReadingController.addCurrentGameData(0, [1, 1]);
 };
 
 var initialise = function () {
@@ -180,7 +180,7 @@ var initialise = function () {
 };
 
 gameInitialise = function () {
-	theLevel = myGameController.findLevel("Ice Cream World");
+	theLevel = rocketReadingController.findLevel("Ice Cream World");
 	theGame = theLevel.allMyGames[0];
 	nextWord(theLevel, theGame, theGame.myWordList);
 }

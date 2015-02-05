@@ -5,34 +5,23 @@
 	text-align:center;
 }
 
-#highHeader {
-	vertical-align:middle;
-	height:10%;
-	border:solid 1px red;
-}
-
 #highScoresIcons {
 	height:30%;
 	padding-top:2%;
-	border:solid 1px green;
 }
 
 #highScoresTableArea {
 	padding-top:2%;
 	height:50%;
-	border:solid 1px red;
-}
-
-#highScoreScreenFooter {
-	height:10%;
-	border:solid 1px cyan;
 }
 
 div.highScoreIcon {
 	float:left;
 	height:100%;
 	width:calc(100% / 7);
-	border:1px solid blue;
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-position:center;
 }
 
 img.highScoresLevelImage {
@@ -65,4 +54,32 @@ img.highScoresLevelImage {
 #highScoresTableDisplay th{
 	border:1px solid black;
 	padding:2em 0em;
+}
+
+#highScore1Div {
+	background-image:url(../images/icecream.png);
+}
+
+#highScore2Div {
+	background-image:url(../images/tree.png);
+}
+
+#highScore3Div {
+	background-image:url(../images/cloud.png);
+}
+
+#highScore4Div {
+	background-image:url(../images/lollipop.png);
+}
+
+#highScore5Div {
+	background-image:url(../images/pirate.png);
+}
+
+#highScore6Div {
+	background-image:url(../images/car.png);
+}
+
+#highScore0Div {
+	background-image:url(../images/star.png);
 }

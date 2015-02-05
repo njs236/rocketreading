@@ -163,6 +163,16 @@ var loadGameData = function () {
     rocketReadingController.addCurrentGameData(0, [1, 1]);
 };
 
+
+//Load Level and Games
+
+var addLevel = function () {
+	"use strict";
+	myGameController.addLevel("Secret Level");
+	myGameController.addLevel("Icecream");
+	myGameController.addGame(1, "Fruity Loops");
+};
+
 var initialise = function () {
 	"use strict";
 	//addLevel();

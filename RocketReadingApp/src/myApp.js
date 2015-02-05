@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var RocketReadingController = function() {
 	this.levelCount = 0;
 	this.allMyLevels = [];
@@ -64,7 +65,7 @@ RocketReadingController.prototype.findGame = function (name) {
 };
 
 RocketReadingController.prototype.addList = function (level, game, inputlist) {
-"use strict";
+    "use strict";
     //This is a reference to the game that the List is part of.
     myGame = RocketReadingController.allMyLevels[level].allMyGames[game]
     var wordsArray = inputlist.split(',');

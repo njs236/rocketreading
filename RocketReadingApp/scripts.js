@@ -174,7 +174,7 @@ var addLevel = function () {
 	myGameController.addGame(1, "Fruity Loops");
 }
 // load lists
-
+/*
 function generateLists() {
 	"use strict"
 	var wordList = ''
@@ -196,12 +196,12 @@ function generateLists() {
 	// List 5
 	wordList = "all,apple,bad,bed,bee,but,cold,did,do,get,good,happy,her,his,into,it,little,no,put,smiled,sun,up,were,why,your";
 	myGameController.addList(1,5,wordList)
-};
+};*/
 
 var initialise = function () {
 	"use strict";
-	addLevel();
-	generateLists();
+	//addLevel();
+	//generateLists();
 	
 	navigationInitialise();
 	// highInitialise();

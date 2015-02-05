@@ -5,6 +5,7 @@ this.listCount = 0
 this.allMyLists = [];
 this.gameCount = 0;
 this.allMyGames = [];
+this.allMyPlayers = [];
 };
 /*
 var CreatePlayerCollection = function (userName) {
@@ -73,7 +74,7 @@ Myapp.prototype.findGame = function (name) {
 	};
 		alert("Game Not Found");
 };
-
+/*
 Myapp.prototype.addList = function (level, game, inputlist) {
 "use strict";
     //This is a reference to the game that the List is part of.

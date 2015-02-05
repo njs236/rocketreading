@@ -55,17 +55,31 @@ var showLoginScreen = function () {
 function navigationInitialise() {
 	"use strict";
 	console.log("navigationInitialise() : Running");
+	var collectionArray = [],
+		count;
+	// Login Screen
 	document.getElementById("loginEnterBtn").addEventListener("click", processLogin, false);
+	
+	// Home Screen
 	document.getElementById("homePlayGame").addEventListener("click", showLevelScreen);
-	document.getElementById("levelSelectDivLevel1").addEventListener("click", showGameSelectScreen);
-	document.getElementById("gameScreenButton1").addEventListener("click", showGameScreen);
 	document.getElementById("homeHighScores").addEventListener("click", showHighScoresScreen);
 	document.getElementById("homeExit").addEventListener("click", showLoginScreen);
 	
+	// Level Select Screen
+	document.getElementById("levelSelectHomeButton").addEventListener("click", showHomeScreen);
+	collectionArray = document.getElementsByClassName("levelSelectIconContainerClickable");
+	
+	for ( count = 0; count < collectionArray.length; count = count + 1) {
+		collectionArray[count].addEventListener("click",showGameSelectScreen);
+	}
+	collectionArray = [];
+	// Game Select Screen
+	document.getElementById("gameSelectHomeButton").addEventListener("click", showLevelScreen);
+	document.getElementById("gameScreenButton1").addEventListener("click", showGameScreen);
+	
+	// Game Screen
 	document.getElementById("gameHomeLink").addEventListener("click", showHomeScreen);
 	
+	// High Scores Screen
 	document.getElementById("highScoreScreenHomeButton").addEventListener("click", showHomeScreen);
-	
-	document.getElementById("levelSelectHomeButton").addEventListener("click", showHomeScreen);
-	document.getElementById("gameSelectHomeButton").addEventListener("click", showHomeScreen);
 }

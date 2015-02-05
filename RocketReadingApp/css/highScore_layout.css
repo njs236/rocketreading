@@ -19,6 +19,9 @@ div.highScoreIcon {
 	float:left;
 	height:100%;
 	width:calc(100% / 7);
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-position:center;
 }
 
 img.highScoresLevelImage {
@@ -55,7 +58,28 @@ img.highScoresLevelImage {
 
 #highScore1Div {
 	background-image:url(../images/icecream.png);
-	background-size:contain;
-	background-repeat:no-repeat;
-	background-position:center;
+}
+
+#highScore2Div {
+	background-image:url(../images/tree.png);
+}
+
+#highScore3Div {
+	background-image:url(../images/cloud.png);
+}
+
+#highScore4Div {
+	background-image:url(../images/lollipop.png);
+}
+
+#highScore5Div {
+	background-image:url(../images/pirate.png);
+}
+
+#highScore6Div {
+	background-image:url(../images/car.png);
+}
+
+#highScore0Div {
+	background-image:url(../images/star.png);
 }

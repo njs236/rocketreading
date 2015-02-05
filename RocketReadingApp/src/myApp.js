@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var RocketReadingController = function() {
 	this.levelCount = 0;
 	this.allMyLevels = [];

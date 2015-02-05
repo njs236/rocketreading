@@ -76,9 +76,9 @@ function showPage1() {
 
 var processLogin = function () {
     "use strict";
-    if (myRocketReading.commonMethod.validateFieldInput(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) { 
-        if (myRocketReading.commonMethod.validateUserExists(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) {
-            myRocketReading.commonMethod.validateLogin( document.getElementById("loginUserName"), document.getElementById("loginPassword") );
+    if (myRocketReading.loginMethod.validateFieldInput(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) { 
+        if (myRocketReading.loginMethod.validateUserExists(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) {
+            myRocketReading.loginMethod.validateLogin( document.getElementById("loginUserName"), document.getElementById("loginPassword") );
         } else {
             console.log("No login ...");
         }

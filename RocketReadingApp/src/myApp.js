@@ -1,10 +1,13 @@
 var Myapp = function() {
-this.levelCount = 0;
-this.allMyLevels = [];
-this.listCount = 0
-this.allMyLists = [];
-this.gameCount = 0;
-this.allMyGames = [];
+    this.levelCount = 0;
+    this.allMyLevels = [];
+    this.name = "MyRocketReadingApp";
+    this.listCount = 0
+    this.allMyLists = [];
+    this.playerCount = 0;
+    this.allMyPlayers = [];
+    this.gameCount = 0;
+    this.allMyGames = [];
 };
 /*
 var CreatePlayerCollection = function (userName) {
@@ -21,12 +24,23 @@ localStorage.setItem(userName, JSON.stringify(collectionProperties))
 myGameController = new Myapp();
 
 Myapp.prototype.addLevel = function(newName) {
-"use strict";
-var newLevel = new Level(newName);
-this.allMyLevels.push (newLevel);
-this.levelCount += 1;
-}
+    "use strict";
+    var newLevel = new Level(newName);
+    this.allMyLevels.push (newLevel);
+    this.levelCount += 1;
+};
 
+Myapp.prototype.addPlayer = function (newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel) {
+    "use strict";
+    var newCurrentGameData = new currentGameData("", "", [], "", "", [], []),
+        newAllGamesData = new allGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []),
+        newPlayer = new Player(newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel, newCurrentGameData, newAllGamesData);
+    this.allMyPlayers.push(newPlayer); 
+    this.playerCount += 1;
+    localStorage.setItem(newUser, JSON.stringify(newPlayer));
+};
+
+/*
 Myapp.prototype.addPlayer = function (newName, newLastName, newUser, newSchool, newClass) {
 "use strict";
 var currentUserData = {
@@ -41,34 +55,36 @@ var x = JSON.parse(localStorage.getItem('playerCollection'));
 /*var newPlayer = JSON.parse(localStorage.getItem(newUser));
 x.allMyPlayers.push(newPlayer);
 x.playerCount += 1;
-localStorage.setItem('playerCollection', JSON.stringify(x));*/
-};
+localStorage.setItem('playerCollection', JSON.stringify(x));
+};*/
 
 Myapp.prototype.addGame = function (level, newName) {
-"use strict";
-var myLevel = this.allMyLevels[level],
-	newGame = new Game (newName);
-this.allMyGames.push (newGame);
-this.gameCount += 1;
-myLevel.allMyGames.push (newGame);
-myLevel.gameCount += 1;
-}
+    "use strict";
+    var myLevel = this.allMyLevels[level],
+        newGame = new Game (newName);
+    myLevel.allMyGames.push (newGame);
+    myLevel.gameCount += 1;
+};
 
 Myapp.prototype.findLevel = function (name) {
+    "use strict";
+    var aLevel;
 	for (aLevel of this.allMyLevels) {
-		if (aLevel.name = name) {
+		if (aLevel.name === name) {
+            console.log("Have found: " + aLevel + ". Level name: " + aLevel.name); // test
+            console.log("Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
 			return aLevel;
 		}
 	}
-		alert("Level Not Found");
-}
+    alert("Level Not Found");
+};
 
 Myapp.prototype.findGame = function (name) {
     "use strict";
     var aLevel;
 	for (aLevel of this.allMyLevels) {
 		for (aGame of aLevel.allMyGames) {
-			if (aGame.name = name) {
+			if (aGame.name === name) {
 				return aGame;
 			}
 		}

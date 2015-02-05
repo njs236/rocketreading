@@ -3,7 +3,7 @@ var Level = function (newName, newLevelNumber, newGames, newNumberGames) {
     this.levelNumber = newLevelNumber || 'No Level Number';
     this.allMyGames = newGames || [];
     this.gameCount = newNumberGames || 0;
-	this.myApp = myGameController; 
+	this.myRocketReadingController = rocketReadingController; 
 };
 
 Level.prototype.calculateScore = function () {

@@ -1,4 +1,4 @@
-var Myapp = function() {
+var RocketReadingController = function() {
 this.levelCount = 0;
 this.allMyLevels = [];
 this.listCount = 0
@@ -16,16 +16,16 @@ var collectionProperties = {
 localStorage.setItem(userName, JSON.stringify(collectionProperties))
 }
 */
-myGameController = new Myapp();
+rocketReadingController = new RocketReadingController();
 
-Myapp.prototype.addLevel = function(newName) {
+RocketReadingController.prototype.addLevel = function(newName) {
 "use strict";
 var newLevel = new Level(newName);
 this.allMyLevels.push (newLevel);
 this.levelCount += 1;
 }
 
-Myapp.prototype.addPlayer = function (newName, newLastName, newUser, newSchool, newClass) {
+RocketReadingController.prototype.addPlayer = function (newName, newLastName, newUser, newSchool, newClass) {
 "use strict";
 var currentUserData = {
 	firstName : newName,
@@ -42,7 +42,7 @@ x.playerCount += 1;
 localStorage.setItem('playerCollection', JSON.stringify(x));*/
 };
 
-Myapp.prototype.addGame = function (level, newName) {
+RocketReadingController.prototype.addGame = function (level, newName) {
 "use strict";
 var myLevel = this.allMyLevels[level],
 	newGame = new Game (newName);
@@ -52,7 +52,7 @@ myLevel.allMyGames.push (newGame);
 myLevel.gameCount += 1;
 }
 
-Myapp.prototype.findLevel = function (name) {
+RocketReadingController.prototype.findLevel = function (name) {
 	for (aLevel of this.allMyLevels) {
 		if (aLevel.name = name) {
 			return aLevel;
@@ -61,7 +61,7 @@ Myapp.prototype.findLevel = function (name) {
 		alert("Level Not Found");
 }
 
-Myapp.prototype.findGame = function (name) {
+RocketReadingController.prototype.findGame = function (name) {
     "use strict";
     var aLevel;
 	for (aLevel of this.allMyLevels) {
@@ -74,10 +74,10 @@ Myapp.prototype.findGame = function (name) {
 		alert("Game Not Found");
 };
 
-Myapp.prototype.addList = function (level, game, inputlist) {
+RocketReadingController.prototype.addList = function (level, game, inputlist) {
 "use strict";
     //This is a reference to the game that the List is part of.
-    myGame = Myapp.allMyLevels[level].allMyGames[game]
+    myGame = RocketReadingController.allMyLevels[level].allMyGames[game]
     var wordsArray = inputlist.split(',');
     //This is relating the game to the List and feeding in an CSV line.
     var newList = new List(myGame, wordsArray);

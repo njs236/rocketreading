@@ -49,11 +49,11 @@ var gameLists = [],
         }
     };
 
-function nextWord(list) {
-	currentWordIndex = Math.floor(Math.random() * currentGameList.length);
+function nextWord(level, game, list) {
+	currentWordIndex = Math.floor(Math.random() * list.length);
 	var audio = document.createElement('AUDIO');
 	document.appendChild(audio)
-	audio.setAttribute("src","audio/List " + list + "/" + myGameController.allMyLists[list] + currentWordIndex + ".wav")
+	audio.setAttribute("src","audio/Level"+level.levelNumber +"Game" + game.gameNumber +"/" + currentWordIndex + ".wav")
 	audio.play()
 	audio.addEventListener('loadedmetadata', function(){
 		var duration;
@@ -176,3 +176,9 @@ var initialise = function () {
 
     loadGameData();
 };
+
+gameInitialise = function () {
+	theLevel = myGameController.findLevel("Ice Cream World");
+	theGame = theLevel.allMyGames[0];
+	nextWord(theLevel, theGame, theGame.myWordList);
+}

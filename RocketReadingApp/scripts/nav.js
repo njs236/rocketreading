@@ -44,6 +44,7 @@ var showGameScreen = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("gamesScreen").hidden = false;
+	gameInitialise();
 };
 
 var showLoginScreen = function () {

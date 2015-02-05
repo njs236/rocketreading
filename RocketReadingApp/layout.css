@@ -15,6 +15,12 @@
 	border-color:#aaa;
 }
 
+.navScreen {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
 div.dummy {
 	clear:both;
 }
@@ -22,3 +28,25 @@ div.dummy {
 a {
 	text-decoration:none;
 }
+
+div.screenHeaderFooter {
+	height:10%;
+	width:90%;
+	text-align:center;
+	margin:0px auto;
+}
+
+div.screenHeader {
+	border-bottom: 1px solid black;
+}
+
+div.screenFooter {
+	border-top: 1px solid black;
+}
+
+div.screenContent {
+	height:80%;
+	width:100%;
+}
+
+

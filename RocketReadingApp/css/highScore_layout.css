@@ -5,34 +5,20 @@
 	text-align:center;
 }
 
-#highHeader {
-	vertical-align:middle;
-	height:10%;
-	border:solid 1px red;
-}
-
 #highScoresIcons {
 	height:30%;
 	padding-top:2%;
-	border:solid 1px green;
 }
 
 #highScoresTableArea {
 	padding-top:2%;
 	height:50%;
-	border:solid 1px red;
-}
-
-#highScoreScreenFooter {
-	height:10%;
-	border:solid 1px cyan;
 }
 
 div.highScoreIcon {
 	float:left;
 	height:100%;
 	width:calc(100% / 7);
-	border:1px solid blue;
 }
 
 img.highScoresLevelImage {
@@ -65,4 +51,11 @@ img.highScoresLevelImage {
 #highScoresTableDisplay th{
 	border:1px solid black;
 	padding:2em 0em;
+}
+
+#highScore1Div {
+	background-image:url(../images/icecream.png);
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-position:center;
 }

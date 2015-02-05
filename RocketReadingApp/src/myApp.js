@@ -6,8 +6,6 @@ var Myapp = function() {
     this.allMyLists = [];
     this.playerCount = 0;
     this.allMyPlayers = [];
-    this.gameCount = 0;
-    this.allMyGames = [];
 };
 /*
 var CreatePlayerCollection = function (userName) {
@@ -106,8 +104,8 @@ Myapp.prototype.addList = function (level, game, inputlist) {
 // Adding a student's current data to the student's allGamesData property, and also saving this data to the players' LS file
 Myapp.prototype.addCurrentGameData = function (playerIndex, levelGame) {
     "use strict";
-    // Should really have a find player function
-    var aPlayer = this.allMyPlayers[playerIndex],
+    var levelGame = "level" + levelGame[0] + "Game" + levelGame[1],
+        aPlayer = this.allMyPlayers[playerIndex],
         studentData = JSON.parse(localStorage.getItem(aPlayer.userName));
         console.log("aPlayer: " + aPlayer);
         console.log(" Adding current game data - aPlayer.allGamesData: " + aPlayer.allGamesData);

@@ -10,9 +10,9 @@ var RocketReadingController = function() {
 
 rocketReadingController = new RocketReadingController();
 
-RocketReadingController.prototype.addLevel = function(newName) {
+RocketReadingController.prototype.addLevel = function(newName, newLevelNumber, newGames, newNumberGames) {
     "use strict";
-    var newLevel = new Level(newName);
+    var newLevel = new Level(newName, newLevelNumber, newGames, newNumberGames);
     this.allMyLevels.push (newLevel);
     this.levelCount += 1;
 };

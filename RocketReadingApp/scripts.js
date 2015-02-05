@@ -51,19 +51,16 @@ var gameLists = [],
 
 function nextWord(level, game, list) {
 	currentWordIndex = Math.floor(Math.random() * list.length);
-	var audio = document.createElement('AUDIO');
-	document.appendChild(audio)
-	audio.setAttribute("src","audio/Level"+level.levelNumber +"Game" + game.gameNumber +"/" + currentWordIndex + ".wav")
+	var currentWord = list[currentWordIndex],
+	    audio = document.createElement('AUDIO');
+	document.getElementById("gameGame").appendChild(audio);
+	audio.setAttribute("src","audio/Level"+level.levelNumber +"Game" + game.gameNumber +"/" + currentWord + ".wav")
 	audio.play()
 	audio.addEventListener('loadedmetadata', function(){
 		var duration;
 		duration = audio.duration;
 		duration = duration * 1000;
-		timer = setTimeout(function (){
-			document.getElementById("audioDesc").textContent = 'Audio Ended ' + currentWord;
-			timer = setTimeout (function () {
-				document.getElementById("audioDesc").textContent = "";
-			}, 500);
+		timer = setTimeout(function (){	
 		}, duration);
 	 });
 }
@@ -120,12 +117,12 @@ var loadGameData = function () {
     // It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
     rocketReadingController.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400, null, null);
     // Load up a list
-    rocketReadingController.addLevel("Ice Cream World", 1, []);
-    rocketReadingController.addLevel("Nature World", 2, []);
-    rocketReadingController.addLevel("Water World", 3, []);
-    rocketReadingController.addLevel("Lollipop World", 4, []);
-    rocketReadingController.addLevel("Pirate World", 5, []);
-    rocketReadingController.addLevel("Car World", 6, []);
+    rocketReadingController.addLevel("Ice Cream World", 1, [], []);
+    rocketReadingController.addLevel("Nature World", 2, [], []);
+    rocketReadingController.addLevel("Water World", 3, [],  []);
+    rocketReadingController.addLevel("Lollipop World", 4, [], []);
+    rocketReadingController.addLevel("Pirate World", 5, [], []);
+    rocketReadingController.addLevel("Car World", 6, [], []);
     
     theLevel = rocketReadingController.findLevel("Ice Cream World");
     theLevel.addGame(1, wordList1);

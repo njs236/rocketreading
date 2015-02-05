@@ -4,26 +4,39 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
 		<meta name="mobile-web-app-capable" content="yes">
+		
 		<link rel="stylesheet" href="layout.css">
-		<link rel="stylesheet" href="levelSelectLayout.css">
-		<link rel="stylesheet" href="gameScreen.css">
-		<link rel="stylesheet" href="css/gameScreenModal.css">
+		
+		<!-- Code Scripts -->
 		<script type="text/javascript" src="src/Game.js"></script>
 		<script type="text/javascript" src="src/List.js"></script>
 		<script type="text/javascript" src="src/Level.js"></script>
 		<script type="text/javascript" src="src/myApp.js"></script>
 		<script type="text/javascript" src="scripts/nav.js"></script>
-		<script type="text/javascript" src="scripts.js"></script>
+		
 
 		<script type="text/javascript" src="Home_scripts.js"></script>
-        <script type="text/javascript" src="Login_scripts.js"></script>
-
-        <!-- <script type="text/javascript" src="highScore_script.js"></script> -->
         
-        <link rel="stylesheet" href="Login_layout.css">
+		<!-- Login Screen Section -->
+		<link rel="stylesheet" href="Login_layout.css">
+		<script type="text/javascript" src="Login_scripts.js"></script>
+		
+		<!-- Home Screen Section -->
 		<link rel="stylesheet" href="Home_layout.css">
-        <link rel="stylesheet" href="highScore_layout.css">
-		<link rel="stylesheet" href="gameSelectScreenLayout.css">
+		<!-- Level Select Screen Section -->
+		<link rel="stylesheet" href="levelSelectLayout.css">
+		<!-- HighScores Screen Section -->
+		<link rel="stylesheet" href="css/highScore_layout.css">
+		
+		<!-- Game Select Screen Section -->
+		<link rel="stylesheet" href="css/gameSelectScreen.css">
+		
+		<!-- Game Screen Section -->
+		<link rel="stylesheet" href="css/gameScreenModal.css">
+		<link rel="stylesheet" href="gameScreen.css">
+		
+		<script type="text/javascript" src="scripts.js"></script>
+        
 		<link rel="stylesheet" href="pingpong_layout.css">
 
 		<title>Rocket Reading Prototype</title>
@@ -237,7 +250,6 @@
 						<p>Level 3</p>
 					</div>
 				</div>
-				
 				<div class="levelSelectRow" id="levelSelectMiddleRow">
 					<div class="levelSelectDivIconContainer" id="levelSelectDivLevel4">
 						<img class="levelSelectIcon" src="images/levelSelectImgLollypop.png" alt="Level 4 Select"></img>
@@ -252,7 +264,6 @@
 						<p>Level 6</p>
 					</div>
 				</div>
-				
 				<div class="levelSelectRow" id="levelSelectBottomRow">
 					<div class="levelSelectDivIconContainer" id="levelSelectDivSpacerLeft">
 					&nbsp
@@ -268,15 +279,40 @@
 					</div>
 					
 				</div>
+				<input type="Button" id="levelSelectHomeButton" value="Home">
 			</div>
 			<div id="gameSelectScreen" class="navScreen" hidden>
 				<div id="gameSelectButtonContainer">
-					<button class="button" id="gameScreenButton1">Game 1</button>
-					<button class="button" id="gameScreenButton2">Game 2</button>
-					<button class="button" id="gameScreenButton3">Game 3</button>
-					<button class="button" id="gameScreenButton4">Game 4</button>
-					<button class="button" id="gameScreenButton5">Game 5</button>
-					<button class="button" id="gameScreenButton6">Game 6</button>
+					<div class="screenHeader">
+						<h1>Please Select A Level</h1>
+					</div>
+					<div class="screenContent">
+						<div class="gameSelectScreenRow">
+							<div class="gameSelectScreenGame" id="gameScreenButton1">
+								<h1>Game 1</h1>
+							</div>
+							<div class="gameSelectScreenGame" id="gameScreenButton2">
+								<h1>Game 2</h1>
+							</div>
+							<div class="gameSelectScreenGame" id="gameScreenButton3">
+								<h1>Game 3</h1>
+							</div>
+						</div>
+						<div class="gameSelectScreenRow">
+							<div class="gameSelectScreenGame" id="gameScreenButton4">
+								<h1>Game 4</h1>
+							</div>
+							<div class="gameSelectScreenGame" id="gameScreenButton5">
+								<h1>Game 5</h1>
+							</div>
+							<div class="gameSelectScreenGame" id="gameScreenButton6">
+								<h1>Game 6</h1>
+							</div>
+						</div>
+					</div>
+					<div class="screenFooter">
+						<h1 id="gameSelectHomeButton">BACK</h1>
+					</div>
 				</div>
 			</div>
 		</div><!-- closes border div -->

@@ -22,3 +22,20 @@ div.dummy {
 a {
 	text-decoration:none;
 }
+
+div.screenHeader {
+	height:10%;
+	width:100%;
+	text-align:center;
+}
+
+div.screenContent {
+	height:80%;
+	width:100%;
+}
+
+div.screenFooter {
+	height:10%;
+	width:100%;
+	text-align:center;
+}

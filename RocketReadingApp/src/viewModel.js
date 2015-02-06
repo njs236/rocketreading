@@ -20,6 +20,18 @@ var myViewModelRR = {
             }
             // A function in the viewHTML object is then called, which determines how to display the selection of games in the UI
             displayGamesSelection(result);
+        },
+        
+        hideRequiredScreens: function (hiddenScreens) {
+            "use strict";
+            var result;
+            if (hiddenScreens === "navScreen") {
+                // This will result in all of the screens being hidden
+                HTMLView.hideAllPages("navScreen");
+            } else if (hiddenScreens === "loginLabel") {
+                // This will result in all of the login labels being hidden
+                HTMLView.hideAllPages("navScreen");
+            }
         }
     }
 };

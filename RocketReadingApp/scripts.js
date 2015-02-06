@@ -174,6 +174,7 @@ var initialise = function () {
 	// loginInitialise();
 
     loadGameData();
+    // myViewModelRR.displayMethods.hideRequiredScreens("navScreen");
 };
 
 gameInitialise = function () {

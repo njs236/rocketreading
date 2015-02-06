@@ -27,10 +27,14 @@ var myViewModelRR = {
             var result;
             if (hiddenScreens === "navScreen") {
                 // This will result in all of the screens being hidden
-                HTMLView.hideAllPages("navScreen");
+                viewHTMLModule.hideAllPages("navScreen");
+                // Console View:
+                console.log("All navScreen divs are hidden.");
             } else if (hiddenScreens === "loginLabel") {
                 // This will result in all of the login labels being hidden
-                HTMLView.hideAllPages("navScreen");
+                viewHTMLModule.hideAllPages("navScreen");
+                // Console View:
+                console.log("All loginLabel divs are hidden.");
             }
         }
     }

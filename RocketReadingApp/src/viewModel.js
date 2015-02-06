@@ -9,7 +9,9 @@ var myViewModelRR = {
             if (levelType === "WordList") {
                 result = "displayWordListGames";
             } else if (levelType === "BonusList") {
-                result = "displayBonusListGames";
+                result[0] = "displayBonusListGames";
+                // The variable / array could be assigned an array containing the titles of the specific bonus games 
+                result[1] = ["Alphabet Sounds", "Constant Blends 1","Constant Blends 2","Short Vowel Sounds","Long Vowel Sounds","Middle Sounds"];
             }
             // A function in the viewHTML object is then called, which determines how to display the selection of games in the UI
             displayGamesSelection(result);

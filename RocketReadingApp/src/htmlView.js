@@ -33,8 +33,44 @@ var viewHTMLModule = {
             // Adding an event-listener to the div
             document.getElementById("gameScreenButton" + (count + 1)).addEventListener("click", showGameScreen);
         }
-    }/*,
-    
+    }
+	
+	displayLevelList: function (levelList) {
+	"use strict"
+	// This function takes an input 2D array containing the
+	// level data in the following format
+	// ["Level01","Ice Cream Stage",avatarPath]
+	// ["Level02","Forest Stage",avatarPath]
+	// ["Level03","Clouds Stage",avatarPath]
+	var count,
+		newDiv,
+		newHeading, // Used to create a heading element in the div
+		levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
+	
+	for ( count = 0; count < levelList.length; count = count + 1) {
+		if ( count % 3 === 0 ) {
+			newDiv = document.createElement("DIV");
+			newDiv.className = "levelSelectRow";
+			levelSelectMainDiv.appendChild(newDiv);
+		};
+		/*if ( levelList.length - count === 1 ) && ( levelList % 3 === 1 ) {
+			newDiv = document.createElement("DIV");
+			newDiv.className = "levelSelectIconContainer";
+			levelSelectMainDiv.lastChild.appendChild(newDiv);
+		}*/
+		newDiv = document.createElement("DIV");
+		newDiv.className = "levelSelectIconContainer levelSelectIconContainerClickable";
+		
+		newHeading = document.createElement("H1");
+		newHeading.textContent = levelList[count][0];
+		newDiv.appendChild(newHeading);
+		levelSelectMainDiv.appendChild(newDiv);
+		
+		levelSelectMainDiv.lastChild.appendChild(newDiv);
+	};
+	
+	}
+	/*
 	hideAllPages: function () {
 		"use strict";
 		var screens = [],

@@ -1,7 +1,8 @@
 // Creating a viewModel object for the system
+// Actually, this module seems to be more of a view controller, which determines what information is passed to the view module. - What is the definition and role of a view model?
 
 var myViewModelRR = {
-    displayMethods: {
+    /*displayMethods: {*/
         gamesRequiredLevel: function (levelType) {
             "use strict";
             var result;
@@ -21,7 +22,7 @@ var myViewModelRR = {
             // A function in the viewHTML object is then called, which determines how to display the selection of games in the UI
             displayGamesSelection(result);
         },
-        
+        /*
         hideRequiredScreens: function (hiddenScreens) {
             "use strict";
             var result;
@@ -36,6 +37,24 @@ var myViewModelRR = {
                 // Console View:
                 console.log("All loginLabel divs are hidden.");
             }
+        },*/
+        
+        displayGameOptions: function (gameOptionsInfo) {
+            "use strict";
+            // HTML view output
+            // If the user has selected a level, then the game options screen show be displayed and the level options screen should be hidden
+            
+            viewHTMLModule.displayGameOptions(gameOptionsInfo);
+            showGameSelectScreen();
+           
+            // Console view output
+            console.log("Find number of games: " + gameOptionsInfo[0]);
+            console.log("Find names of games: " + gameOptionsInfo[1]);
+        },
+        
+        loginOutputData: function (inputData) {
+            "use strict";
+            // Data to be displayed in the console
+            console.log("Login data messages: " + inputData);
         }
-    }
 };

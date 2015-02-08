@@ -2,59 +2,14 @@ function showPage1() {
 	console.log("hi");
 };
 
-var gameLists = [],
-    myRocketReading = {
-        event: {},
-        loginMethod: {
-            validateLogin: function (nameElement, passwordElement) {
-                "use strict";
-                if  (( JSON.parse(localStorage.getItem(nameElement.value)).userName === nameElement.value) && ( JSON.parse(localStorage.getItem(nameElement.value)).firstName === passwordElement.value )) {
-                    // The system lets the user login
-                    console.log("Through!");
-                    showHomeScreen();
-                } else {
-                    passwordElement.value = "";
-                    passwordElement.focus();
-                    document.getElementById("loginMessage").innerHTML = "Invalid username or password. Please try again";
-                }  
-            },
-                    
-            validateUserExists: function (nameElement, passwordElement) {
-                "use strict";
-                console.log("name: " + nameElement.value);
-                var result = JSON.parse(localStorage.getItem(nameElement.value));
-                if ( result !== null ) {
-                    console.log("test: " + result + " - true!");
-                    return true;
-                } else {
-                    console.log(result);
-                    document.getElementById("loginMessage").innerHTML = "Unknown username. Please try entering your username again or create an account.";
-                    passwordElement.value = "";
-                    return false;
-                }
-            },
-            
-            validateFieldInput: function (nameElement, passwordElement) {
-                "use strict";
-                if (nameElement.value === "" && passwordElement.value === "") {
-                    document.getElementById("loginMessage").innerHTML = "Please enter a username and a password.";
-                } else if (nameElement.value === "") {
-                    document.getElementById("loginMessage").innerHTML = "Please enter a username.";    
-                } else if (passwordElement.value === "") {
-                    document.getElementById("loginMessage").innerHTML = "Please enter a password.";
-                } else {
-                    return true;
-                }
-            }
-        }
-    };
+var gameLists = [];
 
 function nextWord(level, game, list) {
 	currentWordIndex = Math.floor(Math.random() * list.length);
 	var currentWord = list[currentWordIndex],
 	    audio = document.createElement('AUDIO');
 	document.getElementById("gameGame").appendChild(audio);
-	audio.setAttribute("src","audio/Level"+level.levelNumber +"Game" + game.gameNumber +"/" + currentWord + ".wav")
+	audio.setAttribute("src","audio/Level" + level.levelNumber + game + "/" + currentWord + ".wav")
 	audio.play()
 	audio.addEventListener('loadedmetadata', function(){
 		var duration;
@@ -65,22 +20,6 @@ function nextWord(level, game, list) {
 	 });
 }
 	
-function showPage1() {
-	console.log("hi");
-};
-
-// Processing login function
-
-var processLogin = function () {
-    "use strict";
-    if (myRocketReading.loginMethod.validateFieldInput(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) { 
-        if (myRocketReading.loginMethod.validateUserExists(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) {
-            myRocketReading.loginMethod.validateLogin( document.getElementById("loginUserName"), document.getElementById("loginPassword") );
-        } else {
-            console.log("No login ...");
-        }
-    }
-};
 
 // Adding a user to local storage
 
@@ -114,27 +53,37 @@ var loadGameData = function () {
     
     // The system will delete any old instances of objects in the system
     // rocketReadingController.deleteAll(); This isn't necessary
-    // It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
+    // A test user is created. It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
     rocketReadingController.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400, null, null);
-    // Load up a list
-    rocketReadingController.addLevel("Ice Cream World", 1, [], []);
-    rocketReadingController.addLevel("Nature World", 2, [], []);
-    rocketReadingController.addLevel("Water World", 3, [],  []);
-    rocketReadingController.addLevel("Lollipop World", 4, [], []);
-    rocketReadingController.addLevel("Pirate World", 5, [], []);
-    rocketReadingController.addLevel("Car World", 6, [], []);
+    
+    // Add levels to the system
+    rocketReadingController.addLevel("Bonus Games Level", 0, [], 0);
+    rocketReadingController.addLevel("Ice Cream World", 1, [], 0);
+    rocketReadingController.addLevel("Nature World", 2, [], 0);
+    rocketReadingController.addLevel("Water World", 3, [],  0);
+    rocketReadingController.addLevel("Lollipop World", 4, [], 0);
+    rocketReadingController.addLevel("Pirate World", 5, [], 0);
+    rocketReadingController.addLevel("Car World", 6, [], 0);
+    /*
+    theLevel = rocketReadingController.findLevel("Bonus Games Level");
+    theLevel.addGame("Alphabet Sounds", alphabetSoundsList);
+    theLevel.addGame("Constant Blends 1", constantBlends1List);
+    theLevel.addGame("Constant Blends 2", constantBlends2List);
+    theLevel.addGame("Short Vowel Sounds", shortVowelsList);
+    theLevel.addGame("Long Vowels Sounds", longVowelsList);
+    theLevel.addGame("Middle Sounds", middleSoundsList);*/
     
     theLevel = rocketReadingController.findLevel("Ice Cream World");
-    theLevel.addGame(1, wordList1);
-    theLevel.addGame(2, wordList2);
-    theLevel.addGame(3, wordList3);
-    theLevel.addGame(4, wordList4);
+    theLevel.addGame("Game 1", wordList1, theLevel.name);
+    theLevel.addGame("Game 2", wordList2, theLevel.name);
+    theLevel.addGame("Game 3", wordList3, theLevel.name);
+    theLevel.addGame("Game 4", wordList4, theLevel.name);
     
     theLevel = rocketReadingController.findLevel("Nature World");
-    theLevel.addGame(1, wordList5);
-    theLevel.addGame(2, wordList6);
-    theLevel.addGame(3, wordList7);
-    theLevel.addGame(4, wordList8);
+    theLevel.addGame("Game 1", wordList5, theLevel.name);
+    theLevel.addGame("Game 2", wordList6, theLevel.name);
+    theLevel.addGame("Game 3", wordList7, theLevel.name);
+    theLevel.addGame("Game 4", wordList8, theLevel.name);
     
     theLevel = rocketReadingController.findLevel("Water World");
     theLevel.addGame(1, wordList9);
@@ -177,8 +126,8 @@ var initialise = function () {
     // myViewModelRR.displayMethods.hideRequiredScreens("navScreen");
 };
 
-gameInitialise = function () {
+var gameInitialise = function () {
 	theLevel = rocketReadingController.findLevel("Ice Cream World");
 	theGame = theLevel.allMyGames[0];
-	nextWord(theLevel, theGame, theGame.myWordList);
+	nextWord(theLevel, theGame.gameName, theGame.myWordList);
 }

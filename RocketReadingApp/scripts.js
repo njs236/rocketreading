@@ -52,25 +52,25 @@ var loadGameData = function () {
         wordList24 = ["preview","protein","roast","spill","shoulder","skull","scared","towel","salt","soup","hundred","seize","sulk","stung","cellphone","cracked","float","fainted","fetch","internet","browse","world","wrong","galaxy","wrapped"];
     
     // The system will delete any old instances of objects in the system
-    // rocketReadingController.deleteAll(); This isn't necessary
-    // A test user is created. It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
-    rocketReadingController.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400, null, null);
-    
+    // rocketReadingModel.deleteAll(); This isn't necessary
 	// Creating current Game Data and AllGamesData.
 	
 	rocketReadingModel.addCurrentGameData("", "", [], "", "", [], []);
 	rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
 	
+	// It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
+    rocketReadingModel.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400);
+	
     // Add levels to the system
-    rocketReadingController.addLevel("Bonus Games Level", 0, [], 0);
-    rocketReadingController.addLevel("Ice Cream World", 1, [], 0);
-    rocketReadingController.addLevel("Nature World", 2, [], 0);
-    rocketReadingController.addLevel("Water World", 3, [],  0);
-    rocketReadingController.addLevel("Lollipop World", 4, [], 0);
-    rocketReadingController.addLevel("Pirate World", 5, [], 0);
-    rocketReadingController.addLevel("Car World", 6, [], 0);
+    rocketReadingModel.addLevel("Bonus Games Level", 0, [], 0);
+    rocketReadingModel.addLevel("Ice Cream World", 1, [], 0);
+    rocketReadingModel.addLevel("Nature World", 2, [], 0);
+    rocketReadingModel.addLevel("Water World", 3, [],  0);
+    rocketReadingModel.addLevel("Lollipop World", 4, [], 0);
+    rocketReadingModel.addLevel("Pirate World", 5, [], 0);
+    rocketReadingModel.addLevel("Car World", 6, [], 0);
     /*
-    theLevel = rocketReadingController.findLevel("Bonus Games Level");
+    theLevel = rocketReadingModel.findLevel("Bonus Games Level");
     theLevel.addGame("Alphabet Sounds", alphabetSoundsList);
     theLevel.addGame("Constant Blends 1", constantBlends1List);
     theLevel.addGame("Constant Blends 2", constantBlends2List);
@@ -78,13 +78,13 @@ var loadGameData = function () {
     theLevel.addGame("Long Vowels Sounds", longVowelsList);
     theLevel.addGame("Middle Sounds", middleSoundsList);*/
     
-    theLevel = rocketReadingController.findLevel("Ice Cream World");
+    theLevel = rocketReadingModel.findLevel("Ice Cream World");
     theLevel.addGame("Game 1", wordList1, theLevel.name);
     theLevel.addGame("Game 2", wordList2, theLevel.name);
     theLevel.addGame("Game 3", wordList3, theLevel.name);
     theLevel.addGame("Game 4", wordList4, theLevel.name);
     
-    theLevel = rocketReadingController.findLevel("Nature World");
+    theLevel = rocketReadingModel.findLevel("Nature World");
     theLevel.addGame("Game 1", wordList5, theLevel.name);
     theLevel.addGame("Game 2", wordList6, theLevel.name);
     theLevel.addGame("Game 3", wordList7, theLevel.name);
@@ -140,7 +140,7 @@ var eventTableClick = function () {
 }
 
 var gameInitialise = function () {
-	theLevel = rocketReadingController.findLevel("Ice Cream World");
+	theLevel = rocketReadingModel.findLevel("Ice Cream World");
 	theGame = theLevel.allMyGames[0];
 	nextWord(theLevel, theGame.gameName, theGame.myWordList);
 	createTable(theGame.myWordList, 5);

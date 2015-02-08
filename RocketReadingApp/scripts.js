@@ -114,13 +114,14 @@ var loadGameData = function () {
     
     // The system will delete any old instances of objects in the system
     // rocketReadingModel.deleteAll(); This isn't necessary
-    // It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
-    rocketReadingModel.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400, null, null);
-    // Creating current Game Data and AllGamesData.
+	// Creating current Game Data and AllGamesData.
 	
 	rocketReadingModel.addCurrentGameData("", "", [], "", "", [], []);
 	rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);
 	
+    // It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
+    rocketReadingModel.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400, null, null);
+    
 	// Load up a list
     rocketReadingModel.addLevel("Ice Cream World", 1, [], []);
     rocketReadingModel.addLevel("Nature World", 2, [], []);

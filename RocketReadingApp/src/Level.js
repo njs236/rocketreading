@@ -19,7 +19,7 @@ Level.prototype.addGame = function (newNumber, newList) {
     var newGame = new Game( newNumber, newList );
     /*JSON.parse(localStorage.getItem(this.name));*/
     this.allMyGames.push (newGame);
-    this.gameCount += 1;
+    this.gameCount += Number(1);
 	console.log(this);
     // Add the game to the file in LS which contains the data about the level
     /*localStorage.setItem(this.name, JSON.stringify(this));*/

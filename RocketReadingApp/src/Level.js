@@ -3,6 +3,8 @@ var Level = function (newName, newLevelNumber, newGames, newNumberGames) {
     this.levelNumber = newLevelNumber || 'No Level Number';
     this.allMyGames = newGames || [];
     this.gameCount = newNumberGames || 0;
+	
+	return this;
 };
 
 Level.prototype.calculateScore = function () {
@@ -20,5 +22,5 @@ Level.prototype.addGame = function (newName, newList, myLevelName) {
     this.gameCount += Number(1);
 	console.log(this);
     // Add the game to the file in LS which contains the data about the level
-    localStorage.setItem(this.name, JSON.stringify(this));
+    /*localStorage.setItem(this.name, JSON.stringify(this));*/
 };

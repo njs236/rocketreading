@@ -1,4 +1,4 @@
-var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRoom,  newTotalScore, newLevelGameReached, newBonusGameReached, newPointsToPassLevel, newCurrentGameData, newAllGamesData) {
+var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRoom,  newTotalScore, newLevelGameReached, newBonusGameReached, newPointsToPassLevel) {
     "use strict";
     // If 'this' is used instead of 'player' does this mean that the object will be a global var and will not need to be returned? 
     this.userName = newUser || 'user';
@@ -10,8 +10,6 @@ var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRo
     this.levelGameReached = newLevelGameReached || '';
     this.bonusGameReached = newBonusGameReached || '';
     this.pointsToPassLevel = newPointsToPassLevel || '';
-    this.currentGameData = newCurrentGameData || '';
-    this.allGamesData = newAllGamesData || '';
     
     return this;
 };

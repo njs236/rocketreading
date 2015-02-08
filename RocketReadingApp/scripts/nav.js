@@ -70,7 +70,7 @@ function navigationInitialise() {
 	document.getElementById("homeExit").addEventListener("click",showLoginScreen);
 	
 	// Level Select Screen
-	document.getElementById("levelSelectHomeButton").addEventListener("click", viewHTMLModule.showHomeScreen);
+	document.getElementById("levelSelectHomeButton").addEventListener("click", showHomeScreen);
 	collectionArray = document.getElementsByClassName("levelSelectIconContainerClickable");
 	
 	for ( count = 0; count < collectionArray.length; count = count + 1) {

@@ -13,14 +13,14 @@ var viewHTMLModule = {
             newDiv,
             newDivMain;
         // The html inside the div containing the game options needs to be cleared each time a level's game options are selected.
-        document.getElementById("screenContent").innerHTML = "";
+        document.getElementById("gameOptionsContainer").innerHTML = "";
         
         for (count = 0; count < gameOptionsData[0]; count += 1) { 
             if (count % 3 === 0) {
                 newDivMain = document.createElement("DIV");
                 newDivMain.className = "gameSelectScreenRow";
-                document.getElementById("screenContent").appendChild(newDivMain);
-                //document.getElementById("screenContent").lastChild.className = "gameSelectScreenRow";
+                document.getElementById("gameOptionsContainer").appendChild(newDivMain);
+                //document.getElementById("gameOptionsContainer").lastChild.className = "gameSelectScreenRow";
             }
             newDiv = document.createElement("DIV");
             newDiv.className = "gameSelectScreenGame";

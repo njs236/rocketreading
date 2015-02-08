@@ -29,8 +29,8 @@ var mainController = {
                 break;
         }
         // The main controller requests data from the model (where all of the data is stored about instances of classes.
-        gameOptionsInfo[0] = rocketReadingController.findNumGamesOfLevel(levelName);
-        gameOptionsInfo[1] = rocketReadingController.findLevelGamesNames(levelName);
+        gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelName);
+        gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelName);
         
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);

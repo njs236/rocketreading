@@ -8,13 +8,14 @@ var RocketReadingController = function() {
     this.allMyPlayers = [];
 };
 
-rocketReadingController = new RocketReadingController();
+    // A single instance of the Rocket Reading Model is instantiated
+    rocketReadingController = new RocketReadingController();
 
 RocketReadingController.prototype.addLevel = function(newName, newLevelNumber, newGames, newNumberGames) {
     "use strict";
     var newLevel = new Level(newName, newLevelNumber, newGames, newNumberGames);
     this.allMyLevels.push (newLevel);
-    this.levelCount += 1;
+    this.levelCount += Number(1);
 };
 
 RocketReadingController.prototype.addPlayer = function (newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel) {
@@ -95,7 +96,7 @@ RocketReadingController.prototype.findLevelGamesNames = function (levelName) {
 };
 
 RocketReadingController.prototype.addList = function (level, game, inputlist) {
-"use strict";
+    "use strict";
     //This is a reference to the game that the List is part of.
     myGame = RocketReadingController.allMyLevels[level].allMyGames[game]
     var wordsArray = inputlist.split(',');
@@ -103,6 +104,21 @@ RocketReadingController.prototype.addList = function (level, game, inputlist) {
     var newList = new List(myGame, wordsArray);
     this.allMyLists.push (newList);
     this.listCount += 1;
+};
+
+RocketReadingController.prototype.findLevelGamesLists = function (levelName, gameName) {
+    "use strict";
+    var aGame,
+        result = [],
+        theLevel = this.findLevel(levelName);  
+    result[0] = levelName;
+    result[1] = gameName;
+    for (aGame of theLevel.allMyGames) {
+        if (aGame.gameName === gameName) {
+            result[2] = aGame.myWordList;
+			return result;
+		}
+	}
 };
 
 // Adding a student's current data to the student's allGamesData property, and also saving this data to the players' LS file

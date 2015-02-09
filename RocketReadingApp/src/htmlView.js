@@ -4,7 +4,7 @@
 // Contains the code for hiding the divs
 
 var viewHTMLModule = {
-    
+    name : "HTML View Module for Rocket Reading",
     displayGameOptions: function (gameOptionsData) {
         "use strict";
         var count,

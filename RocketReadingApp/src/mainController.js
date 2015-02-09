@@ -50,11 +50,12 @@ var mainController = {
     loginMethods: {
         validateLogin: function (nameElement, passwordElement) {
             "use strict";
-           if  (( JSON.parse(localStorage.getItem(nameElement.value)).userName === nameElement.value) && ( JSON.parse(localStorage.getItem(nameElement.value)).firstName === passwordElement.value )) {
+           if  (( storageController.getPlayer(nameElement.value).userName === nameElement.value) && ( storageController.getPlayer(nameElement.value).firstName === passwordElement.value )) {
                 // The system lets the user login
                 // Data is sent to the view controller to be displayed in the console
                 myViewModelRR.loginOutputData("Through!");
                 showHomeScreen();
+				mainController.setPlayer(nameElement.value);
             } else {
                 passwordElement.value = "";
                 passwordElement.focus();
@@ -92,6 +93,15 @@ var mainController = {
             }
         }
     },
+	
+	
+	// loading player data from the local storage. 
+	setPlayer: function (username) {
+		var playerData = storageController.getPlayer(username);
+		rocketReadingModel.setPlayer(playerData)
+		myViewModelRR.displayPlayer(playerData);
+
+	},
     
     // Processing login function
     

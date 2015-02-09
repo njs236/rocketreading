@@ -8,6 +8,8 @@ var RocketReadingModel = function() {
     this.myPlayer = {};
 	this.myCurrentGameData = {};
 	this.myAllGamesData = {};
+	this.allMyAvatars = [];
+	this.avatarCount = 0;
 };
 
     // A single instance of the Rocket Reading Model is instantiated
@@ -54,12 +56,15 @@ RocketReadingModel.prototype.getAllGamesData = function () {
 RocketReadingModel.prototype.addPlayer = function (newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel) {
     "use strict";
     var newPlayer = new Player(newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel);
-    this.myPlayer = newPlayer; 
 	newPlayer.currentGameData = this.myCurrentGameData;
 	newPlayer.allGamesData = this.myAllGamesData;
     localStorage.setItem(newUser, JSON.stringify(newPlayer));
 };
 
+
+RocketReadingModel.prototype.setPlayer = function (player) {
+	this.myPlayer = player;
+}
 
 RocketReadingModel.prototype.findLevel = function (name) {
     "use strict";
@@ -166,4 +171,9 @@ RocketReadingModel.prototype.setCurrentGameData = function (playerIndex, levelGa
     /*localStorage.setItem(aPlayer.userName, JSON.stringify(studentData));*/
 };
 
+RocketReadingModel.prototype.addAvatar = function (newName, myLevel) {
+	var newAvatar = new Avatar (newName, myLevel);
+	this.allMyAvatars.push (newAvatar);
+	this.avatarCount += 1;
+}
 

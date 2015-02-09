@@ -3,6 +3,9 @@
 
 var myViewModelRR = {
     /*displayMethods: {*/
+		displayPlayerName : function (username) {
+		document.getElementById('welcome').textContent = 'Welcome, ' + username;
+		},
         gamesRequiredLevel: function (levelType) {
             "use strict";
             var result;

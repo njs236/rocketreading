@@ -61,6 +61,7 @@ var loadGameData = function () {
 	
 	// It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
     rocketReadingModel.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400);
+	rocketReadingModel.addPlayer('admin', 'Andrew', 'Papanui', 'Papanui High School', 'staff', 10000, [6,4], 5, 0);
 	
     // Add levels to the system
     rocketReadingModel.addLevel("Bonus Games Level", 0, [], 0);

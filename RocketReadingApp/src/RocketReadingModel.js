@@ -63,7 +63,7 @@ RocketReadingModel.prototype.findLevelByName = function (name) {
     "use strict";
     var aLevel;
 	for (aLevel of this.allMyLevels) {
-		if (aLevel.levelNumber === name) {
+		if (aLevel.description === name) {
             // This should be outputted from the viewController module
             console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.name); // test
             console.log("findLevel() - Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
@@ -100,7 +100,7 @@ RocketReadingModel.prototype.findGame = function (name) {
 		alert("Game Not Found");
 };
 
-/*RocketReadingModel.prototype.findGame = function (name) {
+/*RocketReadingModel.prototype.findGame = function (levelName, name) {
     "use strict";
     var aLevel = this.findLevel(levelName);
     for (aGame of aLevel.allMyGames) {
@@ -115,6 +115,7 @@ RocketReadingModel.prototype.findNumGamesOfLevel = function (levelNumber) {
     "use strict";
     /*var aLevel = this.findLevel(levelName);
 	return aLevel.gameCount;*/
+    // Should a get method be used to access the gameCount once the level has been found?
     return Number(this.findLevelByNumber(levelNumber).gameCount);
 	alert("Number of games not found");
 };
@@ -186,6 +187,7 @@ RocketReadingModel.prototype.addAvatar = function (newName, myLevel) {
 }
 
 RocketReadingModel.prototype.getAvatar = function (number) {
+    // Having getAvatar at the end - circular function call?
 	return this.findLevelByNumber(number).getAvatar;
 }
 

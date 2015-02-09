@@ -1,9 +1,10 @@
-// HTML View Module v1.3
+// HTML View Module v1.4
 //
 var viewHTMLModule = {
     name : "HTML View Module for Rocket Reading",
     displayGameOptions: function (gameOptionsData) {
         "use strict";
+		//displayGameOptions() Function v1.1
         var count,
             newHeading,
             newDiv,
@@ -11,7 +12,7 @@ var viewHTMLModule = {
 			// The html inside the div containing the game options needs to be cleared each time a level's game options are selected.
 		
 		while ( gameSelectMainDiv.hasChildNodes() ){
-		levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
+		gameSelectMainDiv.removeChild(gameSelectMainDiv.firstChild);
 		};
 		
         for (count = 0; count < gameOptionsData[0]; count += 1) { 
@@ -26,7 +27,7 @@ var viewHTMLModule = {
             newHeading = document.createElement("H1");
 			newHeading.textContent = gameOptionsData[1][count];
             newDiv.appendChild(newHeading);
-            levelSelectMainDiv.lastChild.appendChild(newDiv);
+            gameSelectMainDiv.lastChild.appendChild(newDiv);
             // Adding an event-listener to the div
             document.getElementById("gameScreenButton" + (count + 1)).addEventListener("click", showGameScreen);
         }
@@ -34,15 +35,15 @@ var viewHTMLModule = {
 	
 	displayLevelList: function (levelList) {
 	"use strict"
-	// displayLevelList() function v1.4
+	// displayLevelList() function v1.5
 	// This function takes an input 2D array containing the
 	// level data in the following format
-	// ["01",avatarPath]
-	// ["02",avatarPath]
-	// ["03",avatarPath]
+	// ["01",avatarName]
+	// ["02",avatarName]
+	// ["03",avatarName]
 	var count,
 		newDiv,
-		newHeading, // Used to create a heading element in the div
+		//newHeading, // Used to create a heading element in the div
 		levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
 	
 	console.log("displayLevelList() : Running");
@@ -61,7 +62,7 @@ var viewHTMLModule = {
 	};
 	
 	
-	// IOterate over all level info and make div boxes
+	// Iterate over all level info and make div boxes
 	for ( count = 0; count < levelList.length; count = count + 1) {
 		// create a new row if we are at 3 boxes
 		if ( count % 3 === 0 ) {
@@ -82,12 +83,12 @@ var viewHTMLModule = {
 		newDiv = document.createElement("DIV");
 		newDiv.className = "levelSelectIconContainer";
 		newDiv.id = "level" + levelList[count][0];
-		newDiv.style.backgroundImage = "url(../images/" + levelList[count][1] + ".png";
+		newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
 		
-		newHeading = document.createElement("H1");
-		newHeading.textContent = "level" + levelList[count][0];
-		newDiv.appendChild(newHeading);
-		newDiv.addEventListener("click", function () {mainController.gameOptionsRequest(this.id); });
+		//newHeading = document.createElement("H1");
+		//newHeading.textContent = "level" + levelList[count][0];
+		//newDiv.appendChild(newHeading);
+		newDiv.addEventListener("click", mainController.gameOptionsRequest);
 		levelSelectMainDiv.lastChild.appendChild(newDiv);
 	};
 	

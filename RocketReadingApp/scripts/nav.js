@@ -72,7 +72,7 @@ function navigationInitialise() {
 	document.getElementById("loginEnterBtn").addEventListener("click", mainController.processLogin, false);
 	
 	// Home Screen
-	document.getElementById("homePlayGame").addEventListener("click", mainController.levelOptionsRequest);
+	document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
 	document.getElementById("homeHighScores").addEventListener("click", showHighScoresScreen);
 	document.getElementById("homeExit").addEventListener("click",showLoginScreen);
 	

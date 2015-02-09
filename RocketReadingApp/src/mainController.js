@@ -25,7 +25,6 @@ var mainController = {
         "use strict";
         // This function gets data from the model data
         var allLevels = rocketReadingModel.getAllLevels;
-        console.log("mainController.levelOptionsRequest: " + inputList[count]);
         // Calls a function in the view controller
         myViewModelRR.displayLevelList(allLevels);
     },

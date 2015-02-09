@@ -67,6 +67,7 @@ var myViewModelRR = {
             var count,
                 string,
                 tempArray = [],
+                levelListArray = [],
                 inputLevels = [],
                 listLength = inputLevels.length;
             console.log(listLength);

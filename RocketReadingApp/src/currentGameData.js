@@ -1,4 +1,4 @@
-var currentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+var CurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
     this.currentLevelGame = newCurrentLevelGame;
     this.gameScore = newGameScore;
@@ -11,10 +11,22 @@ var currentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals
     // return this;
 };
 
-currentGameData.prototype.passWord = function (word) {
+CurrentGameData.prototype.passWord = function (word) {
     this.currentWord = word;
 }
 
-currentGameData.prototype.passList = function (list) {
+CurrentGameData.prototype.passList = function (list) {
     this.wordList = list;
+}
+
+CurrentGameData.prototype.setCurrentLevel = function (level) {
+	this.myLevel = level;
+}
+
+CurrentGameData.prototype.setCurrentGame = function (game) {
+	this.myGame = game;
+}
+
+CurrentGameData.prototype.loadGame = function () {
+	return this.myGame;
 }

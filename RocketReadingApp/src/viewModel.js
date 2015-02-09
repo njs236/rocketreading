@@ -42,6 +42,10 @@ var myViewModelRR = {
                 console.log("All loginLabel divs are hidden.");
             }
         },*/
+		
+		displayTable : function (inputArray) {
+			viewHTMLModule.displayTable(inputArray);
+		},
         
         displayGameOptions: function (gameOptionsInfo) {
             "use strict";

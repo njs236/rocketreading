@@ -6,20 +6,21 @@
 		<meta name="mobile-web-app-capable" content="yes">
 		
 		<link rel="stylesheet" href="layout.css">
-
-		<!-- Code Scripts -->
-		<script type="text/javascript" src="src/localStorageController.js"></script>
-		<script type="text/javascript" src="src/storageController.js"></script>
-
+		
+		<!-- Class Scripts -->
 		<script type="text/javascript" src="src/Game.js"></script>
 		<script type="text/javascript" src="src/currentGameData.js"></script>
 		<script type="text/javascript" src="src/List.js"></script>
 		<script type="text/javascript" src="src/Level.js"></script>
+        <script type="text/javascript" src="src/avatar.js"></script>
+        <script type="text/javascript" src="src/Player.js"></script>
+		<!-- Controllers Scripts -->
+		<script type="text/javascript" src="src/localStorageController.js"></script>
+		<script type="text/javascript" src="src/storageController.js"></script>
 		<script type="text/javascript" src="src/RocketReadingModel.js"></script>
         <script type="text/javascript" src="src/viewModel.js"></script>
         <script type="text/javascript" src="src/htmlView.js"></script>
-        <script type="text/javascript" src="src/avatar.js"></script>
-        <script type="text/javascript" src="src/Player.js"></script>
+
         <script type="text/javascript" src="src/mainController.js"></script>
 		<script type="text/javascript" src="scripts/nav.js"></script>
         <script type="text/javascript" src="Login_scripts.js"></script>
@@ -175,7 +176,8 @@
 								<img id="gameAvatar" src="images/icecream.png">
 							</div>
 							<div id="gameRightSideTopMiddle">
-								<h1 id="learnWordText">Learn Word</h1>
+								<!--<h1 id="learnWordText">Learn Word</h1>-->
+								<h1 id="startGameText"></h1>
 							</div>
 							<div id="gameRightSideTopRight">
 								<h1 id="gameLevelIDText">Game 1-1</h1>

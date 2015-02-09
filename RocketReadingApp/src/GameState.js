@@ -24,8 +24,7 @@ var createTable = function (inputArray, tableWidth) {
 	};
 };
 
-var guessWord = function () {
+var guessWord = function (word) {
 	//add code in here to select word based on clickable event.
-	alert("boo!");
-	nextWord();
+	mainController.validateWords(word);
 }

@@ -9,6 +9,7 @@ var nextWord = function() {
 	currentWordIndex = Math.floor(Math.random() * list.length);
 	var currentWord = list[currentWordIndex],
 	    audio = document.createElement('AUDIO');
+	mainController.passWord(currentWord);
 	document.getElementById("gameGame").appendChild(audio);
 	audio.setAttribute("src","audio/Level" + level.levelNumber + game + "/" + currentWord + ".wav")
 	audio.play()
@@ -144,7 +145,7 @@ var eventTableClick = function () {
 	
 	var tableArray = document.getElementsByClassName("wordCell");
 	for (clickCount = 0 ; clickCount < tableArray.length; clickCount = clickCount + 1) {
-		tableArray[clickCount] = addEventListener("click", guessWord);
+		tableArray[clickCount] = addEventListener("click", guessWord(wordCell.text));
 	}
 }
 

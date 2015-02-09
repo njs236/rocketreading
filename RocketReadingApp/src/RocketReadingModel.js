@@ -195,3 +195,7 @@ RocketReadingModel.prototype.addAvatar = function (newName, myLevel) {
 RocketReadingModel.prototype.getAvatar = function (number) {
 	return this.findLevel(number).getAvatar;
 }
+
+RocketReadingModel.prototype.passWord = function (word) {
+	myCurrentGameData.passWord(word);
+}

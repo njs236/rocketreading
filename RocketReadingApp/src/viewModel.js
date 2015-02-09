@@ -71,6 +71,7 @@ var myViewModelRR = {
                 tempArray.push(string);
                 tempArray.push("avatarPathTempString" + count);
                 levelListArray.push(tempArray);
+                tempArray = [];
             }
             viewHTMLModule.displayLevelList(levelListArray);
             // Console view of the data being passed

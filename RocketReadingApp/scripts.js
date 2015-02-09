@@ -80,37 +80,37 @@ var loadGameData = function () {
     theLevel.addGame("Long Vowels Sounds", longVowelsList);
     theLevel.addGame("Middle Sounds", middleSoundsList);*/
     
-    theLevel = rocketReadingModel.findLevel("Ice Cream World");
+    theLevel = rocketReadingModel.findLevelByNumber(1);
     theLevel.addGame("Game 1", wordList1, theLevel.name);
     theLevel.addGame("Game 2", wordList2, theLevel.name);
     theLevel.addGame("Game 3", wordList3, theLevel.name);
     theLevel.addGame("Game 4", wordList4, theLevel.name);
     
-    theLevel = rocketReadingModel.findLevel("Nature World");
+    theLevel = rocketReadingModel.findLevelByNumber(2);
     theLevel.addGame("Game 1", wordList5, theLevel.name);
     theLevel.addGame("Game 2", wordList6, theLevel.name);
     theLevel.addGame("Game 3", wordList7, theLevel.name);
     theLevel.addGame("Game 4", wordList8, theLevel.name);
 
-    theLevel = rocketReadingModel.findLevel("Water World");
+    theLevel = rocketReadingModel.findLevelByNumber(3);
     theLevel.addGame(1, wordList9);
     theLevel.addGame(2, wordList10);
     theLevel.addGame(3, wordList11);
     theLevel.addGame(4, wordList12);
     
-    theLevel = rocketReadingModel.findLevel("Lollipop World");
+    theLevel = rocketReadingModel.findLevelByNumber(4);
     theLevel.addGame(1, wordList13);
     theLevel.addGame(2, wordList14);
     theLevel.addGame(3, wordList15);
     theLevel.addGame(4, wordList16);
     
-    theLevel = rocketReadingModel.findLevel("Pirate World");
+    theLevel = rocketReadingModel.findLevelByNumber(5);
     theLevel.addGame(1, wordList17);
     theLevel.addGame(2, wordList18);
     theLevel.addGame(3, wordList19);
     theLevel.addGame(4, wordList20);
     
-    theLevel = rocketReadingModel.findLevel("Car World");
+    theLevel = rocketReadingModel.findLevelByNumber(6);
     theLevel.addGame(1, wordList21);
     theLevel.addGame(2, wordList22);
     theLevel.addGame(3, wordList23);

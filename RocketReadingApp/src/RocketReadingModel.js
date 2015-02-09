@@ -66,14 +66,28 @@ RocketReadingModel.prototype.setPlayer = function (player) {
 	this.myPlayer = player;
 }
 
-RocketReadingModel.prototype.findLevel = function (name) {
+RocketReadingModel.prototype.findLevelByName = function (name) {
     "use strict";
     var aLevel;
 	for (aLevel of this.allMyLevels) {
-		if (aLevel.name === name) {
+		if (aLevel.levelNumber === name) {
             // This should be outputted from the viewController module
-            console.log("Have found: " + aLevel + ". Level name: " + aLevel.name); // test
-            console.log("Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
+            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.name); // test
+            console.log("findLevel() - Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
+			return aLevel;
+		}
+	}
+    alert("Level Not Found");
+};
+
+RocketReadingModel.prototype.findLevelByNumber = function (levelNumber) {
+    "use strict";
+    var aLevel;
+	for (aLevel of this.allMyLevels) {
+		if (aLevel.levelNumber === levelNumber) {
+            // This should be outputted from the viewController module
+            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.name); // test
+            console.log("findLevel() - Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
 			return aLevel;
 		}
 	}
@@ -104,19 +118,19 @@ RocketReadingModel.prototype.findGame = function (name) {
 }    
 */
 
-RocketReadingModel.prototype.findNumGamesOfLevel = function (levelName) {
+RocketReadingModel.prototype.findNumGamesOfLevel = function (levelNumber) {
     "use strict";
     /*var aLevel = this.findLevel(levelName);
 	return aLevel.gameCount;*/
-    return Number(this.findLevel(levelName).gameCount);
+    return Number(this.findLevel(levelNumber).gameCount);
 	alert("Number of games not found");
 };
 
-RocketReadingModel.prototype.findLevelGamesNames = function (levelName) {
+RocketReadingModel.prototype.findLevelGamesNames = function (levelNumber) {
     "use strict";
     var count,
         gameNames = [],
-        theLevel = this.findLevel(levelName);
+        theLevel = this.findLevelByNumber(levelNumber);
         // gamesLength = this.findLevel(levelName).allMyGames.length;
     for (count = 0; count < (theLevel.gameCount); count += 1) {
         gameNames.push(theLevel.allMyGames[count].gameName);

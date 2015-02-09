@@ -1,5 +1,5 @@
 var Level = function (newName, newLevelNumber, newGames, newNumberGames) {
-    this.name = newName || 'unnamed';
+    this.description = newName || 'unnamed';
     this.levelNumber = newLevelNumber || 0;
     this.allMyGames = newGames || [];
     this.gameCount = newNumberGames || 0;

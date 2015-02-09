@@ -59,27 +59,26 @@ var myViewModelRR = {
         loginOutputData: function (inputData) {
             "use strict";
             // Data to be displayed in the console
-            console.log("Login data messages: " + inputData);
+            console.log("loginOutputData() - Login data messages: " + inputData);
         },
         
-        displayLevelList: function (inputList) {
+        displayLevelList: function (inputLevels) {
             "use strict";
             var count,
                 string,
                 tempArray = [],
-                levelListArray = [],
-                listLength = inputList.length;
+                inputLevels = [],
+                listLength = inputLevels.length;
             console.log(listLength);
             for (count = 0; count < listLength; count += 1) {
-                string = "Level0" + inputList[count];
-                tempArray.push(string);
+                tempArray.push("Level" + inputLevels[count].levelNumber);
                 tempArray.push("avatarPathTempString" + count);
                 levelListArray.push(tempArray);
                 tempArray = [];
             }
             
             // Console view of the data being passed
-            console.log("myViewModelRR.displayLevelList(): " + levelListArray[0][0] + ' ' + levelListArray[0][1]);
+            console.log("myViewModelRR.displayLevelList(): " + levelListArray);
             console.log("myViewModelRR.displayLevelList() length of array: " + levelListArray.length);
             
             viewHTMLModule.displayLevelList(levelListArray);

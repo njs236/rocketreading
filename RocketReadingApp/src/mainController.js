@@ -2,20 +2,22 @@
 
 var mainController = {
 
-    levelOptionsRequest: function () {
+    requestAllLevels: function () {
         "use strict";
         // This function gets data from the model data
-        var levelList = rocketReadingModel.getAllLevelNames();
-        console.log("mainController.levelOptionsRequest: " + levelList);
+        var allLevels = rocketReadingModel.getAllLevels;
+        console.log("mainController.levelOptionsRequest: " + inputList[count]);
         // Calls a function in the view controller
-        myViewModelRR.displayLevelList(levelList);
+        myViewModelRR.displayLevelList(allLevels);
     },
     
     gameOptionsRequest: function (levelBtnId) {
         "use strict";
-        var gameOptionsInfo = [];
-        gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelBtnId);
-        gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelBtnId);
+        var gameOptionsInfo = [],
+            levelNumber = (/\r\n/.test(inputString));
+           /*levelNumber = levelBtnId.slice(-1);*/
+        gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
+        gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
     },

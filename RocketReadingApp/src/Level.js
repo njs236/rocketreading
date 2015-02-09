@@ -1,6 +1,6 @@
 var Level = function (newName, newLevelNumber, newGames, newNumberGames) {
     this.name = newName || 'unnamed';
-    this.levelNumber = newLevelNumber || 'No Level Number';
+    this.levelNumber = newLevelNumber || 0;
     this.allMyGames = newGames || [];
     this.gameCount = newNumberGames || 0;
 	

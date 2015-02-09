@@ -1,4 +1,4 @@
-// HTML View Module v1.4
+// HTML View Module v1.41
 //
 var viewHTMLModule = {
     name : "HTML View Module for Rocket Reading",
@@ -35,7 +35,7 @@ var viewHTMLModule = {
 	
 	displayLevelList: function (levelList) {
 	"use strict"
-	// displayLevelList() function v1.5
+	// displayLevelList() function v1.6
 	// This function takes an input 2D array containing the
 	// level data in the following format
 	// ["01",avatarName]
@@ -43,7 +43,6 @@ var viewHTMLModule = {
 	// ["03",avatarName]
 	var count,
 		newDiv,
-		//newHeading, // Used to create a heading element in the div
 		levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
 	
 	console.log("displayLevelList() : Running");
@@ -85,10 +84,8 @@ var viewHTMLModule = {
 		newDiv.id = "level" + levelList[count][0];
 		newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
 		
-		//newHeading = document.createElement("H1");
-		//newHeading.textContent = "level" + levelList[count][0];
-		//newDiv.appendChild(newHeading);
 		newDiv.addEventListener("click", mainController.gameOptionsRequest);
+		newDiv.addEventListener("click", mainController.setCurrentLevel);
 		levelSelectMainDiv.lastChild.appendChild(newDiv);
 	};
 	

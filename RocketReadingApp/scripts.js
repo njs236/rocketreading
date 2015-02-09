@@ -81,7 +81,13 @@ var loadGameData = function () {
     theLevel.addGame("Short Vowel Sounds", shortVowelsList);
     theLevel.addGame("Long Vowels Sounds", longVowelsList);
     theLevel.addGame("Middle Sounds", middleSoundsList);*/
-    
+    theLevel = rocketReadingModel.findLevelByNumber(0);
+	rocketReadingModel.addAvatar("star", theLevel);
+    theLevel.addGame("Game 1", wordList1, theLevel.name);
+    theLevel.addGame("Game 2", wordList2, theLevel.name);
+    theLevel.addGame("Game 3", wordList3, theLevel.name);
+    theLevel.addGame("Game 4", wordList4, theLevel.name);
+	
     theLevel = rocketReadingModel.findLevelByNumber(1);
 	rocketReadingModel.addAvatar("icecream", theLevel);
     theLevel.addGame("Game 1", wordList1, theLevel.name);

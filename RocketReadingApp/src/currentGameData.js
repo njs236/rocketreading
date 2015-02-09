@@ -8,13 +8,13 @@ var currentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals
     this.wordsSoundsCorrect = newWordsSoundsCorrect;
     this.wordsSoundsIncorrect = newWordsSoundsIncorrect;
     // Have to return 'this' and not 'currentGameData' - that's the name of the var
-    return this;
+    // return this;
 };
 
-CurrentGameData.prototype.passWord = function (word) {
-this.currentWord = word;
+currentGameData.prototype.passWord = function (word) {
+    this.currentWord = word;
 }
 
-CurrentGameData.prototype.passList = function (list) {
-this.wordList = list;
+currentGameData.prototype.passList = function (list) {
+    this.wordList = list;
 }

@@ -1,24 +1,25 @@
 // The system creates a mainController object which aims to resolve requests that involve data analysis
 
 var mainController = {
+/*
 	validateWords : function () {
 		if (word === rocketReadingModel.currentGameData.getCurrentWord) {
-		if (timer < 2) {
-			//do things here
-		} elseif ( 2 < timer < 4 ) {
-			//do things here
-		}elseif ( 4 < timer < 8 ) {
-			//do things here
-		}
+            if (timer < 2) {
+                //do things here
+            } elseif ( 2 < timer < 4 ) {
+                //do things here
+            }elseif ( 4 < timer < 8 ) {
+                //do things here
+            }
 		
-		}else{
+		} else {
 			
 		}
-	}
+	}*/
 	
-	passWord(word) {
+	passWord: function (word) {
 		rocketReadingModel.passWord(word);
-	}
+	},
 
     requestAllLevels: function () {
         "use strict";

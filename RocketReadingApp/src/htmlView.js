@@ -62,7 +62,7 @@ var viewHTMLModule = {
 		newCell.className = "wordCell";
 		newCell.addEventListener("click", guessWord(newCell.text));
 	};
-	}
+	},
 	
 	displayLevelList: function (levelList) {
 	"use strict"

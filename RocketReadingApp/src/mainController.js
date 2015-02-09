@@ -34,6 +34,22 @@ var mainController = {
         return Number(inputId.slice(inputId.search(/[1-9]/), inputId.length));
     },
     
+	
+	setCurrentGame : function () {
+		"use strict";
+		var gameBtnId = this.id,
+		gameNumber = Number(gameBtnId.slice(gameBtnId.search(/[1-9]/), gameBtnId.length));
+		console.log("setCurrentGame() - gameNumber (regex):" + gameNumber);
+		// Loading selected Game into currentGame in currentGameData
+		rocketReadingModel.getCurrentGameData.setCurrentGame(rocketReadingModel.findGameByNumber(gameNumber));
+	},
+	
+	createTable : function () {
+		myGame = rocketReadingModel.getCurrentGameData.loadGame;
+		inputArray = myGame.getWordList;
+		myViewModelRR.displayTable(inputArray);
+	},
+    
     gameOptionsRequest: function () {
         "use strict";
         var gameOptionsInfo = [],
@@ -41,6 +57,8 @@ var mainController = {
             console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
+		//Loading selected Level into current Level in currentGameData
+		rocketReadingModel.getCurrentGameData.setCurrentLevel(rocketReadingModel.findLevelByNumber(levelNumber));
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
     },

@@ -103,7 +103,7 @@ var loadGameData = function () {
     theLevel.addGame(4, wordList12);
     
     theLevel = rocketReadingModel.findLevel("Lollipop World");
-	rocketReadingModel.addAvatar("Lollipop", theLevel);
+	rocketReadingModel.addAvatar("lollipop", theLevel);
     theLevel.addGame(1, wordList13);
     theLevel.addGame(2, wordList14);
     theLevel.addGame(3, wordList15);

@@ -13,6 +13,16 @@ var mainController = {
     
     gameOptionsRequest: function (levelBtnId) {
         "use strict";
+        var gameOptionsInfo = [];
+        gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelBtnId);
+        gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelBtnId);
+        // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
+        myViewModelRR.displayGameOptions(gameOptionsInfo);
+    },
+    
+    /*
+    gameOptionsRequest: function (levelBtnId) {
+        "use strict";
         var levelName,
             gameOptionsInfo = [];
         switch (levelBtnId) {
@@ -44,7 +54,7 @@ var mainController = {
         
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
-    },
+    },*/
     
     // Instead of validating the user's input with data from a web server, the system is checking the input against data in local storage. The current validation should really be performed in the model module, and not in this, the main controller module.
     loginMethods: {

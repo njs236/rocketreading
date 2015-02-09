@@ -72,6 +72,7 @@ var loadGameData = function () {
     rocketReadingModel.addLevel("Pirate World", 5, [], 0);
     rocketReadingModel.addLevel("Car World", 6, [], 0);
     /*
+
     theLevel = rocketReadingModel.findLevel("Bonus Games Level");
     theLevel.addGame("Alphabet Sounds", alphabetSoundsList);
     theLevel.addGame("Constant Blends 1", constantBlends1List);
@@ -81,36 +82,42 @@ var loadGameData = function () {
     theLevel.addGame("Middle Sounds", middleSoundsList);*/
     
     theLevel = rocketReadingModel.findLevel("Ice Cream World");
+	rocketReadingModel.addAvatar("icecream", theLevel);
     theLevel.addGame("Game 1", wordList1, theLevel.name);
     theLevel.addGame("Game 2", wordList2, theLevel.name);
     theLevel.addGame("Game 3", wordList3, theLevel.name);
     theLevel.addGame("Game 4", wordList4, theLevel.name);
     
     theLevel = rocketReadingModel.findLevel("Nature World");
+	rocketReadingModel.addAvatar("tree", theLevel);
     theLevel.addGame("Game 1", wordList5, theLevel.name);
     theLevel.addGame("Game 2", wordList6, theLevel.name);
     theLevel.addGame("Game 3", wordList7, theLevel.name);
     theLevel.addGame("Game 4", wordList8, theLevel.name);
 
     theLevel = rocketReadingModel.findLevel("Water World");
+	rocketReadingModel.addAvatar("cloud", theLevel);
     theLevel.addGame(1, wordList9);
     theLevel.addGame(2, wordList10);
     theLevel.addGame(3, wordList11);
     theLevel.addGame(4, wordList12);
     
     theLevel = rocketReadingModel.findLevel("Lollipop World");
+	rocketReadingModel.addAvatar("Lollipop", theLevel);
     theLevel.addGame(1, wordList13);
     theLevel.addGame(2, wordList14);
     theLevel.addGame(3, wordList15);
     theLevel.addGame(4, wordList16);
     
     theLevel = rocketReadingModel.findLevel("Pirate World");
+	rocketReadingModel.addAvatar("pirate", theLevel);
     theLevel.addGame(1, wordList17);
     theLevel.addGame(2, wordList18);
     theLevel.addGame(3, wordList19);
     theLevel.addGame(4, wordList20);
     
     theLevel = rocketReadingModel.findLevel("Car World");
+	rocketReadingModel.addAvatar("car", theLevel);
     theLevel.addGame(1, wordList21);
     theLevel.addGame(2, wordList22);
     theLevel.addGame(3, wordList23);

@@ -238,9 +238,6 @@ var eventTableClick = function () {
 }
 
 var gameInitialise = function () {
-	theLevel = rocketReadingModel.findLevelByNumber(1);
-	theGame = theLevel.allMyGames[0];
-	nextWord(theLevel, theGame.gameName, theGame.myWordList);
 	createTable(theGame.myWordList, 5);
 	eventTableClick();
 }

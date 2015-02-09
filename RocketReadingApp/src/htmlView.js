@@ -36,6 +36,34 @@ var viewHTMLModule = {
         }
     },
 	
+	displayGameTable : function (inputArray) {
+		var newRow,
+		newCell,
+		wordCount,
+		clickCount,
+		tableWidth = 5;
+	
+	//CONSTANTS
+	
+	var HTMLTABLE;
+	console.log(inputArray);
+	HTMLTABLE = document.getElementById("gameWordTable");
+
+	HTMLTABLE.innerHTML = ""; // clear table each time its run
+	newRow = HTMLTABLE.insertRow(-1);
+
+	for ( wordCount = 0; wordCount < inputArray.length; wordCount = wordCount + 1) {
+		if ( HTMLTABLE.lastChild.lastChild.cells.length === tableWidth ) {
+			newRow = HTMLTABLE.insertRow(-1);
+		};
+		newCell = newRow.insertCell(-1);
+		newCell.innerHTML = inputArray[wordCount];
+		newCell.id = "cell" + wordCount;
+		newCell.className = "wordCell";
+		newCell.addEventListener("click", guessWord(newCell.text));
+	};
+	}
+	
 	displayLevelList: function (levelList) {
 	"use strict"
 	// displayLevelList() function v1.6

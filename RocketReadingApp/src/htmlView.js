@@ -1,10 +1,10 @@
-// HTML View Module v1.41
+// HTML View Module v1.42
 //
 var viewHTMLModule = {
     name : "HTML View Module for Rocket Reading",
     displayGameOptions: function (gameOptionsData) {
         "use strict";
-		//displayGameOptions() Function v1.1
+		//displayGameOptions() Function v1.2
         var count,
             newHeading,
             newDiv,
@@ -27,9 +27,12 @@ var viewHTMLModule = {
             newHeading = document.createElement("H1");
 			newHeading.textContent = gameOptionsData[1][count];
             newDiv.appendChild(newHeading);
+			
             gameSelectMainDiv.lastChild.appendChild(newDiv);
+			
             // Adding an event-listener to the div
-            document.getElementById("gameScreenButton" + (count + 1)).addEventListener("click", showGameScreen);
+			newDiv.addEventListener("click", mainController.setCurrentGame);
+			newDiv.addEventListener("click", showGameScreen);
         }
     },
 	
@@ -84,9 +87,10 @@ var viewHTMLModule = {
 		newDiv.id = "level" + levelList[count][0];
 		newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
 		
-		newDiv.addEventListener("click", mainController.gameOptionsRequest);
-		newDiv.addEventListener("click", mainController.setCurrentLevel);
 		levelSelectMainDiv.lastChild.appendChild(newDiv);
+		
+		newDiv.addEventListener("click", mainController.setCurrentLevel);
+		newDiv.addEventListener("click", mainController.gameOptionsRequest);
 	};
 	
 	}

@@ -9,7 +9,7 @@
 	width:calc(100% / 3);
 	height:100%;
 	border: solid 1px cyan;
-		background-size:contain;
+	background-size:contain;
 	background-repeat:no-repeat;
 	background-position:center;
 }

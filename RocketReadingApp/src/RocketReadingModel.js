@@ -179,6 +179,5 @@ RocketReadingModel.prototype.addAvatar = function (newName, myLevel) {
 }
 
 RocketReadingModel.prototype.getAvatar = function (number) {
-	aLevel = this.findLevel(number);
-	return aLevel.myAvatar;
+	return this.findLevel(number).getAvatar;
 }

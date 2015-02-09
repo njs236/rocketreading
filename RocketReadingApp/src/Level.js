@@ -28,3 +28,7 @@ Level.prototype.addGame = function (newName, newList, myLevelName) {
 Level.prototype.setAvatar = function (avatar) {
 	this.myAvatar = avatar;
 }
+
+Level.prototype.getAvatar = function () {
+	return this.myAvatar;
+}

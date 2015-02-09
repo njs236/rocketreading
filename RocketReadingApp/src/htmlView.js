@@ -47,6 +47,8 @@ var viewHTMLModule = {
 		newHeading, // Used to create a heading element in the div
 		levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
 	
+	console.log("displayLevelList() : Running");
+	console.log("displayLevelList() : " + levelList);
 	while ( levelSelectMainDiv.hasChildNodes() ){
 		levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
 	};
@@ -64,11 +66,12 @@ var viewHTMLModule = {
 		}*/
 		newDiv = document.createElement("DIV");
 		newDiv.className = "levelSelectIconContainer levelSelectIconContainerClickable";
+		newDiv.id = levelList[count][0];
 		
 		newHeading = document.createElement("H1");
 		newHeading.textContent = levelList[count][0];
 		newDiv.appendChild(newHeading);
-		
+		newDiv.addEventListener("click", mainController.gameOptionsRequest);
 		levelSelectMainDiv.lastChild.appendChild(newDiv);
 	};
 	

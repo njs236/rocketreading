@@ -18,9 +18,10 @@ var myViewModelRR = {
                 result[0] = "displayBonusListGames";
                 // The variable / array could be assigned an array containing the titles of the specific bonus games 
                 result[1] = ["Alphabet Sounds", "Constant Blends 1","Constant Blends 2","Short Vowel Sounds","Long Vowel Sounds","Middle Sounds"];
+                
                 // Console View:
-                console.log("Type of games to be displayed: BonusGames.");
-                console.log("Titles of bonus games to be displayed: Alphabet Sounds", "Constant Blends 1","Constant Blends 2","Short Vowel Sounds","Long Vowel Sounds","Middle Sounds");
+                console.log("myViewModelRR.gamesRequiredLevel() - Type of games to be displayed: BonusGames.");
+                console.log("myViewModelRR.gamesRequiredLevel() - Titles of bonus games to be displayed: Alphabet Sounds", "Constant Blends 1","Constant Blends 2","Short Vowel Sounds","Long Vowel Sounds","Middle Sounds");
             }
             // A function in the viewHTML object is then called, which determines how to display the selection of games in the UI
             displayGamesSelection(result);
@@ -47,12 +48,12 @@ var myViewModelRR = {
             // HTML view output
             // If the user has selected a level, then the game options screen show be displayed and the level options screen should be hidden
             
+            // Console view output
+            console.log("myViewModelRR.displayGameOptions() Find number of games: " + gameOptionsInfo[0]);
+            console.log("myViewModelRR.displayGameOptions() Find names of games: " + gameOptionsInfo[1]);
+            
             viewHTMLModule.displayGameOptions(gameOptionsInfo);
             showGameSelectScreen();
-           
-            // Console view output
-            console.log("Find number of games: " + gameOptionsInfo[0]);
-            console.log("Find names of games: " + gameOptionsInfo[1]);
         },
         
         loginOutputData: function (inputData) {
@@ -76,10 +77,12 @@ var myViewModelRR = {
                 levelListArray.push(tempArray);
                 tempArray = [];
             }
-            viewHTMLModule.displayLevelList(levelListArray);
+            
             // Console view of the data being passed
-            console.log("displayLevelList(): " + levelListArray[0][0] + ' ' + levelListArray[0][1]);
-            console.log("displayLevelList() length of array: " + levelListArray.length);
+            console.log("myViewModelRR.displayLevelList(): " + levelListArray[0][0] + ' ' + levelListArray[0][1]);
+            console.log("myViewModelRR.displayLevelList() length of array: " + levelListArray.length);
+            
+            viewHTMLModule.displayLevelList(levelListArray);
             
             //Display the level screen
             showLevelScreen();

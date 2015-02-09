@@ -21,6 +21,18 @@ RocketReadingModel.prototype.addLevel = function(newName, newLevelNumber, newGam
     this.levelCount += Number(1);
 };
 
+RocketReadingModel.prototype.getAllLevelNames = function () {
+    "use strict";
+    var count,
+        levelList = [],
+        levelsLength = this.allMyLevels.length;
+    for (count = 0; count < levelsLength; count += 1) {
+        levelList.push(this.allMyLevels[count].levelNumber);
+        console.log();
+    }
+    return levelList;
+};
+
 RocketReadingModel.prototype.addCurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
 	var newCurrentGameData = new currentGameData(newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
 	this.myCurrentGameData = newCurrentGameData;

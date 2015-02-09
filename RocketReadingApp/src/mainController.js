@@ -1,6 +1,16 @@
 // The system creates a mainController object which aims to resolve requests that involve data analysis
 
 var mainController = {
+
+    levelOptionsRequest: function () {
+        "use strict";
+        // This function gets data from the model data
+        var levelList = rocketReadingModel.getAllLevelNames();
+        console.log("mainController.levelOptionsRequest: " + levelList);
+        // Calls a function in the view controller
+        myViewModelRR.displayLevelList(levelList);
+    },
+    
     gameOptionsRequest: function (levelBtnId) {
         "use strict";
         var levelName,

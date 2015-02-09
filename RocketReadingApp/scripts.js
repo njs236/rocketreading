@@ -4,7 +4,8 @@ function showPage1() {
 
 var gameLists = [];
 
-function nextWord() {
+var nextWord = function() {
+    "use strict";
 	currentWordIndex = Math.floor(Math.random() * list.length);
 	var currentWord = list[currentWordIndex],
 	    audio = document.createElement('AUDIO');

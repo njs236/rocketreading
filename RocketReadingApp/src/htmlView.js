@@ -33,7 +33,7 @@ var viewHTMLModule = {
             // Adding an event-listener to the div
             document.getElementById("gameScreenButton" + (count + 1)).addEventListener("click", showGameScreen);
         }
-    }
+    },
 	
 	displayLevelList: function (levelList) {
 	"use strict"

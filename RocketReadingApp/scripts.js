@@ -4,10 +4,10 @@ function showPage1() {
 
 var gameLists = [];
 
-var nextWord = function() {
+var nextWord = function(level, game, list) {
     "use strict";
-	currentWordIndex = Math.floor(Math.random() * list.length);
-	var currentWord = list[currentWordIndex],
+	var currentWordIndex = Math.floor(Math.random() * list.length),
+	    currentWord = list[currentWordIndex],
 	    audio = document.createElement('AUDIO');
 	mainController.passWord(currentWord);
 	document.getElementById("gameGame").appendChild(audio);
@@ -156,7 +156,7 @@ var eventTableClick = function () {
 }
 
 var gameInitialise = function () {
-	theLevel = rocketReadingModel.findLevel("Ice Cream World");
+	theLevel = rocketReadingModel.findLevelByNumber(1);
 	theGame = theLevel.allMyGames[0];
 	nextWord(theLevel, theGame.gameName, theGame.myWordList);
 	createTable(theGame.myWordList, 5);

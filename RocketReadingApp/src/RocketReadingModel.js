@@ -189,5 +189,9 @@ RocketReadingModel.prototype.addAvatar = function (newName, myLevel) {
 	var newAvatar = new Avatar (newName, myLevel);
 	this.allMyAvatars.push (newAvatar);
 	this.avatarCount += 1;
+	myLevel.setAvatar(newAvatar);
 }
 
+RocketReadingModel.prototype.getAvatar = function (number) {
+	return this.findLevel(number).getAvatar;
+}

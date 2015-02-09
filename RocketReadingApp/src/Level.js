@@ -24,3 +24,11 @@ Level.prototype.addGame = function (newName, newList, myLevelName) {
     // Add the game to the file in LS which contains the data about the level
     /*localStorage.setItem(this.name, JSON.stringify(this));*/
 };
+
+Level.prototype.setAvatar = function (avatar) {
+	this.myAvatar = avatar;
+}
+
+Level.prototype.getAvatar = function () {
+	return this.myAvatar;
+}

@@ -110,7 +110,7 @@ var mainController = {
 	// loading player data from the local storage. 
 	setPlayer: function (username) {
 		var playerData = storageController.getPlayer(username);
-		rocketReadingModel.setPlayer(playerData)
+		rocketReadingModel.setPlayer(playerData);
 		myViewModelRR.displayPlayer(playerData);
 
 	},

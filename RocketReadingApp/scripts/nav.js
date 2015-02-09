@@ -17,30 +17,35 @@ var showPingPong = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("pingpong").hidden = false;
+    console.log("Showing ping pong screen");
 }
 
 var showHomeScreen = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("homeScreen").hidden = false;
+    console.log("Showing home screen");
 };
 
 var showLevelScreen = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("levelSelectScreen").hidden = false;
+    console.log("Showing level screen");
 };
 
 var showGameSelectScreen = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("gameSelectScreen").hidden = false;
+    console.log("Showing game select screen");
 };
 
 var showHighScoresScreen = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("highScoresScreen").hidden = false;
+    console.log("Showing high scores screen");
 };
 
 var showGameScreen = function () {
@@ -48,12 +53,14 @@ var showGameScreen = function () {
 	hideAll();
 	document.getElementById("gamesScreen").hidden = false;
 	gameInitialise();
+    console.log("Showing game screen");
 };
 
 var showLoginScreen = function () {
 	"use strict";
 	hideAll();
 	document.getElementById("loginScreen").hidden = false;
+    console.log("Showing login screen");
 };
 
 function navigationInitialise() {

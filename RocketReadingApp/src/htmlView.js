@@ -39,13 +39,17 @@ var viewHTMLModule = {
 	"use strict"
 	// This function takes an input 2D array containing the
 	// level data in the following format
-	// ["Level01","Ice Cream Stage",avatarPath]
-	// ["Level02","Forest Stage",avatarPath]
-	// ["Level03","Clouds Stage",avatarPath]
+	// ["Level01",avatarPath]
+	// ["Level02",avatarPath]
+	// ["Level03",avatarPath]
 	var count,
 		newDiv,
 		newHeading, // Used to create a heading element in the div
 		levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
+	
+	while ( levelSelectMainDiv.hasChildNodes() ){
+		levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
+	};
 	
 	for ( count = 0; count < levelList.length; count = count + 1) {
 		if ( count % 3 === 0 ) {
@@ -64,7 +68,6 @@ var viewHTMLModule = {
 		newHeading = document.createElement("H1");
 		newHeading.textContent = levelList[count][0];
 		newDiv.appendChild(newHeading);
-		levelSelectMainDiv.appendChild(newDiv);
 		
 		levelSelectMainDiv.lastChild.appendChild(newDiv);
 	};

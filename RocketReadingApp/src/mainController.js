@@ -29,11 +29,15 @@ var mainController = {
         myViewModelRR.displayLevelList(allLevels);
     },
     
+    getStringNumber: function (inputId) {
+        "use string";
+        return Number(inputId.slice(inputId.search(/[1-9]/), inputId.length));
+    },
+    
     gameOptionsRequest: function () {
         "use strict";
         var gameOptionsInfo = [],
-            levelBtnId = this.id,
-            levelNumber = Number(levelBtnId.slice(levelBtnId.search(/[1-9]/), levelBtnId.length));
+            levelNumber = mainController.getStringNumber(this.id);
             console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);

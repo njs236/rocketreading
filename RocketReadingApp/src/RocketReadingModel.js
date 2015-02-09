@@ -29,7 +29,7 @@ RocketReadingModel.prototype.getAllLevels = function () {
 };
 
 RocketReadingModel.prototype.addCurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
-	var newCurrentGameData = new currentGameData(newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
+	var newCurrentGameData = new CurrentGameData(newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
 	this.myCurrentGameData = newCurrentGameData;
 }
 
@@ -87,12 +87,11 @@ RocketReadingModel.prototype.findLevelByNumber = function (levelNumber) {
     alert("Level Not Found");
 };
 
-RocketReadingModel.prototype.findGame = function (name) {
+RocketReadingModel.prototype.findGamebyNumber = function (number) {
     "use strict";
-    var aLevel;
-	for (aLevel of this.allMyLevels) {
+    var aLevel = this.getCurrentGameData.getCurrentLevel
 		for (aGame of aLevel.allMyGames) {
-			if (aGame.name === name) {
+			if (aGame.setNameAsNumber === number) {
 				return aGame;
 			}
 		}

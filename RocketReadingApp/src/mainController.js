@@ -32,7 +32,8 @@ var mainController = {
     gameOptionsRequest: function (levelBtnId) {
         "use strict";
         var gameOptionsInfo = [],
-            levelNumber = levelBtnId.slice(levelBtnId.search(/[1-9]/), levelBtnId.length);
+            levelNumber = Number(levelBtnId.slice(levelBtnId.search(/[1-9]/), levelBtnId.length));
+            console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.

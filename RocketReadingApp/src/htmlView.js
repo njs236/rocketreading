@@ -48,10 +48,19 @@ var viewHTMLModule = {
 		levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
 	
 	console.log("displayLevelList() : Running");
-	console.log("displayLevelList() : " + levelList);
+	console.log(levelList);
 	while ( levelSelectMainDiv.hasChildNodes() ){
 		levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
 	};
+	
+	if ( levelList[0][0] === "Level00" ) {
+		console.log("displayLevelList() : Shifted Things");
+		levelList.push(levelList[0]); // add first element to the end
+		levelList.splice(0,1); // remove the first entry
+		console.log(levelList);
+	};
+	
+	
 	
 	for ( count = 0; count < levelList.length; count = count + 1) {
 		if ( count % 3 === 0 ) {
@@ -59,14 +68,20 @@ var viewHTMLModule = {
 			newDiv.className = "levelSelectRow";
 			levelSelectMainDiv.appendChild(newDiv);
 		};
-		/*if ( levelList.length - count === 1 ) && ( levelList % 3 === 1 ) {
+		
+		
+		if ( levelList.length === (count + 1) && levelList.length % 3 === 1 ) {
+			console.log("displayLevelList() : Last Item");
 			newDiv = document.createElement("DIV");
 			newDiv.className = "levelSelectIconContainer";
 			levelSelectMainDiv.lastChild.appendChild(newDiv);
-		}*/
+		};
+		
+		
 		newDiv = document.createElement("DIV");
-		newDiv.className = "levelSelectIconContainer levelSelectIconContainerClickable";
+		newDiv.className = "levelSelectIconContainer";
 		newDiv.id = levelList[count][0];
+		//newDiv.style.background-image = "url(../images/" + levelList[count][1] + ".png";
 		
 		newHeading = document.createElement("H1");
 		newHeading.textContent = levelList[count][0];

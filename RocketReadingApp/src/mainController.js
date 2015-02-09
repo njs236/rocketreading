@@ -32,8 +32,7 @@ var mainController = {
     gameOptionsRequest: function (levelBtnId) {
         "use strict";
         var gameOptionsInfo = [],
-            levelNumber = (/\r\n/.test(inputString));
-           /*levelNumber = levelBtnId.slice(-1);*/
+            levelNumber = levelBtnId.slice(a.search(/[1-9]/g), a.length);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
@@ -123,15 +122,6 @@ var mainController = {
             }
         }
     },
-	
-	
-	// loading player data from the local storage. 
-	setPlayer: function (username) {
-		var playerData = storageController.getPlayer(username);
-		rocketReadingModel.setPlayer(playerData);
-		myViewModelRR.displayPlayer(playerData);
-
-	},
     
     // Processing login function
     
@@ -144,5 +134,12 @@ var mainController = {
                 console.log("No login ...");
             }
         }
-    }
+    },
+    
+    // loading player data from the local storage. 
+	setPlayer: function (username) {
+		var playerData = storageController.getPlayer(username);
+		rocketReadingModel.setPlayer(playerData);
+		myViewModelRR.displayPlayerName(playerData);
+	},
 };

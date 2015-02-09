@@ -1,35 +1,32 @@
+// HTML View Module v1.3
 //
-// NAVIGATION SECTION
-//
-// Contains the code for hiding the divs
-
 var viewHTMLModule = {
     name : "HTML View Module for Rocket Reading",
     displayGameOptions: function (gameOptionsData) {
         "use strict";
         var count,
             newHeading,
-            newText,
             newDiv,
-            newDivMain;
-        // The html inside the div containing the game options needs to be cleared each time a level's game options are selected.
-        document.getElementById("gameOptionsContainer").innerHTML = "";
-        
+			gameSelectMainDiv = document.getElementById("gameOptionsContainer");
+			// The html inside the div containing the game options needs to be cleared each time a level's game options are selected.
+		
+		while ( gameSelectMainDiv.hasChildNodes() ){
+		levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
+		};
+		
         for (count = 0; count < gameOptionsData[0]; count += 1) { 
             if (count % 3 === 0) {
-                newDivMain = document.createElement("DIV");
-                newDivMain.className = "gameSelectScreenRow";
-                document.getElementById("gameOptionsContainer").appendChild(newDivMain);
-                //document.getElementById("gameOptionsContainer").lastChild.className = "gameSelectScreenRow";
-            }
+                newDiv = document.createElement("DIV");
+                newDiv.className = "gameSelectScreenRow";
+                gameSelectMainDiv.appendChild(newDiv);
+            };
             newDiv = document.createElement("DIV");
             newDiv.className = "gameSelectScreenGame";
             newDiv.id = "gameScreenButton" + (count + 1);
             newHeading = document.createElement("H1");
-            newText = document.createTextNode(gameOptionsData[1][count]);
-            newHeading.appendChild(newText);
+			newHeading.textContent = gameOptionsData[1][count];
             newDiv.appendChild(newHeading);
-            document.getElementsByClassName("gameSelectScreenRow")[Math.floor(count / 3)].appendChild(newDiv);
+            levelSelectMainDiv.lastChild.appendChild(newDiv);
             // Adding an event-listener to the div
             document.getElementById("gameScreenButton" + (count + 1)).addEventListener("click", showGameScreen);
         }
@@ -37,7 +34,7 @@ var viewHTMLModule = {
 	
 	displayLevelList: function (levelList) {
 	"use strict"
-	// displayLevelList() function v1.3
+	// displayLevelList() function v1.4
 	// This function takes an input 2D array containing the
 	// level data in the following format
 	// ["01",avatarPath]
@@ -50,11 +47,13 @@ var viewHTMLModule = {
 	
 	console.log("displayLevelList() : Running");
 	console.log(levelList);
+	// Remove all HTML bits under main section
 	while ( levelSelectMainDiv.hasChildNodes() ){
 		levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
 	};
 	
-	if ( levelList[0][0] === "Level00" ) {
+	// Shift bonus games to the end
+	if ( levelList[0][0] === 0 ) {
 		console.log("displayLevelList() : Shifted Things");
 		levelList.push(levelList[0]); // add first element to the end
 		levelList.splice(0,1); // remove the first entry
@@ -62,15 +61,16 @@ var viewHTMLModule = {
 	};
 	
 	
-	
+	// IOterate over all level info and make div boxes
 	for ( count = 0; count < levelList.length; count = count + 1) {
+		// create a new row if we are at 3 boxes
 		if ( count % 3 === 0 ) {
 			newDiv = document.createElement("DIV");
 			newDiv.className = "levelSelectRow";
 			levelSelectMainDiv.appendChild(newDiv);
 		};
 		
-		
+		// checking for last item in list, creates an empty div to center it
 		if ( levelList.length === (count + 1) && levelList.length % 3 === 1 ) {
 			console.log("displayLevelList() : Last Item");
 			newDiv = document.createElement("DIV");
@@ -82,7 +82,7 @@ var viewHTMLModule = {
 		newDiv = document.createElement("DIV");
 		newDiv.className = "levelSelectIconContainer";
 		newDiv.id = "level" + levelList[count][0];
-		//newDiv.style.background-image = "url(../images/" + levelList[count][1] + ".png";
+		newDiv.style.backgroundImage = "url(../images/" + levelList[count][1] + ".png";
 		
 		newHeading = document.createElement("H1");
 		newHeading.textContent = "level" + levelList[count][0];

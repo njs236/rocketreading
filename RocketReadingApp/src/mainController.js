@@ -29,9 +29,10 @@ var mainController = {
         myViewModelRR.displayLevelList(allLevels);
     },
     
-    gameOptionsRequest: function (levelBtnId) {
+    gameOptionsRequest: function () {
         "use strict";
         var gameOptionsInfo = [],
+            levelBtnId = this.id,
             levelNumber = Number(levelBtnId.slice(levelBtnId.search(/[1-9]/), levelBtnId.length));
             console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);

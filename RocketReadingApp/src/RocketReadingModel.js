@@ -23,16 +23,9 @@ RocketReadingModel.prototype.addLevel = function(newName, newLevelNumber, newGam
     this.levelCount += Number(1);
 };
 
-RocketReadingModel.prototype.getAllLevelNames = function () {
+RocketReadingModel.prototype.getAllLevels = function () {
     "use strict";
-    var count,
-        levelList = [],
-        levelsLength = this.allMyLevels.length;
-    for (count = 0; count < levelsLength; count += 1) {
-        levelList.push(this.allMyLevels[count].levelNumber);
-        console.log();
-    }
-    return levelList;
+    return this.allMyLevels;
 };
 
 RocketReadingModel.prototype.addCurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
@@ -122,7 +115,7 @@ RocketReadingModel.prototype.findNumGamesOfLevel = function (levelNumber) {
     "use strict";
     /*var aLevel = this.findLevel(levelName);
 	return aLevel.gameCount;*/
-    return Number(this.findLevel(levelNumber).gameCount);
+    return Number(this.findLevelByNumber(levelNumber).gameCount);
 	alert("Number of games not found");
 };
 
@@ -154,7 +147,7 @@ RocketReadingModel.prototype.findLevelGamesLists = function (levelName, gameName
     "use strict";
     var aGame,
         result = [],
-        theLevel = this.findLevel(levelName);  
+        theLevel = this.findLevelByName(levelName);  
     result[0] = levelName;
     result[1] = gameName;
     for (aGame of theLevel.allMyGames) {
@@ -193,7 +186,7 @@ RocketReadingModel.prototype.addAvatar = function (newName, myLevel) {
 }
 
 RocketReadingModel.prototype.getAvatar = function (number) {
-	return this.findLevel(number).getAvatar;
+	return this.findLevelByNumber(number).getAvatar;
 }
 
 RocketReadingModel.prototype.passWord = function (word) {

@@ -71,15 +71,15 @@ var myViewModelRR = {
                 listLength = inputLevels.length;
             console.log(listLength);
             for (count = 0; count < listLength; count += 1) {
-                tempArray.push("Level" + inputLevels[count].levelNumber);
-                tempArray.push("avatarPathTempString" + count);
+                tempArray.push(inputLevels[count].levelNumber);
+                tempArray.push(inputLevels[count].getAvatar().getName());
                 levelListArray.push(tempArray);
                 tempArray = [];
             }
             
             // Console view of the data being passed
-            console.log("myViewModelRR.displayLevelList(): " + levelListArray);
-            console.log("myViewModelRR.displayLevelList() length of array: " + levelListArray.length);
+            console.log("displayLevelList(): " + levelListArray);
+            console.log("displayLevelList() length of array: " + levelListArray.length);
             
             viewHTMLModule.displayLevelList(levelListArray);
             

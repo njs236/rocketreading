@@ -87,7 +87,7 @@ var viewHTMLModule = {
 		newHeading = document.createElement("H1");
 		newHeading.textContent = "level" + levelList[count][0];
 		newDiv.appendChild(newHeading);
-		newDiv.addEventListener("click", mainController.gameOptionsRequest);
+		newDiv.addEventListener("click", function () {mainController.gameOptionsRequest(this.id); });
 		levelSelectMainDiv.lastChild.appendChild(newDiv);
 	};
 	

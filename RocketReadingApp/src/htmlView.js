@@ -37,11 +37,12 @@ var viewHTMLModule = {
 	
 	displayLevelList: function (levelList) {
 	"use strict"
+	// displayLevelList() function v1.3
 	// This function takes an input 2D array containing the
 	// level data in the following format
-	// ["Level01",avatarPath]
-	// ["Level02",avatarPath]
-	// ["Level03",avatarPath]
+	// ["01",avatarPath]
+	// ["02",avatarPath]
+	// ["03",avatarPath]
 	var count,
 		newDiv,
 		newHeading, // Used to create a heading element in the div
@@ -80,11 +81,11 @@ var viewHTMLModule = {
 		
 		newDiv = document.createElement("DIV");
 		newDiv.className = "levelSelectIconContainer";
-		newDiv.id = levelList[count][0];
+		newDiv.id = "level" + levelList[count][0];
 		//newDiv.style.background-image = "url(../images/" + levelList[count][1] + ".png";
 		
 		newHeading = document.createElement("H1");
-		newHeading.textContent = levelList[count][0];
+		newHeading.textContent = "level" + levelList[count][0];
 		newDiv.appendChild(newHeading);
 		newDiv.addEventListener("click", mainController.gameOptionsRequest);
 		levelSelectMainDiv.lastChild.appendChild(newDiv);

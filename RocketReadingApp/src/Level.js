@@ -14,9 +14,9 @@ Level.prototype.calculateScore = function () {
     }	
 };
 
-Level.prototype.addGame = function (newName, newList, myLevelName) {
+Level.prototype.addGame = function (newName, newList, myLevelName, newGameNumber) {
 "use strict";
-    var newGame = new Game( newName, newList, myLevelName );
+    var newGame = new Game( newName, newList, myLevelName, newGameNumber);
     /*JSON.parse(localStorage.getItem(this.name));*/
     this.allMyGames.push (newGame);
     this.gameCount += Number(1);
@@ -31,4 +31,8 @@ Level.prototype.setAvatar = function (avatar) {
 
 Level.prototype.getAvatar = function () {
 	return this.myAvatar;
+}
+
+Level.prototype.getLevelNumber = function () {
+	return this.levelNumber;
 }

@@ -47,6 +47,41 @@ var mainController = {
 		var inputArray = rocketReadingModel.getCurrentGameData().getWordList();
 		myViewModelRR.displayTable(inputArray);
 	},
+	
+	getMedalCounts : function () {
+		var medals = rocketReadingModel.getCurrentGameData().getMedalCounts();
+		myViewModelRR.displayMedalCounts(medals);
+	},
+	
+	getScore : function() {
+		var score = rocketReadingModel.getCurrentGameData().getScore();
+		myViewModelRR.displayScore(score);
+	},
+	
+	getWordsCompleted : function () {
+		var wordsCompleted = rocketReadingModel.getCurrentGameData().getWordsCompleted();
+		myViewModelRR.displayWordsCompleted(wordsCompleted);
+	},
+	
+	getLevelNumber : function () {
+		var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber();
+		myViewModelRR.displayLevelNumber(levelNumber);
+	},
+	
+	getGameNumber : function () {
+		var gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().setNameAsNumber();
+		myViewModelRR.displayGameNumber(gameNumber);
+	},
+	
+	getAvatar : function () {
+		var avatar = rocketReadingModel.getCurrentGameData().getCurrentLevel().getAvatar();
+		myViewModelRR.displayAvatar(avatar);
+	},
+	
+	getWordListCount : function () {
+		var wordListCount = rocketReadingModel.getCurrentGameData().getWordListCount();
+		myViewModelRR.displayWordListCount(wordListCount);
+	},
 
     gameOptionsRequest: function () {
         "use strict";

@@ -28,8 +28,8 @@ RocketReadingModel.prototype.getAllLevels = function () {
     return this.allMyLevels;
 };
 
-RocketReadingModel.prototype.addCurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newLevel) {
-	var newCurrentGameData = new CurrentGameData(newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newLevel);
+RocketReadingModel.prototype.addCurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+	var newCurrentGameData = new CurrentGameData(newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
 	this.myCurrentGameData = newCurrentGameData;
 };
 
@@ -92,7 +92,7 @@ RocketReadingModel.prototype.findGameByNumber = function (number) {
     var aLevel = this.getCurrentGameData().getCurrentLevel(),
 	aGame;
     for (aGame of aLevel.allMyGames) {
-		if (aGame.setNameAsNumber() === number) {
+		if (aGame.getNumber() === number) {
 		console.log("aGame:" + aGame);
 			return aGame;
 		}

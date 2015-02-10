@@ -68,34 +68,6 @@ var viewHTMLModule = {
 		
 	},
 	
-	displayGameTable : function (inputArray) {
-		var newRow,
-			newCell,
-			wordCount,
-			clickCount,
-			tableWidth = 5;
-		
-		//CONSTANTS
-		
-		var HTMLTABLE;
-		console.log(inputArray);
-		HTMLTABLE = document.getElementById("gameWordTable");
-
-		HTMLTABLE.innerHTML = ""; // clear table each time its run
-		newRow = HTMLTABLE.insertRow(-1);
-
-		for ( wordCount = 0; wordCount < inputArray.length; wordCount = wordCount + 1) {
-			if ( HTMLTABLE.lastChild.lastChild.cells.length === tableWidth ) {
-				newRow = HTMLTABLE.insertRow(-1);
-			};
-			newCell = newRow.insertCell(-1);
-			newCell.innerHTML = inputArray[wordCount];
-			newCell.id = "cell" + wordCount;
-			newCell.className = "wordCell";
-			newCell.addEventListener("click", viewHTMLModule.guessWord(newCell.text));
-		};
-	},
-	
 	guessWord : function (word) {
 	//add code in here to select word based on clickable event.
 	mainController.validateWords(word);
@@ -128,7 +100,6 @@ var viewHTMLModule = {
 			console.log(levelList);
 		};
 		
-		
 		// Iterate over all level info and make div boxes
 		for ( count = 0; count < levelList.length; count = count + 1) {
 			// create a new row if we are at 3 boxes
@@ -146,7 +117,6 @@ var viewHTMLModule = {
 				levelSelectMainDiv.lastChild.appendChild(newDiv);
 			};
 			
-			
 			newDiv = document.createElement("DIV");
 			newDiv.className = "levelSelectIconContainer";
 			newDiv.id = "level" + levelList[count][0];
@@ -161,6 +131,38 @@ var viewHTMLModule = {
 	},
 	
 	
+	displayGameTable : function (inputArray) {
+		var newRow,
+			newCell,
+			wordCount,
+			clickCount,
+			tableWidth = 5;
+		
+		//CONSTANTS
+		
+		var HTMLTABLE;
+		console.log(inputArray);
+		HTMLTABLE = document.getElementById("gameWordTable");
+
+		HTMLTABLE.innerHTML = ""; // clear table each time its run
+		newRow = HTMLTABLE.insertRow(-1);
+
+		for ( wordCount = 0; wordCount < inputArray.length; wordCount = wordCount + 1) {
+			if ( HTMLTABLE.lastChild.lastChild.cells.length === tableWidth ) {
+				newRow = HTMLTABLE.insertRow(-1);
+			};
+			newCell = newRow.insertCell(-1);
+			newCell.innerHTML = inputArray[wordCount];
+			newCell.id = "cell" + wordCount;
+			newCell.className = "wordCell";
+			newCell.addEventListener("click", viewHTMLModule.guessWord(newCell.text));
+		};
+	},
+	
+	
+	// ******************************************
+	// *********** Show Pages Section ***********
+	// ******************************************
 	hideAllPages: function () {
 		"use strict";
 		var screens = [],
@@ -172,12 +174,14 @@ var viewHTMLModule = {
 		};
 	},
 	
+	
 	showLoginScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
 		document.getElementById("loginScreen").hidden = false;
 		console.log("HTMLView.js : Showing login screen");
 	},
+	
 	
 	showHomeScreen: function () {
 		"use strict";
@@ -186,6 +190,7 @@ var viewHTMLModule = {
 		console.log("HTMLView.js : Showing home screen");
 	},
 	
+	
 	showLevelSelectScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
@@ -193,12 +198,14 @@ var viewHTMLModule = {
 		console.log("HTMLView.js : Showing level select screen");
 	},
 	
+	
 	showGameSelectScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
 		document.getElementById("gameSelectScreen").hidden = false;
 		console.log("HTMLView.js : Showing game select screen");
 	},
+	
 	
 	showGameScreen: function () {
 		"use strict";
@@ -208,6 +215,7 @@ var viewHTMLModule = {
         gameInitialise();
 	},
 	
+	
 	showHighScoresScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
@@ -215,25 +223,26 @@ var viewHTMLModule = {
 		console.log("HTMLView.js : Showing High Score screen");
 	},
 	
+	
 	intitialise : function()  {
-	// Login Screen
-	document.getElementById("loginEnterBtn").addEventListener("click", mainController.processLogin, false);
-	
-	// Home Screen
-	document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
-	document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
-	document.getElementById("homeExit").addEventListener("click",this.showLoginScreen);
-	
-	// Level Select Screen
-	document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);
-	
-	// Game Select Screen
-	document.getElementById("gameSelectHomeButton").addEventListener("click", this.showLevelSelectScreen);
-	
-	// Game Screen
-	document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
-	
-	// High Scores Screen
-	document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
+		// Login Screen
+		document.getElementById("loginEnterBtn").addEventListener("click", mainController.processLogin, false);
+		
+		// Home Screen
+		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
+		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
+		document.getElementById("homeExit").addEventListener("click",this.showLoginScreen);
+		
+		// Level Select Screen
+		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);
+		
+		// Game Select Screen
+		document.getElementById("gameSelectHomeButton").addEventListener("click", this.showLevelSelectScreen);
+		
+		// Game Screen
+		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
+		
+		// High Scores Screen
+		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
 	}
 };

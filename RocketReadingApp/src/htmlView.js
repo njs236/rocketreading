@@ -21,7 +21,7 @@ var viewHTMLModule = {
 		// The html inside the div containing the game options needs
 		// to be cleared each time a level's game options are selected.
 		while ( gameSelectMainDiv.hasChildNodes() ){
-		gameSelectMainDiv.removeChild(gameSelectMainDiv.firstChild);
+			gameSelectMainDiv.removeChild(gameSelectMainDiv.firstChild);
 		};
 		
         for (count = 0; count < gameOptionsData[0]; count += 1) { 
@@ -53,6 +53,7 @@ var viewHTMLModule = {
         }
     },
 	
+	
 	displayTextAndScores : function () {
 		var startGame,
 		goldMedal,
@@ -68,10 +69,12 @@ var viewHTMLModule = {
 		
 	},
 	
+	
 	guessWord : function (word) {
 	//add code in here to select word based on clickable event.
 	mainController.validateWords(word);
 	},
+	
 	
 	displayLevelList: function (levelList) {
 		"use strict"
@@ -138,6 +141,7 @@ var viewHTMLModule = {
 		document.getElementById("bronzeStarCounter").textContent = inputArray[2];
 	
 	},
+	
 	
 	displayGameTable : function (inputArray) {
 		var newRow,

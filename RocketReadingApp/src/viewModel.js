@@ -1,8 +1,7 @@
-// Creating a viewModel object for the system
-// Actually, this module seems to be more of a view controller, which determines what information is passed to the view module. - What is the definition and role of a view model?
+// ViewController v2.0
+//
 
 var myViewModelRR = {
-	
 	
 	// ********* Attributes **********
 	view : {},
@@ -13,13 +12,18 @@ var myViewModelRR = {
 	// ************************************
 	
 	setView : function (inputView) {
-		this.testViewModule(inputView);
-		this.view = inputView;
-		this.view.greet();
-		this.view.intitialiseView();
-		return "myViewModelRR : My View is now " + this.view.getName();	
+		"use strict";
+		if ( typeof inputView == "object" ) {
+			if (this.testViewModule(inputView)){
+				this.view = inputView;
+				console.log("viewController : My View is now '" + this.view.getName() + "'");
+				this.view.intitialiseView();
+				return "viewController : My View is now " + this.view.getName();
+			};
+		} else {
+			throw "viewController : setView() : I only take objects!";
+		};
 	},
-	
 	// ******************************
 	// ******* Tests Section ********
 	// ******************************
@@ -33,34 +37,37 @@ var myViewModelRR = {
 			// put any methods in here that viewModules should not have
 			whiteListMethods = ["testViewModule", "setView", "gamesRequiredLevel"],
 			count,
-			error = "";
+			error = false;
 			
-		//this.view.greet();
 		console.group("myViewModelRR : testViewModule()");
-
-		myMethods = testController.getAllMethods(this);
-		viewMethods = testController.getAllMethods(viewModule);
-		
-		console.groupCollapsed("Testing Module Methods")
-		for ( count = 0; count < myMethods.length; count = count + 1 ) {
-			if ( (viewMethods.indexOf(myMethods[count]) == -1 ) && whiteListMethods.indexOf(myMethods[count]) == -1 ) {
-				error = this.view.name + "Module Missing " + myMethods[count];
-				console.log("%ctestViewModule() : Module Error : " + myMethods[count] , "color: red");
+		if ( typeof viewHTMLModule == "object" ){
+			console.log("Testing " + viewModule.getName());
+			myMethods = testController.getAllMethods(this);
+			viewMethods = testController.getAllMethods(viewModule);
+			
+			console.group("Testing Module Methods")
+			for ( count = 0; count < myMethods.length; count = count + 1 ) {
+				if ( (viewMethods.indexOf(myMethods[count]) == -1 ) && whiteListMethods.indexOf(myMethods[count]) == -1 ) {
+					error = true;
+					console.log("%ctestViewModule() : Module Error : " + myMethods[count] , "color: red");
+				};
 			};
-		};
-		console.groupEnd();
-		if (error !== "" ) {
-			throw viewModule.name + " had errors!";
+			console.groupEnd();
+			if (error) {
+				throw viewModule.getName() + " had errors!";
+			} else {
+				console.log("%ctestViewModule() : " + viewModule.getName() + " passed","color:green");
+				console.groupEnd();
+				return true;
+			};
 		} else {
-			return viewModule.name + " Passed!";
-		}
-		console.groupEnd();
+			throw "viewController : testViewModule() : I only take objects!";
+		};
 	},
 	
 	// ******************************
 	// ***** End Tests Section ******
 	// ******************************
-	
 	
 	// ***********************************************
 	// ************ Home Screen Section **************
@@ -68,10 +75,10 @@ var myViewModelRR = {
 	
 	displayPlayerName : function (username) {
 		"use strict";
-		if ( typeof username == "String" ) {
+		if ( typeof username == "string" ) {
 			this.view.displayPlayerName(username);
 		} else {
-			throw "viewController : displayPlayerName() : Input must be a string";
+			throw "Error : viewController : displayPlayerName() : Input must be a string";
 		};
 	},
 	// ***********************************************
@@ -106,12 +113,9 @@ var myViewModelRR = {
 		//Display the level screen
 		viewHTMLModule.showLevelSelectScreen();
 	},
-	
 	// ********************************************
 	// ***** End Level Select Screen Section ******
 	// ********************************************
-	
-	
 	
 	// *******************************************
 	// ******* Game Select Screen Section ********
@@ -129,8 +133,6 @@ var myViewModelRR = {
 		this.view.displayGameOptions(gameOptionsInfo);
 		this.view.showGameSelectScreen();
 	},
-	
-	
 	// *******************************************
 	// ***** End Game Select Screen Section ******
 	// *******************************************
@@ -147,20 +149,25 @@ var myViewModelRR = {
 		// Assumes and order of highest value to lowest eg
 		// gold silver bronze
 		var count;
+		console.groupCollapsed("viewController : displayMedalCounts()");
 		console.log(inputArray);
+		if ( inputArray.length !== 3 ) {
+			console.groupEnd();
+			throw "viewController : displayMedalCounts() : Array is the wrong size";
+		};
 		for ( count = 0; count < inputArray.length; count = count + 1) {
 			if ( /[^0-9]+/.test(inputArray[count]) || typeof inputArray[count] !== "number" ) {
+				console.groupEnd();
 				throw "displayMedalCounts() : Input Error, function only takes whole numbers";
 			};
 		};
-		
+		console.groupEnd();
 		this.view.displayMedalCounts(inputArray);
 	},
 	
 	displayTable : function (inputArray) {
-		viewHTMLModule.displayGameTable(inputArray);
+		this.view.displayTable(inputArray);
 	},
-
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************

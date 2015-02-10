@@ -114,9 +114,8 @@ var myViewModelRR = {
 			var count;
 			console.log(inputArray);
 			for ( count = 0; count < inputArray.length; count = count + 1) {
-				
-				if ( /[^0-9]+/.test(inputArray[count]) || typeof inputArray[count] !=== "number" ) {
-					throw "displayMedalCounts() : Input Error";
+				if ( /[^0-9]+/.test(inputArray[count]) || typeof inputArray[count] !== "number" ) {
+					throw "displayMedalCounts() : Input Error, function only takes whole numbers";
 				};
 			};
 			

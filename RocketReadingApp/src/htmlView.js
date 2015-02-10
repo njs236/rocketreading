@@ -144,20 +144,18 @@ var viewHTMLModule = {
 			newCell,
 			wordCount,
 			clickCount,
-			tableWidth = 5;
+			tableWidth = 5,
+			htmlTable;
 		
-		//CONSTANTS
-		
-		var HTMLTABLE;
 		console.log(inputArray);
-		HTMLTABLE = document.getElementById("gameWordTable");
+		htmlTable = document.getElementById("gameWordTable");
 
-		HTMLTABLE.innerHTML = ""; // clear table each time its run
-		newRow = HTMLTABLE.insertRow(-1);
+		htmlTable.innerHTML = ""; // clear table each time its run
+		newRow = htmlTable.insertRow(-1);
 
 		for ( wordCount = 0; wordCount < inputArray.length; wordCount = wordCount + 1) {
-			if ( HTMLTABLE.lastChild.lastChild.cells.length === tableWidth ) {
-				newRow = HTMLTABLE.insertRow(-1);
+			if ( htmlTable.lastChild.lastChild.cells.length === tableWidth ) {
+				newRow = htmlTable.insertRow(-1);
 			};
 			newCell = newRow.insertCell(-1);
 			newCell.innerHTML = inputArray[wordCount];

@@ -1,4 +1,4 @@
-// HTML View Module v1.6
+// HTMLView Module v1.6
 //
 var viewHTMLModule = {
     name : "HTML View Module for Rocket Reading",

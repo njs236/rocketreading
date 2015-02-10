@@ -2,6 +2,18 @@
 // Actually, this module seems to be more of a view controller, which determines what information is passed to the view module. - What is the definition and role of a view model?
 
 var myViewModelRR = {
+	view : {},
+	name : "ViewController for Rocket Reading",
+	
+	setView : function (inputView) {
+		this.view = inputView;
+		return "myViewModelRR : My View is now " + this.view.getName();	
+	},
+	
+	testView : function() {
+		this.view.greet();
+	},
+	
     /*displayMethods: {*/
 		displayPlayerName : function (username) {
             document.getElementById('welcome').textContent = 'Welcome, ' + username;
@@ -57,7 +69,7 @@ var myViewModelRR = {
             console.log("myViewModelRR.displayGameOptions() Find names of games: " + gameOptionsInfo[1]);
             
             viewHTMLModule.displayGameOptions(gameOptionsInfo);
-            showGameSelectScreen();
+            viewHTMLModule.showGameSelectScreen();
         },
         
         loginOutputData: function (inputData) {
@@ -88,7 +100,7 @@ var myViewModelRR = {
             viewHTMLModule.displayLevelList(levelListArray);
             
             //Display the level screen
-            showLevelScreen();
+            viewHTMLModule.showLevelSelectScreen();
         },
 		
 		initialiseView : function () {

@@ -10,7 +10,22 @@ var viewHTMLModule = {
 	greet : function() {
 		console.log("viewHTMLModule : I am the current view! I am " + this.name);
 	},
+	// *************************************
+	// ******* Login Screen Section ********
+	// *************************************
 	
+	displayPlayerName : function (username) {
+		"use strict";
+		console.groupCollapsed("viewHTMLModule : displayPlayerName()")
+		console.log(username);
+		document.getElementById('welcome').textContent = 'Welcome, ' + username;
+		console.groupEnd();
+	},
+	
+	
+	// *************************************
+	// ***** End Login Screen Section ******
+	// *************************************
     displayGameOptions: function (gameOptionsData) {
         "use strict";
 		//displayGameOptions() Function v1.3
@@ -143,7 +158,7 @@ var viewHTMLModule = {
 	},
 	
 	
-	displayGameTable : function (inputArray) {
+	displayTable : function (inputArray) {
 		var newRow,
 			newCell,
 			wordCount,
@@ -234,7 +249,7 @@ var viewHTMLModule = {
 	},
 	
 	
-	intitialise : function()  {
+	intitialiseView : function()  {
 		// Login Screen
 		document.getElementById("loginEnterBtn").addEventListener("click", mainController.processLogin, false);
 		
@@ -254,8 +269,5 @@ var viewHTMLModule = {
 		
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
-		
-		// Announce ourselves to the viewer
-		myViewModelRR.setView(this);
 	}
 };

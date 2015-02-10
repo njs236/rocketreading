@@ -227,8 +227,8 @@ var initialise = function () {
 	// loginInitialise();
 
     loadGameData();
-	mainController.initialiseView();
-    // myViewModelRR.displayMethods.hideRequiredScreens("navScreen");
+	//mainController.initialiseView();
+    myViewModelRR.setView(viewHTMLModule);
 };
 
 

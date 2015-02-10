@@ -139,7 +139,7 @@ var mainController = {
            if  (( storageController.getPlayer(nameElement.value).userName === nameElement.value) && ( storageController.getPlayer(nameElement.value).firstName === passwordElement.value )) {
                 // The system lets the user login
                 // Data is sent to the view controller to be displayed in the console
-                myViewModelRR.loginOutputData("Through!");
+                //myViewModelRR.loginOutputData("Through!");
                 viewHTMLModule.showHomeScreen();
 				mainController.setPlayer(nameElement.value);
             } else {
@@ -152,12 +152,12 @@ var mainController = {
         validateUserExists: function (nameElement, passwordElement) {
             "use strict";
             // Data is sent to the view controller to be displayed in the console
-            myViewModelRR.loginOutputData("name: " + nameElement.value);
+            //myViewModelRR.loginOutputData("name: " + nameElement.value);
             
             var result = JSON.parse(localStorage.getItem(nameElement.value));
             if ( result !== null ) {
                 // Data is sent to the view controller to be displayed in the console
-                myViewModelRR.loginOutputData("User exists: " + result + " - true!");
+                //myViewModelRR.loginOutputData("User exists: " + result + " - true!");
                 return true;
             } else {
                 document.getElementById("loginMessage").innerHTML = "Unknown username. Please try entering your username again or create an account.";
@@ -200,7 +200,4 @@ var mainController = {
 		myViewModelRR.displayPlayerName(username);
 	},
 	
-	initialiseView : function () {
-		myViewModelRR.initialiseView();
-	}
 };

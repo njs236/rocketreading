@@ -1,5 +1,5 @@
 var viewConsoleModel = {
-	displayPlayer = function (player){
-	console.log(player)
+	displayPlayer: function (player){
+        console.log(player)
 	}
 }

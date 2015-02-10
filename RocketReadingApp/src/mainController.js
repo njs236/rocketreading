@@ -107,7 +107,7 @@ var mainController = {
                 // The system lets the user login
                 // Data is sent to the view controller to be displayed in the console
                 myViewModelRR.loginOutputData("Through!");
-                showHomeScreen();
+                viewHTMLModule.showHomeScreen();
 				mainController.setPlayer(nameElement.value);
             } else {
                 passwordElement.value = "";

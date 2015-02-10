@@ -58,7 +58,7 @@ var mainController = {
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
 		//Loading selected Level into current Level in currentGameData
-		rocketReadingModel.getCurrentGameData.setCurrentLevel(rocketReadingModel.findLevelByNumber(levelNumber));
+		rocketReadingModel.getCurrentGameData().setCurrentLevel(rocketReadingModel.findLevelByNumber(levelNumber));
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
     },

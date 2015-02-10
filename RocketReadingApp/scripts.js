@@ -212,7 +212,8 @@ var loadGameData = function () {
     theLevel.addGame(3, wordList23);
     theLevel.addGame(4, wordList24);
     
-    rocketReadingModel.addCurrentGameData(0, [1, 1]);
+    // rocketReadingModel.addCurrentGameData(0, [1, 1]);
+    rocketReadingModel.addCurrentGameData(null,null,null,null,null,null,null,null);
 };
 
 var initialise = function () {

@@ -28,23 +28,23 @@ RocketReadingModel.prototype.getAllLevels = function () {
     return this.allMyLevels;
 };
 
-RocketReadingModel.prototype.addCurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
-	var newCurrentGameData = new CurrentGameData(newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
+RocketReadingModel.prototype.addCurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newLevel) {
+	var newCurrentGameData = new CurrentGameData(newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newLevel);
 	this.myCurrentGameData = newCurrentGameData;
-}
+};
 
 RocketReadingModel.prototype.getCurrentGameData = function () {
 	return this.myCurrentGameData;
-}
+};
 
 RocketReadingModel.prototype.addAllGamesData = function (newLevel1Game1, newLevel1Game2, newLevel1Game3, newLevel1Game4, newLevel2Game1, newLevel2Game2, newLevel2Game3, newLevel2Game4, newLevel3Game1, newLevel3Game2, newLevel3Game3, newLevel3Game4, newLevel4Game1,  newLevel4Game2, newLevel4Game3, newLevel4Game4, newLevel5Game1, newLevel5Game2, newLevel5Game3, newLevel5Game4, newLevel6Game1, newLevel6Game2, newLevel6Game3, newLevel6Game4, newBonusGame1, newBonusGame2, newBonusGame3, newBonusGame4, newBonusGame5, newBonusGame6) {
 	var newAllGamesData = new allGamesData(newLevel1Game1, newLevel1Game2, newLevel1Game3, newLevel1Game4, newLevel2Game1, newLevel2Game2, newLevel2Game3, newLevel2Game4, newLevel3Game1, newLevel3Game2, newLevel3Game3, newLevel3Game4, newLevel4Game1,  newLevel4Game2, newLevel4Game3, newLevel4Game4, newLevel5Game1, newLevel5Game2, newLevel5Game3, newLevel5Game4, newLevel6Game1, newLevel6Game2, newLevel6Game3, newLevel6Game4, newBonusGame1, newBonusGame2, newBonusGame3, newBonusGame4, newBonusGame5, newBonusGame6);
 	this.myAllGamesData = newAllGamesData;
-}
+};
 
 RocketReadingModel.prototype.getAllGamesData = function () {
 	return this.myAllGamesData;
-}
+};
 
 RocketReadingModel.prototype.addPlayer = function (newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel) {
     "use strict";
@@ -57,7 +57,7 @@ RocketReadingModel.prototype.addPlayer = function (newUser, newFirstName, newLas
 
 RocketReadingModel.prototype.setPlayer = function (player) {
 	this.myPlayer = player;
-}
+};
 
 RocketReadingModel.prototype.findLevelByName = function (name) {
     "use strict";
@@ -79,8 +79,8 @@ RocketReadingModel.prototype.findLevelByNumber = function (levelNumber) {
 	for (aLevel of this.allMyLevels) {
 		if (aLevel.levelNumber === levelNumber) {
             // This should be outputted from the viewController module
-            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.name); // test
-            console.log("findLevel() - Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
+            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.description); // test
+            console.log("findLevel() - Level " + aLevel.description + "'s allMyGames: " + aLevel.allMyGames); // test
 			return aLevel;
 		}
 	}

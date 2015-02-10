@@ -197,7 +197,7 @@ var mainController = {
 	setPlayer: function (username) {
 		var playerData = storageController.getPlayer(username);
 		rocketReadingModel.setPlayer(playerData);
-		myViewModelRR.displayPlayerName(playerData);
+		myViewModelRR.displayPlayerName(username);
 	},
 	
 	initialiseView : function () {

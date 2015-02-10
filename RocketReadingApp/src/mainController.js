@@ -166,4 +166,8 @@ var mainController = {
 		rocketReadingModel.setPlayer(playerData);
 		myViewModelRR.displayPlayerName(playerData);
 	},
+	
+	initialiseView : function () {
+		myViewModelRR.initialiseView();
+	}
 };

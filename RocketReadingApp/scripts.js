@@ -220,12 +220,13 @@ var initialise = function () {
 	//addLevel();
 	//generateLists();
 	
-	navigationInitialise();
+	//navigationInitialise();
 	// highInitialise();
 	// homeInitialise();
 	// loginInitialise();
 
     loadGameData();
+	mainController.initialiseView();
     // myViewModelRR.displayMethods.hideRequiredScreens("navScreen");
 };
 

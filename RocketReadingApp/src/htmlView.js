@@ -131,6 +131,14 @@ var viewHTMLModule = {
 	},
 	
 	
+	displayMedalCounts : function (inputArray) {
+		"use strict";
+		document.getElementById("goldStarCounter").textContent = inputArray[0];
+		document.getElementById("silverStarCounter").textContent = inputArray[1];
+		document.getElementById("bronzeStarCounter").textContent = inputArray[2];
+	
+	},
+	
 	displayGameTable : function (inputArray) {
 		var newRow,
 			newCell,
@@ -244,5 +252,8 @@ var viewHTMLModule = {
 		
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
+		
+		// Announce ourselves to the viewer
+		myViewModelRR.setView(this);
 	}
 };

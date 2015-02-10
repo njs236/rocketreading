@@ -103,6 +103,26 @@ var myViewModelRR = {
             viewHTMLModule.showLevelSelectScreen();
         },
 		
+		
+		displayMedalCounts : function (inputArray) {
+			"use strict";
+			//Function v 1.0
+			// Takes input of an array which contains medal counts
+			// [ 5 , 6 , 9 ]
+			// Assumes and order of highest value to lowest eg
+			// gold silver bronze
+			var count;
+			
+			for ( count = 0; count < inputArray.length; count = count + 1) {
+				if ( /[a-z]/.test(inputArray[count]) ) {
+					throw "displayMedalCounts() : Input Error";
+				};
+			};
+			
+			this.view.displayMedalCounts(inputArray);
+		},
+		
+		
 		initialiseView : function () {
 			console.log("initialiseView() : Running");
 			viewHTMLModule.intitialise();

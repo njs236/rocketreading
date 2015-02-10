@@ -285,7 +285,12 @@ var viewHTMLModule = {
 		console.log("HTMLView.js : Showing game screen");
 		gameInitialise();
 	},
-	
+    
+    hammerTime: function () {
+        "use strict";
+        var x ="clam";
+        return x;
+    },
 	
 	showHighScoresScreen: function () {
 		"use strict";

@@ -1,7 +1,16 @@
-// HTMLView Module v1.6
+// HTMLView Module v1.7
 //
 var viewHTMLModule = {
-    name : "HTML View Module for Rocket Reading",
+    name : "HTML View Module",
+	
+	getName : function() {
+		return this.name;
+	},
+	
+	greet : function() {
+		console.log("viewHTMLModule : I am the current view! I am " + this.name);
+	},
+	
     displayGameOptions: function (gameOptionsData) {
         "use strict";
 		//displayGameOptions() Function v1.3
@@ -40,36 +49,36 @@ var viewHTMLModule = {
 			
             // Adding an event-listener to the div
 			newDiv.addEventListener("click", mainController.setCurrentGame);
-			newDiv.addEventListener("click", showGameScreen);
+			newDiv.addEventListener("click", this.showGameScreen);
         }
     },
 	
 	displayGameTable : function (inputArray) {
 		var newRow,
-		newCell,
-		wordCount,
-		clickCount,
-		tableWidth = 5;
-	
-	//CONSTANTS
-	
-	var HTMLTABLE;
-	console.log(inputArray);
-	HTMLTABLE = document.getElementById("gameWordTable");
+			newCell,
+			wordCount,
+			clickCount,
+			tableWidth = 5;
+		
+		//CONSTANTS
+		
+		var HTMLTABLE;
+		console.log(inputArray);
+		HTMLTABLE = document.getElementById("gameWordTable");
 
-	HTMLTABLE.innerHTML = ""; // clear table each time its run
-	newRow = HTMLTABLE.insertRow(-1);
+		HTMLTABLE.innerHTML = ""; // clear table each time its run
+		newRow = HTMLTABLE.insertRow(-1);
 
-	for ( wordCount = 0; wordCount < inputArray.length; wordCount = wordCount + 1) {
-		if ( HTMLTABLE.lastChild.lastChild.cells.length === tableWidth ) {
-			newRow = HTMLTABLE.insertRow(-1);
+		for ( wordCount = 0; wordCount < inputArray.length; wordCount = wordCount + 1) {
+			if ( HTMLTABLE.lastChild.lastChild.cells.length === tableWidth ) {
+				newRow = HTMLTABLE.insertRow(-1);
+			};
+			newCell = newRow.insertCell(-1);
+			newCell.innerHTML = inputArray[wordCount];
+			newCell.id = "cell" + wordCount;
+			newCell.className = "wordCell";
+			newCell.addEventListener("click", guessWord(newCell.text));
 		};
-		newCell = newRow.insertCell(-1);
-		newCell.innerHTML = inputArray[wordCount];
-		newCell.id = "cell" + wordCount;
-		newCell.className = "wordCell";
-		newCell.addEventListener("click", guessWord(newCell.text));
-	};
 	},
 	
 	displayLevelList: function (levelList) {
@@ -140,40 +149,40 @@ var viewHTMLModule = {
 		for ( count = 0; count < screens.length; count = count + 1 ) {
 			console.log("hideAll() : Hiding " + screens[count].id);
 			screens[count].hidden = true;
-		}
+		};
 	},
 	
 	showLoginScreen: function () {
 		"use strict";
-		this.hideAllPages();
+		viewHTMLModule.hideAllPages();
 		document.getElementById("loginScreen").hidden = false;
 		console.log("HTMLView.js : Showing login screen");
 	},
 	
 	showHomeScreen: function () {
 		"use strict";
-		this.hideAllPages();
+		viewHTMLModule.hideAllPages();
 		document.getElementById("homeScreen").hidden = false;
 		console.log("HTMLView.js : Showing home screen");
 	},
 	
 	showLevelSelectScreen: function () {
 		"use strict";
-		this.hideAllPages();
+		viewHTMLModule.hideAllPages();
 		document.getElementById("levelSelectScreen").hidden = false;
 		console.log("HTMLView.js : Showing level select screen");
 	},
 	
 	showGameSelectScreen: function () {
 		"use strict";
-		this.hideAllPages();
+		viewHTMLModule.hideAllPages();
 		document.getElementById("gameSelectScreen").hidden = false;
 		console.log("HTMLView.js : Showing game select screen");
 	},
 	
 	showGameScreen: function () {
 		"use strict";
-		this.hideAllPages();
+		viewHTMLModule.hideAllPages();
 		document.getElementById("gamesScreen").hidden = false;
 		console.log("HTMLView.js : Showing game screen");
         gameInitialise();
@@ -181,7 +190,7 @@ var viewHTMLModule = {
 	
 	showHighScoresScreen: function () {
 		"use strict";
-		this.hideAllPages();
+		viewHTMLModule.hideAllPages();
 		document.getElementById("highScoresScreen").hidden = false;
 		console.log("HTMLView.js : Showing High Score screen");
 	},
@@ -199,7 +208,7 @@ var viewHTMLModule = {
 	document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);
 	
 	// Game Select Screen
-	document.getElementById("gameSelectHomeButton").addEventListener("click", this.showLevelScreen);
+	document.getElementById("gameSelectHomeButton").addEventListener("click", this.showLevelSelectScreen);
 	
 	// Game Screen
 	document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);

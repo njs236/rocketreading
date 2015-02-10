@@ -11,7 +11,27 @@ var myViewModelRR = {
 	},
 	
 	testView : function() {
-		this.view.greet();
+		var myMethods = [],
+			viewMethods = [],
+			count,
+			error = "";
+			
+		//this.view.greet();
+		
+		myMethods = Object.getOwnPropertyNames(this)
+		viewMethods = Object.getOwnPropertyNames(this.view)
+		
+		for ( count = 0; count < myMethods.length; count = count + 1 ) {
+			if ( viewMethods.indexOf(myMethods[count]) == -1 ) {
+				error = this.view.name + "Module Missing " + myMethods[count];
+				//console.log('%c' + error + ,'"color:red"');
+			};
+		};
+		if (error !== "" ) {
+			return "Module Had Errors!";
+		} else {
+			return "Module Passed!";
+		}
 	},
 	
     /*displayMethods: {*/

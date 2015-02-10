@@ -106,7 +106,7 @@ var myViewModelRR = {
 		
 		displayMedalCounts : function (inputArray) {
 			"use strict";
-			//Function v 1.0
+			//Function v 1.1
 			// Takes input of an array which contains medal counts
 			// [ 5 , 6 , 9 ]
 			// Assumes and order of highest value to lowest eg
@@ -115,7 +115,7 @@ var myViewModelRR = {
 			console.log(inputArray);
 			for ( count = 0; count < inputArray.length; count = count + 1) {
 				
-				if ( /[^0-9]+/.test(inputArray[count]) || typeof inputArray[count] === "number" ) {
+				if ( /[^0-9]+/.test(inputArray[count]) || typeof inputArray[count] !=== "number" ) {
 					throw "displayMedalCounts() : Input Error";
 				};
 			};

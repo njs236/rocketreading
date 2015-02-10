@@ -28,6 +28,12 @@ var mainController = {
         // Calls a function in the view controller
         myViewModelRR.displayLevelList(allLevels);
     },
+    
+    getStringNumber: function (inputId) {
+        "use string";
+        return Number(inputId.slice(inputId.search(/[1-9]/), inputId.length));
+    },
+    
 	
 	setCurrentGame : function () {
 		"use strict";
@@ -42,19 +48,16 @@ var mainController = {
 		inputArray = rocketReadingModel.getCurrentGameData.getWordList;
 		myViewModelRR.displayTable(inputArray);
 	},
-	  
+
     gameOptionsRequest: function () {
         "use strict";
-        var object = {},
-			gameOptionsInfo = [],
-            levelBtnId = this.id,
-            levelNumber = Number(levelBtnId.slice(levelBtnId.search(/[1-9]/), levelBtnId.length));
+        var gameOptionsInfo = [],
+            levelNumber = mainController.getStringNumber(this.id);
             console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
 		//Loading selected Level into current Level in currentGameData
-		object = rocketReadingModel.findLevelByNumber(levelNumber);
-		rocketReadingModel.getCurrentGameData.setCurrentLevel(object);
+		rocketReadingModel.getCurrentGameData().setCurrentLevel(rocketReadingModel.findLevelByNumber(levelNumber));
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
     },
@@ -103,7 +106,7 @@ var mainController = {
                 // The system lets the user login
                 // Data is sent to the view controller to be displayed in the console
                 myViewModelRR.loginOutputData("Through!");
-                showHomeScreen();
+                viewHTMLModule.showHomeScreen();
 				mainController.setPlayer(nameElement.value);
             } else {
                 passwordElement.value = "";
@@ -162,4 +165,8 @@ var mainController = {
 		rocketReadingModel.setPlayer(playerData);
 		myViewModelRR.displayPlayerName(playerData);
 	},
+	
+	initialiseView : function () {
+		myViewModelRR.initialiseView();
+	}
 };

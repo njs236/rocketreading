@@ -89,5 +89,10 @@ var myViewModelRR = {
             
             //Display the level screen
             showLevelScreen();
-        }
+        },
+		
+		initialiseView : function () {
+			console.log("initialiseView() : Running");
+			viewHTMLModule.intitialise();
+		}
 };

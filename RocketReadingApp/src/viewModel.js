@@ -164,6 +164,12 @@ var myViewModelRR = {
 		console.groupEnd();
 		this.view.displayMedalCounts(inputArray);
 	},
+    
+    rookie: function () {
+        "use strict";
+        var x ="clam";
+        return x;
+    },
 	
 	displayTable : function (inputArray) {
 		this.view.displayTable(inputArray);

@@ -7,7 +7,7 @@ var Game = function (newName, newList, myLevelName) {
 
 Game.prototype.setNameAsNumber = function () {
 	var number;
-	number = Number(gameName.slice(gameName.search(/[1-9]/), gameName.length));
+	number = Number(this.gameName.slice(this.gameName.search(/[1-9]/), this.gameName.length));
 	return number;
 }
 

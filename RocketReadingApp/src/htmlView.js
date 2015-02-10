@@ -54,6 +54,17 @@ var viewHTMLModule = {
     },
 	
 	displayTextAndScores : function () {
+		var startGame,
+		goldMedal,
+		silverMedal,
+		bronzeMedal,
+		timer,
+		score,
+		wordCount,
+		game,
+		level,
+		avatar;
+		startGame = document.getElementById('startGameText');
 		
 	},
 	
@@ -81,8 +92,13 @@ var viewHTMLModule = {
 			newCell.innerHTML = inputArray[wordCount];
 			newCell.id = "cell" + wordCount;
 			newCell.className = "wordCell";
-			newCell.addEventListener("click", guessWord(newCell.text));
+			newCell.addEventListener("click", viewHTMLModule.guessWord(newCell.text));
 		};
+	},
+	
+	guessWord : function (word) {
+	//add code in here to select word based on clickable event.
+	mainController.validateWords(word);
 	},
 	
 	displayLevelList: function (levelList) {

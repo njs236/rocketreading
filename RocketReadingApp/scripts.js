@@ -231,17 +231,9 @@ var initialise = function () {
     // myViewModelRR.displayMethods.hideRequiredScreens("navScreen");
 };
 
-var eventTableClick = function () {
-	
-	var tableArray = document.getElementsByClassName("wordCell");
-	for (clickCount = 0 ; clickCount < tableArray.length; clickCount = clickCount + 1) {
-		tableArray[clickCount] = addEventListener("click", guessWord(wordCell.text));
-	}
-}
 
 var gameInitialise = function () {
-	createTable(theGame.myWordList, 5);
-	eventTableClick();
+	mainController.createTable();
 }
 
 

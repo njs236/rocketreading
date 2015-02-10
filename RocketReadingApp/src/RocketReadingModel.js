@@ -87,11 +87,13 @@ RocketReadingModel.prototype.findLevelByNumber = function (levelNumber) {
     alert("Level Not Found");
 };
 
-RocketReadingModel.prototype.findGamebyNumber = function (number) {
+RocketReadingModel.prototype.findGameByNumber = function (number) {
     "use strict";
-    var aLevel = this.getCurrentGameData.getCurrentLevel
+    var aLevel = this.getCurrentGameData().getCurrentLevel(),
+	aGame;
     for (aGame of aLevel.allMyGames) {
-		if (aGame.setNameAsNumber === number) {
+		if (aGame.setNameAsNumber() === number) {
+		console.log("aGame:" + aGame);
 			return aGame;
 		}
 	}

@@ -56,7 +56,7 @@ var myViewModelRR = {
         },*/
 		
 		displayTable : function (inputArray) {
-			viewHTMLModule.displayTable(inputArray);
+			viewHTMLModule.displayGameTable(inputArray);
 		},
         
         displayGameOptions: function (gameOptionsInfo) {

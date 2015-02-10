@@ -1,8 +1,8 @@
 // The system creates a mainController object which aims to resolve requests that involve data analysis
 
 var mainController = {
-/*
-	validateWords : function () {
+
+	validateWords : function (word) {/*
 		if (word === rocketReadingModel.currentGameData.getCurrentWord) {
             if (timer < 2) {
                 //do things here
@@ -14,8 +14,8 @@ var mainController = {
 		
 		} else {
 			
-		}
-	}*/
+		}*/
+	},
 	
 	passWord: function (word) {
 		rocketReadingModel.passWord(word);
@@ -37,15 +37,14 @@ var mainController = {
 	
 	setCurrentGame : function () {
 		"use strict";
-		var gameBtnId = this.id,
-		gameNumber = Number(gameBtnId.slice(gameBtnId.search(/[1-9]/), gameBtnId.length));
+		var gameNumber = mainController.getStringNumber(this.id);
 		console.log("setCurrentGame() - gameNumber (regex):" + gameNumber);
 		// Loading selected Game into currentGame in currentGameData
-		rocketReadingModel.getCurrentGameData.setCurrentGame(rocketReadingModel.findGameByNumber(gameNumber));
+		rocketReadingModel.getCurrentGameData().setCurrentGame(rocketReadingModel.findGameByNumber(gameNumber));
 	},
 	
 	createTable : function () {
-		inputArray = rocketReadingModel.getCurrentGameData.getWordList;
+		var inputArray = rocketReadingModel.getCurrentGameData().getWordList();
 		myViewModelRR.displayTable(inputArray);
 	},
 

@@ -65,7 +65,7 @@ RocketReadingModel.prototype.findLevelByName = function (name) {
 	for (aLevel of this.allMyLevels) {
 		if (aLevel.description === name) {
             // This should be outputted from the viewController module
-            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.name); // test
+            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.description); // test
             console.log("findLevel() - Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
 			return aLevel;
 		}
@@ -79,7 +79,7 @@ RocketReadingModel.prototype.findLevelByNumber = function (levelNumber) {
 	for (aLevel of this.allMyLevels) {
 		if (aLevel.levelNumber === levelNumber) {
             // This should be outputted from the viewController module
-            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.name); // test
+            console.log("findLevel() - Have found: " + aLevel + ". Level name: " + aLevel.description); // test
             console.log("findLevel() - Level " + aLevel.name + "'s allMyGames: " + aLevel.allMyGames); // test
 			return aLevel;
 		}
@@ -89,13 +89,12 @@ RocketReadingModel.prototype.findLevelByNumber = function (levelNumber) {
 
 RocketReadingModel.prototype.findGamebyNumber = function (number) {
     "use strict";
-    var aLevel = this.getCurrentGameData.getCurrentLevel
+    var aLevel = this.getCurrentGameData.getCurrentLevel;
 		for (aGame of aLevel.allMyGames) {
 			if (aGame.setNameAsNumber === number) {
 				return aGame;
 			}
 		}
-	};
 		alert("Game Not Found");
 };
 
@@ -192,4 +191,8 @@ RocketReadingModel.prototype.getAvatar = function (number) {
 
 RocketReadingModel.prototype.passWord = function (word) {
 	myCurrentGameData.passWord(word);
+}
+
+RocketReadingModel.prototype.getCurrentGameData = function () {
+	return this.myCurrentGameData;
 }

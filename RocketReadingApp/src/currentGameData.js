@@ -1,5 +1,9 @@
 var CurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
+	this.myLevel = {};
+	this.myGame = {};
+	this.wordList = [];
+	this.currentWord = '';
     this.currentLevelGame = newCurrentLevelGame;
     this.gameScore = newGameScore;
     this.gameMedals = newGameMedals;
@@ -25,8 +29,13 @@ CurrentGameData.prototype.setCurrentLevel = function (level) {
 
 CurrentGameData.prototype.setCurrentGame = function (game) {
 	this.myGame = game;
+	this.wordList = myGame.getWordList;
 }
 
 CurrentGameData.prototype.loadGame = function () {
 	return this.myGame;
+}
+
+CurrentGameData.prototype.getWordList = function () {
+	return this.wordList;
 }

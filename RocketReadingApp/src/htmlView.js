@@ -36,6 +36,10 @@ var viewHTMLModule = {
         }
     },
 	
+	displayTextAndScores : function () {
+		
+	},
+	
 	displayGameTable : function (inputArray) {
 		var newRow,
 		newCell,
@@ -62,7 +66,7 @@ var viewHTMLModule = {
 		newCell.className = "wordCell";
 		newCell.addEventListener("click", guessWord(newCell.text));
 	};
-	}
+	},
 	
 	displayLevelList: function (levelList) {
 	"use strict"

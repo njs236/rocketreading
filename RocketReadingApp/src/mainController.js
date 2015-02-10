@@ -39,21 +39,22 @@ var mainController = {
 	},
 	
 	createTable : function () {
-		myGame = rocketReadingModel.getCurrentGameData.loadGame;
-		inputArray = myGame.getWordList;
+		inputArray = rocketReadingModel.getCurrentGameData.getWordList;
 		myViewModelRR.displayTable(inputArray);
-	}
+	},
 	  
     gameOptionsRequest: function () {
         "use strict";
-        var gameOptionsInfo = [],
+        var object = {},
+			gameOptionsInfo = [],
             levelBtnId = this.id,
             levelNumber = Number(levelBtnId.slice(levelBtnId.search(/[1-9]/), levelBtnId.length));
             console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
 		//Loading selected Level into current Level in currentGameData
-		rocketReadingModel.getCurrentGameData.setCurrentLevel(rocketReadingModel.findLevelByNumber(levelNumber));
+		object = rocketReadingModel.findLevelByNumber(levelNumber);
+		rocketReadingModel.getCurrentGameData.setCurrentLevel(object);
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
     },

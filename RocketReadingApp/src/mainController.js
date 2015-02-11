@@ -124,13 +124,18 @@ var mainController = {
          });
     },
     
+    startGameTimer: function () {
+        "use strict";
+        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
+    },
+    
     startGame: function () {
         "use strict";
         var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
             listArray = rocketReadingModel.getCurrentGameData().getWordList();
         // Start the game timer
-        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
+        mainController.startGameTimer();
         // Determine which word the user will be tested on
         mainController.nextWord(levelNumber, gameNumber, listArray);
     },    
@@ -140,6 +145,25 @@ var mainController = {
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
         // The system needs to save the user's current game details to the current game state object
+        rocketReadingModel.saveGameTime();
+    },
+    
+    loadPreviousGame: function () {
+        "use strict";
+        // The system get the user's current game details and opens the particular screen
+        viewHTMLModule.showGameScreen();
+        // The game timer is started again
+        mainController.startGameTimer();
+    },
+    
+    setUpGameScreen: function () {
+        "use strict";
+        this.createTable();
+        this.getMedalCounts();
+        this.getScore();
+        this.getWordsCompletedData();
+        this.getCurrentLevelGame();
+        //mainController.loadGameScreenIntro();
     },
 
     gameOptionsRequest: function () {

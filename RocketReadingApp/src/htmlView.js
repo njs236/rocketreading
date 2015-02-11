@@ -351,6 +351,7 @@ var viewHTMLModule = {
 		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
 		document.getElementById("homeExit").addEventListener("click",this.showLoginScreen);
+        document.getElementById("homeContinue").addEventListener("click", mainController.loadPreviousGame);
 		
 		// Level Select Screen
 		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);

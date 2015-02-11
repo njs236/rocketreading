@@ -73,3 +73,8 @@ CurrentGameData.prototype.getScore = function () {
 	"use strict";
 	return this.gameScore;
 };
+
+CurrentGameData.prototype.saveGameTime = function () {
+    "use strict";
+    this.totalGameTime = [gameTimerMins, gameTimerSecs];
+};

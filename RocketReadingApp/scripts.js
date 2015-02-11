@@ -214,12 +214,7 @@ var initialise = function () {
 
 
 var gameInitialise = function () {
-	mainController.createTable();
-	mainController.getMedalCounts();
-	mainController.getScore();
-    mainController.getWordsCompletedData();
-    mainController.getCurrentLevelGame();
-    //mainController.loadGameScreenIntro();
+    mainController.setUpGameScreen();
 };
 
 

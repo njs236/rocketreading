@@ -1,4 +1,4 @@
-// HTMLView Module v1.8
+// HTMLView Module v1.9
 //
 var viewHTMLModule = {
 	
@@ -14,18 +14,13 @@ var viewHTMLModule = {
 		return this.name;
 	},
 	
-	greet : function() {
-		console.log("viewHTMLModule : I am the current view! I am " + this.name);
-	},
-	
-	
-	
 	// **********************************
 	// ********* Tests Section **********
 	// **********************************
 	
 	listExtraFunctions : function() {
 		"use strict"
+		// Functiom v1.1
 		// Function compares this modules methods against the controllers methods
 		// this test wont throw exceptions and is only used to check for unneeded functions
 		var controllerFunctions = [],
@@ -38,7 +33,7 @@ var viewHTMLModule = {
 			
 			console.group("HTML View : testModule()");
 			for ( count = 0; count < myFunctions.length; count = count + 1) {
-				if ( controllerFunctions.indexOf(myFunctions[count]) == -1){
+				if (( controllerFunctions.indexOf(myFunctions[count]) == -1) && ( myFunctions[count] !== "listExtraFunctions")){
 					console.log("%cExtra Method : " + myFunctions[count],"color:red");
 				}
 			};

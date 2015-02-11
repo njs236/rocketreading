@@ -2,6 +2,7 @@
 
 var gameTimerSecs = 0,
     gameTimerMins = 0,
+    gameTimer,
     timer,
     timerModal;
 

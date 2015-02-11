@@ -130,10 +130,17 @@ var mainController = {
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
             listArray = rocketReadingModel.getCurrentGameData().getWordList();
         // Start the game timer
-        setInterval("myViewModelRR.displayGameTimer()", 1000);
+        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
         // Determine which word the user will be tested on
         mainController.nextWord(levelNumber, gameNumber, listArray);
     },    
+    
+    pauseCurrentGame: function () {
+        "use strict";
+        // The system needs to stop the game-timer
+        clearInterval(gameTimer);
+        // The system needs to save the user's current game details to the current game state object
+    },
 
     gameOptionsRequest: function () {
         "use strict";

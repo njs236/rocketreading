@@ -17,6 +17,41 @@ var viewHTMLModule = {
 	greet : function() {
 		console.log("viewHTMLModule : I am the current view! I am " + this.name);
 	},
+	
+	
+	
+	// **********************************
+	// ********* Tests Section **********
+	// **********************************
+	
+	listExtraFunctions : function() {
+		"use strict"
+		// Function comapares this modules methods against the controllers methods
+		// this test wont throw exceptions and is only used to check for unneeded functions
+		var controllerFunctions = [],
+			myFunctions = [],
+			count;
+			
+			myFunctions = testController.getAllMethods(this);
+			controllerFunctions = testController.getAllMethods(myViewModelRR);
+			
+			
+			console.group("HTML View : testModule()");
+			for ( count = 0; count < myFunctions.length; count = count + 1) {
+				if ( controllerFunctions.indexOf(myFunctions[count]) == -1){
+					console.log("%cExtra Method : " + myFunctions[count],"color:red");
+				}
+			};
+			console.groupEnd();
+		
+	
+	},
+	
+	
+	
+	// **********************************
+	// ******* End Tests Section ********
+	// **********************************
 	// *************************************
 	// ******* Login Screen Section ********
 	// *************************************

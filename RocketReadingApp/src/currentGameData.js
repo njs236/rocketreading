@@ -1,6 +1,5 @@
 var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
-    // 
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
 	this.wordList = newWordList || "wordList1";
@@ -55,7 +54,7 @@ CurrentGameData.prototype.getMedalCounts = function () {
 };
 
 CurrentGameData.prototype.getWordsCompleted = function () {
-    // Just need to get the words answered correctly value, because eventually the user will correctly identify words they initially incorrectly identified
+    // Just need to get the words answered correctly value, because in each test the user will eventually correctly identify words if they initially incorrectly identify them (game rule idea)
     "use strict";
 	return this.wordsSoundsCorrect.length;
 };

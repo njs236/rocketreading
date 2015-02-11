@@ -1,10 +1,10 @@
 var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
-	this.myLevel = newLevel || 1;
-	this.myGame = newGame || 1;
+    // 
+	this.myLevel = newLevel || {};
+	this.myGame = newGame || {};
 	this.wordList = newWordList || "wordList1";
 	this.currentWord = newCurrentWord || null;
-    // currentGameLevel property may be unnecessary
     this.currentLevelGame = newCurrentLevelGame || [1,1];
     this.gameScore = newGameScore || 0;
     this.gameMedals = newGameMedals || [0,0,0];

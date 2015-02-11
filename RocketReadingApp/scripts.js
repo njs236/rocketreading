@@ -145,7 +145,7 @@ var loadGameData = function () {
     // rocketReadingModel.deleteAll(); This isn't necessary
 	// Creating current Game Data and AllGamesData.
 	
-	rocketReadingModel.addCurrentGameData(null, null, null, "", null, 0, [0,0,0], null, null, [], []);
+	rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], []);
 	rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
 	
 	// It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
@@ -237,6 +237,7 @@ var gameInitialise = function () {
 	mainController.getMedalCounts();
 	mainController.getScore();
     mainController.getWordsCompletedData();
+    mainController.getCurrentLevelGame();
 }
 
 

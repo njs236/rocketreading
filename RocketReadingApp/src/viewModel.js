@@ -179,6 +179,11 @@ var myViewModelRR = {
         this.view.displayScore(score);
     },
     
+    displayLevelGameNumber: function (levelGame) {
+        "use strict";
+        this.view.displayLevelGameNumber(levelGame)
+    },
+    
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************

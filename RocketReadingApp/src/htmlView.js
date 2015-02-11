@@ -101,6 +101,7 @@ var viewHTMLModule = {
 				
 				levelSelectMainDiv.lastChild.appendChild(newDiv);
 				
+                // There is no setCurrentLevel() function in mainController (but it still seems to work okay, so it probably is not necessary)
 				newDiv.addEventListener("click", mainController.setCurrentLevel);
 				newDiv.addEventListener("click", mainController.gameOptionsRequest);
 			};
@@ -234,6 +235,12 @@ var viewHTMLModule = {
         "use strict";
         document.getElementById("gameScore").textContent = score;
     },
+    
+    displayLevelGameNumber: function (levelGame) {
+        "use strict";
+        document.getElementById("gameLevelIDText").textContent = "Level " + levelGame[0] + " - Game " + levelGame[1];
+    },
+    
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************

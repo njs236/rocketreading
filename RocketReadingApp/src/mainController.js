@@ -33,7 +33,6 @@ var mainController = {
         "use string";
         return Number(inputId.slice(inputId.search(/[1-9]/), inputId.length));
     },
-    
 	
 	setCurrentGame : function () {
 		"use strict";
@@ -60,28 +59,42 @@ var mainController = {
 	},
 	
 	getWordsCompletedData : function () {
+        "use strict";
 		var progressData = [];
         progressData.push(rocketReadingModel.getCurrentGameData().getWordsCompleted());
         progressData.push(rocketReadingModel.getCurrentGameData().getWordListCount());
 		myViewModelRR.displayWordsCompleted(progressData);
 	},
+    
+    getCurrentLevelGame: function () {
+        "use strict";
+        var levelGame = [];
+        levelGame.push( rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber() );
+        levelGame.push( rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber() );
+        // Or could just access the currentLevelGame property of currentGameData
+        myViewModelRR.displayLevelGameNumber(levelGame);
+    },
 	
 	getLevelNumber : function () {
+        "use strict";
 		var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber();
 		myViewModelRR.displayLevelNumber(levelNumber);
 	},
 	
 	getGameNumber : function () {
-		var gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().setNameAsNumber();
+        "use strict";
+		var gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber();
 		myViewModelRR.displayGameNumber(gameNumber);
 	},
 	
 	getAvatar : function () {
+        "use strict";
 		var avatar = rocketReadingModel.getCurrentGameData().getCurrentLevel().getAvatar();
 		myViewModelRR.displayAvatar(avatar);
 	},
 	
 	getWordListCount : function () {
+        "use strict";
 		var wordListCount = rocketReadingModel.getCurrentGameData().getWordListCount();
 		myViewModelRR.displayWordListCount(wordListCount);
 	},
@@ -198,6 +211,7 @@ var mainController = {
     
     // loading player data from the local storage. 
 	setPlayer: function (username) {
+        "use strict";
 		var playerData = storageController.getPlayer(username);
 		rocketReadingModel.setPlayer(playerData);
 		myViewModelRR.displayPlayerName(username);

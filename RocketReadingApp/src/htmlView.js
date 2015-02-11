@@ -166,6 +166,7 @@ var viewHTMLModule = {
 			
 			// Adding an event-listener to the div
 			newDiv.addEventListener("click", mainController.setCurrentGame);
+            newDiv.addEventListener("click", mainController.gameInitialise);
 			newDiv.addEventListener("click", this.showGameScreen);
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 		}
@@ -334,7 +335,6 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		document.getElementById("gamesScreen").hidden = false;
 		console.log("HTMLView.js : Showing game screen");
-		gameInitialise();
 	},
    
 	showHighScoresScreen: function () {

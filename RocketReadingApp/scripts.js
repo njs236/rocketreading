@@ -213,8 +213,3 @@ var initialise = function () {
 };
 
 
-var gameInitialise = function () {
-    mainController.setUpGameScreen();
-};
-
-

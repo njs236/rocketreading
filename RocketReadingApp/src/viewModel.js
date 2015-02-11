@@ -204,6 +204,11 @@ var myViewModelRR = {
         this.view.displayGameTimer();
     },
     
+    showGameScreen: function() {
+        "use strict";
+        viewHTMLModule.showGameScreen();
+    },
+    
     /*
     displayGameIntroConfirm: function () {
         "use strict";

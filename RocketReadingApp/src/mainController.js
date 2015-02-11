@@ -151,20 +151,22 @@ var mainController = {
     loadPreviousGame: function () {
         "use strict";
         // The system get the user's current game details and opens the particular screen
-        viewHTMLModule.showGameScreen();
+        mainController.gameInitialise();
+        myViewModelRR.showGameScreen();
         // The game timer is started again
         mainController.startGameTimer();
     },
     
-    setUpGameScreen: function () {
+    gameInitialise: function () {
         "use strict";
-        this.createTable();
-        this.getMedalCounts();
-        this.getScore();
-        this.getWordsCompletedData();
-        this.getCurrentLevelGame();
+        mainController.createTable();
+        mainController.getMedalCounts();
+        mainController.getScore();
+        mainController.getWordsCompletedData();
+        mainController.getCurrentLevelGame();
         //mainController.loadGameScreenIntro();
     },
+    
 
     gameOptionsRequest: function () {
         "use strict";

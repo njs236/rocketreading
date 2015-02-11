@@ -224,6 +224,16 @@ var viewHTMLModule = {
 			newCell.addEventListener("click", viewHTMLModule.guessWord(newCell.text));
 		};
 	},
+    
+    displayWordsCompleted: function (progressData) {
+        "use strict";
+        document.getElementById("gameProgressText").textContent = progressData[0] + "/" + progressData[1] + " Words Complete";   
+    },
+    
+    displayScore: function (score) {
+        "use strict";
+        document.getElementById("gameScore").textContent = score;
+    },
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************

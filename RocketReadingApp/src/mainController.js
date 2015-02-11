@@ -54,13 +54,16 @@ var mainController = {
 	},
 	
 	getScore : function() {
+        "use strict";
 		var score = rocketReadingModel.getCurrentGameData().getScore();
 		myViewModelRR.displayScore(score);
 	},
 	
-	getWordsCompleted : function () {
-		var wordsCompleted = rocketReadingModel.getCurrentGameData().getWordsCompleted();
-		myViewModelRR.displayWordsCompleted(wordsCompleted);
+	getWordsCompletedData : function () {
+		var progressData = [];
+        progressData.push(rocketReadingModel.getCurrentGameData().getWordsCompleted());
+        progressData.push(rocketReadingModel.getCurrentGameData().getWordListCount());
+		myViewModelRR.displayWordsCompleted(progressData);
 	},
 	
 	getLevelNumber : function () {

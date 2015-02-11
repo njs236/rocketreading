@@ -1,18 +1,19 @@
-var CurrentGameData = function (newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
-	this.myLevel = {};
-	this.myGame = {};
-	this.wordList = [];
-	this.currentWord = '';
-    this.currentLevelGame = newCurrentLevelGame;
-    this.gameScore = newGameScore;
-    this.gameMedals = newGameMedals;
-    this.lastTestTime = newLastTestTime;
-    this.totalGameTime = newTotalGameTime;
-    this.wordsSoundsCorrect = newWordsSoundsCorrect;
-    this.wordsSoundsIncorrect = newWordsSoundsIncorrect;
+	this.myLevel = newLevel || 1;
+	this.myGame = newGame || 1;
+	this.wordList = newWordList || "wordList1";
+	this.currentWord = newCurrentWord || null;
+    // currentGameLevel property may be unnecessary
+    this.currentLevelGame = newCurrentLevelGame || [1,1];
+    this.gameScore = newGameScore || 0;
+    this.gameMedals = newGameMedals || [0,0,0];
+    this.lastTestTime = newLastTestTime || 0;
+    this.totalGameTime = newTotalGameTime|| 0;
+    this.wordsSoundsCorrect = newWordsSoundsCorrect || [];
+    this.wordsSoundsIncorrect = newWordsSoundsIncorrect || [];
     // Have to return 'this' and not 'currentGameData' - that's the name of the var
-    // return this;
+    //return this;
 };
 
 CurrentGameData.prototype.passWord = function (word) {
@@ -35,30 +36,36 @@ CurrentGameData.prototype.setCurrentGame = function (game) {
 
 CurrentGameData.prototype.loadGame = function () {
 	return this.myGame;
-}
+};
 
 CurrentGameData.prototype.getWordList = function () {
 	return this.wordList;
-}
+};
 
 CurrentGameData.prototype.getCurrentLevel = function () {
 	return this.myLevel;
-}
+};
 
 CurrentGameData.prototype.getCurrentGame = function () {
 	return this.myGame;
-}
+};
 
 CurrentGameData.prototype.getMedalCounts = function () {
 	return this.gameMedals;
-}
+};
 
 CurrentGameData.prototype.getWordsCompleted = function () {
-	var wordsCompleted = this.wordsSoundsCorrect.length +  this.wordsSoundsIncorrect.length;
-	return wordsCompleted;
-}
+    // Just need to get the words answered correctly value, because eventually the user will correctly identify words they initially incorrectly identified
+    "use strict";
+	return this.wordsSoundsCorrect.length;
+};
 
 CurrentGameData.prototype.getWordListCount = function () {
-	var wordListCount = this.wordList.length;
-	return wordListCount;
-}
+	"use strict";
+	return this.wordList.length;
+};
+
+CurrentGameData.prototype.getScore = function () {
+	"use strict";
+	return this.gameScore;
+};

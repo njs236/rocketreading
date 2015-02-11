@@ -168,6 +168,17 @@ var myViewModelRR = {
 	displayTable : function (inputArray) {
 		this.view.displayTable(inputArray);
 	},
+    
+    displayWordsCompleted: function (progressData) {
+        "use strict";
+        this.view.displayWordsCompleted(progressData);
+    },
+    
+    displayScore: function (score) {
+        "use strict";
+        this.view.displayScore(score);
+    },
+    
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************
@@ -191,10 +202,8 @@ var myViewModelRR = {
 		}
 		// A function in the viewHTML object is then called, which determines how to display the selection of games in the UI
 		displayGamesSelection(result);
-	},
-		
-		
-		
+	}
+	
 		/*
 		
 		loginOutputData: function (inputData) {

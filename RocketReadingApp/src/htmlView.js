@@ -1,4 +1,4 @@
-// HTMLView Module v1.7
+// HTMLView Module v1.8
 //
 var viewHTMLModule = {
 	
@@ -26,7 +26,7 @@ var viewHTMLModule = {
 	
 	listExtraFunctions : function() {
 		"use strict"
-		// Function comapares this modules methods against the controllers methods
+		// Function compares this modules methods against the controllers methods
 		// this test wont throw exceptions and is only used to check for unneeded functions
 		var controllerFunctions = [],
 			myFunctions = [],

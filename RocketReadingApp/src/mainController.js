@@ -71,7 +71,7 @@ var mainController = {
         var levelGame = [];
         levelGame.push( rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber() );
         levelGame.push( rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber() );
-        // Or could just access the currentLevelGame property of currentGameData
+        // Or could just access the currentLevelGame property of currentGameData (if this property is set every time a level or game is set)
         myViewModelRR.displayLevelGameNumber(levelGame);
     },
 	

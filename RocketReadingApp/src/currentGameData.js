@@ -33,6 +33,11 @@ CurrentGameData.prototype.setCurrentGame = function (game) {
 	this.wordList = this.myGame.getWordList();
 };
 
+CurrentGameData.prototype.setCurrentWord = function (currentWord) {
+    "use strict";
+    this.currentWord = currentWord;
+};
+
 CurrentGameData.prototype.loadGame = function () {
 	return this.myGame;
 };

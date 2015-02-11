@@ -184,6 +184,17 @@ var myViewModelRR = {
         this.view.displayLevelGameNumber(levelGame)
     },
     
+    displayGameTimer: function () {
+        "use strict";
+        this.view.displayGameTimer();
+    },
+    
+    /*
+    displayGameIntroConfirm: function () {
+        "use strict";
+        myViewModelRR.view.displayGameIntroConfirm();
+    },*/
+    
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************

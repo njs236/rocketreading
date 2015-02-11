@@ -143,18 +143,35 @@
 			<div id="gamesScreen" class="navScreen" hidden>
 				<div id="gameModal" class="modalDialog">
 					<div id="gameModalDialog">
-							<ul id="gameModalList">
-								<li id="gameButtonResume"><a href="#Close" title="Close">Resume</a></li>
-								<li id="gameButtonReplay">Replay</li>
-								<li id="gameButtonGoHome"><a id="gameHomeLink" href="#Close" title="Home">Home</a></li>
-							</ul>
+						<ul id="gameModalList">
+							<li id="gameButtonResume"><a href="#Close" title="Close">Resume</a></li>
+							<li id="gameButtonReplay">Replay</li>
+							<li id="gameButtonGoHome"><a id="gameHomeLink" href="#Close" title="Home">Home</a></li>
+						</ul>
 					</div>
 				</div>
 				<!-- closes gameModal div -->
-				<div id="gameGame">
+                <!-- game gameIntroModal div -->
+                <div>
+                    <div id="gameIntroModal" class="modalDialog">
+                        <div id="gameModalContent">                            
+                            <div class="gameModalAnchor">
+                                <h2>Click Start to begin the game</h2><br>
+                                <a id="gameStart" href="#Close">Start</a>
+                            </div>
+                            <br>
+                            <div class="gameModalAnchor">
+                                <h2>Or click Back to choose a different game</h2><br>                            
+                                <a id="gameBack" href="#Close">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- closes game gameIntroModal div -->
+                <div id="gameGame">
 					<div id="gameLeftSide">
 						<div id="gameTimerDiv" class="gameInfoBox">
-							<h1 id="gameTimer">0:24:3</h1>
+							<h1 id="gameTimer">0 : 00</h1>
 						</div>
 						<div id="gameScoreDiv" class="gameInfoBox">
 							<h1 id="gameScore">120</h1>
@@ -253,7 +270,7 @@
 					</div>
 					<div class="screenContent" id ="gameOptionsContainer">
 					
-					</div> 
+					</div>
 					<div class="screenFooter screenHeaderFooter">
 						<h1 id="gameSelectHomeButton">BACK</h1>
 					</div>

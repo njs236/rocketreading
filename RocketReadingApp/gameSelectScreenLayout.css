@@ -20,3 +20,14 @@
 	width: 14em;
 }
 
+/* Trying to center the text of the game screen's intro modal ...*/
+#gameModalContent, #gameIntroModal {
+    height: 100%;
+    width: 100%;
+}
+
+#gameIntroModal a, .gameModalAnchor, #gameModalContent{
+    margin: 0 auto;
+    text-align: center;
+}
+

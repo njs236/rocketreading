@@ -1,27 +1,9 @@
-function showPage1() {
-	console.log("hi");
-};
+// Global vars
 
-var gameLists = [];
-
-var nextWord = function(level, game, list) {
-    "use strict";
-	var currentWordIndex = Math.floor(Math.random() * list.length),
-	    currentWord = list[currentWordIndex],
-	    audio = document.createElement('AUDIO');
-	mainController.passWord(currentWord);
-	document.getElementById("gameGame").appendChild(audio);
-	audio.setAttribute("src","audio/Level" + level.levelNumber + game + "/" + currentWord + ".wav")
-	audio.play()
-	audio.addEventListener('loadedmetadata', function(){
-		var duration;
-		duration = audio.duration;
-		duration = duration * 1000;
-		timer = setTimeout(function (){	
-		}, duration);
-	 });
-}
-	
+var gameTimerSecs = 0,
+    gameTimerMins = 0,
+    timer,
+    timerModal;
 
 // Adding a user to local storage
 
@@ -212,8 +194,6 @@ var loadGameData = function () {
     theLevel.addGame("Game 3", wordList23, theLevel.name, 3);
     theLevel.addGame("Game 4", wordList24, theLevel.name, 4);
     
-    // rocketReadingModel.addCurrentGameData(0, [1, 1]);
-    // rocketReadingModel.addCurrentGameData(null,null,null,null,null,null,null,null);
 };
 
 var initialise = function () {
@@ -238,6 +218,7 @@ var gameInitialise = function () {
 	mainController.getScore();
     mainController.getWordsCompletedData();
     mainController.getCurrentLevelGame();
-}
+    //mainController.loadGameScreenIntro();
+};
 
 

@@ -98,6 +98,42 @@ var mainController = {
 		var wordListCount = rocketReadingModel.getCurrentGameData().getWordListCount();
 		myViewModelRR.displayWordListCount(wordListCount);
 	},
+    
+    /* setTimerGameScreenIntro: function () {
+        // This function could use a timer to make the modal screen which appears at the beginning of the game screen open slightly after the game screen is unhidden
+        "use strict";
+        timerModal = setTimeout();
+    },*/
+    
+    nextWord: function(levelNumber, gameNumber, listArray) {
+        "use strict";
+        var currentWordIndex = Math.floor(Math.random() * listArray.length),
+            currentWord = listArray[currentWordIndex],
+            audio = document.createElement('AUDIO');
+        // rocketReadingModel.passWord(currentWord);
+        rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
+        document.getElementById("gameGame").appendChild(audio);
+        audio.setAttribute("src","audio/Level" + levelNumber + "Game " + gameNumber + "/" + currentWord + ".wav")
+        audio.play()
+        audio.addEventListener('loadedmetadata', function(){
+            var duration;
+            duration = audio.duration;
+            duration = duration * 1000;
+            timer = setTimeout(function (){	
+            }, duration);
+         });
+    },
+    
+    startGame: function () {
+        "use strict";
+        var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+            listArray = rocketReadingModel.getCurrentGameData().getWordList();
+        // Start the game timer
+        setInterval("myViewModelRR.displayGameTimer()", 1000);
+        // Determine which word the user will be tested on
+        mainController.nextWord(levelNumber, gameNumber, listArray);
+    },    
 
     gameOptionsRequest: function () {
         "use strict";
@@ -215,6 +251,6 @@ var mainController = {
 		var playerData = storageController.getPlayer(username);
 		rocketReadingModel.setPlayer(playerData);
 		myViewModelRR.displayPlayerName(username);
-	},
+	}
 	
 };

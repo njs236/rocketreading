@@ -125,6 +125,7 @@ var viewHTMLModule = {
 		"use strict";
 		var count,
 			newHeading,
+            newAnchor,
 			newDiv,
 			gameSelectMainDiv = document.getElementById("gameOptionsContainer");
 		// The html inside the div containing the game options needs
@@ -147,18 +148,22 @@ var viewHTMLModule = {
 				gameSelectMainDiv.lastChild.appendChild(newDiv);
 			};
 			
+            newAnchor = document.createElement("A");
+            newAnchor.href = "#gameIntroModal";
 			newDiv = document.createElement("DIV");
 			newDiv.className = "gameSelectScreenGame";
 			newDiv.id = "gameScreenButton" + (count + 1);
 			newHeading = document.createElement("H1");
-			newHeading.textContent = gameOptionsData[1][count];
+            newHeading.textContent = gameOptionsData[1][count];
 			newDiv.appendChild(newHeading);
+            newAnchor.appendChild(newDiv);
 			
-			gameSelectMainDiv.lastChild.appendChild(newDiv);
+			gameSelectMainDiv.lastChild.appendChild(newAnchor);
 			
 			// Adding an event-listener to the div
 			newDiv.addEventListener("click", mainController.setCurrentGame);
 			newDiv.addEventListener("click", this.showGameScreen);
+            // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 		}
 	},
 	// *******************************************
@@ -240,6 +245,31 @@ var viewHTMLModule = {
         "use strict";
         document.getElementById("gameLevelIDText").textContent = "Level " + levelGame[0] + " - Game " + levelGame[1];
     },
+    
+    displayGameTimer: function () {
+        "use strict";
+        var secsDisplay,
+            minsDisplay;
+        gameTimerSecs += Number(1);
+        if (gameTimerSecs % 60 === 0) {
+            gameTimerMins += Number(1);
+        }
+        secsDisplay = gameTimerSecs % 60;
+        if (secsDisplay < 10) {
+            secsDisplay = '0' + secsDisplay;    
+        }
+        document.getElementById("gameTimer").textContent = gameTimerMins + " : " + secsDisplay;
+    },
+    
+    /*displayGameIntroConfirm: function () {
+        "use strict";
+        var userChoice = confirm("Click OK to start the game. Or click Cancel to go back to the previous page");
+        if (userChoice) {
+            mainController.startGame();    
+        } else {
+            this.showGameSelectScreen();
+        }
+    },*/
     
 	// *******************************************
 	// ********* End Game Screen Section *********
@@ -330,6 +360,8 @@ var viewHTMLModule = {
 		
 		// Game Screen
 		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
+        document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
+        document.getElementById("gameStart").addEventListener("click", mainController.startGame);
 		
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);

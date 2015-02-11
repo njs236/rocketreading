@@ -21,6 +21,10 @@ var viewHTMLModule = {
 	// ******* Login Screen Section ********
 	// *************************************
 	
+	loginSuccessful : function() {
+		this.showHomeScreen();
+	},
+	
 	// *************************************
 	// ***** End Login Screen Section ******
 	// *************************************

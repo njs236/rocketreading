@@ -93,9 +93,29 @@ var mainController = {
 		// Loading selected Game into currentGame in currentGameData
 		rocketReadingModel.getCurrentGameData().setCurrentGame(rocketReadingModel.findGameByNumber(gameNumber));
 	},
+    
+    randomiseArray: function (inputArray) {
+        "use strict";
+        var wordIndex,
+            count,
+            wordlist = [],
+            arrayLength = inputArray.length;        
+        for (count = 0; count < arrayLength; count += 1) {
+            wordIndex = Math.floor(Math.random() * inputArray.length);
+            wordlist.push(inputArray[wordIndex]);
+            inputArray.splice(wordIndex, 1);
+        }
+        return wordlist;
+    },
 	
 	createTable : function () {
 		var inputArray = rocketReadingModel.getCurrentGameData().getWordList();
+        // The wordlist needs to be arranged in a random order
+        inputArray = this.randomiseArray(inputArray);
+        // Set the randomised array as the word list for the current game
+        rocketReadingModel.getCurrentGameData().passList(inputArray);
+        // Should really copy this wordlist and save it to a second wordlist property in current game data, so that when the user leaves a current game and comes back to that current game all of the words in the whole word-list will be displayed, instead of just the words the user has yet to do appearing.
+        // Display the table with the randomised wordlist
 		myViewModelRR.displayTable(inputArray);
 	},
 	

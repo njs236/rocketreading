@@ -207,7 +207,7 @@ var viewHTMLModule = {
 			
 			// Adding an event-listener to the div
 			newDiv.addEventListener("click", mainController.setCurrentGame);
-            newDiv.addEventListener("click", mainController.gameInitialise);
+            newDiv.addEventListener("click", mainController.checkGameResumption);
 			newDiv.addEventListener("click", this.showGameScreen);
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 		}
@@ -317,6 +317,11 @@ var viewHTMLModule = {
         }
         document.getElementById("gameTimer").textContent = gameTimerMins + " : " + secsDisplay;
     },
+    
+    resetGameTimer: function () {
+        "use strict";
+        document.getElementById("gameTimer").textContent = "0 : 00";
+    },
 	
 	updateCurrentWord : function (currentWord) {
 		var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
@@ -424,7 +429,7 @@ var viewHTMLModule = {
 		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
 		document.getElementById("homeExit").addEventListener("click",this.showLoginScreen);
-        document.getElementById("homeContinue").addEventListener("click", mainController.loadPreviousGame);
+        document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
 		
 		// Level Select Screen
 		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);
@@ -437,7 +442,7 @@ var viewHTMLModule = {
         // This clears the timer of an individual test in a game if the user returns to the home page
 		document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer);
         // If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
-        document.getElementById("gameHomeLink").addEventListener("click", mainController.pauseCurrentGame);
+        document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
         document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);

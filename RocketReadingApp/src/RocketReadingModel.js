@@ -16,7 +16,7 @@ var RocketReadingModel = function() {
 rocketReadingModel = new RocketReadingModel();
 
 
-RocketReadingModel.prototype.addLevel = function(newName, newLevelNumber, newGames, newNumberGames) {
+RocketReadingModel.prototype.addLevel = function (newName, newLevelNumber, newGames, newNumberGames) {
     "use strict";
     var newLevel = new Level(newName, newLevelNumber, newGames, newNumberGames);
     this.allMyLevels.push (newLevel);
@@ -28,8 +28,8 @@ RocketReadingModel.prototype.getAllLevels = function () {
     return this.allMyLevels;
 };
 
-RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
-	var newCurrentGameData = new CurrentGameData(newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
+RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+	var newCurrentGameData = new CurrentGameData(newLevel, newGame, newWordList, newCurrentWord, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
 	this.myCurrentGameData = newCurrentGameData;
 };
 
@@ -64,6 +64,11 @@ RocketReadingModel.prototype.addPlayer = function (newUser, newFirstName, newLas
 RocketReadingModel.prototype.setPlayer = function (player) {
 	this.myPlayer = player;
 };
+
+RocketReadingModel.prototype.getMyPlayer = function () {
+	return this.myPlayer;
+};
+
 
 RocketReadingModel.prototype.findLevelByName = function (name) {
     "use strict";

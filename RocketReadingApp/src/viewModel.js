@@ -187,6 +187,11 @@ var myViewModelRR = {
 	clearTimer : function () {
 		this.view.clearTimer();
 	},
+    
+    resetGameTimer: function () {
+        "use strict";
+        this.view.resetGameTimer();
+    },
 	
 	displayTable : function (inputArray) {
 		this.view.displayTable(inputArray);

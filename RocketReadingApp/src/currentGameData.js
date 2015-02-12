@@ -1,20 +1,20 @@
-var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
 	this.myTimer = 0;
-	this.wordList = newWordList || "wordList1";
+	this.wordList = newWordList || [];
 	this.wordListCount = this.wordList.length;
 	this.currentWord = newCurrentWord || null;
-    this.currentLevelGame = newCurrentLevelGame || [1,1];
+    this.savedLevelGame = newSavedLevelGame || null;
     this.gameScore = newGameScore || 0;
     this.gameMedals = newGameMedals || [0,0,0];
     this.lastTestTime = newLastTestTime || 0;
     this.totalGameTime = newTotalGameTime|| 0;
     this.wordsSoundsCorrect = newWordsSoundsCorrect || [];
     this.wordsSoundsIncorrect = newWordsSoundsIncorrect || [];
-    // Have to return 'this' and not 'currentGameData' - that's the name of the var
-    //return this;
+    
+    return this;
 };
 
 CurrentGameData.prototype.passWord = function (word) {
@@ -66,6 +66,16 @@ CurrentGameData.prototype.getWordsCompleted = function () {
     "use strict";
 	return this.wordsSoundsCorrect.length;
 };
+
+CurrentGameData.prototype.getSavedLevelGame = function () {
+    "use strict";
+    return this.savedLevelGame;
+};
+
+CurrentGameData.prototype.setSavedLevelGame = function (levelGame) {
+    "use strict";
+    this.savedLevelGame = levelGame;
+},
 
 CurrentGameData.prototype.getWordListCount = function () {
 	"use strict";

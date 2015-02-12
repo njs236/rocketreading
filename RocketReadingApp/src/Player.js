@@ -13,3 +13,8 @@ var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRo
     
     return this;
 };
+
+Player.prototype.getLevelGameReached = function () {
+    "use strict";
+    return this.levelGameReached;
+};

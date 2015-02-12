@@ -60,6 +60,13 @@ var mainController = {
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         // Clear the current data object
         rocketReadingModel.clearCurrentGameData();
+        // Create a bare current data object and assign it as a property of the Rocket-Reading object
+        mainController.resetCurrentGameData();
+    },
+    
+    resetCurrentGameData: function () {
+        "use strict";
+        rocketReadingModel.addCurrentGameData(undefined, undefined, null, null, null, 0, [0,0,0], 0, 0, [], []);
     },
 	
 	passWord: function (word) {
@@ -190,22 +197,70 @@ var mainController = {
     
     startGame: function () {
         "use strict";
-
         // Start the game timer
         mainController.startGameTimer();
         // Determine which word the user will be tested on
         mainController.nextWord();
-    },    
-    
-    pauseCurrentGame: function () {
+    },   
+
+    resetGameTimers: function () {
         "use strict";
+        gameTimerSecs = 0;
+        gameTimerMins = 0;
+        myViewModelRR.resetGameTimer();
+    },
+    
+    resolveContinueBtn: function () {
+        "use strict";
+        var levelGame;
+        if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === null) {
+            // If the user has completed a previous game then the timers and game time display will be reset
+            mainController.resetGameTimers()
+            // The system will open the highest level game screen which the user has reached 
+            levelGame = rocketReadingModel.getMyPlayer().getLevelGameReached();
+            rocketReadingModel.getCurrentGameData().setCurrentLevel(levelGame[0]);
+            rocketReadingModel.getCurrentGameData().setCurrentLevel(levelGame[1]);
+            mainController.gameInitialise();
+        } else if ((rocketReadingModel.getCurrentGameData().getSavedLevelGame() !== null)) {
+            // If the user has a saved game then the screen for that level-game will be displayed
+            mainController.loadPreviousGame();
+        }
+    },
+    
+    checkGameResumption: function () {
+    // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
+        "use strict";
+        var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+            levelGame = [levelNumber, gameNumber];
+        if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
+            // Check with the user whether they wish to resume the old game or start a new game
+        } else {
+            mainController.resetGameTimers();
+            mainController.gameInitialise();
+        }
+    },
+    
+    leaveCurrentGame: function () {
+        "use strict";
+        var levelNumber,
+            gameNumber,
+            levelGame;
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
         console.log("mainController: pauseCurrentGame(): " + rocketReadingModel.getCurrentGameData());
-        if (Object.getOwnPropertyNames(rocketReadingModel.myCurrentGameData).length !== 0) {
-            // If the user has not finished the current game then the system needs to save the current game timer to the current game state object
+        if (rocketReadingModel.getCurrentGameData().getCurrentLevel() !== undefined) {
+            //If the user has not finished the current game then the system needs to save the current game timer to the current game state object
             console.log("mainController: pauseCurrentGame(): saveGameTime!");
-            rocketReadingModel.saveGameTime();
+            rocketReadingModel.getCurrentGameData().saveGameTime();
+            // The current game data is recorded as having a saved game
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber()
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber();
+            levelGame = [levelNumber, gameNumber];
+            rocketReadingModel.getCurrentGameData().setSavedLevelGame(levelGame);
+        } else if (rocketReadingModel.getCurrentGameData().getCurrentLevel() === undefined) {
+            // If the user has completed the current game then the game screen's total game time will be reset to 0.
+            mainController.resetGameTimers();
         }
     },
     
@@ -214,8 +269,10 @@ var mainController = {
         // The system get the user's current game details and opens the particular screen
         mainController.gameInitialise();
         myViewModelRR.showGameScreen();
+        // The modal screen should then be displayed
+        // When the user should clicks the Start link the game timer should then start
         // The game timer is started again
-        mainController.startGameTimer();
+        // mainController.startGameTimer();
     },
     
     gameInitialise: function () {
@@ -241,42 +298,6 @@ var mainController = {
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
     },
-    
-    /*
-    gameOptionsRequest: function (levelBtnId) {
-        "use strict";
-        var levelName,
-            gameOptionsInfo = [];
-        switch (levelBtnId) {
-            case ("levelSelectIconContainer00"):
-                levelName = "Bonus Games Level";
-                break;
-            case ("levelSelectIconContainer01"):
-                levelName = "Ice Cream World";
-                break;
-            case ("levelSelectIconContainer02"):
-                levelName = "Nature World";
-                break;
-            case ("levelSelectIconContainer03"):
-                levelName = "Water World";
-                break;
-            case ("levelSelectIconContainer04"):
-                levelName = "Lollipop World";
-                break;
-            case ("levelSelectIconContainer05"):
-                levelName = "Pirate World";
-                break;
-            case ("levelSelectIconContainer06"):
-                levelName = "Car World";
-                break;
-        }
-        // The main controller requests data from the model (where all of the data is stored about instances of classes.
-        gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelName);
-        gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelName);
-        
-        // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
-        myViewModelRR.displayGameOptions(gameOptionsInfo);
-    },*/
     
     // Instead of validating the user's input with data from a web server, the system is checking the input against data in local storage. The current validation should really be performed in the model module, and not in this, the main controller module.
     loginMethods: {

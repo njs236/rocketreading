@@ -57,7 +57,13 @@ var viewHTMLModule = {
 	},
 	
 	loginSuccessful : function() {
+		"use strict";
 		this.showHomeScreen();
+	},
+	
+	badLogin : function () {
+		"use strict";
+		document.getElementById("loginPassword").value = "";
 	},
 	
 	// *************************************

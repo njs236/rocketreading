@@ -255,18 +255,12 @@ var mainController = {
         validateLogin: function (userName, userPassword) {
             "use strict";
            if  (( storageController.getPlayer(userName).userName === userName) && ( storageController.getPlayer(userName).firstName === userPassword )) {
-                // The system lets the user login
-                // Data is sent to the view controller to be displayed in the console
-                //myViewModelRR.loginOutputData("Through!");
-                myViewModelRR.loginSuccessful();
-				mainController.setPlayer(userName);
+                return true;
             } else {
-                passwordElement.value = "";
-                passwordElement.focus();
-                document.getElementById("loginMessage").innerHTML = "Invalid username or password. Please try again";
-            }  
+                return false;
+            };
         },
-                    
+        
         validateUserExists: function (userName) {
             "use strict";
             // Data is sent to the view controller to be displayed in the console
@@ -279,7 +273,6 @@ var mainController = {
                 return true;
             } else {
                 //document.getElementById("loginMessage").innerHTML = "Unknown username. Please try entering your username again or create an account.";
-                //passwordElement.value = "";
                 return false;
             }
         },
@@ -302,16 +295,28 @@ var mainController = {
     
     processLogin: function (userName,userPassword) {
         "use strict";
+		console.group("Login Process");
 		console.log(userName + userPassword);
         if (mainController.loginMethods.validateFieldInput(userName, userPassword)) {
 			console.log("Fields Valid");
             if (mainController.loginMethods.validateUserExists(userName)) {
 				console.log("User Exists");
-                mainController.loginMethods.validateLogin( userName, userPassword );
+				if ( mainController.loginMethods.validateLogin( userName, userPassword ) ){
+					console.groupEnd();
+					myViewModelRR.loginSuccessful();
+					mainController.setPlayer(userName);
+				} else {
+					console.log("%cprocessLogin : Bad Password","color:red");
+					myViewModelRR.badLogin();
+				};
+				
             } else {
                 console.log("No login ...");
+				console.groupEnd();
+				myViewModelRR.badLogin();
             }
         }
+		
     },
     
     // loading player data from the local storage. 

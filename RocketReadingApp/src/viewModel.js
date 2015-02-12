@@ -79,6 +79,10 @@ var myViewModelRR = {
 		this.view.loginSuccessful();
 	},
 	
+	badLogin : function () {
+		"use strict"
+		this.view.badLogin();
+	},
 	
 	// ****************************************************
 	// ************ End Login Screen Section **************

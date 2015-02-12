@@ -2,6 +2,7 @@ var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, 
     "use strict";
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
+	this.myTimer = 0;
 	this.wordList = newWordList || "wordList1";
 	this.currentWord = newCurrentWord || null;
     this.currentLevelGame = newCurrentLevelGame || [1,1];
@@ -73,3 +74,33 @@ CurrentGameData.prototype.getScore = function () {
 	"use strict";
 	return this.gameScore;
 };
+
+CurrentGameData.prototype.setTimer = function (milliseconds) {
+	this.myTimer += Number(milliseconds);
+};
+
+CurrentGameData.prototype.clearMyTimer = function () {
+	this.myTimer = 0;
+};
+
+CurrentGameData.prototype.getTimer = function () {
+	return this.myTimer;
+};
+
+CurrentGameData.prototype.getCurrentWord = function () {
+	return this.currentWord;
+};
+
+CurrentGameData.prototype.setScore = function (score) {
+	this.gameScore += score;
+};
+
+CurrentGameData.prototype.setMedal = function (attr) {
+	if (attr = 'gold') {
+		this.gameMedals[0] += 1;
+	} else if (attr = 'silver') {
+		this.gameMedals[1] += 1;
+	} else if (attr= 'bronze') {
+		this.gameMedals[2] += 1;
+	}
+}

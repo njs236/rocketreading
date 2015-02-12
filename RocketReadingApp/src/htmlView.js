@@ -190,9 +190,11 @@ var viewHTMLModule = {
 	},
 	
 	
-	guessWord : function (word) {
+	guessWord : function () {
 		//add code in here to select word based on clickable event.
-		mainController.validateWords(word);
+		var clickedWord;
+		clickedWord = this.textContent;
+		mainController.validateWords(clickedWord);
 	},
 	
 	
@@ -211,6 +213,7 @@ var viewHTMLModule = {
 			wordCount,
 			clickCount,
 			tableWidth = 5,
+			cells,
 			htmlTable;
 		
 		console.log(inputArray);
@@ -227,7 +230,11 @@ var viewHTMLModule = {
 			newCell.innerHTML = inputArray[wordCount];
 			newCell.id = "cell" + wordCount;
 			newCell.className = "wordCell";
-			newCell.addEventListener("click", viewHTMLModule.guessWord(newCell.text));
+		};
+		cells = document.getElementsByClassName('wordCell');
+		for (cellCount = 0; cellCount < inputArray.length; cellCount = cellCount + 1) {
+			cells[cellCount].addEventListener("click", viewHTMLModule.guessWord);
+			console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)
 		};
 	},
     
@@ -260,6 +267,23 @@ var viewHTMLModule = {
         }
         document.getElementById("gameTimer").textContent = gameTimerMins + " : " + secsDisplay;
     },
+	
+	updateCurrentWord : function (currentWord) {
+		var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+			audio = document.createElement('AUDIO');
+		document.getElementById("gameGame").appendChild(audio);
+        audio.setAttribute("src","audio/Level" + levelNumber + "Game " + gameNumber + "/" + currentWord + ".wav")
+        audio.play()
+        audio.addEventListener('loadedmetadata', function(){
+            var duration;
+            duration = audio.duration;
+            duration = duration * 1000;
+            timer = setTimeout(function (){	
+				mainController.createWordTimer();
+            }, duration);
+         });
+	},
     
     /*displayGameIntroConfirm: function () {
         "use strict";

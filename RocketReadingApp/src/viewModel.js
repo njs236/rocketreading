@@ -188,6 +188,10 @@ var myViewModelRR = {
         "use strict";
         this.view.displayGameTimer();
     },
+	
+	updateCurrentWord : function (currentWord) {
+		this.view.updateCurrentWord(currentWord);
+	},
     
     /*
     displayGameIntroConfirm: function () {

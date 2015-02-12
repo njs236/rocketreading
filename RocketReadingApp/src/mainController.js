@@ -2,19 +2,37 @@
 
 var mainController = {
 
-	validateWords : function (word) {/*
-		if (word === rocketReadingModel.currentGameData.getCurrentWord) {
-            if (timer < 2) {
-                //do things here
-            } elseif ( 2 < timer < 4 ) {
-                //do things here
-            }elseif ( 4 < timer < 8 ) {
-                //do things here
-            }
-		
+	validateWords : function (word) {
+		if (word !== null) {
+			window.clearInterval(aTimer);
+			var myTimer = rocketReadingModel.getCurrentGameData().getTimer();
+			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
+				if (myTimer < 2000) {
+					//do things here
+					rocketReadingModel.getCurrentGameData().setMedal('gold');
+					rocketReadingModel.getCurrentGameData().setScore(5);
+				} else if ( 2000 < myTimer < 4000 ) {
+					//do things here
+					rocketReadingModel.getCurrentGameData().setMedal('silver');
+					rocketReadingModel.getCurrentGameData().setScore(3);
+				}else if ( 4000 < myTimer < 8000 ) {
+					//do things here
+					rocketReadingModel.getCurrentGameData().setMedal('bronze');
+					rocketReadingModel.getCurrentGameData().setScore(1);
+				}
+				alert ("Correct Word! You selected " + word);
+
+			} else {
+				// this is the incorrect word selection
+			}
 		} else {
-			
-		}*/
+			// this is the too long selection
+		}
+		/*myViewModelRR.displayLearnWord();*/
+		rocketReadingModel.getCurrentGameData().clearMyTimer();
+		mainController.getMedalCounts();
+		mainController.getWordsCompletedData();
+		mainController.nextWord();
 	},
 	
 	passWord: function (word) {
@@ -107,32 +125,44 @@ var mainController = {
     
     nextWord: function(levelNumber, gameNumber, listArray) {
         "use strict";
-        var currentWordIndex = Math.floor(Math.random() * listArray.length),
-            currentWord = listArray[currentWordIndex],
-            audio = document.createElement('AUDIO');
-        // rocketReadingModel.passWord(currentWord);
-        rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
-        document.getElementById("gameGame").appendChild(audio);
-        audio.setAttribute("src","audio/Level" + levelNumber + "Game " + gameNumber + "/" + currentWord + ".wav")
-        audio.play()
-        audio.addEventListener('loadedmetadata', function(){
-            var duration;
-            duration = audio.duration;
-            duration = duration * 1000;
-            timer = setTimeout(function (){	
-            }, duration);
-         });
-    },
-    
-    startGame: function () {
-        "use strict";
         var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
-            listArray = rocketReadingModel.getCurrentGameData().getWordList();
+            listArray = rocketReadingModel.getCurrentGameData().getWordList(),
+			currentWordIndex = Math.floor(Math.random() * listArray.length),
+            currentWord = listArray[currentWordIndex];
+		mainController.spliceWord(currentWordIndex);
+        rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
+        myViewModelRR.updateCurrentWord(currentWord);
+    },
+	
+	spliceWord : function (currentWordIndex) {
+		var listArray = rocketReadingModel.getCurrentGameData().getWordList();
+		listArray.splice(currentWordIndex, 1);
+		rocketReadingModel.getCurrentGameData().passList(listArray);
+	},
+    
+	createWordTimer : function () {
+		aTimer = setInterval(function () {
+			var milliseconds = 100;
+			mainController.returnMilliseconds(milliseconds)
+		}, 100)
+	},
+	
+	returnMilliseconds : function (milliseconds) {
+		rocketReadingModel.getCurrentGameData().setTimer(milliseconds);
+		if (rocketReadingModel.getCurrentGameData().getTimer() >= 8000) {
+			mainController.validateWords();
+		}
+		/*console.log("returnMilliseconds:" + rocketReadingModel.getCurrentGameData().getTimer())*/
+	},
+	
+    startGame: function () {
+        "use strict";
+
         // Start the game timer
         gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
         // Determine which word the user will be tested on
-        mainController.nextWord(levelNumber, gameNumber, listArray);
+        mainController.nextWord();
     },    
     
     pauseCurrentGame: function () {

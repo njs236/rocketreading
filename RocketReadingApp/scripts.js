@@ -4,6 +4,7 @@ var gameTimerSecs = 0,
     gameTimerMins = 0,
     gameTimer,
     timer,
+	aTimer,
     timerModal;
 
 // Adding a user to local storage

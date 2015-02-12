@@ -249,14 +249,14 @@ var mainController = {
     
     // Instead of validating the user's input with data from a web server, the system is checking the input against data in local storage. The current validation should really be performed in the model module, and not in this, the main controller module.
     loginMethods: {
-        validateLogin: function (nameElement, passwordElement) {
+        validateLogin: function (userName, userPassword) {
             "use strict";
-           if  (( storageController.getPlayer(nameElement.value).userName === nameElement.value) && ( storageController.getPlayer(nameElement.value).firstName === passwordElement.value )) {
+           if  (( storageController.getPlayer(userName).userName === userName) && ( storageController.getPlayer(userName).firstName === userPassword )) {
                 // The system lets the user login
                 // Data is sent to the view controller to be displayed in the console
                 //myViewModelRR.loginOutputData("Through!");
                 myViewModelRR.loginSuccessful();
-				mainController.setPlayer(nameElement.value);
+				mainController.setPlayer(userName);
             } else {
                 passwordElement.value = "";
                 passwordElement.focus();
@@ -264,30 +264,30 @@ var mainController = {
             }  
         },
                     
-        validateUserExists: function (nameElement, passwordElement) {
+        validateUserExists: function (userName) {
             "use strict";
             // Data is sent to the view controller to be displayed in the console
             //myViewModelRR.loginOutputData("name: " + nameElement.value);
             
-            var result = JSON.parse(localStorage.getItem(nameElement.value));
+            var result = JSON.parse(localStorage.getItem(userName));
             if ( result !== null ) {
                 // Data is sent to the view controller to be displayed in the console
                 //myViewModelRR.loginOutputData("User exists: " + result + " - true!");
                 return true;
             } else {
-                document.getElementById("loginMessage").innerHTML = "Unknown username. Please try entering your username again or create an account.";
-                passwordElement.value = "";
+                //document.getElementById("loginMessage").innerHTML = "Unknown username. Please try entering your username again or create an account.";
+                //passwordElement.value = "";
                 return false;
             }
         },
             
-        validateFieldInput: function (nameElement, passwordElement) {
+        validateFieldInput: function (userName, userPassword) {
             "use strict";
-            if (nameElement.value === "" && passwordElement.value === "") {
+            if (userName === "" && userPassword === "") {
                 document.getElementById("loginMessage").innerHTML = "Please enter a username and a password.";
-            } else if (nameElement.value === "") {
+            } else if (userName === "") {
                 document.getElementById("loginMessage").innerHTML = "Please enter a username.";    
-            } else if (passwordElement.value === "") {
+            } else if (userPassword === "") {
                 document.getElementById("loginMessage").innerHTML = "Please enter a password.";
             } else {
                 return true;
@@ -297,11 +297,14 @@ var mainController = {
     
     // Processing login function
     
-    processLogin: function () {
+    processLogin: function (userName,userPassword) {
         "use strict";
-        if (mainController.loginMethods.validateFieldInput(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) { 
-            if (mainController.loginMethods.validateUserExists(document.getElementById("loginUserName"), document.getElementById("loginPassword"))) {
-                mainController.loginMethods.validateLogin( document.getElementById("loginUserName"), document.getElementById("loginPassword") );
+		console.log(userName + userPassword);
+        if (mainController.loginMethods.validateFieldInput(userName, userPassword)) {
+			console.log("Fields Valid");
+            if (mainController.loginMethods.validateUserExists(userName)) {
+				console.log("User Exists");
+                mainController.loginMethods.validateLogin( userName, userPassword );
             } else {
                 console.log("No login ...");
             }

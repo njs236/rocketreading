@@ -51,6 +51,11 @@ var viewHTMLModule = {
 	// ******* Login Screen Section ********
 	// *************************************
 	
+	attemptLogin : function() {
+		"use strict";
+		mainController.processLogin(document.getElementById("loginUserName").value, document.getElementById("loginPassword").value);
+	},
+	
 	loginSuccessful : function() {
 		this.showHomeScreen();
 	},
@@ -403,7 +408,7 @@ var viewHTMLModule = {
 	
 	intitialiseView : function()  {
 		// Login Screen
-		document.getElementById("loginEnterBtn").addEventListener("click", mainController.processLogin, false);
+		document.getElementById("loginEnterBtn").addEventListener("click", this.attemptLogin, false);
 		
 		// Home Screen
 		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);

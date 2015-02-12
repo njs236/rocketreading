@@ -3,15 +3,16 @@
 var mainController = {
 
 	validateWords : function (word) {
+		var myTimer = rocketReadingModel.getCurrentGameData().getTimer();
+		console.log("validateWords:" + myTimer);
 		if (word !== null) {
 			window.clearInterval(aTimer);
-			var myTimer = rocketReadingModel.getCurrentGameData().getTimer();
 			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
-				if (myTimer < 2000) {
+				if (myTimer <= 2000) {
 					//do things here
 					rocketReadingModel.getCurrentGameData().setMedal('gold');
 					rocketReadingModel.getCurrentGameData().setScore(5);
-				} else if ( 2000 < myTimer < 4000 ) {
+				} else if ( 2000 < myTimer <= 4000 ) {
 					//do things here
 					rocketReadingModel.getCurrentGameData().setMedal('silver');
 					rocketReadingModel.getCurrentGameData().setScore(3);
@@ -32,6 +33,7 @@ var mainController = {
 		rocketReadingModel.getCurrentGameData().clearMyTimer();
 		mainController.getMedalCounts();
 		mainController.getWordsCompletedData();
+		mainController.getScore();
 		mainController.nextWord();
 	},
 	
@@ -67,6 +69,7 @@ var mainController = {
 	
 	getMedalCounts : function () {
 		var medals = rocketReadingModel.getCurrentGameData().getMedalCounts();
+		console.log("getMedalCounts:" + medals)
 		myViewModelRR.displayMedalCounts(medals);
 	},
 	
@@ -153,7 +156,7 @@ var mainController = {
 		if (rocketReadingModel.getCurrentGameData().getTimer() >= 8000) {
 			mainController.validateWords();
 		}
-		/*console.log("returnMilliseconds:" + rocketReadingModel.getCurrentGameData().getTimer())*/
+		console.log("returnMilliseconds:" + rocketReadingModel.getCurrentGameData().getTimer())
 	},
 	
     startGameTimer: function () {

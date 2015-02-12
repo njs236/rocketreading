@@ -96,13 +96,15 @@ CurrentGameData.prototype.setScore = function (score) {
 };
 
 CurrentGameData.prototype.setMedal = function (attr) {
-	if (attr = 'gold') {
+	if (attr === 'gold') {
 		this.gameMedals[0] += 1;
-	} else if (attr = 'silver') {
+	}; 
+	if (attr === 'silver') {
 		this.gameMedals[1] += 1;
-	} else if (attr= 'bronze') {
+	}; 
+	if (attr === 'bronze') {
 		this.gameMedals[2] += 1;
-	}
+	};
 }
 
 CurrentGameData.prototype.saveGameTime = function () {

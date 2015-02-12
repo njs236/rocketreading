@@ -220,6 +220,10 @@ var viewHTMLModule = {
 	// ********** Game Screen Section ************
 	// *******************************************
 	
+	clearTimer: function () {
+		window.clearInterval(aTimer);
+	},
+	
 	displayTextAndScores : function () {
 		var startGame,
 		goldMedal,
@@ -430,6 +434,7 @@ var viewHTMLModule = {
 		
 		// Game Screen
 		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
+		document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer);
         // If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
         document.getElementById("gameHomeLink").addEventListener("click", mainController.pauseCurrentGame);
         document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);

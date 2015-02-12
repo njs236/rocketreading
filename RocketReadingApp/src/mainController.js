@@ -3,20 +3,25 @@
 var mainController = {
 
 	validateWords : function (word) {
-		var myTimer = rocketReadingModel.getCurrentGameData().getTimer();
+		var myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
+			levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+			listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
+		mainController.spliceWord(word);
 		console.log("validateWords:" + myTimer);
+		myViewModelRR.clearTimer();
 		if (word !== null) {
-			window.clearInterval(aTimer);
 			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
+				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
 				if (myTimer <= 2000) {
 					//do things here
 					rocketReadingModel.getCurrentGameData().setMedal('gold');
 					rocketReadingModel.getCurrentGameData().setScore(5);
-				} else if ( 2000 < myTimer <= 4000 ) {
+				} else if ( 2000 < myTimer && myTimer <= 4000 ) {
 					//do things here
 					rocketReadingModel.getCurrentGameData().setMedal('silver');
 					rocketReadingModel.getCurrentGameData().setScore(3);
-				}else if ( 4000 < myTimer < 8000 ) {
+				} else if ( 4000 < myTimer && myTimer < 8000 ) {
 					//do things here
 					rocketReadingModel.getCurrentGameData().setMedal('bronze');
 					rocketReadingModel.getCurrentGameData().setScore(1);
@@ -34,7 +39,11 @@ var mainController = {
 		mainController.getMedalCounts();
 		mainController.getWordsCompletedData();
 		mainController.getScore();
-		mainController.nextWord();
+		if (listArrayCount > 0) {
+			mainController.nextWord();
+		} else if (listArrayCount = 0) {
+			alert ("Game Finished! You completed Level "+ levelNumber + "Game " + gameNumber);
+		}
 	},
 	
 	passWord: function (word) {
@@ -133,7 +142,6 @@ var mainController = {
             listArray = rocketReadingModel.getCurrentGameData().getWordList(),
 			currentWordIndex = Math.floor(Math.random() * listArray.length),
             currentWord = listArray[currentWordIndex];
-		mainController.spliceWord(currentWordIndex);
         rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
         myViewModelRR.updateCurrentWord(currentWord);
     },

@@ -184,6 +184,10 @@ var myViewModelRR = {
 		this.view.displayMedalCounts(inputArray);
 	},
 	
+	clearTimer : function () {
+		this.view.clearTimer();
+	},
+	
 	displayTable : function (inputArray) {
 		this.view.displayTable(inputArray);
 	},

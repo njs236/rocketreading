@@ -156,11 +156,16 @@ var mainController = {
 		/*console.log("returnMilliseconds:" + rocketReadingModel.getCurrentGameData().getTimer())*/
 	},
 	
+    startGameTimer: function () {
+        "use strict";
+        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
+    },
+    
     startGame: function () {
         "use strict";
 
         // Start the game timer
-        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
+        mainController.startGameTimer();
         // Determine which word the user will be tested on
         mainController.nextWord();
     },    
@@ -170,7 +175,28 @@ var mainController = {
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
         // The system needs to save the user's current game details to the current game state object
+        rocketReadingModel.saveGameTime();
     },
+    
+    loadPreviousGame: function () {
+        "use strict";
+        // The system get the user's current game details and opens the particular screen
+        mainController.gameInitialise();
+        myViewModelRR.showGameScreen();
+        // The game timer is started again
+        mainController.startGameTimer();
+    },
+    
+    gameInitialise: function () {
+        "use strict";
+        mainController.createTable();
+        mainController.getMedalCounts();
+        mainController.getScore();
+        mainController.getWordsCompletedData();
+        mainController.getCurrentLevelGame();
+        //mainController.loadGameScreenIntro();
+    },
+    
 
     gameOptionsRequest: function () {
         "use strict";
@@ -229,7 +255,7 @@ var mainController = {
                 // The system lets the user login
                 // Data is sent to the view controller to be displayed in the console
                 //myViewModelRR.loginOutputData("Through!");
-                viewHTMLModule.showHomeScreen();
+                myViewModelRR.loginSuccessful();
 				mainController.setPlayer(nameElement.value);
             } else {
                 passwordElement.value = "";

@@ -1,4 +1,4 @@
-// ViewController v2.0
+// ViewController v2.1
 //
 
 var myViewModelRR = {
@@ -68,6 +68,21 @@ var myViewModelRR = {
 	// ******************************
 	// ***** End Tests Section ******
 	// ******************************
+	
+	
+	// ****************************************************
+	// ************** Login Screen Section ****************
+	// ****************************************************
+	
+	loginSuccessful : function () {
+		"use strict"
+		this.view.loginSuccessful();
+	},
+	
+	
+	// ****************************************************
+	// ************ End Login Screen Section **************
+	// ****************************************************
 	
 	// ***********************************************
 	// ************ Home Screen Section **************
@@ -192,6 +207,11 @@ var myViewModelRR = {
 	updateCurrentWord : function (currentWord) {
 		this.view.updateCurrentWord(currentWord);
 	},
+    
+    showGameScreen: function() {
+        "use strict";
+        viewHTMLModule.showGameScreen();
+    },
     
     /*
     displayGameIntroConfirm: function () {

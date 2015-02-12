@@ -1,4 +1,4 @@
-// HTMLView Module v1.7
+// HTMLView Module v1.9
 //
 var viewHTMLModule = {
 	
@@ -14,12 +14,46 @@ var viewHTMLModule = {
 		return this.name;
 	},
 	
-	greet : function() {
-		console.log("viewHTMLModule : I am the current view! I am " + this.name);
+	// **********************************
+	// ********* Tests Section **********
+	// **********************************
+	
+	listExtraFunctions : function() {
+		"use strict"
+		// Functiom v1.1
+		// Function compares this modules methods against the controllers methods
+		// this test wont throw exceptions and is only used to check for unneeded functions
+		var controllerFunctions = [],
+			myFunctions = [],
+			count;
+			
+			myFunctions = testController.getAllMethods(this);
+			controllerFunctions = testController.getAllMethods(myViewModelRR);
+			
+			
+			console.group("HTML View : testModule()");
+			for ( count = 0; count < myFunctions.length; count = count + 1) {
+				if (( controllerFunctions.indexOf(myFunctions[count]) == -1) && ( myFunctions[count] !== "listExtraFunctions")){
+					console.log("%cExtra Method : " + myFunctions[count],"color:red");
+				}
+			};
+			console.groupEnd();
+		
+	
 	},
+	
+	
+	
+	// **********************************
+	// ******* End Tests Section ********
+	// **********************************
 	// *************************************
 	// ******* Login Screen Section ********
 	// *************************************
+	
+	loginSuccessful : function() {
+		this.showHomeScreen();
+	},
 	
 	// *************************************
 	// ***** End Login Screen Section ******
@@ -162,6 +196,7 @@ var viewHTMLModule = {
 			
 			// Adding an event-listener to the div
 			newDiv.addEventListener("click", mainController.setCurrentGame);
+            newDiv.addEventListener("click", mainController.gameInitialise);
 			newDiv.addEventListener("click", this.showGameScreen);
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 		}
@@ -354,7 +389,6 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		document.getElementById("gamesScreen").hidden = false;
 		console.log("HTMLView.js : Showing game screen");
-		gameInitialise();
 	},
    
 	showHighScoresScreen: function () {
@@ -375,6 +409,7 @@ var viewHTMLModule = {
 		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
 		document.getElementById("homeExit").addEventListener("click",this.showLoginScreen);
+        document.getElementById("homeContinue").addEventListener("click", mainController.loadPreviousGame);
 		
 		// Level Select Screen
 		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);

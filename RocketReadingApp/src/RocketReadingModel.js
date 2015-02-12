@@ -184,17 +184,22 @@ RocketReadingModel.prototype.addAvatar = function (newName, myLevel) {
 	this.allMyAvatars.push (newAvatar);
 	this.avatarCount += 1;
 	myLevel.setAvatar(newAvatar);
-}
+};
 
 RocketReadingModel.prototype.getAvatar = function (number) {
     // Having getAvatar at the end - circular function call?
 	return this.findLevelByNumber(number).getAvatar;
-}
+};
 
 RocketReadingModel.prototype.passWord = function (word) {
 	myCurrentGameData.passWord(word);
-}
+};
 
 RocketReadingModel.prototype.getCurrentGameData = function () {
 	return this.myCurrentGameData;
-}
+};
+
+RocketReadingModel.prototype.saveGameTime = function () {
+    "use strict";
+    this.getCurrentGameData().saveGameTime();
+};

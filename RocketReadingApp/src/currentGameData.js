@@ -104,3 +104,8 @@ CurrentGameData.prototype.setMedal = function (attr) {
 		this.gameMedals[2] += 1;
 	}
 }
+
+CurrentGameData.prototype.saveGameTime = function () {
+    "use strict";
+    this.totalGameTime = [gameTimerMins, gameTimerSecs];
+};

@@ -36,3 +36,7 @@ Level.prototype.getAvatar = function () {
 Level.prototype.getLevelNumber = function () {
 	return this.levelNumber;
 }
+
+Level.prototype.getDescription = function () {
+	return this.description;
+}

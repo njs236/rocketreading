@@ -77,7 +77,7 @@ CurrentGameData.prototype.getScore = function () {
 	return this.gameScore;
 };
 
-CurrentGameData.prototype.setTimer = function (milliseconds) {
+CurrentGameData.prototype.incrementTimer = function (milliseconds) {
 	this.myTimer += Number(milliseconds);
 };
 
@@ -98,20 +98,19 @@ CurrentGameData.prototype.setScore = function (score) {
 };
 
 CurrentGameData.prototype.setMedal = function (attr) {
+    "use strict";
 	if (attr === 'gold') {
 		this.gameMedals[0] += 1;
-	}; 
-	if (attr === 'silver') {
+	} else if (attr === 'silver') {
 		this.gameMedals[1] += 1;
-	}; 
-	if (attr === 'bronze') {
+	} else if (attr === 'bronze') {
 		this.gameMedals[2] += 1;
-	};
-}
+	}
+};
 
 CurrentGameData.prototype.saveGameTime = function () {
     "use strict";
-    this.totalGameTime = [gameTimerMins, gameTimerSecs];
+    this.totalGameTime = gameTimerSecs;
 };
 
 CurrentGameData.prototype.addToWordSoundsCorrect = function (word){
@@ -121,3 +120,8 @@ CurrentGameData.prototype.addToWordSoundsCorrect = function (word){
 CurrentGameData.prototype.getWordListLength = function () {
 	return this.wordList.length;
 }
+
+CurrentGameData.prototype.getIndexOfWord = function (word) {
+    "use strict";
+    return this.wordList.indexOf(word);
+};

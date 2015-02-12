@@ -147,54 +147,54 @@ var loadGameData = function () {
     
     theLevel = rocketReadingModel.findLevelByNumber(0);
     rocketReadingModel.addAvatar("star", theLevel);
-    theLevel.addGame("Alphabet Sounds", alphabetSoundsList, theLevel.name, 1);
-    theLevel.addGame("Constant Blends 1", constantBlends1List, theLevel.name, 2);
-    theLevel.addGame("Constant Blends 2", constantBlends2List, theLevel.name, 3);
-    theLevel.addGame("Short Vowel Sounds", shortVowelsList, theLevel.name, 4);
-    theLevel.addGame("Long Vowels Sounds", longVowelsList, theLevel.name, 5);
-    theLevel.addGame("Middle Sounds", middleSoundsList, theLevel.name, 6);
+    theLevel.addGame("Alphabet Sounds", alphabetSoundsList, theLevel.getDescription(), 1);
+    theLevel.addGame("Constant Blends 1", constantBlends1List, theLevel.getDescription(), 2);
+    theLevel.addGame("Constant Blends 2", constantBlends2List, theLevel.getDescription(), 3);
+    theLevel.addGame("Short Vowel Sounds", shortVowelsList, theLevel.getDescription(), 4);
+    theLevel.addGame("Long Vowels Sounds", longVowelsList, theLevel.getDescription(), 5);
+    theLevel.addGame("Middle Sounds", middleSoundsList, theLevel.getDescription(), 6);
 	
     theLevel = rocketReadingModel.findLevelByNumber(1);
 	rocketReadingModel.addAvatar("icecream", theLevel);
-    theLevel.addGame("Game 1", wordList1, theLevel.name, 1);
-    theLevel.addGame("Game 2", wordList2, theLevel.name, 2);
-    theLevel.addGame("Game 3", wordList3, theLevel.name, 3);
-    theLevel.addGame("Game 4", wordList4, theLevel.name, 4);
+    theLevel.addGame("Game 1", wordList1, theLevel.getDescription(), 1);
+    theLevel.addGame("Game 2", wordList2, theLevel.getDescription(), 2);
+    theLevel.addGame("Game 3", wordList3, theLevel.getDescription(), 3);
+    theLevel.addGame("Game 4", wordList4, theLevel.getDescription(), 4);
     
     theLevel = rocketReadingModel.findLevelByNumber(2);
 	rocketReadingModel.addAvatar("tree", theLevel);
-    theLevel.addGame("Game 1", wordList5, theLevel.name, 1);
-    theLevel.addGame("Game 2", wordList6, theLevel.name, 2);
-    theLevel.addGame("Game 3", wordList7, theLevel.name, 3);
-    theLevel.addGame("Game 4", wordList8, theLevel.name, 4);
+    theLevel.addGame("Game 1", wordList5, theLevel.getDescription(), 1);
+    theLevel.addGame("Game 2", wordList6, theLevel.getDescription(), 2);
+    theLevel.addGame("Game 3", wordList7, theLevel.getDescription(), 3);
+    theLevel.addGame("Game 4", wordList8, theLevel.getDescription(), 4);
 
     theLevel = rocketReadingModel.findLevelByNumber(3);
 	rocketReadingModel.addAvatar("cloud", theLevel);
-    theLevel.addGame("Game 1", wordList9, theLevel.name, 1);
-    theLevel.addGame("Game 2", wordList10, theLevel.name, 2);
-    theLevel.addGame("Game 3", wordList11, theLevel.name, 3);
-    theLevel.addGame("Game 4", wordList12, theLevel.name, 4);
+    theLevel.addGame("Game 1", wordList9, theLevel.getDescription(), 1);
+    theLevel.addGame("Game 2", wordList10, theLevel.getDescription(), 2);
+    theLevel.addGame("Game 3", wordList11, theLevel.getDescription(), 3);
+    theLevel.addGame("Game 4", wordList12, theLevel.getDescription(), 4);
     
     theLevel = rocketReadingModel.findLevelByNumber(4);
 	rocketReadingModel.addAvatar("lollipop", theLevel);
-    theLevel.addGame("Game 1", wordList13, theLevel.name, 1);
-    theLevel.addGame("Game 2", wordList14, theLevel.name, 2);
-    theLevel.addGame("Game 3", wordList15, theLevel.name, 3);
-    theLevel.addGame("Game 4", wordList16, theLevel.name, 4);
+    theLevel.addGame("Game 1", wordList13, theLevel.getDescription(), 1);
+    theLevel.addGame("Game 2", wordList14, theLevel.getDescription(), 2);
+    theLevel.addGame("Game 3", wordList15, theLevel.getDescription(), 3);
+    theLevel.addGame("Game 4", wordList16, theLevel.getDescription(), 4);
     
     theLevel = rocketReadingModel.findLevelByNumber(5);
 	rocketReadingModel.addAvatar("pirate", theLevel);
-    theLevel.addGame("Game 1", wordList17, theLevel.name, 1);
-    theLevel.addGame("Game 2", wordList18, theLevel.name, 2);
-    theLevel.addGame("Game 3", wordList19, theLevel.name, 3);
-    theLevel.addGame("Game 4", wordList20, theLevel.name, 4);
+    theLevel.addGame("Game 1", wordList17, theLevel.getDescription(), 1);
+    theLevel.addGame("Game 2", wordList18, theLevel.getDescription(), 2);
+    theLevel.addGame("Game 3", wordList19, theLevel.getDescription(), 3);
+    theLevel.addGame("Game 4", wordList20, theLevel.getDescription(), 4);
     
     theLevel = rocketReadingModel.findLevelByNumber(6);
 	rocketReadingModel.addAvatar("car", theLevel);
-    theLevel.addGame("Game 1", wordList21, theLevel.name, 1);
-    theLevel.addGame("Game 2", wordList22, theLevel.name, 2);
-    theLevel.addGame("Game 3", wordList23, theLevel.name, 3);
-    theLevel.addGame("Game 4", wordList24, theLevel.name, 4);
+    theLevel.addGame("Game 1", wordList21, theLevel.getDescription(), 1);
+    theLevel.addGame("Game 2", wordList22, theLevel.getDescription(), 2);
+    theLevel.addGame("Game 3", wordList23, theLevel.getDescription(), 3);
+    theLevel.addGame("Game 4", wordList24, theLevel.getDescription(), 4);
     
 };
 

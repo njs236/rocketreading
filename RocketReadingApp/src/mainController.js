@@ -3,11 +3,11 @@
 var mainController = {
 
 	validateWords : function (word) {
-		var myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
-			levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
-            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
-			listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
-		mainController.spliceWord(word);
+        "use strict";
+		var listArrayCount,
+            myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
+            wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word);
+		mainController.spliceWord(wordIndex);
 		console.log("validateWords:" + myTimer);
 		myViewModelRR.clearTimer();
 		if (word !== null) {
@@ -36,15 +36,31 @@ var mainController = {
 		}
 		/*myViewModelRR.displayLearnWord();*/
 		rocketReadingModel.getCurrentGameData().clearMyTimer();
-		mainController.getMedalCounts();
-		mainController.getWordsCompletedData();
-		mainController.getScore();
+		mainController.displayMedalCounts();
+		mainController.displayWordsCompletedData();
+		mainController.displayScore();
+        listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
 		if (listArrayCount > 0) {
 			mainController.nextWord();
-		} else if (listArrayCount = 0) {
-			alert ("Game Finished! You completed Level "+ levelNumber + "Game " + gameNumber);
+		} else if (listArrayCount === 0) {
+            mainController.finishGame();
 		}
 	},
+    
+    finishGame: function () {
+        "use strict";
+        var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber();
+        alert ("Game Finished! You completed Level "+ levelNumber + "Game " + gameNumber);
+        // Stop the total game timer
+        clearInterval(gameTimer);
+        // Save the gameTimer to the currentGameData object
+        rocketReadingModel.getCurrentGameData().saveGameTime();
+        // Save the current game data to rocketReadingModel.myAllGamesData
+        rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
+        // Clear the current data object
+        rocketReadingModel.clearCurrentGameData();
+    },
 	
 	passWord: function (word) {
 		rocketReadingModel.passWord(word);
@@ -76,19 +92,19 @@ var mainController = {
 		myViewModelRR.displayTable(inputArray);
 	},
 	
-	getMedalCounts : function () {
+	displayMedalCounts : function () {
 		var medals = rocketReadingModel.getCurrentGameData().getMedalCounts();
 		console.log("getMedalCounts:" + medals)
 		myViewModelRR.displayMedalCounts(medals);
 	},
 	
-	getScore : function() {
+	displayScore : function() {
         "use strict";
 		var score = rocketReadingModel.getCurrentGameData().getScore();
 		myViewModelRR.displayScore(score);
 	},
 	
-	getWordsCompletedData : function () {
+	displayWordsCompletedData : function () {
         "use strict";
 		var progressData = [];
         progressData.push(rocketReadingModel.getCurrentGameData().getWordsCompleted());
@@ -96,7 +112,7 @@ var mainController = {
 		myViewModelRR.displayWordsCompleted(progressData);
 	},
     
-    getCurrentLevelGame: function () {
+    displayCurrentLevelGame: function () {
         "use strict";
         var levelGame = [];
         levelGame.push( rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber() );
@@ -160,7 +176,7 @@ var mainController = {
 	},
 	
 	returnMilliseconds : function (milliseconds) {
-		rocketReadingModel.getCurrentGameData().setTimer(milliseconds);
+		rocketReadingModel.getCurrentGameData().incrementTimer(milliseconds);
 		if (rocketReadingModel.getCurrentGameData().getTimer() >= 8000) {
 			mainController.validateWords();
 		}
@@ -185,8 +201,12 @@ var mainController = {
         "use strict";
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
-        // The system needs to save the user's current game details to the current game state object
-        rocketReadingModel.saveGameTime();
+        console.log("mainController: pauseCurrentGame(): " + rocketReadingModel.getCurrentGameData());
+        if (Object.getOwnPropertyNames(rocketReadingModel.myCurrentGameData).length !== 0) {
+            // If the user has not finished the current game then the system needs to save the current game timer to the current game state object
+            console.log("mainController: pauseCurrentGame(): saveGameTime!");
+            rocketReadingModel.saveGameTime();
+        }
     },
     
     loadPreviousGame: function () {
@@ -201,10 +221,10 @@ var mainController = {
     gameInitialise: function () {
         "use strict";
         mainController.createTable();
-        mainController.getMedalCounts();
-        mainController.getScore();
-        mainController.getWordsCompletedData();
-        mainController.getCurrentLevelGame();
+        mainController.displayMedalCounts();
+        mainController.displayScore();
+        mainController.displayWordsCompletedData();
+        mainController.displayCurrentLevelGame();
         //mainController.loadGameScreenIntro();
     },
     

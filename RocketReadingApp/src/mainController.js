@@ -161,7 +161,7 @@ var mainController = {
         "use strict";
 		var progressData = [];
         progressData.push(rocketReadingModel.getCurrentGameData().getWordsCompleted());
-        progressData.push(rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
+        progressData.push(rocketReadingModel.getCurrentGameData().getWordListCount());
 		myViewModelRR.displayWordsCompleted(progressData);
 	},
     

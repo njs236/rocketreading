@@ -5,6 +5,7 @@ var gameTimerSecs = 0,
     gameTimer,
     timer,
 	aTimer,
+	learnWordListener,
     timerModal;
 
 // Adding a user to local storage

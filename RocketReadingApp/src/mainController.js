@@ -4,12 +4,12 @@ var mainController = {
 
 	validateWords : function (word) {
         "use strict";
-		var listArrayCount,
-            myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
+		var myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
             wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word);
-		mainController.spliceWord(wordIndex);
-		console.log("validateWords:" + myTimer);
 		myViewModelRR.clearTimer();
+		myViewModelRR.removeEventClick();
+		mainController.spliceWord(wordIndex);
+		/*console.log("validateWords:" + myTimer);*/
 		if (word !== null) {
 			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
@@ -27,26 +27,37 @@ var mainController = {
 					rocketReadingModel.getCurrentGameData().setScore(1);
 				}
 				alert ("Correct Word! You selected " + word);
-
+				mainController.initialiseNextWord();
 			} else {
 				// this is the incorrect word selection
+				myViewModelRR.displayLearnWord();
+				myViewModelRR.eventLearnWord();
 			}
 		} else {
 			// this is the too long selection
+			myViewModelRR.displayLearnWord();
+			myViewModelRR.eventLearnWord();
 		}
-		/*myViewModelRR.displayLearnWord();*/
+	},
+	
+	learnWord : function () {
+		myViewModelRR.displayLearnWord();
+		mainController.initialiseNextWord();
+	},
+    
+	initialiseNextWord : function () {
+        var listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
 		rocketReadingModel.getCurrentGameData().clearMyTimer();
 		mainController.displayMedalCounts();
 		mainController.displayWordsCompletedData();
 		mainController.displayScore();
-        listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
 		if (listArrayCount > 0) {
 			mainController.nextWord();
 		} else if (listArrayCount === 0) {
             mainController.finishGame();
 		}
 	},
-    
+	
     finishGame: function () {
         "use strict";
         var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
@@ -196,9 +207,10 @@ var mainController = {
 	},
     
 	createWordTimer : function () {
+		var milliseconds;
 		aTimer = setInterval(function () {
-			var milliseconds = 100;
-			mainController.returnMilliseconds(milliseconds)
+			milliseconds = 100;
+			mainController.returnMilliseconds(milliseconds);
 		}, 100)
 	},
 	
@@ -207,7 +219,7 @@ var mainController = {
 		if (rocketReadingModel.getCurrentGameData().getTimer() >= 8000) {
 			mainController.validateWords();
 		}
-		console.log("returnMilliseconds:" + rocketReadingModel.getCurrentGameData().getTimer())
+		/*console.log("returnMilliseconds:" + rocketReadingModel.getCurrentGameData().getTimer())*/
 	},
 	
     startGameTimer: function () {
@@ -302,6 +314,7 @@ var mainController = {
         mainController.displayScore();
         mainController.displayWordsCompletedData();
         mainController.displayCurrentLevelGame();
+		mainController.getAvatar();
         //mainController.loadGameScreenIntro();
     },
     

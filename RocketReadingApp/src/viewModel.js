@@ -225,6 +225,30 @@ var myViewModelRR = {
         "use strict";
         viewHTMLModule.showGameScreen();
     },
+	
+	displayLearnWord : function () {
+		this.view.displayLearnWord();
+	},
+	
+	displayAvatar : function (avatar) {
+		this.view.displayAvatar(avatar);
+	},
+	
+	eventClickAdd : function () {
+		this.view.eventClickAdd();
+	},
+	
+	removeEventClick : function () {
+		this.view.removeEventClick();
+	},
+	
+	eventLearnWord : function () {
+		this.view.eventLearnWord();
+	},
+	
+	removeLearnWord : function () {
+		this.view.removeLearnWord();
+	},
     
     /*
     displayGameIntroConfirm: function () {

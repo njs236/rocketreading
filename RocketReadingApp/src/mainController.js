@@ -134,14 +134,15 @@ var mainController = {
     
     createTable : function () {
         "use strict";
-        // The input array should be the untouched wordlist for this game. If the current game's word list is used instead, the result would be that when the user leaves a current game and comes back to that game later only the words the user has not been tested on yet will be shown in the table.
-		var inputArray = rocketReadingModel.getCurrentGameData().getWordList();
+        // Use the complete word list array to build the table (in case the player is returning to the game)
+		var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
+            completeWordList = rocketReadingModel.getCurrentGameData().getCompleteWordList();
         // The wordlist needs to be arranged in a random order
-        inputArray = this.randomiseArray(inputArray);
-        // Set the randomised array as the word list for the current game
-        rocketReadingModel.getCurrentGameData().passList(inputArray);
-        // Display the table with the randomised wordlist
-		myViewModelRR.displayTable(inputArray);
+        completeWordList = this.randomiseArray(completeWordList);
+        // Set the other wordlist array as the word list for the current game
+        rocketReadingModel.getCurrentGameData().passList(wordList);
+        // Display the table with the randomised complete wordlist
+		myViewModelRR.displayTable(completeWordList);
 	},
 	
 	displayMedalCounts : function () {
@@ -160,7 +161,7 @@ var mainController = {
         "use strict";
 		var progressData = [];
         progressData.push(rocketReadingModel.getCurrentGameData().getWordsCompleted());
-        progressData.push(rocketReadingModel.getCurrentGameData().getWordListCount());
+        progressData.push(rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
 		myViewModelRR.displayWordsCompleted(progressData);
 	},
     
@@ -185,7 +186,7 @@ var mainController = {
 		myViewModelRR.displayGameNumber(gameNumber);
 	},
 	
-	getAvatar : function () {
+	displayAvatar : function () {
         "use strict";
 		var avatar = rocketReadingModel.getCurrentGameData().getCurrentLevel().getAvatar();
 		myViewModelRR.displayAvatar(avatar);
@@ -205,9 +206,7 @@ var mainController = {
     
     nextWord: function() {
         "use strict";
-        var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
-            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
-            listArray = rocketReadingModel.getCurrentGameData().getWordList(),
+        var listArray = rocketReadingModel.getCurrentGameData().getWordList(),
 			currentWordIndex = Math.floor(Math.random() * listArray.length),
             currentWord = listArray[currentWordIndex];
         rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
@@ -276,9 +275,7 @@ var mainController = {
     checkGameResumption: function () {
     // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
         "use strict";
-        var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
-            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
-            levelGame = [levelNumber, gameNumber];
+        var levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
             // Check with the user whether they wish to resume the old game or start a new game
         } else {
@@ -291,7 +288,7 @@ var mainController = {
         "use strict";
         var levelNumber,
             gameNumber,
-            levelGame;
+            levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
         console.log("mainController: leaveCurrentGame() current word: " + rocketReadingModel.getCurrentGameData().getCurrentWord());
@@ -300,9 +297,6 @@ var mainController = {
             console.log("mainController: pauseCurrentGame(): saveGameTime!");
             rocketReadingModel.getCurrentGameData().saveGameTime();
             // The current game data is recorded as having a saved game
-            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber();
-            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber();
-            levelGame = [levelNumber, gameNumber];
             rocketReadingModel.getCurrentGameData().setSavedLevelGame(levelGame);
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {
             // If the user has completed the current game then the game screen's total game time will be reset to 0.
@@ -317,26 +311,32 @@ var mainController = {
         // The system get the user's current game details and opens the particular screen
         mainController.gameInitialise();
         myViewModelRR.showGameScreen();
-        // The modal screen should then be displayed
-        // When the user should clicks the Start link the game timer should then start
+        // Ideally, when the user clicks the Continue button and returns to the saved game the modal screen should be displayed. And so, when the user clicks the Start link on the modal page the game timer should then start
         // The game timer is started again
-        // mainController.startGameTimer();
+        mainController.startGameTimer();
+        // The next word is selected
+        mainController.nextWord();
     },
     
     gameInitialise: function () {
         "use strict";
-        //var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
-        //   gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
-        //  levelGame = [levelNumber, gameNumber];
+        var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
+            completeWordList = wordList.slice(0),
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+            levelGame = [levelNumber, gameNumber];
+        // Set the currentLevelGame property of currentGameData
+        rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGame);
+        // Set the complete word list as a copy of currentGameData.wordList (This property is necessary to have, because for some reason the wordlist property of myGame in currentGameData is empty)
+        rocketReadingModel.getCurrentGameData().setCompleteWordList(completeWordList);
+        
+        // The game screen is setup
         mainController.createTable();
         mainController.displayMedalCounts();
         mainController.displayScore();
         mainController.displayWordsCompletedData();
         mainController.displayCurrentLevelGame();
-        mainController.getAvatar();
-        
-        // The current Level-Game will be set
-        //rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGame);
+        mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
     },
     

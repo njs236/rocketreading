@@ -15,6 +15,7 @@ var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, 
     this.totalGameTime = newTotalGameTime|| 0;
     this.wordsSoundsCorrect = newWordsSoundsCorrect || [];
     this.wordsSoundsIncorrect = newWordsSoundsIncorrect || [];
+	this.incorrectWord = null;
     
     return this;
 };
@@ -159,3 +160,12 @@ CurrentGameData.prototype.getCurrentLevelGame = function () {
     "use strict";
     return this.currentLevelGame;
 };*/
+
+CurrentGameData.prototype.setIncorrectWord = function (word) {
+	this.incorrectWord = word;
+	this.wordSoundsIncorrect.push(word);
+};
+
+CurrentGameData.prototype.getIncorrectWord = function () {
+	return this.incorrectWord;
+}

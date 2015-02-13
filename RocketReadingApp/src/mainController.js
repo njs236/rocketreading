@@ -5,14 +5,15 @@ var mainController = {
 	validateWords : function (word) {
         "use strict";
 		var myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
-            wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word);
+            wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word),
+			incorrectWord = rocketReadingModel.getCurrentGameData().getIncorrectWord();
 		myViewModelRR.clearTimer();
-		myViewModelRR.removeEventClick();
 		/*console.log("validateWords:" + myTimer);*/
 		if (word !== null) {
 			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
 				mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
+				if (incorrectWord === null) {
 					if (myTimer <= 2000) {
 						//do things here
 						rocketReadingModel.getCurrentGameData().setMedal('gold');
@@ -26,22 +27,28 @@ var mainController = {
 						rocketReadingModel.getCurrentGameData().setMedal('bronze');
 						rocketReadingModel.getCurrentGameData().setScore(1);
 					};
+				} else {
+					//what happens when you select the right word after you have got it incorrect
+					mainController.exitingLearnWord();
+				}
 				alert ("Correct Word! You selected " + word);
 				mainController.initialiseNextWord();
 			} else {
 				// this is the incorrect word selection
+				rocketReadingModel.getCurrentGameData().setIncorrectWord(rocketReadingModel.getCurrentGameData().getCurrentWord());
 				myViewModelRR.displayLearnWord();
 				myViewModelRR.eventLearnWord();
 			}
 		} else {
 			// this is the too long selection
+			rocketReadingModel.getCurrentGameData().setIncorrectWord(rocketReadingModel.getCurrentGameData().getCurrentWord());
 			myViewModelRR.displayLearnWord();
 			myViewModelRR.eventLearnWord();
-		}
+		};
 	},
 	
 	learnWord : function () {
-		mainController.exitingLearnWord();
+
 	},
 	
 	exitingLearnWord : function () {
@@ -51,6 +58,8 @@ var mainController = {
     
 	initialiseNextWord : function () {
         var listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
+		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
+		myViewModelRR.removeEventClick();
 		rocketReadingModel.getCurrentGameData().clearMyTimer();
 		mainController.displayMedalCounts();
 		mainController.displayWordsCompletedData();

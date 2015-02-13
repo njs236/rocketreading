@@ -41,7 +41,7 @@ var mainController = {
 	},
 	
 	learnWord : function () {
-
+		mainController.exitingLearnWord();
 	},
 	
 	exitingLearnWord : function () {

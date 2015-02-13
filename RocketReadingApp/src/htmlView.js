@@ -222,6 +222,7 @@ var viewHTMLModule = {
 	
 	clearTimer: function () {
 		window.clearInterval(aTimer);
+		console.log("clearTimer: Removed Timer");
 	},
 	
 	displayTextAndScores : function () {
@@ -256,6 +257,28 @@ var viewHTMLModule = {
 	
 	},
 	
+	displayLearnWord : function () {
+		var learnWordButton = document.getElementById('learnWordText');
+		if (learnWordButton.className == "normal") {
+			learnWordButton.className = "learning";
+		} else if (learnWordButton.className == "learning"){
+			learnWordButton.className = "normal";
+		}
+	},
+	
+	eventLearnWord : function () {
+		var learnWordButton = document.getElementById('learnWordText');
+		learnWordListener = function () {
+			myViewModelRR.removeLearnWord();
+			mainController.learnWord();
+		};
+		learnWordButton.addEventListener("click", learnWordListener);
+	},
+	
+	removeLearnWord : function () {
+		var learnWordButton = document.getElementById('learnWordText');
+		learnWordButton.removeEventListener("click", learnWordListener);
+	},
 	
 	displayTable : function (inputArray) {
 		var newRow,
@@ -281,13 +304,24 @@ var viewHTMLModule = {
 			newCell.id = "cell" + wordCount;
 			newCell.className = "wordCell";
 		};
-		cells = document.getElementsByClassName('wordCell');
-		for (cellCount = 0; cellCount < inputArray.length; cellCount = cellCount + 1) {
+	},
+	
+	eventClickAdd : function () {
+		var cells = document.getElementsByClassName('wordCell');
+		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].addEventListener("click", viewHTMLModule.guessWord);
-			console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)
+			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
 		};
 	},
-    
+	
+	removeEventClick : function () {
+		var cells = document.getElementsByClassName('wordCell');
+		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
+			cells[cellCount].removeEventListener("click", viewHTMLModule.guessWord);
+			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
+		};
+	},
+	 
     displayWordsCompleted: function (progressData) {
         "use strict";
         document.getElementById("gameProgressText").textContent = progressData[0] + "/" + progressData[1] + " Words Complete";   
@@ -302,6 +336,11 @@ var viewHTMLModule = {
         "use strict";
         document.getElementById("gameLevelIDText").textContent = "Level " + levelGame[0] + " - Game " + levelGame[1];
     },
+	
+	displayAvatar: function (avatar) {
+		var theAvatar = document.getElementById('gameAvatar');
+		theAvatar.src = "images/" + avatar.getName() + ".png";
+	},
     
     displayGameTimer: function () {
         "use strict";
@@ -333,8 +372,9 @@ var viewHTMLModule = {
         audio.addEventListener('loadedmetadata', function(){
             var duration;
             duration = audio.duration;
-            duration = duration * 1000;
+            duration = duration * 1000 + 1000;
             timer = setTimeout(function (){	
+				viewHTMLModule.eventClickAdd();
 				mainController.createWordTimer();
             }, duration);
          });

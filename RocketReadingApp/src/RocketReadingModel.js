@@ -57,12 +57,15 @@ RocketReadingModel.prototype.addPlayer = function (newUser, newFirstName, newLas
     var newPlayer = new Player(newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel);
 	newPlayer.currentGameData = this.myCurrentGameData;
 	newPlayer.allGamesData = this.myAllGamesData;
-    localStorage.setItem(newUser, JSON.stringify(newPlayer));
+    this.myPlayer = newPlayer;
+    // Save the player in local storage
+    // localStorage.setItem(newUser, JSON.stringify(newPlayer));
 };
 
 
 RocketReadingModel.prototype.setPlayer = function (player) {
 	this.myPlayer = player;
+    //console.log("RocketReadingModel.setPlayer() level reached - " + rocketReadingModel.getMyPleyer());
 };
 
 RocketReadingModel.prototype.getMyPlayer = function () {

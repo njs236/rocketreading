@@ -127,14 +127,11 @@ var loadGameData = function () {
     /* and so on ... */
     
     // The system will delete any old instances of objects in the system
-    // rocketReadingModel.deleteAll(); This isn't necessary
-	// Creating current Game Data and AllGamesData.
-	
-	rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], []);
-	rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
-	
-	// It's interesting to see what happens when passing the score as 0 (and the prototype object does not set the total score as 0 if there is not input parameter for this attribute.
-    rocketReadingModel.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400);
+    // rocketReadingModel.deleteAll(); This isn't necessary - previous data will be clobbered by the new
+
+    // rocketReadingModel.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400);
+    // The player will be added to the root object when he or she logs in. Still need to add the player to local storage when the program loads:
+    localStorage.setItem("Maccas", JSON.stringify({userName: "Maccas", firstName: "Lucky", lastName: "Louis", school: "Lincoln Primary", classRoom: "b1", totalScore: 0, levelGameReached: [1, 1], bonusGameReached: 1, pointsToPassLevel: 400}));
 	rocketReadingModel.addPlayer('admin', 'Andrew', 'Papanui', 'Papanui High School', 'staff', 10000, [6,4], 5, 0);
 	
     // Add levels to the system

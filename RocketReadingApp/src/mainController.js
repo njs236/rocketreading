@@ -110,9 +110,10 @@ var mainController = {
         return Number(inputId.slice(inputId.search(/[1-9]/), inputId.length));
     },
 	
-	setCurrentGame : function () {
+	setCurrentGame : function (gameString) {
 		"use strict";
-		var gameNumber = mainController.getStringNumber(this.id);
+        // Using this.id as the argument for getStringNumber() will not work now because this function is being called by other functions
+		var gameNumber = mainController.getStringNumber(gameString);
 		console.log("setCurrentGame() - gameNumber (regex):" + gameNumber);
 		// Loading selected Game into currentGame in currentGameData
 		rocketReadingModel.getCurrentGameData().setCurrentGame(rocketReadingModel.findGameByNumber(gameNumber));
@@ -260,12 +261,20 @@ var mainController = {
         var levelGame;
         if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === null) {
             // If the user has completed a previous game then the timers and game time display will be reset
-            mainController.resetGameTimers()
+            mainController.resetGameTimers();
             // The system will open the highest level game screen which the user has reached 
+            console.log("mainController.resolveContinueBtn() getMyPlayer(): " + rocketReadingModel.getMyPlayer().getLevelGameReached());
             levelGame = rocketReadingModel.getMyPlayer().getLevelGameReached();
-            rocketReadingModel.getCurrentGameData().setCurrentLevel(levelGame[0]);
-            rocketReadingModel.getCurrentGameData().setCurrentGame(levelGame[1]);
+            rocketReadingModel.getCurrentGameData().setCurrentLevel(rocketReadingModel.findLevelByNumber(levelGame[0]));
+            rocketReadingModel.getCurrentGameData().setCurrentGame(rocketReadingModel.findGameByNumber(levelGame[1]));
             mainController.gameInitialise();
+            // The game screen is displayed
+            myViewModelRR.showGameScreen();
+            // Ideally an introduction modal screen should be displayed when the game screen is first opened
+            // The game timer is started again
+            mainController.startGameTimer();
+            // The next word is selected
+            mainController.nextWord();
         } else if ((rocketReadingModel.getCurrentGameData().getSavedLevelGame() !== null)) {
             // If the user has a saved game then the screen for that level-game will be displayed
             mainController.loadPreviousGame();
@@ -428,7 +437,12 @@ var mainController = {
 	setPlayer: function (username) {
         "use strict";
 		var playerData = storageController.getPlayer(username);
-		rocketReadingModel.setPlayer(playerData);
+        console.log("mainController.setPlayer(): setPlayer() player's school - " + playerData.school);
+        // Creating current Game Data and AllGamesData for the new player, and then adding the player to the system.
+        // It's interesting to see what happens when passing the score as 0 (and the constructor does not set the total score as 0 if there is not input parameter for this attribute.
+        rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], []);
+        rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
+		rocketReadingModel.addPlayer(playerData.userName, playerData.firstName, playerData.lastName, playerData.school, playerData.classRoom, playerData.totalScore, playerData.levelGameReached, playerData.bonusGameReached, playerData.pointsToPassLevel);
 		myViewModelRR.displayPlayerName(username);
 	}
 	

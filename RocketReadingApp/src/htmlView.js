@@ -164,6 +164,11 @@ var viewHTMLModule = {
 	// *******************************************
 	// ******* Game Select Screen Section ********
 	// *******************************************
+    
+    setCurrentGame: function () {
+        "use strict";
+        mainController.setCurrentGame(this.id);
+    },
 	
 	displayGameOptions: function (gameOptionsData) {
 		//displayGameOptions() Function v1.3
@@ -205,8 +210,8 @@ var viewHTMLModule = {
 			
 			gameSelectMainDiv.lastChild.appendChild(newAnchor);
 			
-			// Adding an event-listener to the div
-			newDiv.addEventListener("click", mainController.setCurrentGame);
+			// Adding event-listeners to the div. setCurrentGame() now has an input parameter. Need to use closures in order to ensure the correct parameter is passed to the setCurrentGame() function
+            newDiv.addEventListener("click", this.setCurrentGame);
             newDiv.addEventListener("click", mainController.checkGameResumption);
 			newDiv.addEventListener("click", this.showGameScreen);
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);

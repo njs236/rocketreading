@@ -127,7 +127,7 @@ var mainController = {
     createTable : function () {
         "use strict";
         // The input array should be the untouched wordlist for this game. If the current game's word list is used instead, the result would be that when the user leaves a current game and comes back to that game later only the words the user has not been tested on yet will be shown in the table.
-		var inputArray = rocketReadingModel.getCurrentGameData().getWholeWordList();
+		var inputArray = rocketReadingModel.getCurrentGameData().getWordList();
         // The wordlist needs to be arranged in a random order
         inputArray = this.randomiseArray(inputArray);
         // Set the randomised array as the word list for the current game

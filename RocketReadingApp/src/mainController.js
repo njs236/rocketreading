@@ -52,13 +52,12 @@ var mainController = {
 	},
 	
 	exitingLearnWord : function () {
+		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
 		myViewModelRR.displayLearnWord();
-		mainController.initialiseNextWord();
 	},
     
 	initialiseNextWord : function () {
         var listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
-		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
 		myViewModelRR.removeEventClick();
 		rocketReadingModel.getCurrentGameData().clearMyTimer();
 		mainController.displayMedalCounts();

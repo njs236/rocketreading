@@ -6,6 +6,8 @@ var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, 
 	this.wordList = newWordList || [];
 	this.wordListCount = this.wordList.length;
 	this.currentWord = newCurrentWord || null;
+    this.wholeWordList = [];
+    //this.currentLevelGame = [];
     this.savedLevelGame = newSavedLevelGame || null;
     this.gameScore = newGameScore || 0;
     this.gameMedals = newGameMedals || [0,0,0];
@@ -25,6 +27,14 @@ CurrentGameData.prototype.passList = function (list) {
     this.wordList = list;
 };
 
+CurrentGameData.prototype.getWholeWordList = function () {
+	return this.wholeWordList;
+};
+
+CurrentGameData.prototype.setWholeWordList = function (list) {
+    this.wholeWordList = list;
+};
+
 CurrentGameData.prototype.setCurrentLevel = function (level) {
     "use strict";
 	this.myLevel = level;
@@ -39,6 +49,10 @@ CurrentGameData.prototype.setCurrentGame = function (game) {
 CurrentGameData.prototype.setCurrentWord = function (currentWord) {
     "use strict";
     this.currentWord = currentWord;
+};
+
+CurrentGameData.prototype.getCurrentWord = function () {
+	return this.currentWord;
 };
 
 CurrentGameData.prototype.loadGame = function () {
@@ -135,3 +149,13 @@ CurrentGameData.prototype.getIndexOfWord = function (word) {
     "use strict";
     return this.wordList.indexOf(word);
 };
+/*
+CurrentGameData.prototype.setCurrentLevelGame = function (levelGame) {
+    "use strict";
+    this.currentLevelGame = levelGame;
+};
+
+CurrentGameData.prototype.getCurrentLevelGame = function () {
+    "use strict";
+    return this.currentLevelGame;
+};*/

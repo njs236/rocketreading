@@ -43,7 +43,7 @@ CurrentGameData.prototype.setCurrentLevel = function (level) {
 
 CurrentGameData.prototype.setCurrentGame = function (game) {
 	this.myGame = game;
-	this.wordList = this.myGame.getWordList();
+	this.wordList = this.myGame.getWordList().slice(0);
 	this.wordListCount = this.wordList.length;
 };
 

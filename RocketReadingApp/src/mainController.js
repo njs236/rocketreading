@@ -322,7 +322,7 @@ var mainController = {
     gameInitialise: function () {
         "use strict";
         var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
-            completeWordList = wordList.slice(0),
+            completeWordList = rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().slice(0),
             levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
             levelGame = [levelNumber, gameNumber];

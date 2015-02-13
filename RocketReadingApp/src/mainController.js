@@ -264,7 +264,7 @@ var mainController = {
             // The system will open the highest level game screen which the user has reached 
             levelGame = rocketReadingModel.getMyPlayer().getLevelGameReached();
             rocketReadingModel.getCurrentGameData().setCurrentLevel(levelGame[0]);
-            rocketReadingModel.getCurrentGameData().setCurrentLevel(levelGame[1]);
+            rocketReadingModel.getCurrentGameData().setCurrentGame(levelGame[1]);
             mainController.gameInitialise();
         } else if ((rocketReadingModel.getCurrentGameData().getSavedLevelGame() !== null)) {
             // If the user has a saved game then the screen for that level-game will be displayed
@@ -279,6 +279,7 @@ var mainController = {
         if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
             // Check with the user whether they wish to resume the old game or start a new game
         } else {
+            // The data for the previous game in the current object needs to be cleared and data for the new game set
             mainController.resetGameTimers();
             mainController.gameInitialise();
         }

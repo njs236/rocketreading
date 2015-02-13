@@ -321,7 +321,7 @@ var viewHTMLModule = {
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
 		};
 	},
-    
+	 
     displayWordsCompleted: function (progressData) {
         "use strict";
         document.getElementById("gameProgressText").textContent = progressData[0] + "/" + progressData[1] + " Words Complete";   

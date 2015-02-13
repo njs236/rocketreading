@@ -8,24 +8,24 @@ var mainController = {
             wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word);
 		myViewModelRR.clearTimer();
 		myViewModelRR.removeEventClick();
-		mainController.spliceWord(wordIndex);
 		/*console.log("validateWords:" + myTimer);*/
 		if (word !== null) {
 			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
+				mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
-				if (myTimer <= 2000) {
-					//do things here
-					rocketReadingModel.getCurrentGameData().setMedal('gold');
-					rocketReadingModel.getCurrentGameData().setScore(5);
-				} else if ( 2000 < myTimer && myTimer <= 4000 ) {
-					//do things here
-					rocketReadingModel.getCurrentGameData().setMedal('silver');
-					rocketReadingModel.getCurrentGameData().setScore(3);
-				} else if ( 4000 < myTimer && myTimer < 8000 ) {
-					//do things here
-					rocketReadingModel.getCurrentGameData().setMedal('bronze');
-					rocketReadingModel.getCurrentGameData().setScore(1);
-				}
+					if (myTimer <= 2000) {
+						//do things here
+						rocketReadingModel.getCurrentGameData().setMedal('gold');
+						rocketReadingModel.getCurrentGameData().setScore(5);
+					} else if ( 2000 < myTimer && myTimer <= 4000 ) {
+						//do things here
+						rocketReadingModel.getCurrentGameData().setMedal('silver');
+						rocketReadingModel.getCurrentGameData().setScore(3);
+					} else if ( 4000 < myTimer && myTimer < 8000 ) {
+						//do things here
+						rocketReadingModel.getCurrentGameData().setMedal('bronze');
+						rocketReadingModel.getCurrentGameData().setScore(1);
+					};
 				alert ("Correct Word! You selected " + word);
 				mainController.initialiseNextWord();
 			} else {
@@ -41,6 +41,10 @@ var mainController = {
 	},
 	
 	learnWord : function () {
+
+	},
+	
+	exitingLearnWord : function () {
 		myViewModelRR.displayLearnWord();
 		mainController.initialiseNextWord();
 	},
@@ -189,7 +193,7 @@ var mainController = {
         timerModal = setTimeout();
     },*/
     
-    nextWord: function(levelNumber, gameNumber, listArray) {
+    nextWord: function() {
         "use strict";
         var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),

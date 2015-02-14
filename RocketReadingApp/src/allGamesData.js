@@ -145,7 +145,7 @@ AllGamesData.prototype.updateAllGamesData = function (username, gameData) {
     localStorage.setItem(username, JSON.stringify(playerData));
 };
 
-// itemAndTime may be a global var
+/* itemAndTime may be a global var
 var updateCurrentGameCorrectWords = function (itemAndTime) {
     "use strict";
     var playerData = JSON.parse(localStorage.getItem(player.username));
@@ -159,4 +159,4 @@ var updateCurrentGamesIncorrectWords = function (itemAndBadAttempts) {
     var playerData = JSON.parse(localStorage.getItem(player.username));
     playerData.currentGameData.wordsSoundsCorrect.push(itemAndBadAttempts);
     localStorage.setItem(username, JSON.stringify(playerData));
-};
+};*/

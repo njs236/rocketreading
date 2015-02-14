@@ -70,6 +70,13 @@ var mainController = {
             mainController.finishGame();
 		}
 	},
+    
+    updateLevelGameReached: function () {
+        "use strict";
+        if (rocketReadingModel.getMyPlayer().getLevelGameReached()) {
+            // If the player has not reached the top levelgame or bonus game then the levelGameReached or bonusGameReached property will be incremented by 1
+        }
+    },
 	
     finishGame: function () {
         "use strict";
@@ -82,15 +89,18 @@ var mainController = {
         rocketReadingModel.getCurrentGameData().saveGameTime();
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
+        // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
+        // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
+        mainController.updateLevelGameReached();
         // Clear the current data object
         rocketReadingModel.clearCurrentGameData();
         // Create a bare current data object and assign it as a property of the Rocket-Reading object
-        mainController.resetCurrentGameData();
+        mainController.resetCurrentGameData(null, null, null, null);
     },
     
-    resetCurrentGameData: function () {
+    resetCurrentGameData: function (newLevel, newGame, newWordList, newCurrentLevelGame) {
         "use strict";
-        rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], 0, 0, [], []);
+        rocketReadingModel.addCurrentGameData(newLevel, newGame, newWordList, null, newCurrentLevelGame, null, 0, [0,0,0], 0, 0, [], []);
     },
 	
 	passWord: function (word) {
@@ -110,15 +120,15 @@ var mainController = {
         return Number(inputId.slice(inputId.search(/[1-9]/), inputId.length));
     },
 	
-	setCurrentGame : function (gameString) {
+	setGameAndWordList : function (gameString) {
 		"use strict";
         // Using this.id as the argument for getStringNumber() will not work now because this function is being called by other functions
 		var gameNumber = mainController.getStringNumber(gameString),
             levelGames = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         levelGames[1] = gameNumber;
-		console.log("setCurrentGame() - gameNumber (regex):" + gameNumber);
+		console.log("setGameAndWordList() - gameNumber (regex):" + gameNumber);
 		// Loading selected Game into currentGame in currentGameData
-		rocketReadingModel.getCurrentGameData().setCurrentGame(rocketReadingModel.findGameByNumber(gameNumber));
+		rocketReadingModel.getCurrentGameData().setGameAndWordList(rocketReadingModel.findGameByNumber(gameNumber));
         // The game part of currentGameData.currentLevelGame needs to be set
         rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGames);
 	},
@@ -167,6 +177,7 @@ var mainController = {
 		var progressData = [];
         progressData.push(rocketReadingModel.getCurrentGameData().getWordsCompleted());
         progressData.push(rocketReadingModel.getCurrentGameData().getWordListCount());
+        // Or: progressData.push(rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().length);
 		myViewModelRR.displayWordsCompleted(progressData);
 	},
     
@@ -260,25 +271,35 @@ var mainController = {
         myViewModelRR.resetGameTimer();
     },
     
+    checkAdvanceNextGame: function () {
+    // This function checks whether the player needs to complete a bonus game before advancing to the next level
+        "use strict";
+        
+    },
+    
     resolveContinueBtn: function () {
         "use strict";
         var levelGame;
         if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === null) {
             // If the user has completed a previous game then the timers and game time display will be reset
             mainController.resetGameTimers();
-            // The system will open the highest level game screen which the user has reached 
-            console.log("mainController.resolveContinueBtn() getMyPlayer(): " + rocketReadingModel.getMyPlayer().getLevelGameReached());
-            levelGame = rocketReadingModel.getMyPlayer().getLevelGameReached();
-            rocketReadingModel.getCurrentGameData().setCurrentLevel(rocketReadingModel.findLevelByNumber(levelGame[0]));
-            rocketReadingModel.getCurrentGameData().setCurrentGame(rocketReadingModel.findGameByNumber(levelGame[1]));
-            mainController.gameInitialise();
-            // The game screen is displayed
-            myViewModelRR.showGameScreen();
-            // Ideally an introduction modal screen should be displayed when the game screen is first opened
-            // The game timer is started again
-            mainController.startGameTimer();
-            // The next word is selected
-            mainController.nextWord();
+            // The system will open the highest level game screen which the user has reached. What if the user needs to complete a bonus game before starting the next level-game?
+            if (mainController.checkAdvanceNextGame()) {
+                console.log("mainController.resolveContinueBtn() getMyPlayer(): " + rocketReadingModel.getMyPlayer().getLevelGameReached());
+                levelGame = rocketReadingModel.getMyPlayer().getLevelGameReached();
+                rocketReadingModel.getCurrentGameData().setCurrentLevel(rocketReadingModel.findLevelByNumber(levelGame[0]));
+                rocketReadingModel.getCurrentGameData().setGameAndWordList(rocketReadingModel.findGameByNumber(levelGame[1]));
+                mainController.gameInitialise();
+                // The game screen is displayed
+                myViewModelRR.showGameScreen();
+                // Ideally an introduction modal screen should be displayed when the game screen is first opened
+                // The game timer is started again
+                mainController.startGameTimer();
+                // The next word is selected
+                mainController.nextWord();
+            } else {
+                // The user will have to complete a bonus game before advaning to the next level
+            }
         } else if ((rocketReadingModel.getCurrentGameData().getSavedLevelGame() !== null)) {
             // If the user has a saved game then the screen for that level-game will be displayed
             mainController.loadPreviousGame();
@@ -288,14 +309,20 @@ var mainController = {
     checkGameResumption: function () {
     // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
         "use strict";
-        var levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
+        var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+            level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+            wordList = rocketReadingModel.getCurrentGameData().getWordList(),
+            levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
             // Check with the user whether they wish to resume the old game or start a new game
         } else {
             // The data for the previous game in the current object needs to be cleared and data for the new game set
+            // Not all properties will be clobbered by the resetCurrentGameData() function - all the properties of currentGameData should really be set-able by addCurrentGameData()
+            rocketReadingModel.clearCurrentGameData();
+            // Create a new current data object, setting it the appropriate values for the currentLevelGame, myGame, myLevel and wordList properties, and then assign it as a property of the Rocket-Reading object
+            mainController.resetCurrentGameData(level, game, wordList, levelGame);
             mainController.resetGameTimers();
             mainController.gameInitialise();
-            // The scores, word-list(?), numbers of wordsCompleted and medals need to be reset too
         }
     },
     
@@ -448,7 +475,7 @@ var mainController = {
         console.log("mainController.setPlayer(): setPlayer() player's school - " + playerData.school);
         // Creating current Game Data and AllGamesData for the new player, and then adding the player to the system.
         // It's interesting to see what happens when passing the score as 0 (and the constructor does not set the total score as 0 if there is not input parameter for this attribute.
-        rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], []);
+        rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, 0, [0,0,0], null, null, [], []);
         rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
 		rocketReadingModel.addPlayer(playerData.userName, playerData.firstName, playerData.lastName, playerData.school, playerData.classRoom, playerData.totalScore, playerData.levelGameReached, playerData.bonusGameReached, playerData.pointsToPassLevel);
 		myViewModelRR.displayPlayerName(username);

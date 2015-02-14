@@ -1,13 +1,13 @@
-var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
 	this.myTimer = 0;
 	this.wordList = newWordList || [];
-	this.wordListCount = this.wordList.length;
+    this.wordListCount = this.wordList.length;
 	this.currentWord = newCurrentWord || null;
     this.completeWordList = [];
-    this.currentLevelGame = [];
+    this.currentLevelGame = newCurrentLevelGame || [];
     this.savedLevelGame = newSavedLevelGame || null;
     this.gameScore = newGameScore || 0;
     this.gameMedals = newGameMedals || [0,0,0];
@@ -41,7 +41,7 @@ CurrentGameData.prototype.setCurrentLevel = function (level) {
 	this.myLevel = level;
 };
 
-CurrentGameData.prototype.setCurrentGame = function (game) {
+CurrentGameData.prototype.setGameAndWordList = function (game) {
 	this.myGame = game;
 	this.wordList = this.myGame.getWordList().slice(0);
 	this.wordListCount = this.wordList.length;

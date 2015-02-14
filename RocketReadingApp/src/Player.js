@@ -18,3 +18,8 @@ Player.prototype.getLevelGameReached = function () {
     "use strict";
     return this.levelGameReached;
 };
+
+Player.prototype.setLevelGameReached = function (levelGame) {
+    "use strict";
+    this.levelGameReached = levelGame;
+};

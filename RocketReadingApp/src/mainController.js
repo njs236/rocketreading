@@ -113,10 +113,14 @@ var mainController = {
 	setCurrentGame : function (gameString) {
 		"use strict";
         // Using this.id as the argument for getStringNumber() will not work now because this function is being called by other functions
-		var gameNumber = mainController.getStringNumber(gameString);
+		var gameNumber = mainController.getStringNumber(gameString),
+            levelGames = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
+        levelGames[1] = gameNumber;
 		console.log("setCurrentGame() - gameNumber (regex):" + gameNumber);
 		// Loading selected Game into currentGame in currentGameData
 		rocketReadingModel.getCurrentGameData().setCurrentGame(rocketReadingModel.findGameByNumber(gameNumber));
+        // The game part of currentGameData.currentLevelGame needs to be set
+        rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGames);
 	},
     
     randomiseArray: function (inputArray) {
@@ -291,6 +295,7 @@ var mainController = {
             // The data for the previous game in the current object needs to be cleared and data for the new game set
             mainController.resetGameTimers();
             mainController.gameInitialise();
+            // The scores, word-list(?), numbers of wordsCompleted and medals need to be reset too
         }
     },
     
@@ -354,12 +359,15 @@ var mainController = {
     gameOptionsRequest: function () {
         "use strict";
         var gameOptionsInfo = [],
-            levelNumber = mainController.getStringNumber(this.id);
-            console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
+            levelNumber = mainController.getStringNumber(this.id),
+            levelGame = [levelNumber, null];
+        console.log("gameOptionsRequest() - levelNumber (regex): " + levelNumber);
         gameOptionsInfo[0] = rocketReadingModel.findNumGamesOfLevel(levelNumber);
         gameOptionsInfo[1] = rocketReadingModel.findLevelGamesNames(levelNumber);
-		//Loading selected Level into current Level in currentGameData
+		// Loading selected Level into current Level in currentGameData
 		rocketReadingModel.getCurrentGameData().setCurrentLevel(rocketReadingModel.findLevelByNumber(levelNumber));
+        // The level part of currentGameData.currentLevelGame needs to be set
+        rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGame);
         // The main controller calls a function in the view controller and passes along the relevant information about that particular level.
         myViewModelRR.displayGameOptions(gameOptionsInfo);
     },

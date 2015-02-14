@@ -338,10 +338,13 @@ var mainController = {
             //If the user has not finished the current game then the system needs to save the current game timer to the current game state object
             console.log("mainController: pauseCurrentGame(): saveGameTime!");
             rocketReadingModel.getCurrentGameData().saveGameTime();
+            // The timer for the game's last test needs to be cleared, and the currentGameData's timer needs to be cleared
+            clearInterval(aTimer);
+            rocketReadingModel.getCurrentGameData().clearMyTimer();
             // The current game data is recorded as having a saved game
             rocketReadingModel.getCurrentGameData().setSavedLevelGame(levelGame);
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {
-            // If the user has completed the current game then the game screen's total game time will be reset to 0.
+            // If the user has completed the current game then the game screen's properties will be cleared and reset, eg the total game time will be reset to 0.
             mainController.resetGameTimers();
         }
     },

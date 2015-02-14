@@ -248,8 +248,7 @@ var viewHTMLModule = {
 	
 	guessWord : function () {
 		//add code in here to select word based on clickable event.
-		var clickedWord;
-		clickedWord = this.textContent;
+		var clickedWord = this.textContent;
 		mainController.validateWords(clickedWord);
 	},
 	

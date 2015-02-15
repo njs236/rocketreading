@@ -13,3 +13,7 @@ Game.prototype.getNumber = function () {
 Game.prototype.getWordList = function () {
 	return this.myWordList;
 };
+
+Game.prototype.getGameName = function () {
+	return this.gameName;
+};

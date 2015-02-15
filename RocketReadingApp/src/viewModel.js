@@ -125,13 +125,14 @@ var myViewModelRR = {
 		"use strict";
 		// HTML view output
 		// If the user has selected a level, then the game options screen show be displayed and the level options screen should be hidden
-		
+		// function accepts a 2D array of games for an input level
+		// in the following format.
+		// [ 1 , "game01" ]
+		// [ 2 , "game02" ]
+		// [ 3 , "game03" ]
 		// Console view output
-		console.log("myViewModelRR.displayGameOptions() Find number of games: " + gameOptionsInfo[0]);
-		console.log("myViewModelRR.displayGameOptions() Find names of games: " + gameOptionsInfo[1]);
-		
 		this.view.displayGameOptions(gameOptionsInfo);
-		this.view.showGameSelectScreen();
+		//this.view.showGameSelectScreen();
 	},
 	// *******************************************
 	// ***** End Game Select Screen Section ******

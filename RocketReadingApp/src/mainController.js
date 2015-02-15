@@ -141,6 +141,37 @@ var mainController = {
         return Number(inputId.slice(inputId.search(/[1-9]/), inputId.length));
     },
 	
+	requestAllGamesForLevel : function () {
+		"use strict"
+		// function returns a 2D array of games for an input level
+		// in the following format.
+		// [ 1 , "game01" ]
+		// [ 2 , "game02" ]
+		// [ 3 , "game03" ]
+		var outputGameOptions = [],
+			levelNumber = mainController.getStringNumber(this.id),
+			count,
+			tempArray = [],
+			gamesArray = [];
+		
+		console.group("mainController :requestAllGamesForLevel()");
+		console.log("requestAllGamesForLevel() : level number is:" + levelNumber);
+		gamesArray = rocketReadingModel.getAllGamesFromLevel(levelNumber);
+		console.log("Found level's games :");
+		console.log(gamesArray);
+		
+		for ( count = 0; count < gamesArray.length; count = count + 1) {
+			tempArray[0] = gamesArray[count].getNumber();
+			tempArray[1] = gamesArray[count].getGameName();
+			console.log("requestAllGamesForLevel() : added '" + tempArray + "' to list");
+			outputGameOptions.push(tempArray);
+			tempArray = [];
+		};
+		console.groupEnd();
+		myViewModelRR.displayGameOptions(outputGameOptions);
+	},
+	
+	
 	setGameAndWordList : function (gameString) {
 		"use strict";
         // Using this.id as the argument for getStringNumber() will not work now because this function is being called by other functions

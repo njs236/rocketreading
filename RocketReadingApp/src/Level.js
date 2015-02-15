@@ -27,16 +27,20 @@ Level.prototype.addGame = function (newName, newList, myLevelName, newGameNumber
 
 Level.prototype.setAvatar = function (avatar) {
 	this.myAvatar = avatar;
-}
+};
 
 Level.prototype.getAvatar = function () {
 	return this.myAvatar;
-}
+};
 
 Level.prototype.getLevelNumber = function () {
 	return this.levelNumber;
-}
+};
 
 Level.prototype.getDescription = function () {
 	return this.description;
-}
+};
+
+Level.prototype.getMyLevels = function () {
+	return this.allMyGames;
+};

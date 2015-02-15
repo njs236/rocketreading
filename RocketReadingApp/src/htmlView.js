@@ -154,7 +154,7 @@ var viewHTMLModule = {
 				
                 // There is no setCurrentLevel() function in mainController - the current level is set from gameOptionsRequest()
 				// newDiv.addEventListener("click", mainController.setCurrentLevel);
-				newDiv.addEventListener("click", mainController.gameOptionsRequest);
+				newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
 			};
 			this.showLevelSelectScreen();
 			console.groupEnd();
@@ -178,7 +178,14 @@ var viewHTMLModule = {
     },
 	
 	displayGameOptions: function (gameOptionsData) {
-		//displayGameOptions() Function v1.3
+		// displayGameOptions() Function v1.3
+		//
+		// function accepts a 2D array of games for an input level
+		// in the following format.
+		// [ 1 , "game01" ]
+		// [ 2 , "game02" ]
+		// [ 3 , "game03" ]
+		
 		"use strict";
 		var count,
 			newHeading,
@@ -191,14 +198,14 @@ var viewHTMLModule = {
 			gameSelectMainDiv.removeChild(gameSelectMainDiv.firstChild);
 		};
 		
-		for (count = 0; count < gameOptionsData[0]; count += 1) { 
+		for (count = 0; count < gameOptionsData.length; count += 1) { 
 			if (count % 3 === 0) {
 				newDiv = document.createElement("DIV");
 				newDiv.className = "gameSelectScreenRow";
 				gameSelectMainDiv.appendChild(newDiv);
 			};
 			
-			if ( gameOptionsData[0] === (count + 1) && gameOptionsData[0] % 3 === 1 ) {
+			if ( gameOptionsData.length === (count + 1) && gameOptionsData.length % 3 === 1 ) {
 				console.log("displayGameOptions() : Last Item");
 				newDiv = document.createElement("DIV");
 				newDiv.className = "gameSelectScreenGame";
@@ -209,9 +216,11 @@ var viewHTMLModule = {
             newAnchor.href = "#gameIntroModal";
 			newDiv = document.createElement("DIV");
 			newDiv.className = "gameSelectScreenGame";
-			newDiv.id = "gameScreenButton" + (count + 1);
+			//console.log("gameScreenButton" + (count + 1));
+			//console.log("gameScreenButton" + gameOptionsData[count][0]);
+			newDiv.id = "gameScreenButton" + gameOptionsData[count][0];
 			newHeading = document.createElement("H1");
-            newHeading.textContent = gameOptionsData[1][count];
+            newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
             newAnchor.appendChild(newDiv);
 			
@@ -222,7 +231,9 @@ var viewHTMLModule = {
             newDiv.addEventListener("click", mainController.checkGameResumption);
 			newDiv.addEventListener("click", this.showGameScreen);
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
-		}
+			
+		};
+		this.showGameSelectScreen();
 	},
 	// *******************************************
 	// ***** End Game Select Screen Section ******

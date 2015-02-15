@@ -135,14 +135,20 @@ img.medalIcon {
 
 #gameTableContainer {
     float: left;
+    width: 70%;
+    height: 100%;
 }
 
 #gameTimerCanvas {
+    margin-top: 25px;
     width: 100px;
-    height: 325px;
+    height: 90%;
 }
 
 #gameCanvasContainer {
     float: left;
-    margin-left: 100px;
+    padding-left: 75px;
+    height: 100%;
+    width: 30%;
+    /*bottom: 10px;*/
 }

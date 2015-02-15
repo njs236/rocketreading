@@ -95,11 +95,12 @@ var viewHTMLModule = {
 		// displayLevelList() function v1.6
 		// This function takes an input 2D array containing the
 		// level data in the following format
-		// ["01",avatarName]
-		// ["02",avatarName]
-		// ["03",avatarName]
+		// ["01",avatarName,"Ice Cream Zone"]
+		// ["02",avatarName,"Jungle Zone"]
+		// ["03",avatarName,"Clouds Zone"]
 		var count,
 			newDiv,
+			newHeading,
 			levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
 		
 		console.groupCollapsed("viewModule : displayLevelList()");
@@ -107,7 +108,7 @@ var viewHTMLModule = {
 		console.log(levelList);
 		console.groupEnd();
 		
-		if ( (levelList.length > 0 ) && ( levelList[0].length === 2 ) ){
+		if ( (levelList.length > 0 ) && ( levelList[0].length === 3 ) ){
 			console.log(levelList);
 			// Remove all HTML bits under main section
 			while ( levelSelectMainDiv.hasChildNodes() ){
@@ -144,12 +145,18 @@ var viewHTMLModule = {
 				newDiv.id = "level" + levelList[count][0];
 				newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
 				
+				newHeading = document.createElement("H2");
+				newHeading.textContent = levelList[count][2];
+				newDiv.appendChild(newHeading);
+				
+				
 				levelSelectMainDiv.lastChild.appendChild(newDiv);
 				
                 // There is no setCurrentLevel() function in mainController - the current level is set from gameOptionsRequest()
 				// newDiv.addEventListener("click", mainController.setCurrentLevel);
 				newDiv.addEventListener("click", mainController.gameOptionsRequest);
 			};
+			this.showLevelSelectScreen();
 			console.groupEnd();
 		} else {
 			console.groupEnd();

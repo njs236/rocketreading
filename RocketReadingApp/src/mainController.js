@@ -109,10 +109,31 @@ var mainController = {
 
     requestAllLevels: function () {
         "use strict";
+		// function will send the level number,avatarname, and level description
+		// in a 2d array formatted as follows
+		// level data in the following format
+		// ["01",avatarName,"Ice Cream Zone"]
+		// ["02",avatarName,"Jungle Zone"]
+		// ["03",avatarName,"Clouds Zone"]
+		var allLevels = [],
+			count,
+			outputArray = [],
+			transientArray = [];
         // This function gets data from the model data
-        var allLevels = rocketReadingModel.getAllLevels();
+        allLevels = rocketReadingModel.getAllLevels();
         // Calls a function in the view controller
-        myViewModelRR.displayLevelList(allLevels);
+		
+		for ( count = 0; count < allLevels.length; count = count + 1) {
+			transientArray[0] = allLevels[count].getLevelNumber();
+			transientArray[1] = allLevels[count].getAvatar().getName();
+			transientArray[2] = allLevels[count].getDescription();
+			outputArray.push(transientArray);
+			transientArray = [];
+		};
+		
+		myViewModelRR.displayLevelList(outputArray);
+		
+        //myViewModelRR.displayLevelList(allLevels);
     },
     
     getStringNumber: function (inputId) {

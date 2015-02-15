@@ -12,32 +12,6 @@
 	background-size:contain;
 	background-repeat:no-repeat;
 	background-position:center;
-}
-
-#levelSelectIconContainer01 {
-	background-image:url(../images/icecream.png);
-}
-
-#levelSelectIconContainer02 {
-	background-image:url(../images/tree.png);
-}
-
-#levelSelectIconContainer03 {
-	background-image:url(../images/cloud.png);
-}
-
-#levelSelectIconContainer04 {
-	background-image:url(../images/lollipop.png);
-}
-
-#levelSelectIconContainer05 {
-	background-image:url(../images/pirate.png);
-}
-
-#levelSelectIconContainer06 {
-	background-image:url(../images/car.png);
-}
-
-#levelSelectIconContainer00 {
-	background-image:url(../images/star.png);
+	text-align:center;
+	padding-top:1em;
 }

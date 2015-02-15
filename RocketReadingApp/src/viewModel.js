@@ -110,28 +110,9 @@ var myViewModelRR = {
 	
 	displayLevelList: function (inputLevels) {
 		"use strict";
-		var count,
-			string,
-			tempArray = [],
-			levelListArray = [],
-			listLength = inputLevels.length;
-		console.log(listLength);
-		for (count = 0; count < listLength; count += 1) {
-			tempArray.push(inputLevels[count].levelNumber);
-			tempArray.push(inputLevels[count].getAvatar().getName());
-			levelListArray.push(tempArray);
-			tempArray = [];
-		}
-		
-		// Console view of the data being passed
-		console.log("displayLevelList(): " + levelListArray);
-		console.log("displayLevelList() length of array: " + levelListArray.length);
-		
-		viewHTMLModule.displayLevelList(levelListArray);
-		
-		//Display the level screen
-		viewHTMLModule.showLevelSelectScreen();
+		this.view.displayLevelList(inputLevels);
 	},
+
 	// ********************************************
 	// ***** End Level Select Screen Section ******
 	// ********************************************

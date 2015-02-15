@@ -153,7 +153,7 @@ var viewHTMLModule = {
 				levelSelectMainDiv.lastChild.appendChild(newDiv);
 				
                 // There is no setCurrentLevel() function in mainController - the current level is set from gameOptionsRequest()
-				// newDiv.addEventListener("click", mainController.setCurrentLevel);
+				newDiv.addEventListener("click", mainController.setCurrentLevel);
 				newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
 			};
 			this.showLevelSelectScreen();

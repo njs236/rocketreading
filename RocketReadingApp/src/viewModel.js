@@ -241,7 +241,7 @@ var myViewModelRR = {
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************
-	
+	/*
 	gamesRequiredLevel: function (levelType) {
 		"use strict";
 		var result;

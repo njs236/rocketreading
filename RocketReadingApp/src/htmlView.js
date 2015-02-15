@@ -152,7 +152,6 @@ var viewHTMLModule = {
 				
 				levelSelectMainDiv.lastChild.appendChild(newDiv);
 				
-                // There is no setCurrentLevel() function in mainController - the current level is set from gameOptionsRequest()
 				newDiv.addEventListener("click", mainController.setCurrentLevel);
 				newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
 			};
@@ -280,6 +279,7 @@ var viewHTMLModule = {
 	},
 	
 	displayLearnWord : function () {
+        "use strict";
 		var learnWordButton = document.getElementById('learnWordText');
 		if (learnWordButton.className == "normal") {
 			learnWordButton.className = "learning";
@@ -289,6 +289,7 @@ var viewHTMLModule = {
 	},
 	
 	eventLearnWord : function () {
+        "use strict";
 		var learnWordButton = document.getElementById('learnWordText');
 		learnWordListener = function () {
 			myViewModelRR.removeLearnWord();
@@ -298,11 +299,13 @@ var viewHTMLModule = {
 	},
 	
 	removeLearnWord : function () {
+        "use strict";
 		var learnWordButton = document.getElementById('learnWordText');
 		learnWordButton.removeEventListener("click", learnWordListener);
 	},
 	
 	displayTable : function (inputArray) {
+        "use strict";
 		var newRow,
 			newCell,
 			wordCount,
@@ -329,7 +332,9 @@ var viewHTMLModule = {
 	},
 	
 	eventClickAdd : function () {
-		var cells = document.getElementsByClassName('wordCell');
+        "use strict";
+		var cellCount,
+            cells = document.getElementsByClassName('wordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].addEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
@@ -337,7 +342,9 @@ var viewHTMLModule = {
 	},
 	
 	removeEventClick : function () {
-		var cells = document.getElementsByClassName('wordCell');
+        "use strict";
+		var cellCount,
+            cells = document.getElementsByClassName('wordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].removeEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/

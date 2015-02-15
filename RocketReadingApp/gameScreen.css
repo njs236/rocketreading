@@ -110,7 +110,7 @@ div.medalIconDiv {
 	width:100%;
 	height:calc(33% - 0.6em);
 	background-color:orange;
-	padding-left:20%;
+	padding-left:5%;
 }
 
 div.medalIconDiv:nth-child(2) {

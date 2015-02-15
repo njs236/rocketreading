@@ -6,7 +6,11 @@ var gameTimerSecs = 0,
     timer,
 	aTimer,
 	learnWordListener,
-    timerModal;
+    timerModal,
+    barColour,
+    barBorderColour,
+    silverBar,
+    bronzeBar;
 
 // Adding a user to local storage
 
@@ -211,4 +215,15 @@ var initialise = function () {
     myViewModelRR.setView(viewHTMLModule);
 };
 
+window.requestAnimFrame = (function(callback){
+    "use strict";
+    return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function(callback){
+        window.setTimeout(callback, 1000 / 60);
+    };
+})();
 

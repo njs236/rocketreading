@@ -127,7 +127,22 @@ img.medalIcon {
 	float:left;
 	margin-top:20%;
 }
+
 #gameAvatar {
 	height:100%;
 	width:auto;
+}
+
+#gameTableContainer {
+    float: left;
+}
+
+#gameTimerCanvas {
+    width: 100px;
+    height: 325px;
+}
+
+#gameCanvasContainer {
+    float: left;
+    margin-left: 100px;
 }

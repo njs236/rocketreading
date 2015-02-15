@@ -394,13 +394,90 @@ var viewHTMLModule = {
         audio.addEventListener('loadedmetadata', function(){
             var duration;
             duration = audio.duration;
-            duration = duration * 1000 + 1000;
+            duration = duration * 1000 + 1000; // Give the player a bonus second
+            // duration = duration * 1000;
             timer = setTimeout(function (){	
 				viewHTMLModule.eventClickAdd();
 				mainController.createWordTimer();
+                mainController.requestBarTimer();
             }, duration);
          });
 	},
+    
+    animateBarTimer: function (lastTime, myTimerBar) {
+        "use strict";
+        var canvas = document.getElementById("gameTimerCanvas"),
+            context = canvas.getContext("2d"),
+            date = new Date(),
+            time = date.getTime(),
+            timeDiff = time - lastTime,
+            linearSpeed = canvas.height / 8, // pixels per second
+            linearDistEachFrame = linearSpeed * timeDiff / 1000;
+     
+        if (myTimerBar.y < canvas.height) {
+            myTimerBar.y += linearDistEachFrame;
+        }
+        lastTime = time;
+     
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+     
+        // draw
+        context.beginPath();
+        context.rect(myTimerBar.x, myTimerBar.y, myTimerBar.width, myTimerBar.height);
+     
+        context.fillStyle = barColour;
+        context.fill();
+        context.lineWidth = myTimerBar.borderWidth;
+        context.strokeStyle = barBorderColour;
+        context.stroke();
+     
+        // request new frame
+        requestAnimFrame(function(){
+            viewHTMLModule.animateBarTimer(lastTime, myTimerBar);
+        });
+    },
+    
+    changeBarSilver: function () {
+        "use strict"
+        console.log("changeBarBronsze() has run");
+        barColour = "silver";
+        barBorderColour = "silver";
+    },
+
+    changeBarBronze: function () {
+        "use strict"
+        console.log("changeBarBronze() has run");
+        barColour = "Peru";
+        barBorderColour = "Peru";
+    },
+    
+    hideBarTimer: function () {
+        "use strict";    
+        document.getElementById("gameTimerCanvas").style.display = "none";
+    },
+    
+    startBarTimer: function () {
+        "use strict"; 
+        var myTimerBar = {
+                x: 0,
+                y: 0,
+                width: 50,
+                borderWidth: 1,
+            }, 
+            date = new Date(),
+            time = date.getTime();
+        
+        document.getElementById("gameTimerCanvas").style.display = "block";  
+        myTimerBar.height = document.getElementById("gameTimerCanvas").height;
+        barColour = "gold";
+        barBorderColour = "gold";
+        // Call the function to animate the timer-bar
+        viewHTMLModule.animateBarTimer(time, myTimerBar);
+        
+        silverBar = setTimeout("viewHTMLModule.changeBarSilver()", 2000);
+        bronzeBar = setTimeout("viewHTMLModule.changeBarBronze()", 4000);
+    },
     
     /*displayGameIntroConfirm: function () {
         "use strict";

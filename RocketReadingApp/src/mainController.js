@@ -8,6 +8,10 @@ var mainController = {
             wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word),
 			incorrectWord = rocketReadingModel.getCurrentGameData().getIncorrectWord();
 		myViewModelRR.clearTimer();
+        // The timers for the bar timer are hidden and cleared 
+        myViewModelRR.hideBarTimer();
+        clearTimeout(silverBar);
+        clearTimeout(bronzeBar);
 		/*console.log("validateWords:" + myTimer);*/
 		if (word !== null) {
 			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
@@ -282,12 +286,19 @@ var mainController = {
     },
 	
 	spliceWord : function (currentWordIndex) {
+        "use strict";
 		var listArray = rocketReadingModel.getCurrentGameData().getWordList();
 		listArray.splice(currentWordIndex, 1);
 		rocketReadingModel.getCurrentGameData().passList(listArray);
 	},
     
+    requestBarTimer: function () {
+        "use strict"; 
+        myViewModelRR.startBarTimer();
+    },
+    
 	createWordTimer : function () {
+        "use strict";
 		var milliseconds;
 		aTimer = setInterval(function () {
 			milliseconds = 100;
@@ -296,6 +307,7 @@ var mainController = {
 	},
 	
 	returnMilliseconds : function (milliseconds) {
+        "use strict";
 		rocketReadingModel.getCurrentGameData().incrementTimer(milliseconds);
 		if (rocketReadingModel.getCurrentGameData().getTimer() >= 8000) {
 			mainController.validateWords();
@@ -393,6 +405,10 @@ var mainController = {
             // The timer for the game's last test needs to be cleared, and the currentGameData's timer needs to be cleared
             clearInterval(aTimer);
             rocketReadingModel.getCurrentGameData().clearMyTimer();
+            // The timers for the bar timer are hidden and cleared 
+            myViewModelRR.hideBarTimer();
+            clearTimeout(silverBar);
+            clearTimeout(bronzeBar);
             // The current game data is recorded as having a saved game
             rocketReadingModel.getCurrentGameData().setSavedLevelGame(levelGame);
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {

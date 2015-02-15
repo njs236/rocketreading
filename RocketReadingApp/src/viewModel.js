@@ -232,6 +232,16 @@ var myViewModelRR = {
 		this.view.removeLearnWord();
 	},
     
+    startBarTimer: function () {
+        "use strict"; 
+        this.view.startBarTimer();
+    },
+    
+    hideBarTimer: function () {
+        "use strict"; 
+        this.view.hideBarTimer();
+    }
+    
     /*
     displayGameIntroConfirm: function () {
         "use strict";

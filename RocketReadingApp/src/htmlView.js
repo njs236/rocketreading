@@ -392,6 +392,11 @@ var viewHTMLModule = {
         document.getElementById("gameTimer").textContent = "0 : 00";
     },
     
+    playWordInSentence: function () {
+        "use strict";
+        // The system will play an audio recording of a sentence containing the current word to be learned
+    },
+    
     displayDottedWord: function (currentWord, attr) {
         "use strict";
         // Clear the display of the word which the player has to learn

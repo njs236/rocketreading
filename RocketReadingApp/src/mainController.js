@@ -4,7 +4,10 @@ var mainController = {
 
 	validateWords : function (word) {
         "use strict";
-		var myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
+		var listArray,
+            currentWordIndex,
+            count,
+            myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
             wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word),
 			incorrectWord = rocketReadingModel.getCurrentGameData().getIncorrectWord();
 		myViewModelRR.clearTimer();
@@ -13,11 +16,12 @@ var mainController = {
         clearTimeout(silverBar);
         clearTimeout(bronzeBar);
 		/*console.log("validateWords:" + myTimer);*/
+        // This is the happy day scenario
+        if (incorrectWord === null) {
 		if (word !== null) {
 			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
 				mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
-				if (incorrectWord === null) {
 					if (myTimer <= 2000) {
 						//do things here
 						rocketReadingModel.getCurrentGameData().setMedal('gold');
@@ -31,10 +35,6 @@ var mainController = {
 						rocketReadingModel.getCurrentGameData().setMedal('bronze');
 						rocketReadingModel.getCurrentGameData().setScore(1);
 					};
-				} else {
-					//what happens when you select the right word after you have got it incorrect
-					mainController.exitingLearnWord();
-				}
 				alert ("Correct Word! You selected " + word);
 				mainController.initialiseNextWord();
 			} else {
@@ -49,6 +49,26 @@ var mainController = {
 			myViewModelRR.displayLearnWord();
 			myViewModelRR.eventLearnWord();
 		};
+        //This is the rules for the Learn Word function, having got the word wrong
+        } else {
+            if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
+            //what happens when you select the right word after you have got it incorrect
+				mainController.spliceWord(wordIndex);
+				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
+            } else {
+                //this is reducing table contents if the word selected is wrong. 
+                listArray = rocketReadingModel.getCurrentGameData().getWordList()
+                listArray.splice(rocketReadingModel.getCurrentGameData().getIndexOfWord(
+                rocketReadingModel.getCurrentGameData().getCurrentWord()))
+                for (count, count < 10, count++) {
+                    currentWordIndex = Math.floor(Math.random() * listArray.length)
+                    listArray.splice(currentWordIndex, 1);
+                }
+                listArray.push(rocketReadingModel.getCurrentGameData().getCurrentWord())
+                myViewModelRR.displayTable(listArray);
+            }
+			mainController.exitingLearnWord();
+		}
 	},
 	
 	learnWord : function () {

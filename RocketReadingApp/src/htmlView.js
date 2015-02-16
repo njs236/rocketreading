@@ -264,9 +264,10 @@ var viewHTMLModule = {
 	
 	
 	guessWord : function () {
+        "use strict";
 		//add code in here to select word based on clickable event.
-		var clickedWord = this.textContent;
-		mainController.validateWords(clickedWord);
+		// var clickedWord = this.textContent;
+		mainController.validateWords(this.textContent);
 	},
 	
 	
@@ -314,7 +315,7 @@ var viewHTMLModule = {
 			cells,
 			htmlTable;
 		
-		console.log(inputArray);
+		console.log("displayTable(): " + inputArray);
 		htmlTable = document.getElementById("gameWordTable");
 
 		htmlTable.innerHTML = ""; // clear table each time its run
@@ -432,6 +433,7 @@ var viewHTMLModule = {
                         // The word is announced one final time
                         setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr); }, 100);
                     }
+                    // Then the user should be given the chance to identify the word in the table
                 }
             }, duration);
         });

@@ -390,9 +390,15 @@ var viewHTMLModule = {
         "use strict";
         document.getElementById("gameTimer").textContent = "0 : 00";
     },
+    
+    displayDottedWord: function (currentWord, attr) {
+        "use strict";
+    },
 	
 	updateCurrentWord : function (currentWord, attr) {
-		var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+        "use strict";
+		var duration,
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
 			audio = document.createElement('AUDIO');
 		document.getElementById("gameGame").appendChild(audio);
@@ -400,24 +406,37 @@ var viewHTMLModule = {
         audio.setAttribute("id","audioPlayer");
         audio.play()
         audio.addEventListener('loadedmetadata', function(){
-         var duration;
-         duration = audio.duration;
-         duration = duration * 1000 + 1000; // Give the player a bonus second
-         // duration = duration * 1000;
-         timer = setTimeout(function (){	
+            duration = audio.duration;
+            duration = duration * 1000 + 1000; // Give the player a bonus second
+            // duration = duration * 1000;
+            timer = setTimeout(function (){	
                 if (attr === 'normalWord') {
                     viewHTMLModule.eventClickAdd();
                     mainController.createWordTimer();
                     mainController.requestBarTimer();
                 } else if (attr === 'learnWord') {
                 // this is for repeating words based on Learn Word scenario
-                
+                    learnWordCount -= 1;
+                    if (learnWordCount === 3) {
+                        // It may not be worthwhile assigning these setTimeouts to variables because it seems that these timers should not be stopped - the sequence will play through and then the user will have a go at identifying the word
+                        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr); }, 100);
+                    } else if (learnWordCount === 2) {
+                        // The word to be learned is displayed in dotted lines
+                        setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr); }, 100);
+                    } else if (learnWordCount === 1) {
+                        // The word is included in a spoken sentence
+                        setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr); }, 100);
+                    } else if (learnWordCount === 0) {
+                        // The word is announced one final time
+                        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr); }, 100);
+                    }
                 }
             }, duration);
         });
     },
   
     displayWord : function (characterArray) {
+        "use strict";
         var count = 0,
             letter,
             string = '',

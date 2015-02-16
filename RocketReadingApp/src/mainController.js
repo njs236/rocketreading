@@ -75,20 +75,23 @@ var mainController = {
 	},
 	
 	learnWord : function () {
-        var characterArray = [],
-            currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord();
-        characterArray = currentWord.split('');
+        "use strict";
+        var currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord(),
+            characterArray = currentWord.split('');
         myViewModelRR.displayWord(characterArray);
+        learnWordCount = 4;
         myViewModelRR.updateCurrentWord(currentWord, 'learnWord');
 	},
 	
 	exitingLearnWord : function () {
+        "use strict";
 		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
         myViewModelRR.eventClickAdd();
 		myViewModelRR.displayLearnWord();
 	},
     
 	initialiseNextWord : function () {
+        "use strict";
         var listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
 		myViewModelRR.removeEventClick();
 		rocketReadingModel.getCurrentGameData().clearMyTimer();
@@ -310,6 +313,7 @@ var mainController = {
 			currentWordIndex = Math.floor(Math.random() * listArray.length),
             currentWord = listArray[currentWordIndex];
         rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
+        learnWordCount = 0;
         myViewModelRR.updateCurrentWord(currentWord, 'normalWord');
     },
 	

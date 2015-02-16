@@ -41,24 +41,30 @@ var mainController = {
                 } else {
                     // this is the incorrect word selection
                     rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
+                    // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
+                    myViewModelRR.removeEventClick();
                     myViewModelRR.displayLearnWord();
-                    myViewModelRR.eventLearnWord();
+                    myViewModelRR.addEventLearnWord();
                 }
             } else {
                 // this is the too long selection
                 rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
+                // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
+                myViewModelRR.removeEventClick();
                 myViewModelRR.displayLearnWord();
-                myViewModelRR.eventLearnWord();
+                myViewModelRR.addEventLearnWord();
             }
         // This is the rules for the Learn Word function: if the user has previously chosen the wrong word when trying to identify the current word
-        } else {            
+        } else {
+            // The event listener for the button to learn a word is removed, in case the user did not click the learn word button previously - although if the player chooses the wrong word then they really should click the learn word button
+            // myViewModelRR.removeLearnWord();
             if (word === currentWord) {
-            // what happens when you select the right word after you have previously got it incorrect
+                // What happens when you select the right word after you have previously got it incorrect
 				mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
                 mainController.initialiseNextWord();
-                // The completeWordList property of currentGameData needs to be repopulated
-                mainController.resetCompleteWordList();
+                // The completeWordList property of currentGameData needs to be repopulated 
+                    // mainController.resetCompleteWordList(); // - actually this does not need to be done at this point. It only needs to be done in the createTable() function after the array has been randomised
                 // The incorrect property of currentGameData can be set to null
                 rocketReadingModel.getCurrentGameData().setIncorrectWord(null);   
                 alert ("Correct Word! You selected " + word);
@@ -78,6 +84,11 @@ var mainController = {
                 listArray[randomWordIndex] = currentWord;
                 console.log("validateWords(): listArray after getting choice incorrect again - " + listArray);
                 myViewModelRR.displayTable(listArray);
+                
+                // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
+                // myViewModelRR.removeEventClick(); // This is not needed if the eventClickAdd() is not added in exitingLearnWord()
+                myViewModelRR.displayLearnWord();
+                myViewModelRR.addEventLearnWord();
             }
 			mainController.exitingLearnWord();     
 		}
@@ -101,7 +112,7 @@ var mainController = {
 	exitingLearnWord : function () {
         "use strict";
 		// rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
-        myViewModelRR.eventClickAdd();
+        // myViewModelRR.eventClickAdd();
 		myViewModelRR.displayLearnWord();
 	},
     

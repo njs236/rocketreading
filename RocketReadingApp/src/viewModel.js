@@ -235,8 +235,8 @@ var myViewModelRR = {
 		this.view.removeEventClick();
 	},
 	
-	eventLearnWord : function () {
-		this.view.eventLearnWord();
+	addEventLearnWord : function () {
+		this.view.addEventLearnWord();
 	},
 	
 	removeLearnWord : function () {

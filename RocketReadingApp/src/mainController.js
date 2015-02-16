@@ -74,7 +74,7 @@ var mainController = {
                 }
                 listArray.push(currentWord);
                 // The array then needs to be cloned to a separate array
-                rocketReadingModel.getCurrentGameData().setCopyCompleteWL(listArray);
+                // rocketReadingModel.getCurrentGameData().setCopyCompleteWL(listArray);
                 // The resulting array needs to be randomised before being displayed in the table
                 listArray = mainController.randomiseArray(listArray);
                 myViewModelRR.displayTable(listArray);

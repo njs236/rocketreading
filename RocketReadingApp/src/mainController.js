@@ -6,7 +6,7 @@ var mainController = {
         "use strict";
 		var listArray,
             currentWordIndex,
-            count,
+            count = 0,
             myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
             wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word),
 			incorrectWord = rocketReadingModel.getCurrentGameData().getIncorrectWord();
@@ -60,7 +60,7 @@ var mainController = {
                 listArray = rocketReadingModel.getCurrentGameData().getWordList()
                 listArray.splice(rocketReadingModel.getCurrentGameData().getIndexOfWord(
                 rocketReadingModel.getCurrentGameData().getCurrentWord()))
-                for (count, count < 10, count++) {
+                for (count; count < (listArray.length/3); count++) {
                     currentWordIndex = Math.floor(Math.random() * listArray.length)
                     listArray.splice(currentWordIndex, 1);
                 }

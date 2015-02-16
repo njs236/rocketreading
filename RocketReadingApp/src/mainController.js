@@ -69,14 +69,14 @@ var mainController = {
                 listArray.splice(listArray.indexOf(currentWord), 1);
                 // Use the full word-list array to get the value of the length of the array
                 for (count = 0; count < (rocketReadingModel.getCurrentGameData().getWordListCount() / 3); count += 1) {
-                    randomWordIndex = Math.floor(Math.random() * listArray.length)
+                    randomWordIndex = Math.floor(Math.random() * listArray.length);
                     listArray.splice(randomWordIndex, 1);
                 }
-                listArray.push(currentWord);
-                // The array then needs to be cloned to a separate array
-                // rocketReadingModel.getCurrentGameData().setCopyCompleteWL(listArray);
-                // The resulting array needs to be randomised before being displayed in the table
-                listArray = mainController.randomiseArray(listArray);
+                // A random position needs to be found to put the currentWord back into the list
+                randomWordIndex = Math.floor(Math.random() * (listArray.length + 1));
+                // This works even if the index of the array in which the data is going to be placed is one more than its current size
+                listArray[randomWordIndex] = currentWord;
+                console.log("validateWords(): listArray after getting choice incorrect again - " + listArray);
                 myViewModelRR.displayTable(listArray);
             }
 			mainController.exitingLearnWord();     

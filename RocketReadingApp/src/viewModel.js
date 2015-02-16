@@ -200,11 +200,18 @@ var myViewModelRR = {
     },
 	
 	updateCurrentWord : function (currentWord, attr) {
+        "use strict";
 		this.view.updateCurrentWord(currentWord, attr);
 	},
     
     displayWord : function (characterArray) {
+        "use strict";
         this.view.displayWord(characterArray);
+    },
+    
+    clearLearnWord: function () {
+        "use strict";
+        this.view.clearLearnWord();
     },
     
     showGameScreen: function() {

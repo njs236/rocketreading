@@ -19,39 +19,39 @@ var mainController = {
 		/*console.log("validateWords:" + myTimer);*/
         // This is the happy day scenario
         if (incorrectWord === null) {
-		if (word !== null) {
-			if (word === currentWord) {
-				mainController.spliceWord(wordIndex);
-				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
-					if (myTimer <= 2000) {
-						//do things here
-						rocketReadingModel.getCurrentGameData().setMedal('gold');
-						rocketReadingModel.getCurrentGameData().setScore(5);
-					} else if ( 2000 < myTimer && myTimer <= 4000 ) {
-						//do things here
-						rocketReadingModel.getCurrentGameData().setMedal('silver');
-						rocketReadingModel.getCurrentGameData().setScore(3);
-					} else if ( 4000 < myTimer && myTimer < 8000 ) {
-						//do things here
-						rocketReadingModel.getCurrentGameData().setMedal('bronze');
-						rocketReadingModel.getCurrentGameData().setScore(1);
-					};
-				alert ("Correct Word! You selected " + word);
-				mainController.initialiseNextWord();
-			} else {
-				// this is the incorrect word selection
-				rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
-				myViewModelRR.displayLearnWord();
-				myViewModelRR.eventLearnWord();
-			}
-		} else {
-			// this is the too long selection
-			rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
-			myViewModelRR.displayLearnWord();
-			myViewModelRR.eventLearnWord();
-		};
+            if (word !== null) {
+                if (word === currentWord) {
+                    mainController.spliceWord(wordIndex);
+                    rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
+                        if (myTimer <= 2000) {
+                            //do things here
+                            rocketReadingModel.getCurrentGameData().setMedal('gold');
+                            rocketReadingModel.getCurrentGameData().setScore(5);
+                        } else if ( 2000 < myTimer && myTimer <= 4000 ) {
+                            //do things here
+                            rocketReadingModel.getCurrentGameData().setMedal('silver');
+                            rocketReadingModel.getCurrentGameData().setScore(3);
+                        } else if ( 4000 < myTimer && myTimer < 8000 ) {
+                            //do things here
+                            rocketReadingModel.getCurrentGameData().setMedal('bronze');
+                            rocketReadingModel.getCurrentGameData().setScore(1);
+                        }
+                    alert ("Correct Word! You selected " + word);
+                    mainController.initialiseNextWord();
+                } else {
+                    // this is the incorrect word selection
+                    rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
+                    myViewModelRR.displayLearnWord();
+                    myViewModelRR.eventLearnWord();
+                }
+            } else {
+                // this is the too long selection
+                rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
+                myViewModelRR.displayLearnWord();
+                myViewModelRR.eventLearnWord();
+            }
         //This is the rules for the Learn Word function, having got the word wrong
-        } else {
+        } else {            
             if (word === currentWord) {
             //what happens when you select the right word after you have got it incorrect
 				mainController.spliceWord(wordIndex);

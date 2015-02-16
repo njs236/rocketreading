@@ -393,6 +393,8 @@ var viewHTMLModule = {
     
     displayDottedWord: function (currentWord, attr) {
         "use strict";
+        // Clear the display of the word which the player has to learn
+        myViewModelRR.clearLearnWord();
     },
 	
 	updateCurrentWord : function (currentWord, attr) {
@@ -440,13 +442,21 @@ var viewHTMLModule = {
         var count = 0,
             letter,
             string = '',
-            displayWord = document.getElementById('displayWord');
+            displayWord = document.getElementById('gameDisplayWord');
         letter = document.createElement('P');
         displayWord.appendChild(letter);
         for (count; count < characterArray.length; count++) {
             string = string + characterArray[count] + "  ";
         };
         letter.textContent = string;
+    },
+    
+    clearLearnWord: function () {
+        "use strict";
+        var learnWord = document.getElementById("gameDisplayWord");
+        while ( learnWord.hasChildNodes() ){
+            learnWord.removeChild(learnWord.firstChild);
+	    };
     },
     
     animateBarTimer: function (lastTime, myTimerBar) {

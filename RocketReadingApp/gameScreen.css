@@ -68,7 +68,7 @@
 	color: red;
 }
 
-#displayWord p {
+#gameDisplayWord p {
     font-size : 3em;
     color: #0f0;
 }
@@ -99,7 +99,7 @@ div.gameInfoBox {
 }
 
 #gameWordTable {
-	margin-left:5em;
+	padding-left:5em;
 	position:absolute;
 	bottom:0;
 }
@@ -138,9 +138,15 @@ img.medalIcon {
 	width:auto;
 }
 
-#gameTableContainer {
+#gameWordAndTable {
     float: left;
     width: 70%;
+    height: 100%;
+}
+
+#gameTableContainer {
+    float: left;
+    width: 100%;
     height: 100%;
 }
 

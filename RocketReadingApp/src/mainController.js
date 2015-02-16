@@ -7,6 +7,7 @@ var mainController = {
 		var listArray,
             currentWordIndex,
             count = 0,
+            currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord(),
             myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
             wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word),
 			incorrectWord = rocketReadingModel.getCurrentGameData().getIncorrectWord();
@@ -19,7 +20,7 @@ var mainController = {
         // This is the happy day scenario
         if (incorrectWord === null) {
 		if (word !== null) {
-			if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
+			if (word === currentWord) {
 				mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
 					if (myTimer <= 2000) {
@@ -39,44 +40,51 @@ var mainController = {
 				mainController.initialiseNextWord();
 			} else {
 				// this is the incorrect word selection
-				rocketReadingModel.getCurrentGameData().setIncorrectWord(rocketReadingModel.getCurrentGameData().getCurrentWord());
+				rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
 				myViewModelRR.displayLearnWord();
 				myViewModelRR.eventLearnWord();
 			}
 		} else {
 			// this is the too long selection
-			rocketReadingModel.getCurrentGameData().setIncorrectWord(rocketReadingModel.getCurrentGameData().getCurrentWord());
+			rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
 			myViewModelRR.displayLearnWord();
 			myViewModelRR.eventLearnWord();
 		};
         //This is the rules for the Learn Word function, having got the word wrong
         } else {
-            if (word === rocketReadingModel.getCurrentGameData().getCurrentWord()) {
+            if (word === currentWord) {
             //what happens when you select the right word after you have got it incorrect
 				mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
+                mainController.initialiseNextWord();
+                alert ("Correct Word! You selected " + word);
             } else {
                 //this is reducing table contents if the word selected is wrong. 
-                listArray = rocketReadingModel.getCurrentGameData().getWordList()
-                listArray.splice(rocketReadingModel.getCurrentGameData().getIndexOfWord(
-                rocketReadingModel.getCurrentGameData().getCurrentWord()))
+                listArray = rocketReadingModel.getCurrentGameData().getWordList();
+                listArray.splice(rocketReadingModel.getCurrentGameData().getIndexOfWord(currentWord),1);
                 for (count; count < (listArray.length/3); count++) {
                     currentWordIndex = Math.floor(Math.random() * listArray.length)
                     listArray.splice(currentWordIndex, 1);
                 }
-                listArray.push(rocketReadingModel.getCurrentGameData().getCurrentWord())
+                listArray.push(currentWord)
                 myViewModelRR.displayTable(listArray);
             }
 			mainController.exitingLearnWord();
+            
 		}
 	},
 	
 	learnWord : function () {
-
+        var characterArray = [],
+            currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord();
+        characterArray = currentWord.split('');
+        myViewModelRR.displayWord(characterArray);
+        myViewModelRR.updateCurrentWord(currentWord, 'learnWord');
 	},
 	
 	exitingLearnWord : function () {
 		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
+        myViewModelRR.eventClickAdd();
 		myViewModelRR.displayLearnWord();
 	},
     
@@ -302,7 +310,7 @@ var mainController = {
 			currentWordIndex = Math.floor(Math.random() * listArray.length),
             currentWord = listArray[currentWordIndex];
         rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
-        myViewModelRR.updateCurrentWord(currentWord);
+        myViewModelRR.updateCurrentWord(currentWord, 'normalWord');
     },
 	
 	spliceWord : function (currentWordIndex) {

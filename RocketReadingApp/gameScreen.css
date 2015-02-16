@@ -68,6 +68,11 @@
 	color: red;
 }
 
+#displayWord p {
+    font-size : 3em;
+    color: #0f0;
+}
+
 #gameRightSideTopRight {
 	width:55%;
 	height:100%;

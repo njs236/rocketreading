@@ -391,25 +391,44 @@ var viewHTMLModule = {
         document.getElementById("gameTimer").textContent = "0 : 00";
     },
 	
-	updateCurrentWord : function (currentWord) {
+	updateCurrentWord : function (currentWord, attr) {
 		var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
 			audio = document.createElement('AUDIO');
 		document.getElementById("gameGame").appendChild(audio);
         audio.setAttribute("src","audio/Level" + levelNumber + "Game " + gameNumber + "/" + currentWord + ".wav")
+        audio.setAttribute("id","audioPlayer");
         audio.play()
         audio.addEventListener('loadedmetadata', function(){
-            var duration;
-            duration = audio.duration;
-            duration = duration * 1000 + 1000; // Give the player a bonus second
-            // duration = duration * 1000;
-            timer = setTimeout(function (){	
-				viewHTMLModule.eventClickAdd();
-				mainController.createWordTimer();
-                mainController.requestBarTimer();
+         var duration;
+         duration = audio.duration;
+         duration = duration * 1000 + 1000; // Give the player a bonus second
+         // duration = duration * 1000;
+         timer = setTimeout(function (){	
+                if (attr === 'normalWord') {
+                    viewHTMLModule.eventClickAdd();
+                    mainController.createWordTimer();
+                    mainController.requestBarTimer();
+                } else if (attr === 'learnWord') {
+                // this is for repeating words based on Learn Word scenario
+                
+                }
             }, duration);
-         });
-	},
+        });
+    },
+  
+    displayWord : function (characterArray) {
+        var count = 0,
+            letter,
+            string = '',
+            displayWord = document.getElementById('displayWord');
+        letter = document.createElement('P');
+        displayWord.appendChild(letter);
+        for (count; count < characterArray.length; count++) {
+            string = string + characterArray[count] + "  ";
+        };
+        letter.textContent = string;
+    },
     
     animateBarTimer: function (lastTime, myTimerBar) {
         "use strict";

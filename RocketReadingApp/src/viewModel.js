@@ -199,9 +199,13 @@ var myViewModelRR = {
         this.view.displayGameTimer();
     },
 	
-	updateCurrentWord : function (currentWord) {
-		this.view.updateCurrentWord(currentWord);
+	updateCurrentWord : function (currentWord, attr) {
+		this.view.updateCurrentWord(currentWord, attr);
 	},
+    
+    displayWord : function (characterArray) {
+        this.view.displayWord(characterArray);
+    },
     
     showGameScreen: function() {
         "use strict";

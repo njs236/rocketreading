@@ -4,21 +4,22 @@ var mainController = {
 
 	validateWords : function (word) {
         "use strict";
-		var listArray,
+		var incorrectWordListArray = [],
             currentWordIndex,
             count = 0,
             currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord(),
             myTimer = rocketReadingModel.getCurrentGameData().getTimer(),
             wordIndex = rocketReadingModel.getCurrentGameData().getIndexOfWord(word),
 			incorrectWord = rocketReadingModel.getCurrentGameData().getIncorrectWord();
-		myViewModelRR.clearTimer();
-        // The timers for the bar timer are hidden and cleared 
-        myViewModelRR.hideBarTimer();
-        clearTimeout(silverBar);
-        clearTimeout(bronzeBar);
+
 		/*console.log("validateWords:" + myTimer);*/
         // This is the happy day scenario
         if (incorrectWord === null) {
+            myViewModelRR.clearTimer();
+            // The timers for the bar timer are hidden and cleared 
+        myViewModelRR.hideBarTimer();
+        clearTimeout(silverBar);
+        clearTimeout(bronzeBar);
 		if (word !== null) {
 			if (word === currentWord) {
 				mainController.spliceWord(wordIndex);
@@ -41,42 +42,47 @@ var mainController = {
 			} else {
 				// this is the incorrect word selection
 				rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
+                myViewModelRR.removeEventClick();
 				myViewModelRR.displayLearnWord();
 				myViewModelRR.eventLearnWord();
-			}
+			};
 		} else {
 			// this is the too long selection
 			rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
+            myViewModelRR.removeEventClick();
 			myViewModelRR.displayLearnWord();
 			myViewModelRR.eventLearnWord();
 		};
         //This is the rules for the Learn Word function, having got the word wrong
-        } else {
+        } else if (incorrectWord !== null){
+            myViewModelRR.displayWord([]);
             if (word === currentWord) {
             //what happens when you select the right word after you have got it incorrect
 				mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
                 mainController.initialiseNextWord();
                 alert ("Correct Word! You selected " + word);
+                mainController.exitingLearnWord();
             } else {
                 //this is reducing table contents if the word selected is wrong. 
-                listArray = rocketReadingModel.getCurrentGameData().getWordList();
-                listArray.splice(rocketReadingModel.getCurrentGameData().getIndexOfWord(currentWord),1);
-                for (count; count < (listArray.length/3); count++) {
-                    currentWordIndex = Math.floor(Math.random() * listArray.length)
-                    listArray.splice(currentWordIndex, 1);
-                }
-                listArray.push(currentWord)
-                myViewModelRR.displayTable(listArray);
-            }
-			mainController.exitingLearnWord();
-            
-		}
+                incorrectWordListArray = rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().slice(0);
+                incorrectWordListArray.splice((rocketReadingModel.getCurrentGameData().getIndexOfWord(currentWord)),1);
+                for (count; count < (incorrectWordListArray.length/3); count++) {
+                    currentWordIndex = Math.floor(Math.random() * incorrectWordListArray.length)
+                    incorrectWordListArray.splice(currentWordIndex, 1);
+                };
+                console.log(incorrectWordListArray);
+                incorrectWordListArray.push(currentWord);
+                myViewModelRR.displayTable(incorrectWordListArray);
+                myViewModelRR.eventClickAdd();
+            };  
+		};
 	},
 	
 	learnWord : function () {
         var characterArray = [],
             currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord();
+        myViewModelRR.eventClickAdd();
         characterArray = currentWord.split('');
         myViewModelRR.displayWord(characterArray);
         myViewModelRR.updateCurrentWord(currentWord, 'learnWord');
@@ -84,7 +90,6 @@ var mainController = {
 	
 	exitingLearnWord : function () {
 		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
-        myViewModelRR.eventClickAdd();
 		myViewModelRR.displayLearnWord();
 	},
     

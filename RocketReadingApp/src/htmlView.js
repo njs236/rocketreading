@@ -421,9 +421,8 @@ var viewHTMLModule = {
         var count = 0,
             letter,
             string = '',
-            displayWord = document.getElementById('displayWord');
-        letter = document.createElement('P');
-        displayWord.appendChild(letter);
+            displayWord = document.getElementById('displayWord'),
+            letter = document.getElementById('spokenWord');
         for (count; count < characterArray.length; count++) {
             string = string + characterArray[count] + "  ";
         };

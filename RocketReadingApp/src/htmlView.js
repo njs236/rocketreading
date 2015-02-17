@@ -364,6 +364,9 @@ var viewHTMLModule = {
     
     displayLevelGameNumber: function (levelGame) {
         "use strict";
+        if (levelGame[0] === 0) {
+            levelGame[0] = "Bonus";
+        }
         document.getElementById("gameLevelIDText").textContent = "Level " + levelGame[0] + " - Game " + levelGame[1];
     },
 	

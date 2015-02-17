@@ -395,26 +395,30 @@ var viewHTMLModule = {
         document.getElementById("gameTimer").textContent = "0 : 00";
     },
     
-    playWordInSentence: function (currentWord, attr) {
+    playWordInSentence: function (currentWord, attr, characterArray) {
         "use strict";
+        // Clear the display of the word which the player has to learn
+        myViewModelRR.clearLearnWord();
         // The system will play an audio recording of a sentence containing the current word to be learned
         // and possibly the word will flash when the word is spoken - that would be hard to get right for every different sentence!
         
         // Then after the sentence is finished the word will disappear
         
         // And then the word will be announced one last time
-        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr); }, 1000); 
+        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 1000); 
     },
     
-    displayDottedWord: function (currentWord, attr) {
+    displayDottedWord: function (currentWord, attr, characterArray) {
         "use strict";
         // Clear the display of the word which the player has to learn
         myViewModelRR.clearLearnWord();
+        // Display the current word on the game screen in JarmanDotted font
+        viewHTMLModule.displayWord(characterArray, "JarmanDotted");
         // The word is spoken at the same time it is displayed in dotted letters
-        viewHTMLModule.updateCurrentWord(currentWord, attr);
+        viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray);
     },
 	
-	updateCurrentWord : function (currentWord, attr) {
+	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";
 		var duration,
             levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
@@ -438,13 +442,13 @@ var viewHTMLModule = {
                     learnWordCount -= 1;
                     if (learnWordCount === 3) {
                         // It may not be worthwhile assigning these setTimeouts to variables because it seems that these timers should not be stopped - the sequence will play through and then the user will have a go at identifying the word
-                        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr); }, 100);
+                        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
                     } else if (learnWordCount === 2) {
                         // The word to be learned is displayed in dotted lines and the word will have been announced again
-                        setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr); }, 1000);
+                        setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
                     } else if (learnWordCount === 1) {
                         // The word is included as part of a spoken sentence
-                        setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr); }, 1500);
+                        setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
                     } else if (learnWordCount === 0) {
                         // Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
                         viewHTMLModule.eventClickAdd();
@@ -454,18 +458,25 @@ var viewHTMLModule = {
         });
     },
   
-    displayWord : function (characterArray) {
+    displayWord : function (characterArray, fontType) {
         "use strict";
         var count = 0,
-            letter,
+            letters,
             string = '',
             displayWord = document.getElementById('gameDisplayWord');
-        letter = document.createElement('P');
-        displayWord.appendChild(letter);
+        letters = document.createElement('P');
+        letters.id = "gameLearnWordText";
+        displayWord.appendChild(letters);
         for (count; count < characterArray.length; count++) {
             string = string + characterArray[count] + "  ";
         };
-        letter.textContent = string;
+        letters.textContent = string;
+        
+        if (fontType === "Arial") {
+            document.getElementById("gameLearnWordText").className = "fontArial";
+        } else if (fontType === "JarmanDotted") {
+            document.getElementById("gameLearnWordText").className = "fontJarmanDotted";
+        }
     },
     
     clearLearnWord: function () {

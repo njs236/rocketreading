@@ -49,4 +49,12 @@ div.screenContent {
 	width:100%;
 }
 
+.fontArial {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fontJarmanDotted {
+    font-family: "JarmanDotted Dotted", "Lucida Handwriting", "Colonna MT", serif;
+}
+
 

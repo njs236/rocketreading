@@ -199,14 +199,14 @@ var myViewModelRR = {
         this.view.displayGameTimer();
     },
 	
-	updateCurrentWord : function (currentWord, attr) {
+	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";
-		this.view.updateCurrentWord(currentWord, attr);
+		this.view.updateCurrentWord(currentWord, attr, characterArray);
 	},
     
-    displayWord : function (characterArray) {
+    displayWord : function (characterArray, fontType) {
         "use strict";
-        this.view.displayWord(characterArray);
+        this.view.displayWord(characterArray, fontType);
     },
     
     clearLearnWord: function () {

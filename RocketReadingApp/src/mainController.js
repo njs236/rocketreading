@@ -42,6 +42,8 @@ var mainController = {
                 } else {
                     // this is the incorrect word selection
                     rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
+                    // Add the current word to the incorrect words / sounds property of the currentGameData
+                    rocketReadingModel.getCurrentGameData().addWordsSoundsIncorrect(currentWord);
                     // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
                     myViewModelRR.removeEventClick();
                     myViewModelRR.toggleLearnWord();

@@ -108,13 +108,12 @@ var mainController = {
         myViewModelRR.displayWord(characterArray);
         learnWordCount = 4;
         myViewModelRR.updateCurrentWord(currentWord, 'learnWord');
-        myViewModelRR.eventClickAdd();
 	},
 	
 	exitingLearnWord : function () {
         "use strict";
 		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
-		myViewModelRR.displayLearnWord();
+		myViewModelRR.toggleLearnWord();
 	},
     
 	initialiseNextWord : function () {

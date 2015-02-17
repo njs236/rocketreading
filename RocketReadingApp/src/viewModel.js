@@ -220,7 +220,7 @@ var myViewModelRR = {
     },
 	
 	toggleLearnWord : function () {
-		this.view.displayLearnWord();
+		this.view.toggleLearnWord();
 	},
 	
 	displayAvatar : function (avatar) {

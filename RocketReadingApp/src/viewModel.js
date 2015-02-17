@@ -200,11 +200,18 @@ var myViewModelRR = {
     },
 	
 	updateCurrentWord : function (currentWord, attr) {
+        "use strict";
 		this.view.updateCurrentWord(currentWord, attr);
 	},
     
     displayWord : function (characterArray) {
+        "use strict";
         this.view.displayWord(characterArray);
+    },
+    
+    clearLearnWord: function () {
+        "use strict";
+        this.view.clearLearnWord();
     },
     
     showGameScreen: function() {
@@ -212,7 +219,7 @@ var myViewModelRR = {
         viewHTMLModule.showGameScreen();
     },
 	
-	displayLearnWord : function () {
+	toggleLearnWord : function () {
 		this.view.displayLearnWord();
 	},
 	
@@ -228,8 +235,8 @@ var myViewModelRR = {
 		this.view.removeEventClick();
 	},
 	
-	eventLearnWord : function () {
-		this.view.eventLearnWord();
+	addEventLearnWord : function () {
+		this.view.addEventLearnWord();
 	},
 	
 	removeLearnWord : function () {

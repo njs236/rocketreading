@@ -77,8 +77,8 @@ var viewHTMLModule = {
 	displayPlayerName : function (username) {
 		"use strict";
 		console.groupCollapsed("viewModule : displayPlayerName()")
-		//console.log(username);
-		//document.getElementById('welcome').textContent = 'Welcome, ' + username;
+		console.log(username);
+		document.getElementById('welcome').textContent = 'Welcome, ' + username;
 		console.groupEnd();
 	},
 	
@@ -366,7 +366,6 @@ var viewHTMLModule = {
                 widestCell = count;
             }
         }
-        console.log("hi");
         console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
         document.styleSheets[0].insertRule("td.gameWordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
 	},

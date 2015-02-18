@@ -243,6 +243,11 @@ var myViewModelRR = {
 		this.view.removeLearnWord();
 	},
     
+    setLearnWordNormal: function () {
+        "use strict";
+        this.view.setLearnWordNormal();
+    },
+    
     startBarTimer: function () {
         "use strict"; 
         this.view.startBarTimer();

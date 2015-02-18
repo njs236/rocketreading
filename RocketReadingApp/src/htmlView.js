@@ -278,13 +278,18 @@ var viewHTMLModule = {
 		document.getElementById("bronzeStarCounter").textContent = inputArray[2];
 	
 	},
+    
+    setLearnWordNormal: function () {
+        "use strict";
+        document.getElementById('learnWordText').className = "normal";
+    },
 	
 	toggleLearnWord : function () {
         "use strict";
 		var learnWordButton = document.getElementById('learnWordText');
-		if (learnWordButton.className == "normal") {
+		if (learnWordButton.className === "normal") {
 			learnWordButton.className = "learning";
-		} else if (learnWordButton.className == "learning"){
+		} else if (learnWordButton.className === "learning"){
 			learnWordButton.className = "normal";
 		}
 	},
@@ -662,12 +667,13 @@ var viewHTMLModule = {
 		// Game Screen
 		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         // This clears the timer of an individual test in a game if the user returns to the home page
-		document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer);
+		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // mainController.leaveCurrentGame() can call this
         // If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
         document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
         document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
+        document.getElementById("gameButtonReplay").addEventListener("click", mainController.replayGame);
 		
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);

@@ -289,6 +289,8 @@ var mainController = {
         rocketReadingModel.getCurrentGameData().passList(wordList);
         // Display the table with the randomised complete wordlist
 		myViewModelRR.displayTable(completeWordList);
+        // Set the cells of the table to have a uniform width
+        myViewModelRR.setUniformCellWidth();
 	},
 	
 	displayMedalCounts : function () {
@@ -358,7 +360,7 @@ var mainController = {
             currentWord = listArray[currentWordIndex];
         rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
         learnWordCount = 0;
-        myViewModelRR.updateCurrentWord(currentWord, 'normalWord');
+        myViewModelRR.updateCurrentWord(currentWord, 'normalWord', null);
     },
 	
 	spliceWord : function (currentWordIndex) {
@@ -440,7 +442,7 @@ var mainController = {
         mainController.resetGameTimers();
         // The system starts a new game and initialises the game screen - really, the completeWordList could be set by resetCurrentGameData() - a bit of refactoring to achieve this
         mainController.gameInitialise();
-        mainController.startGame();
+        // mainController.startGame(); // If the 'gameIntroModal' modal window opens then the game will start when the player clicks the start link.
     },
 
     resetGameTimers: function () {
@@ -530,7 +532,7 @@ var mainController = {
             // The incorrect property of currentGameData is set to null in case it has a value
             rocketReadingModel.getCurrentGameData().setIncorrectWord(null); 
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {
-            // If the user has completed the current game then the game screen's properties will be cleared and reset, eg the total game time will be reset to 0.
+            // If the user has completed the current game then the total game time will be reset to 0.
             mainController.resetGameTimers();
             // Create a bare current data object and assign it as a property of the Rocket-Reading object
             mainController.resetCurrentGameData(null, null, null, null);

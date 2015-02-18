@@ -77,8 +77,8 @@ var viewHTMLModule = {
 	displayPlayerName : function (username) {
 		"use strict";
 		console.groupCollapsed("viewModule : displayPlayerName()")
-		console.log(username);
-		document.getElementById('welcome').textContent = 'Welcome, ' + username;
+		//console.log(username);
+		//document.getElementById('welcome').textContent = 'Welcome, ' + username;
 		console.groupEnd();
 	},
 	
@@ -311,7 +311,7 @@ var viewHTMLModule = {
 	},
 	
 	displayTable : function (inputArray) {
-        "use strict";
+        // "use strict";
 		var newRow,
 			newCell,
 			wordCount,
@@ -333,14 +333,48 @@ var viewHTMLModule = {
 			newCell = newRow.insertCell(-1);
 			newCell.innerHTML = inputArray[wordCount];
 			newCell.id = "cell" + wordCount;
-			newCell.className = "wordCell";
-		};
+			newCell.className = "gameWordCell";
+		}/*
+        var count,
+            cellArray,
+            widestCell,
+            widestCellWidth = 0;
+        // Setting the cells of the table to a uniform size
+        cellArray = document.getElementsByClassName("gameWordCell");
+        for ( count = 0; count < cellArray.length; count = count + 1) {
+            if ( cellArray[count].offsetWidth > widestCellWidth ) {
+                widestCellWidth = cellArray[count].offsetWidth;
+                widestCell = count;
+            }
+        }
+        console.log("hi");
+        console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
+        document.styleSheets[0].insertRule("td.wordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 1);*/
+    },
+    
+    setUniformCellWidth: function () {
+        "use strict";
+        var count,
+            cellArray,
+            widestCell,
+            widestCellWidth = 0;
+        // Setting the cells of the table to a uniform size
+        cellArray = document.getElementsByClassName("gameWordCell");
+        for ( count = 0; count < cellArray.length; count = count + 1) {
+            if ( cellArray[count].offsetWidth > widestCellWidth ) {
+                widestCellWidth = cellArray[count].offsetWidth;
+                widestCell = count;
+            }
+        }
+        console.log("hi");
+        console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
+        document.styleSheets[0].insertRule("td.gameWordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
 	},
 	
 	eventClickAdd : function () {
         "use strict";
 		var cellCount,
-            cells = document.getElementsByClassName('wordCell');
+            cells = document.getElementsByClassName('gameWordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].addEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
@@ -350,7 +384,7 @@ var viewHTMLModule = {
 	removeEventClick : function () {
         "use strict";
 		var cellCount,
-            cells = document.getElementsByClassName('wordCell');
+            cells = document.getElementsByClassName('gameWordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].removeEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
@@ -673,7 +707,7 @@ var viewHTMLModule = {
         document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
-        document.getElementById("gameButtonReplay").addEventListener("click", mainController.replayGame);
+        document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);

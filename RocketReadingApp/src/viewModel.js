@@ -256,6 +256,11 @@ var myViewModelRR = {
     hideBarTimer: function () {
         "use strict"; 
         this.view.hideBarTimer();
+    },
+    
+    setUniformCellWidth: function () {
+        "use strict";
+        this.view.setUniformCellWidth();
     }
     
     /*

@@ -77,8 +77,8 @@ var viewHTMLModule = {
 	displayPlayerName : function (username) {
 		"use strict";
 		console.groupCollapsed("viewModule : displayPlayerName()")
-		console.log(username);
-		document.getElementById('welcome').textContent = 'Welcome, ' + username;
+		//console.log(username);
+		//document.getElementById('welcome').textContent = 'Welcome, ' + username;
 		console.groupEnd();
 	},
 	

@@ -68,7 +68,7 @@ var mainController = {
 					console.groupEnd();
 					myViewModelRR.loginSuccessful();
 					mainController.setPlayer(userName);
-                    mainController.setAccessTo();
+                    // mainController.setAccessTo();
 				} else {
 					console.log("%cprocessLogin : Bad Password","color:red");
 					myViewModelRR.badLogin();
@@ -95,7 +95,7 @@ var mainController = {
 	},
     
     setAccessTo : function () {
-        
+        // Unknown function 
     },
     
     

@@ -4,7 +4,7 @@ var localStorageController =  {
 		return JSON.parse(localStorage.getItem(uname));
 	},
     registerPlayer : function (player) {
-        localStorage.setItem(player.uname, JSON.stringify(player)));
+        localStorage.setItem(player.uname, JSON.stringify(player));
     },
     
     saveAllGamesData : function () {

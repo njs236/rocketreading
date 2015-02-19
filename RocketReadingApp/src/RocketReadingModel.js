@@ -67,8 +67,8 @@ RocketReadingModel.prototype.registerPlayer = function (newUser, newFirstName, n
 
 RocketReadingModel.prototype.setPlayer = function (player) {
 	this.myPlayer = player;
-    this.myAllGamesData = player.AllGamesData;
-    this.myCurrentGameData = player.CurrentGameData;
+    this.myAllGamesData = player.allGamesData;
+    this.myCurrentGameData = player.currentGameData;
     //console.log("RocketReadingModel.setPlayer() level reached - " + rocketReadingModel.getMyPleyer());
 };
 

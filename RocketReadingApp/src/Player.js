@@ -23,3 +23,7 @@ Player.prototype.setLevelGameReached = function (levelGame) {
     "use strict";
     this.levelGameReached = levelGame;
 };
+
+Player.prototype.getUserName = function () {
+    return this.userName;
+}

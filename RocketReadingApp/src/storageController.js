@@ -7,7 +7,19 @@ var storageController = {
 	setControllerType : function (string) {
 		this.ControllerType = string;
 		return this.ControllerType;
-	}
+	},
+    
+    registerPlayer : function (player) {
+        this.ControllerType.registerPlayer(player);
+    },
+    
+    saveAllGamesData : function () {
+        this.ControllerType.saveAllGamesData();
+    },
+    
+    saveCurrentGameData : function () {
+        this.ControllerType.saveCurrentGameData();
+    }
 };
 
 storageController.setControllerType(localStorageController);

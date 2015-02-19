@@ -132,6 +132,11 @@ var loadGameData = function () {
     middleSoundsList.push(middleSoundsList_oo1);
     /* and so on ... */
     
+    // These are the first instance of CurrentGameData and AllGamesData
+    
+    rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, 0, [0,0,0], null, null, [], []);
+    rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
+    
     // The system will delete any old instances of objects in the system
     // rocketReadingModel.deleteAll(); This isn't necessary - previous data will be clobbered by the new
 

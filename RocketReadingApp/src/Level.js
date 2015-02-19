@@ -1,9 +1,9 @@
-var Level = function (newName, newLevelNumber, newGames, newNumberGames) {
+var Level = function (newName, newLevelNumber, newGames, newNumberGames, newAccessible) {
     this.description = newName || 'unnamed';
     this.levelNumber = newLevelNumber || 0;
     this.allMyGames = newGames || [];
     this.gameCount = newNumberGames || 0;
-	
+	this.accessible = newAccessible;
 	return this;
 };
 
@@ -14,9 +14,9 @@ Level.prototype.calculateScore = function () {
     }	
 };
 
-Level.prototype.addGame = function (newName, newList, myLevelName, newGameNumber) {
+Level.prototype.addGame = function (newName, newList, myLevelName, newGameNumber, newAccessible) {
 "use strict";
-    var newGame = new Game( newName, newList, myLevelName, newGameNumber);
+    var newGame = new Game( newName, newList, myLevelName, newGameNumber, newAccessible);
     /*JSON.parse(localStorage.getItem(this.name));*/
     this.allMyGames.push (newGame);
     this.gameCount += Number(1);

@@ -10,15 +10,16 @@ var RocketReadingModel = function() {
 	this.myAllGamesData = {};
 	this.allMyAvatars = [];
 	this.avatarCount = 0;
+    this.levelThreshold = 450;
 };
 
     // A single instance of the Rocket Reading Model is instantiated
 rocketReadingModel = new RocketReadingModel();
 
 
-RocketReadingModel.prototype.addLevel = function (newName, newLevelNumber, newGames, newNumberGames) {
+RocketReadingModel.prototype.addLevel = function (newName, newLevelNumber, newGames, newNumberGames, newAccessible) {
     "use strict";
-    var newLevel = new Level(newName, newLevelNumber, newGames, newNumberGames);
+    var newLevel = new Level(newName, newLevelNumber, newGames, newNumberGames, newAccessible);
     this.allMyLevels.push (newLevel);
     this.levelCount += Number(1);
 };

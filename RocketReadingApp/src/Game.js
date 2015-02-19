@@ -1,8 +1,9 @@
-var Game = function (newName, newList, myLevelName, newGameNumber) {
+var Game = function (newName, newList, myLevelName, newGameNumber, newAccessible) {
 	this.gameNumber = newGameNumber || null;
     this.gameName = newName || 'unnamed';
     this.myWordList = newList || [];
 	this.levelName = myLevelName;
+    this.accessible = newAccessible;
 	return this;
 };
 

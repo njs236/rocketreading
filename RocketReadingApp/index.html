@@ -29,6 +29,9 @@
 		
         <script type="text/javascript" src="Login_scripts.js"></script>
         
+        <!-- Register Screen Section -->
+        <link rel="stylesheet" href="Register_layout.css">
+        
 		<!-- Login Screen Section -->
 		<link rel="stylesheet" href="Login_layout.css">
 		<script type="text/javascript" src="Login_scripts.js"></script>
@@ -62,6 +65,55 @@
 			<div id="pingpong" class="navScreen" hidden>
 			<p></p>
 			</div>
+            
+            <div id="registerScreen">
+                <form id="registerForm">
+                    <fieldset id="registerFieldset">
+                        <h1>Rocket Reading</h1>
+                   
+                        <h2>Please Register - enter data in the fields below</h2>
+                        
+                        <div class = "registerFormLabelDiv">
+                            <label for "registerUserName">Username:</label>
+                            <br><br>
+                            <label for "registerFirstName">First Name:</label>
+                            <br><br>
+                            <label for "registerLastName">Last Name:</label>
+                            <br><br>
+                            <label for "registerSchool">School:</label>
+                            <br><br>
+                            <label for "registerClass">Class:</label>
+                            <br><br>
+                            <label for "registerPassword">Password:</label>
+                            <br><br>
+                            <label for "registerConfirmPassword">Confirm Password:</label>
+                            <br><br>
+                        </div>
+                        
+                        <div class="registerInputContainer">
+                            <input type="text" id="registerUserName" class="registerInputField"></input>
+                             <br>
+                            <input type="text" id="registerFirstName" class="registerInputField"></input>
+                            <br>
+                            <input type="text" id="registerLastName" class="registerInputField"></input>
+                            <br>
+                            <input type="text" id="registerSchool" class="registerInputField"></input>
+                            <br>
+                            <input type="text" id="registerClass" class="registerInputField"></input>
+                            <br>
+                            <input type="text" id="registerPassword" class="registerInputField"></input>
+                            <br>
+                            <input type="text" id="registerConfirmPassword" class="registerInputField"></input>
+                            <br>
+                            <input type="button" value="Register" id="registerData" ></input>
+                        </div>
+                        
+                        <input type="button" value="Exit" id="registerExit" ></input>
+                        
+                    </fieldset>
+                </form>
+			</div>
+            
 			<div id="loginScreen" class="navScreen">
                 <form id="loginForm">
                     <fieldset id="loginFieldset">

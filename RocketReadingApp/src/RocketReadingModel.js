@@ -66,9 +66,12 @@ RocketReadingModel.prototype.registerPlayer = function (newUser, newFirstName, n
 
 
 RocketReadingModel.prototype.setPlayer = function (player) {
-	this.myPlayer = player;
-    this.myAllGamesData = player.allGamesData;
-    this.myCurrentGameData = player.currentGameData;
+    var newPlayer = new Player(player.userName, player.firstName, player.lastName, player.school, player.class, player.totalScore, player.levelGameReached, player.bonusGameReached, player.pointsToPassLevel),
+    newAllGamesData = new AllGamesData(player.allGamesData.newLevel1Game1, player.allGamesData.newLevel1Game2, player.allGamesData.newLevel1Game3, player.allGamesData.newLevel1Game4, player.allGamesData.newLevel2Game1, player.allGamesData.newLevel2Game2, player.allGamesData.newLevel2Game3, player.allGamesData.newLevel2Game4, player.allGamesData.newLevel3Game1, player.allGamesData.newLevel3Game2, player.allGamesData.newLevel3Game3, player.allGamesData.newLevel3Game4, player.allGamesData.newLevel4Game1,  player.allGamesData.newLevel4Game2, player.allGamesData.newLevel4Game3, player.allGamesData.newLevel4Game4, player.allGamesData.newLevel5Game1, player.allGamesData.newLevel5Game2, player.allGamesData.newLevel5Game3, player.allGamesData.newLevel5Game4, player.allGamesData.newLevel6Game1, player.allGamesData.newLevel6Game2, player.allGamesData.newLevel6Game3, player.allGamesData.newLevel6Game4, player.allGamesData.newBonusGame1, player.allGamesData.newBonusGame2, player.allGamesData.newBonusGame3, player.allGamesData.newBonusGame4, player.allGamesData.newBonusGame5, player.allGamesData.newBonusGame6),
+    newCurrentGameData = new CurrentGameData(player.currentGameData.newLevel, player.currentGameData.newGame, player.currentGameData.newWordList, player.currentGameData.newCurrentWord, player.currentGameData.newCurrentLevelGame, player.currentGameData.newSavedLevelGame, player.currentGameData.newGameScore, player.currentGameData.newGameMedals, player.currentGameData.newLastTestTime, player.currentGameData.newTotalGameTime, player.currentGameData.newWordsSoundsCorrect, player.currentGameData.newWordsSoundsIncorrect);
+	this.myPlayer = newPlayer;
+    this.myAllGamesData = newAllGamesData;
+    this.myCurrentGameData = newCurrentGameData;
     //console.log("RocketReadingModel.setPlayer() level reached - " + rocketReadingModel.getMyPleyer());
 };
 

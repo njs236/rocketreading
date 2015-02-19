@@ -677,6 +677,13 @@ var viewHTMLModule = {
 		document.getElementById("highScoresScreen").hidden = false;
 		console.log("HTMLView.js : Showing High Score screen");
 	},
+    
+    showRegisterScreen : function () {
+        "use strict";
+        viewHTMLModule.hideAllPages();
+        document.getElementById("registerScreen").hidden = false;
+        console.log("HTMLView.js: Showing Register Screen");
+    },
 	// ******************************************
 	// ********** Initialise Section ************
 	// ******************************************
@@ -684,6 +691,7 @@ var viewHTMLModule = {
 	intitialiseView : function()  {
 		// Login Screen
 		document.getElementById("loginEnterBtn").addEventListener("click", this.attemptLogin, false);
+        document.getElementById("loginRegisterBtn").addEventListener("click", this.showRegisterScreen);
 		
 		// Home Screen
 		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);

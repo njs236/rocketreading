@@ -19,49 +19,256 @@
 	position:absolute;
 	height:100%;
 	width:100%;
-	background-color: gray;
+    background-image: url(./images/homeScreenBackground.jpg);
+    background-size: 100% 100%;
+}
+#homeScreen h1 {
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;}
+
+#homeHeading {
+    position: absolute;
+    left: 4%;
+    margin-top: 5px;
+    color: rgba(251, 239, 126, .6);
+}
+
+#homeSubHeading {
+    position: absolute;
+    right: 14%;
+    top: 30%;
+    font-size: 2em;
+    color: rgba(251, 239, 126, 1);
+    /*background-color: gray;*/
 }
 
 #homeLeft, #homeRight {
+    position: absolute;
+    right: 15%;
+    bottom: -10%;
     width: 30%;
-    height: 100%;
+    min-width: 15em;
+    height: 70%;
+    /*height: 100%;*/
     float: left;
 }
 
 div.homeSideDivs {
-    height: 33.33%;
+    height: 20%;
     width: 100%;
 }
 
-div.homeOptions, #homeLeft a {
+div.homeOptions {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
     width:calc(100% - 2em);
-	padding: 1.5em 0em;
+	padding:.5em 0em;
+	padding: /*1*/.5em 0em;
 	text-align:center;
 	border: solid 1px;
-	border-color:#aaa;
-	border-radius:0.5em;
-}
-
-div.homeOptionsLeft {
-    margin-left: 2em;
+	border-color: black;
+    border-radius:0.5em;
+    cursor: pointer;
+    background-color: rgba(114, 6, 6, .8);
+    box-shadow: .5em .5em 1em rgba(0, 0, 0, 1)
 }
 
 #homePlayGame {
-    background-color: Blueviolet;
+    background-image: url(images/playIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homePlayGame:hover {
+    background-image: url(images/playIconGlow.png);
 }
 
 #homeContinue {
-    background-color: Coral;
+    background-image: url(images/continueIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homeContinue:hover {
+    background-image: url(images/continueIconGlow.png);
+
 }
 
 #homeHighScores {
-    background-color: Cyan;
+    background-image: url(images/highScoreIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homeHighScores:hover {
+    background-image: url(images/highScoreIconGlow.png);
+}
+
+#homeDemo {
+    background-image: url(images/demoIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homeDemo:hover {
+    background-image: url(images/demoIconGlow.png);
+}
+
+#homeInstructions {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    overflow: auto;
+    background-image: url(./images/instructionIcon.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 3%;
+    margin: 5px;
+    cursor: pointer;
+}
+    
+#homeInstructions:hover {
+    background-image: url(./images/instructionIconGlow.png);
+}
+
+#homeInstructions Img {
+    width: 100%;
+    /*background-color: DodgerBlue;*/
+}
+
+#homeExit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: auto;
+    width: 3%;
+    background-image: url(./images/exitIcon.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#homeExit:hover {
+    background-image: url(./images/exitIconGlow.png);
+/*#homeDemo {
+    background-color: Fuchsia;*/
+}
+
+#homeExit img {
+ width: 100%;
+/*#homeExit {
+    background-color: LawnGreen;*/
+}
+
+#homeContainer {
+	position:absolute;
+	height:100%;
+	width:100%;
+    background-image: url(./images/homeScreenBackground.jpg);
+    background-size: 100% 100%;
+}
+#homeScreen h1 {
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;}
+
+#homeHeading {
+    position: absolute;
+    left: 4%;
+    margin-top: 5px;
+    color: rgba(251, 239, 126, .6);
+}
+
+#homeSubHeading {
+    position: absolute;
+    right: 14%;
+    top: 30%;
+    font-size: 2em;
+    color: rgba(251, 239, 126, 1);
+
+}
+
+#homeLeft, #homeRight {
+    position: absolute;
+    right: 15%;
+    bottom: -10%;
+    width: 30%;
+    min-width: 15em;
+    height: 70%;
+    float: left;
+}
+
+div.homeSideDivs {
+    height: 20%;
+    width: 100%;
+}
+
+div.homeOptions {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width:calc(100% - 2em);
+	padding:.5em 0em;
+	text-align:center;
+	border: solid 1px;
+	border-color: black;
+	border-radius:0.5em;
+    cursor: pointer;
+    background-color: rgba(114, 6, 6, .8);
+    box-shadow: .5em .5em 1em rgba(0, 0, 0, 1)
+}
+
+
+#homePlayGame {
+    background-image: url(images/playIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homePlayGame:hover {
+    background-image: url(images/playIconGlow.png);
+}
+
+#homeContinue {
+    background-image: url(images/continueIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homeContinue:hover {
+    background-image: url(images/continueIconGlow.png);
+}
+
+#homeHighScores {
+    background-image: url(images/highScoreIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homeHighScores:hover {
+    background-image: url(images/highScoreIconGlow.png);
+}
+
+#homeDemo {
+    background-image: url(images/demoIcon.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+#homeDemo:hover {
+    background-image: url(images/demoIconGlow.png);
 }
 
 #homeAvatarContainer {
+    display: none;
     height: 100%;
     width: 40%;
     float: left;
@@ -99,13 +306,44 @@ div.homeOptionsRight {
 }
 
 #homeInstructions {
-    background-color: DodgerBlue;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    overflow: auto;
+    background-image: url(./images/instructionIcon.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 3%;
+    margin: 5px;
+    cursor: pointer;
+}
+    
+#homeInstructions:hover {
+    background-image: url(./images/instructionIconGlow.png);
 }
 
-#homeDemo {
-    background-color: Fuchsia;
+#homeInstructions Img {
+    width: 100%;
 }
 
 #homeExit {
-    background-color: LawnGreen;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: auto;
+    width: 3%;
+    background-image: url(./images/exitIcon.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#homeExit:hover {
+    background-image: url(./images/exitIconGlow.png);
+}
+
+#homeExit img {
+ width: 100%;
 }

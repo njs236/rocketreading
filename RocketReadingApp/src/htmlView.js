@@ -77,8 +77,8 @@ var viewHTMLModule = {
 	displayPlayerName : function (username) {
 		"use strict";
 		console.groupCollapsed("viewModule : displayPlayerName()")
-		console.log(username);
-		document.getElementById('welcome').textContent = 'Welcome, ' + username;
+		//console.log(username);
+		//document.getElementById('welcome').textContent = 'Welcome, ' + username;
 		console.groupEnd();
 	},
 	
@@ -278,13 +278,18 @@ var viewHTMLModule = {
 		document.getElementById("bronzeStarCounter").textContent = inputArray[2];
 	
 	},
+    
+    setLearnWordNormal: function () {
+        "use strict";
+        document.getElementById('learnWordText').className = "normal";
+    },
 	
 	toggleLearnWord : function () {
         "use strict";
 		var learnWordButton = document.getElementById('learnWordText');
-		if (learnWordButton.className == "normal") {
+		if (learnWordButton.className === "normal") {
 			learnWordButton.className = "learning";
-		} else if (learnWordButton.className == "learning"){
+		} else if (learnWordButton.className === "learning"){
 			learnWordButton.className = "normal";
 		}
 	},
@@ -306,7 +311,7 @@ var viewHTMLModule = {
 	},
 	
 	displayTable : function (inputArray) {
-        "use strict";
+        // "use strict";
 		var newRow,
 			newCell,
 			wordCount,
@@ -328,14 +333,47 @@ var viewHTMLModule = {
 			newCell = newRow.insertCell(-1);
 			newCell.innerHTML = inputArray[wordCount];
 			newCell.id = "cell" + wordCount;
-			newCell.className = "wordCell";
-		};
+			newCell.className = "gameWordCell";
+		}/*
+        var count,
+            cellArray,
+            widestCell,
+            widestCellWidth = 0;
+        // Setting the cells of the table to a uniform size
+        cellArray = document.getElementsByClassName("gameWordCell");
+        for ( count = 0; count < cellArray.length; count = count + 1) {
+            if ( cellArray[count].offsetWidth > widestCellWidth ) {
+                widestCellWidth = cellArray[count].offsetWidth;
+                widestCell = count;
+            }
+        }
+        console.log("hi");
+        console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
+        document.styleSheets[0].insertRule("td.wordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 1);*/
+    },
+    
+    setUniformCellWidth: function () {
+        "use strict";
+        var count,
+            cellArray,
+            widestCell,
+            widestCellWidth = 0;
+        // Setting the cells of the table to a uniform size
+        cellArray = document.getElementsByClassName("gameWordCell");
+        for ( count = 0; count < cellArray.length; count = count + 1) {
+            if ( cellArray[count].offsetWidth > widestCellWidth ) {
+                widestCellWidth = cellArray[count].offsetWidth;
+                widestCell = count;
+            }
+        }
+        console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
+        document.styleSheets[0].insertRule("td.gameWordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
 	},
 	
 	eventClickAdd : function () {
         "use strict";
 		var cellCount,
-            cells = document.getElementsByClassName('wordCell');
+            cells = document.getElementsByClassName('gameWordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].addEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
@@ -345,7 +383,7 @@ var viewHTMLModule = {
 	removeEventClick : function () {
         "use strict";
 		var cellCount,
-            cells = document.getElementsByClassName('wordCell');
+            cells = document.getElementsByClassName('gameWordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].removeEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
@@ -364,6 +402,9 @@ var viewHTMLModule = {
     
     displayLevelGameNumber: function (levelGame) {
         "use strict";
+        if (levelGame[0] === 0) {
+            levelGame[0] = "Bonus";
+        }
         document.getElementById("gameLevelIDText").textContent = "Level " + levelGame[0] + " - Game " + levelGame[1];
     },
 	
@@ -392,26 +433,30 @@ var viewHTMLModule = {
         document.getElementById("gameTimer").textContent = "0 : 00";
     },
     
-    playWordInSentence: function (currentWord, attr) {
+    playWordInSentence: function (currentWord, attr, characterArray) {
         "use strict";
+        // Clear the display of the word which the player has to learn
+        myViewModelRR.clearLearnWord();
         // The system will play an audio recording of a sentence containing the current word to be learned
         // and possibly the word will flash when the word is spoken - that would be hard to get right for every different sentence!
         
         // Then after the sentence is finished the word will disappear
         
         // And then the word will be announced one last time
-        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr); }, 1000); 
+        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 1000); 
     },
     
-    displayDottedWord: function (currentWord, attr) {
+    displayDottedWord: function (currentWord, attr, characterArray) {
         "use strict";
         // Clear the display of the word which the player has to learn
         myViewModelRR.clearLearnWord();
+        // Display the current word on the game screen in JarmanDotted font
+        viewHTMLModule.displayWord(characterArray, "JarmanDotted");
         // The word is spoken at the same time it is displayed in dotted letters
-        viewHTMLModule.updateCurrentWord(currentWord, attr);
+        viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray);
     },
 	
-	updateCurrentWord : function (currentWord, attr) {
+	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";
 		var duration,
             levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
@@ -435,13 +480,13 @@ var viewHTMLModule = {
                     learnWordCount -= 1;
                     if (learnWordCount === 3) {
                         // It may not be worthwhile assigning these setTimeouts to variables because it seems that these timers should not be stopped - the sequence will play through and then the user will have a go at identifying the word
-                        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr); }, 100);
+                        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
                     } else if (learnWordCount === 2) {
                         // The word to be learned is displayed in dotted lines and the word will have been announced again
-                        setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr); }, 1000);
+                        setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
                     } else if (learnWordCount === 1) {
                         // The word is included as part of a spoken sentence
-                        setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr); }, 1500);
+                        setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
                     } else if (learnWordCount === 0) {
                         // Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
                         viewHTMLModule.eventClickAdd();
@@ -451,18 +496,25 @@ var viewHTMLModule = {
         });
     },
   
-    displayWord : function (characterArray) {
+    displayWord : function (characterArray, fontType) {
         "use strict";
         var count = 0,
-            letter,
+            letters,
             string = '',
             displayWord = document.getElementById('gameDisplayWord');
-        letter = document.createElement('P');
-        displayWord.appendChild(letter);
+        letters = document.createElement('P');
+        letters.id = "gameLearnWordText";
+        displayWord.appendChild(letters);
         for (count; count < characterArray.length; count++) {
             string = string + characterArray[count] + "  ";
         };
-        letter.textContent = string;
+        letters.textContent = string;
+        
+        if (fontType === "Arial") {
+            document.getElementById("gameLearnWordText").className = "fontArial";
+        } else if (fontType === "JarmanDotted") {
+            document.getElementById("gameLearnWordText").className = "fontJarmanDotted";
+        }
     },
     
     clearLearnWord: function () {
@@ -648,12 +700,13 @@ var viewHTMLModule = {
 		// Game Screen
 		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         // This clears the timer of an individual test in a game if the user returns to the home page
-		document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer);
+		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // mainController.leaveCurrentGame() can call this
         // If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
         document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
         document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
+        document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);

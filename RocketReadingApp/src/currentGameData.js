@@ -182,10 +182,14 @@ CurrentGameData.prototype.getCurrentLevelGame = function () {
 CurrentGameData.prototype.setIncorrectWord = function (word) {
     "use strict";
 	this.incorrectWord = word;
-	this.wordsSoundsIncorrect.push(word);
 };
 
 CurrentGameData.prototype.getIncorrectWord = function () {
     "use strict";
 	return this.incorrectWord;
-}
+};
+
+CurrentGameData.prototype.addWordsSoundsIncorrect = function (word) {
+    "use strict";
+    this.wordsSoundsIncorrect.push(word);
+};    

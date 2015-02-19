@@ -71,6 +71,8 @@
 #gameDisplayWord p {
     font-size : 3em;
     color: #0f0;
+    /*text-align: center;*/
+    padding-left: 30px;
 }
 
 #gameRightSideTopRight {

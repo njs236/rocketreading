@@ -74,14 +74,12 @@ var mainController = {
     
     // loading player data from the local storage. 
 	setPlayer: function (username) {
+    // This function is for 
         "use strict";
 		var playerData = storageController.getPlayer(username);
         console.log("mainController.setPlayer(): setPlayer() player's school - " + playerData.school);
-        // Creating current Game Data and AllGamesData for the new player, and then adding the player to the system.
         // It's interesting to see what happens when passing the score as 0 (and the constructor does not set the total score as 0 if there is not input parameter for this attribute.
-        rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, 0, [0,0,0], null, null, [], []);
-        rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
-		rocketReadingModel.addPlayer(playerData.userName, playerData.firstName, playerData.lastName, playerData.school, playerData.classRoom, playerData.totalScore, playerData.levelGameReached, playerData.bonusGameReached, playerData.pointsToPassLevel);
+		rocketReadingModel.setPlayer(playerData);
 		myViewModelRR.displayPlayerName(username);
 	},
     

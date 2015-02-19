@@ -142,8 +142,8 @@ var loadGameData = function () {
 
     // rocketReadingModel.addPlayer('Maccas', 'Lucky', 'Louis', 'Lincoln Primary', 'b1', Number(null), [1, 1], 1, 400);
     // The player will be added to the root object when he or she logs in. Still need to add the player to local storage when the program loads:
-    rocketReadingModel.registerPlayer("Maccas", "Lucky", "Louis", "Lincoln Primary", "b1", 0, [1, 1], 1, 400);
-	rocketReadingModel.registerPlayer('admin', 'Andrew', 'Papanui', 'Papanui High School', 'staff', 10000, [6,4], 5, 0);
+    /*rocketReadingModel.registerPlayer("Maccas", "Lucky", "Louis", "Lincoln Primary", "b1", 0, [1, 1], 1, 400);
+	rocketReadingModel.registerPlayer('admin', 'Andrew', 'Papanui', 'Papanui High School', 'staff', 10000, [6,4], 5, 0);*/
 	
     // Add levels to the system
     rocketReadingModel.addLevel("Bonus Games Level", 0, [], 0, true);

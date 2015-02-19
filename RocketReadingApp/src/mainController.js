@@ -2,6 +2,17 @@
 
 var mainController = {
     
+    //Register Screen
+    registerPlayer : function () {
+    "use strict";
+    var userName = document.getElementById('registerUserName').value,
+        firstName = document.getElementById('registerFirstName').value,
+        lastName = document.getElementById('registerLastName').value,
+        school = document.getElementById('registerSchool').value,
+        classroom = document.getElementById('registerClass').value;
+    rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 400);
+    },    
+    
     //Login Screen
  loginMethods: {
         validateLogin: function (userName, userPassword) {
@@ -82,6 +93,10 @@ var mainController = {
 		rocketReadingModel.setPlayer(playerData);
 		myViewModelRR.displayPlayerName(username);
 	},
+    
+    setAccessTo : function () {
+        
+    },
     
     
 	    

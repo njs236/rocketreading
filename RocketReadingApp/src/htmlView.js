@@ -47,6 +47,16 @@ var viewHTMLModule = {
 	// **********************************
 	// ******* End Tests Section ********
 	// **********************************
+    
+    // Register Screen Section
+    
+    clearFields : function () {
+        document.getElementById('registerUserName').value = '';
+        document.getElementById('registerFirstName').value = '';
+        document.getElementById('registerLastName').value = '';
+        document.getElementById('registerSchool').value = '';
+        document.getElementById('registerClass').value = '';
+    },
 	// *************************************
 	// ******* Login Screen Section ********
 	// *************************************
@@ -689,6 +699,13 @@ var viewHTMLModule = {
 	// ******************************************
 	
 	intitialiseView : function()  {
+        // Register Screen
+        
+        document.getElementById("registerData").addEventListener("click", mainController.registerPlayer);
+        document.getElementById("registerData").addEventListener("click", this.clearFields);
+        document.getElementById("registerData").addEventListener("click",this.showLoginScreen);
+        document.getElementById("registerExit").addEventListener("click",this.showLoginScreen);
+       
 		// Login Screen
 		document.getElementById("loginEnterBtn").addEventListener("click", this.attemptLogin, false);
         document.getElementById("loginRegisterBtn").addEventListener("click", this.showRegisterScreen);

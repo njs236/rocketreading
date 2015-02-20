@@ -328,6 +328,8 @@ var mainController = {
         rocketReadingModel.getCurrentGameData().saveGameTime();
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
+        // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?)
+        rocketReadingModel.clearCurrentGameData();
         storageController.saveAllGamesData();
         // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
         
@@ -337,8 +339,7 @@ var mainController = {
         /*} else {
             
         }*/
-        // Clear the current data object
-        rocketReadingModel.clearCurrentGameData();
+        
         // Create a bare current data object and assign it as a property of the Rocket-Reading object
         // mainController.resetCurrentGameData(null, null, null, null); // No, see the following:
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this.

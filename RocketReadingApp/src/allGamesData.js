@@ -135,7 +135,6 @@ AllGamesData.prototype.saveGameData = function (levelNumber, gameNumber, current
     this.getGameDataArray(levelNumber, gameNumber).push(currentGameData);
 };
 
-
 AllGamesData.prototype.updateAllGamesData = function (username, gameData) {
     "use strict";
     var playerData = JSON.parse(localStorage.getItem(username));

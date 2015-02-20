@@ -35,9 +35,31 @@ Player.prototype.setLevelGameReached = function () {
 };
 
 Player.prototype.getPointsToPassLevel = function () {
+    "use strict";
     return this.pointsToPassLevel;
-}
+};
 
 Player.prototype.getUserName = function () {
+    "use strict";
     return this.userName;
-}
+};
+
+Player.prototype.getAllGamesData = function () {
+    "use strict";
+    return this.allGamesData;
+};
+
+Player.prototype.setAllGamesData = function (dataObject) {
+    "use strict";
+    this.allGamesData = dataObject;
+};
+
+Player.prototype.getCurrentGameData = function () {
+    "use strict";
+    return this.currentGameData;
+};
+
+Player.prototype.setCurrentGameData = function (dataObject) {
+    "use strict";
+    this.currentGameData = dataObject;
+};

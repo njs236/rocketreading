@@ -493,8 +493,8 @@ var viewHTMLModule = {
         audio.play()
         audio.addEventListener('loadedmetadata', function(){
             duration = audio.duration;
-            duration = duration * 1000 + 1000; // Give the player a bonus second
-            // duration = duration * 1000;
+            // duration = duration * 1000 + 1000; // Give the player a bonus second
+            duration = duration * 1000;
             learnWordTimerA = setTimeout(function (){	
                 if (attr === 'normalWord') {
                     viewHTMLModule.eventClickAdd();

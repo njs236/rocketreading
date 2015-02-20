@@ -4,17 +4,17 @@ var mainController = {
     
     //Register Screen
     registerPlayer : function () {
-    "use strict";
-    var userName = document.getElementById('registerUserName').value,
-        firstName = document.getElementById('registerFirstName').value,
-        lastName = document.getElementById('registerLastName').value,
-        school = document.getElementById('registerSchool').value,
-        classroom = document.getElementById('registerClass').value;
-    rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 400);
+        "use strict";
+        var userName = document.getElementById('registerUserName').value,
+            firstName = document.getElementById('registerFirstName').value,
+            lastName = document.getElementById('registerLastName').value,
+            school = document.getElementById('registerSchool').value,
+            classroom = document.getElementById('registerClass').value;
+        rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 400);
     },    
     
     //Login Screen
- loginMethods: {
+    loginMethods: {
         validateLogin: function (userName, userPassword) {
             "use strict";
            if  (( storageController.getPlayer(userName).userName === userName) && ( storageController.getPlayer(userName).firstName === userPassword )) {
@@ -224,7 +224,7 @@ var mainController = {
         rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGames);
 	},
     
-requestAllGamesForLevel : function () {
+    requestAllGamesForLevel : function () {
 		"use strict"
 		// function returns a 2D array of games for an input level
 		// in the following format.
@@ -330,7 +330,7 @@ requestAllGamesForLevel : function () {
         }
     },
     
- randomiseArray: function (inputArray) {
+    randomiseArray: function (inputArray) {
         "use strict";
         var wordIndex,
             count,
@@ -349,13 +349,13 @@ requestAllGamesForLevel : function () {
         // Use the complete word list array to build the table (in case the player is returning to the game)
 		var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
             completeWordList = rocketReadingModel.getCurrentGameData().getCompleteWordList();
-        // The wordlist needs to be arranged in a random order
-        completeWordList = this.randomiseArray(completeWordList);
+        // The wordlist needs to be arranged in a random order 
+        // completeWordList = this.randomiseArray(completeWordList); // The words in lists no longer need to be randomly arranged before being displayed on the game screen table
         // After the wordlist has been randomised, the complete word list needs to be repopulated. This is necessary because the complete word list may need to be used in validateWords()
-        mainController.resetCompleteWordList();
+        // mainController.resetCompleteWordList(); // Because randomiseArray() is no longer run, the complete word list no longer needs to be reset.
         // Set the other wordlist array as the word list for the current game
         rocketReadingModel.getCurrentGameData().passList(wordList);
-        // Display the table with the randomised complete wordlist
+        // Display the table with the /*randomised*/ complete wordlist
 		myViewModelRR.displayTable(completeWordList);
         // Set the cells of the table to have a uniform width
         myViewModelRR.setUniformCellWidth();
@@ -518,8 +518,9 @@ requestAllGamesForLevel : function () {
         gameTimerSecs = 0;
         gameTimerMins = 0;
         myViewModelRR.resetGameTimer();
-    },    
-   gameInitialise: function () {
+    },
+    
+    gameInitialise: function () {
         "use strict";
         var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
             completeWordList = rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().slice(0),

@@ -48,7 +48,7 @@
     color: MediumBlue; 
 }
 
-#registerFieldset h2, #registerFieldset h1, p{
+#registerFieldset h2, #registerFieldset h1, #registerFieldset p{
     padding: 0.5em 0;
     text-align: center;
 }

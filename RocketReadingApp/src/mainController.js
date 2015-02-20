@@ -10,7 +10,7 @@ var mainController = {
             lastName = document.getElementById('registerLastName').value,
             school = document.getElementById('registerSchool').value,
             classroom = document.getElementById('registerClass').value;
-        rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 400);
+        rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 450);
     },    
     
     //Login Screen
@@ -283,6 +283,7 @@ var mainController = {
 		for ( count = 0; count < gamesArray.length; count = count + 1) {
 			tempArray[0] = gamesArray[count].getNumber();
 			tempArray[1] = gamesArray[count].getGameName();
+            tempArray[2] = gamesArray[count].getAccessibility();
 			console.log("requestAllGamesForLevel() : added '" + tempArray + "' to list");
 			outputGameOptions.push(tempArray);
 			tempArray = [];

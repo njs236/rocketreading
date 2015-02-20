@@ -194,9 +194,9 @@ var viewHTMLModule = {
 		//
 		// function accepts a 2D array of games for an input level
 		// in the following format.
-		// [ 1 , "game01" ]
-		// [ 2 , "game02" ]
-		// [ 3 , "game03" ]
+		// [ 1 , "game01", true ]
+		// [ 2 , "game02", false ]
+		// [ 3 , "game03", false ]
 		
 		"use strict";
 		var count,
@@ -223,7 +223,6 @@ var viewHTMLModule = {
 				newDiv.className = "gameSelectScreenGame";
 				gameSelectMainDiv.lastChild.appendChild(newDiv);
 			};
-			
             newAnchor = document.createElement("A");
             newAnchor.href = "#gameIntroModal";
 			newDiv = document.createElement("DIV");
@@ -234,14 +233,18 @@ var viewHTMLModule = {
 			newHeading = document.createElement("H1");
             newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
+           
             newAnchor.appendChild(newDiv);
 			
 			gameSelectMainDiv.lastChild.appendChild(newAnchor);
 			
 			// Adding event-listeners to the div. The setGameWordList() function now has an input parameter. Need to use closures in order to ensure the correct parameter is passed to the setGameWordList() function
-            newDiv.addEventListener("click", this.setGameAndWordList);
-            newDiv.addEventListener("click", mainController.checkGameResumption);
-			newDiv.addEventListener("click", this.showGameScreen);
+            // This is looking for a tag that determines accessibility. 
+            if (gameOptionsData[count][2] === true) {
+                newDiv.addEventListener("click", this.setGameAndWordList);
+                newDiv.addEventListener("click", mainController.checkGameResumption);
+                newDiv.addEventListener("click", this.showGameScreen);
+            }
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 			
 		};

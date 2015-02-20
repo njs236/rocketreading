@@ -118,7 +118,7 @@ var viewHTMLModule = {
 		console.log(levelList);
 		console.groupEnd();
 		
-		if ( (levelList.length > 0 ) && ( levelList[0].length === 3 ) ){
+		if ( (levelList.length > 0 ) && ( levelList[0].length === 4 ) ){
 			console.log(levelList);
 			// Remove all HTML bits under main section
 			while ( levelSelectMainDiv.hasChildNodes() ){
@@ -161,9 +161,12 @@ var viewHTMLModule = {
 				
 				
 				levelSelectMainDiv.lastChild.appendChild(newDiv);
-				
-				newDiv.addEventListener("click", mainController.setCurrentLevel);
-				newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
+                // This is for setting access to the Levels based on
+                // accessibility methods in the level.
+				if (levelList[count][3] === true) {
+                    newDiv.addEventListener("click", mainController.setCurrentLevel);
+                    newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
+                };
 			};
 			this.showLevelSelectScreen();
 			console.groupEnd();

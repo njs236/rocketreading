@@ -68,7 +68,7 @@ var mainController = {
 					console.groupEnd();
 					myViewModelRR.loginSuccessful();
 					mainController.setPlayer(userName);
-                    // mainController.setAccessTo();
+                    mainController.setAccessTo();
 				} else {
 					console.log("%cprocessLogin : Bad Password","color:red");
 					myViewModelRR.badLogin();
@@ -99,13 +99,31 @@ var mainController = {
         levelGameReached
         pointsToPassLevel
         checkForBonusGameCompletion */
-        var levelGameReached = rocketReadingModel.getPlayer().getLevelGameReached(),
+        var aGame,
+        aLevel, 
+        levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
         level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
         game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
-        pointsToPassLevel = rocketReadingModel.getPlayer().getPointsToPassLevel,
-        bonusGame = mainController.checkForBonusGameCompletion(level, game);
+        pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
+        /*bonusGame = mainController.checkForBonusGameCompletion(level, game);*/
         /*We need to account for these eventualities:
-        when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels. 
+        when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels. */
+        for (aLevel of rocketReadingModel.getAllLevels()) {
+            if (aLevel.getLevelNumber() < levelGameReached[0]) {
+                aLevel.setAccessTo(true);
+                for (aGame of aLevel.getAllGames()) {
+                    aGame.setAccessTo(true);
+                };
+            } else if (aLevel.getLevelNumber() === levelGameReached[0]) {
+                aLevel.setAccessTo(true)
+                for (aGame of aLevel.getAllGames()) {
+                    if (aGame.gameNumber <= levelGameReached[1]) {
+                        aGame.setAccessTo(true);
+                    };
+                };
+            };
+        };
+        /*
         When a player finishes a game, the script will enable access to the next game and the next level (if bonusgame has been reached)
         */
         /*then the mainpart of the function is going into all the games
@@ -210,6 +228,7 @@ var mainController = {
 			transientArray[0] = allLevels[count].getLevelNumber();
 			transientArray[1] = allLevels[count].getAvatar().getName();
 			transientArray[2] = allLevels[count].getDescription();
+            transientArray[3] = allLevels[count].getAccessibility();
 			outputArray.push(transientArray);
 			transientArray = [];
 		};

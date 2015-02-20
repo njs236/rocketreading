@@ -535,8 +535,8 @@ var viewHTMLModule = {
         };
         letters.textContent = string;
         
-        if (fontType === "Arial") {
-            document.getElementById("gameLearnWordText").className = "fontArial";
+        if (fontType === "Comic Sans MS") {
+            document.getElementById("gameLearnWordText").className = "fontComicSansMS";
         } else if (fontType === "JarmanDotted") {
             document.getElementById("gameLearnWordText").className = "fontJarmanDotted";
         }

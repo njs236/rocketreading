@@ -327,7 +327,7 @@ var mainController = {
         }
     },   
     
- leaveCurrentGame: function () {
+    leaveCurrentGame: function () {
         "use strict";
         var levelNumber,
             gameNumber,

@@ -11,8 +11,12 @@ var gameTimerSecs = 0,
     barBorderColour,
     silverBar,
     bronzeBar,
-    // repeatSpoken,
-    learnWordCount;
+    learnWordCount,
+    learnWordTimerA,
+    learnWordTimerB,
+    learnWordTimerC,
+    learnWordTimerD,
+    learnWordTimerE;
 
 // Adding a user to local storage
 

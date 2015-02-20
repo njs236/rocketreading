@@ -194,7 +194,7 @@ var viewHTMLModule = {
 		//
 		// function accepts a 2D array of games for an input level
 		// in the following format.
-		// [ 1 , "game01", true ]
+        // [ 1 , "game01", true ]
 		// [ 2 , "game02", false ]
 		// [ 3 , "game03", false ]
 		
@@ -223,6 +223,7 @@ var viewHTMLModule = {
 				newDiv.className = "gameSelectScreenGame";
 				gameSelectMainDiv.lastChild.appendChild(newDiv);
 			};
+			
             newAnchor = document.createElement("A");
             newAnchor.href = "#gameIntroModal";
 			newDiv = document.createElement("DIV");
@@ -233,12 +234,15 @@ var viewHTMLModule = {
 			newHeading = document.createElement("H1");
             newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
-           
+            
             newAnchor.appendChild(newDiv);
 			
 			gameSelectMainDiv.lastChild.appendChild(newAnchor);
 			
 			// Adding event-listeners to the div. The setGameWordList() function now has an input parameter. Need to use closures in order to ensure the correct parameter is passed to the setGameWordList() function
+            newDiv.addEventListener("click", this.setGameAndWordList);
+            newDiv.addEventListener("click", mainController.checkGameResumption);
+			newDiv.addEventListener("click", this.showGameScreen);
             // This is looking for a tag that determines accessibility. 
             if (gameOptionsData[count][2] === true) {
                 newDiv.addEventListener("click", this.setGameAndWordList);
@@ -464,7 +468,7 @@ var viewHTMLModule = {
         // Then after the sentence is finished the word will disappear
         
         // And then the word will be announced one last time
-        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 1000); 
+        learnWordTimerE = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 1000); 
     },
     
     displayDottedWord: function (currentWord, attr, characterArray) {
@@ -491,7 +495,7 @@ var viewHTMLModule = {
             duration = audio.duration;
             duration = duration * 1000 + 1000; // Give the player a bonus second
             // duration = duration * 1000;
-            timer = setTimeout(function (){	
+            learnWordTimerA = setTimeout(function (){	
                 if (attr === 'normalWord') {
                     viewHTMLModule.eventClickAdd();
                     mainController.createWordTimer();
@@ -501,13 +505,13 @@ var viewHTMLModule = {
                     learnWordCount -= 1;
                     if (learnWordCount === 3) {
                         // It may not be worthwhile assigning these setTimeouts to variables because it seems that these timers should not be stopped - the sequence will play through and then the user will have a go at identifying the word
-                        setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
+                        learnWordTimerB = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
                     } else if (learnWordCount === 2) {
                         // The word to be learned is displayed in dotted lines and the word will have been announced again
-                        setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
+                        learnWordTimerC = setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
                     } else if (learnWordCount === 1) {
                         // The word is included as part of a spoken sentence
-                        setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
+                        learnWordTimerD = setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
                     } else if (learnWordCount === 0) {
                         // Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
                         viewHTMLModule.eventClickAdd();

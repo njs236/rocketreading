@@ -144,6 +144,20 @@ var mainController = {
         "use strict";
         
     },
+    
+    setNextWord: function() {
+        "use strict";
+        if (rocketReadingModel.getCurrentGameData().getIncorrectWord() === null) {
+            learnWordCount = 0;
+            myViewModelRR.updateCurrentWord(rocketReadingModel.getCurrentGameData().getCurrentWord(), 'normalWord', null);
+        } else if (rocketReadingModel.getCurrentGameData().getIncorrectWord() !== null) {
+            // If the currentGameData has an incorrect word (ie the user got a word wrong just before the user left the game and this word was recorded as being the incorrect word in the saved game's data) then the learn word word will be enabled and the user will have to click this to proceed. 
+            mainController.enableLearnWord();
+            // The cells of the table will be disabled - no this is not necessary
+            // Any text in the space for displaying the word to be learned will be cleared
+            myViewModelRR.clearLearnWord();
+        }
+    },
    
     loadPreviousGame: function () {
         "use strict";
@@ -198,7 +212,9 @@ var mainController = {
         clearTimeout(bronzeBar);
     },
     
+    
     //Level Select Screen
+    
     setCurrentLevel : function () {
 		"use strict";
 		var levelNumber = mainController.getStringNumber(this.id),
@@ -292,7 +308,9 @@ var mainController = {
 		myViewModelRR.displayGameOptions(outputGameOptions);
 	},    
     
+    
     //Game Screen
+    
     
     finishGame: function () {
         "use strict";
@@ -347,7 +365,16 @@ var mainController = {
             mainController.resetGameTimers();
             mainController.gameInitialise();
         }
-    },   
+    },
+    
+    disableLearnWordTimers: function () {
+        "use strict";
+        // This function will disable all of the timers which are used in the learn word sequence
+        clearTimeout(learnWordTimerA);
+        clearTimeout(learnWordTimerB);
+        clearTimeout(learnWordTimerC);
+        clearTimeout(learnWordTimerD);
+    },
     
     leaveCurrentGame: function () {
         "use strict";
@@ -356,6 +383,8 @@ var mainController = {
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
+        // In case the learn word sequence is running when the player leaves the game, the timers which are involved in this sequence are all turned off
+        mainController.disableLearnWordTimers();
         console.log("mainController: leaveCurrentGame() current word: " + rocketReadingModel.getCurrentGameData().getCurrentWord());
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
             //If the user has not finished the current game then the system needs to save the current game timer to the current game state object
@@ -464,17 +493,6 @@ var mainController = {
         timerModal = setTimeout();
     },*/
     
-    setNextWord: function() {
-        "use strict";
-        if (rocketReadingModel.getCurrentGameData().getIncorrectWord() === null) {
-            learnWordCount = 0;
-            myViewModelRR.updateCurrentWord(rocketReadingModel.getCurrentGameData().getCurrentWord(), 'normalWord', null);
-        } else if (rocketReadingModel.getCurrentGameData().getIncorrectWord() !== null) {
-            // If the currentGameData has an incorrect word (ie the user got a word wrong just before the user left the game and this word was recorded as being the incorrect word in the saved game's data) then the learn word sequence state will be activated 
-            mainController.learnWord();
-        }
-    },
-    
     nextWord: function() {
         "use strict";
         var listArray = rocketReadingModel.getCurrentGameData().getWordList(),
@@ -550,7 +568,10 @@ var mainController = {
             level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
             wordList = rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().slice(0),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
-            
+        // In case the learn word sequence is running when the player leaves the game, the timers which are involved in this sequence are all turned off
+        mainController.disableLearnWordTimers();
+        // Also, any text in the space for displaying the word to be learned will be cleared
+        myViewModelRR.clearLearnWord();
         // The system checks to see if the user has data in the currentGameData object
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
             // If so, then the system will wipe this data

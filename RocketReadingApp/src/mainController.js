@@ -155,8 +155,8 @@ var mainController = {
         // Ideally, when the user clicks the Continue button and returns to the saved game the modal screen should be displayed. And so, when the user clicks the Start link on the modal page the game timer should then start
         // The game timer is started again
         mainController.startGameTimer();
-        // The next word is selected
-        mainController.nextWord();
+        // The current word from the saved game is set as the current word for the first test which the user will have to do when they return to playing their saved game
+        mainController.setNextWord();
     },    
     
     
@@ -342,6 +342,8 @@ var mainController = {
             rocketReadingModel.clearCurrentGameData();
             // Create a new current data object, setting it the appropriate values for the currentLevelGame, myGame, myLevel and wordList properties, and then assign it as a property of the Rocket-Reading object
             mainController.resetCurrentGameData(level, game, wordList, levelGame);
+            // The system will disable and turn off the learn word mode in case it was turned on when the user was playing another game and then the user left that game without successfully answering that word
+            mainController.disableLearnWord();
             mainController.resetGameTimers();
             mainController.gameInitialise();
         }
@@ -391,16 +393,13 @@ var mainController = {
     createTable : function () {
         "use strict";
         // Use the complete word list array to build the table (in case the player is returning to the game)
-		var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
-            completeWordList = rocketReadingModel.getCurrentGameData().getCompleteWordList();
-        // The wordlist needs to be arranged in a random order 
-        // completeWordList = this.randomiseArray(completeWordList); // The words in lists no longer need to be randomly arranged before being displayed on the game screen table
+		/*var completeWordList = rocketReadingModel.getCurrentGameData().getCompleteWordList();
+        // The complete word list needs to be arranged in a random order 
+        completeWordList = this.randomiseArray(completeWordList); // The words in lists no longer need to be randomly arranged before being displayed on the game screen table
         // After the wordlist has been randomised, the complete word list needs to be repopulated. This is necessary because the complete word list may need to be used in validateWords()
-        // mainController.resetCompleteWordList(); // Because randomiseArray() is no longer run, the complete word list no longer needs to be reset.
-        // Set the other wordlist array as the word list for the current game
-        rocketReadingModel.getCurrentGameData().passList(wordList);
-        // Display the table with the /*randomised*/ complete wordlist
-		myViewModelRR.displayTable(completeWordList);
+        mainController.resetCompleteWordList(); // Because randomiseArray() is no longer run, the complete word list no longer needs to be reset.*/
+        // Display the table with the (un-)randomised complete wordlist
+		myViewModelRR.displayTable(rocketReadingModel.getCurrentGameData().getCompleteWordList());
         // Set the cells of the table to have a uniform width
         myViewModelRR.setUniformCellWidth();
 	},
@@ -465,6 +464,17 @@ var mainController = {
         timerModal = setTimeout();
     },*/
     
+    setNextWord: function() {
+        "use strict";
+        if (rocketReadingModel.getCurrentGameData().getIncorrectWord() === null) {
+            learnWordCount = 0;
+            myViewModelRR.updateCurrentWord(rocketReadingModel.getCurrentGameData().getCurrentWord(), 'normalWord', null);
+        } else if (rocketReadingModel.getCurrentGameData().getIncorrectWord() !== null) {
+            // If the currentGameData has an incorrect word (ie the user got a word wrong just before the user left the game and this word was recorded as being the incorrect word in the saved game's data) then the learn word sequence state will be activated 
+            mainController.learnWord();
+        }
+    },
+    
     nextWord: function() {
         "use strict";
         var listArray = rocketReadingModel.getCurrentGameData().getWordList(),
@@ -516,6 +526,14 @@ var mainController = {
         mainController.startGameTimer();
         // Determine which word the user will be tested on
         mainController.nextWord();
+    },
+    
+    enableLearnWord: function () {
+        "use strict";
+        // The event listener for learning a word is added
+        myViewModelRR.addEventLearnWord();
+        // The learn word heading is highlighted
+        myViewModelRR.setLearnWordOn();
     },
     
     disableLearnWord: function () {

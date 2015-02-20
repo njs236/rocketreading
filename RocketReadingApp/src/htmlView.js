@@ -295,6 +295,11 @@ var viewHTMLModule = {
 	
 	},
     
+    setLearnWordOn: function () {
+        "use strict";
+        document.getElementById('learnWordText').className = "learning";
+    },
+    
     setLearnWordNormal: function () {
         "use strict";
         document.getElementById('learnWordText').className = "normal";

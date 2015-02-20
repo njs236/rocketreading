@@ -30,7 +30,6 @@ Player.prototype.setLevelGameReached = function () {
     } else {
         
     }
-    
 };
 
 Player.prototype.getPointsToPassLevel = function () {

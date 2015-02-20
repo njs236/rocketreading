@@ -19,9 +19,18 @@ Player.prototype.getLevelGameReached = function () {
     return this.levelGameReached;
 };
 
-Player.prototype.setLevelGameReached = function (levelGame) {
+Player.prototype.setLevelGameReached = function () {
     "use strict";
-    this.levelGameReached = levelGame;
+    // Happy Day Scenario
+    var level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+    game = rocketReadingModel.getCurrentGameData().getCurrentGame();
+    if (game.gameNumber === level.allMyGames.length) {
+        this.levelGameReached[0] += 1;
+        this.levelGameReached[1] = 1;
+    } else {
+        
+    }
+    
 };
 
 Player.prototype.getUserName = function () {

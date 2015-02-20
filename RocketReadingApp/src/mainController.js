@@ -95,7 +95,25 @@ var mainController = {
 	},
     
     setAccessTo : function () {
-        // Unknown function 
+        /* This function receives three inputs;
+        levelGameReached
+        pointsToPassLevel
+        checkForBonusGameCompletion */
+        var levelGameReached = rocketReadingModel.getPlayer().getLevelGameReached(),
+        level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+        game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+        pointsToPassLevel = rocketReadingModel.getPlayer().getPointsToPassLevel,
+        bonusGame = mainController.checkForBonusGameCompletion(level, game);
+        /*We need to account for these eventualities:
+        when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels. 
+        When a player finishes a game, the script will enable access to the next game and the next level (if bonusgame has been reached)
+        */
+        /*then the mainpart of the function is going into all the games
+        and setting access to.
+        setAccessTo (in game and level objects)
+        it outputs to display the locked or unlocked pictures of levels and games. and adds or removes event Listeners for those buttons.
+        Finally, it outputs with updating the LevelGameReached.(if the user has achieved the right results. )
+        */
     },
     
     
@@ -271,10 +289,15 @@ var mainController = {
         rocketReadingModel.getCurrentGameData().saveGameTime();
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
+        storageController.saveAllGamesData();
         // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
         
         // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
+        /*if (rocketReadingModel.getCurrentGameData().getLevelGameReached()[0] !== 0) {*/
         mainController.updateLevelGameReached();
+        /*} else {
+            
+        }*/
         // Clear the current data object
         rocketReadingModel.clearCurrentGameData();
         // Create a bare current data object and assign it as a property of the Rocket-Reading object
@@ -282,6 +305,7 @@ var mainController = {
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
     },
+    
     
     checkGameResumption: function () {
     // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
@@ -679,6 +703,7 @@ var mainController = {
         "use strict";
         if (rocketReadingModel.getMyPlayer().getLevelGameReached()) {
             // If the player has not reached the top levelgame or bonus game then the levelGameReached or bonusGameReached property will be incremented by 1
+            rocketReadingModel.getMyPlayer().setLevelGameReached();
         }
     },
 

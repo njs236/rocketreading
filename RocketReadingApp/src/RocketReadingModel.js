@@ -17,9 +17,9 @@ var RocketReadingModel = function() {
 rocketReadingModel = new RocketReadingModel();
 
 
-RocketReadingModel.prototype.addLevel = function (newName, newLevelNumber, newGames, newNumberGames, newAccessible) {
+RocketReadingModel.prototype.addLevel = function (newDescription, newLevelNumber, newGames, newNumberGames, newAccessible) {
     "use strict";
-    var newLevel = new Level(newName, newLevelNumber, newGames, newNumberGames, newAccessible);
+    var newLevel = new Level(newDescription, newLevelNumber, newGames, newNumberGames, newAccessible);
     this.allMyLevels.push (newLevel);
     this.levelCount += Number(1);
 };

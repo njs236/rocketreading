@@ -1,9 +1,11 @@
-var Level = function (newName, newLevelNumber, newGames, newNumberGames, newAccessible) {
-    this.description = newName || 'unnamed';
+var Level = function (newDescription, newLevelNumber, newGames, newNumberGames, newAccessible) {
+    this.description = newDescription || 'unnamed';
     this.levelNumber = newLevelNumber || 0;
     this.allMyGames = newGames || [];
     this.gameCount = newNumberGames || 0;
 	this.accessible = newAccessible;
+    //this.myAvatar 
+    
 	return this;
 };
 

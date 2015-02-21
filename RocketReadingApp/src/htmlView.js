@@ -152,21 +152,33 @@ var viewHTMLModule = {
 				
 				newDiv = document.createElement("DIV");
 				newDiv.className = "levelSelectIconContainer";
+				if (levelList[count][3] === false) {
+                    newDiv.className += " locked";
+                };
 				newDiv.id = "level" + levelList[count][0];
 				newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
-				
+				              
 				newHeading = document.createElement("H2");
 				newHeading.textContent = levelList[count][2];
 				newDiv.appendChild(newHeading);
-				
-				
 				levelSelectMainDiv.lastChild.appendChild(newDiv);
+                
                 // This is for setting access to the Levels based on
                 // accessibility methods in the level.
 				if (levelList[count][3] === true) {
                     newDiv.addEventListener("click", mainController.setCurrentLevel);
                     newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
                 };
+                
+                newDiv = document.createElement("DIV");
+                newDiv.className = 'levelSelectLockContainer';
+                newDiv.id = "divImgLockContainer" + levelList[count][0];
+                if (levelList[count][3] === true) {
+                    newDiv.hidden = 'true';                    
+                }
+                
+                document.getElementById("level" + levelList[count][0]).appendChild(newDiv);
+                
 			};
 			this.showLevelSelectScreen();
 			console.groupEnd();

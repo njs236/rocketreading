@@ -1,14 +1,35 @@
+ #levelSelectScreen{
+    background-image: url(../images/levelSelectBackground.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+#levelSelectScreen h1, #levelSelectScreen h2 {
+    color: rgba(251, 239, 126, .9);
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#levelSelectScreen h2 {
+    font-size: 1em;
+}
+
 .levelSelectRow {
-	height: calc(100% / 3);
-	width: 100%;
-	border: solid 1px red;
+    position: relative;
+    left: 5%;
+	height: calc(90% / 3);
+	width: 80%;
+    margin: 0 auto;
 }
 
 .levelSelectIconContainer {
 	float:left;
-	width:calc(100% / 3);
+	width:calc(94% / 3);
 	height:100%;
-	border: solid 1px cyan;
+    margin: 1%;
 	background-size:contain;
 	background-repeat:no-repeat;
 	background-position:center;

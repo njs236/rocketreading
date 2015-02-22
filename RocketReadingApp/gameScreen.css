@@ -2,20 +2,17 @@
 	position:absolute;
 	height:100%;
 	width:100%;
-	background-color:lime;
 }
 
 #gameLeftSide {
 	width:15%;
 	height:100%;
-	background-color:blue;
 	float:left;
 }
 
 #gameRightSide {
 	width:85%;
 	height:100%;
-	background-color:red;
 	float:left;
 	padding: 2em;
 }
@@ -23,27 +20,24 @@
 #gameRightSideTop {
 	width:100%;
 	height:30%;
-	background-color:pink;
+	border-bottom:solid 1px #aaa;
 }
 
 #gameRightSideBottom {
 	width:100%;
 	height:70%;
-	background-color:grey;
 	position:relative;
 }
 
 #gameRightSideTopLeft {
 	width:25%;
 	height:100%;
-	background-color:cyan;
 	float:left;
 }
 
 #gameRightSideTopMiddle {
 	width:20%;
 	height:100%;
-	background-color:orange;
 	float:left;
 	text-align:center;
 	position:relative;
@@ -78,11 +72,8 @@
 #gameRightSideTopRight {
 	width:55%;
 	height:100%;
-	background-color:yellow;
 	float:left;
 	text-align:right;
-	border-left: solid 1px;
-	border-color:#aaa;
 }
 
 div.gameInfoBox {
@@ -101,13 +92,11 @@ div.gameInfoBox {
 }
 
 #gameWordTable {
-	padding-left:5em;
 	height:100%;
+	margin: 0 auto;
 }
 
 #gameWordTable td {
-	border:solid 1px;
-	border-color:#333;
 	text-align:center;
 	padding: 0em 1.5em;
 }
@@ -115,7 +104,6 @@ div.gameInfoBox {
 div.medalIconDiv {
 	width:100%;
 	height:calc(33% - 0.6em);
-	background-color:orange;
 	padding-left:5%;
 }
 
@@ -149,6 +137,7 @@ img.medalIcon {
     float: left;
     width: 100%;
     height: 100%;
+	border-color:#333;
 }
 
 #gameTimerCanvas {
@@ -159,7 +148,6 @@ img.medalIcon {
 
 #gameCanvasContainer {
     float: left;
-    padding-left: 75px;
     height: 100%;
     width: 30%;
     /*bottom: 10px;*/

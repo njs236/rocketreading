@@ -30,13 +30,11 @@
 }
 
 #loginFieldset {
-    border: solid 1px;
-	border-color:#aaa;
-	border-radius:0.5em;
     width:calc(100% - 2em);
 	height:calc(100% - 2em);
     margin-left: 1em;
     margin-top: 1em;
+	border: none;
 }
 
 #loginFieldset h1 {

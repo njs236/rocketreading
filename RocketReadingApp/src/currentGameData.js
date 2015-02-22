@@ -2,11 +2,8 @@ var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, 
     "use strict";
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
-	this.myTimer = 0;
 	this.wordList = newWordList || [];
-    this.wordListCount = this.wordList.length;
 	this.currentWord = newCurrentWord || null;
-    this.completeWordList = [];
     this.currentLevelGame = newCurrentLevelGame || [];
     this.savedLevelGame = newSavedLevelGame || null;
     this.gameScore = newGameScore || 0;
@@ -15,7 +12,10 @@ var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, 
     this.totalGameTime = newTotalGameTime|| 0;
     this.wordsSoundsCorrect = newWordsSoundsCorrect || [];
     this.wordsSoundsIncorrect = newWordsSoundsIncorrect || [];
+    this.wordListCount = this.wordList.length;
 	this.incorrectWord = null;
+    this.myTimer = 0;
+    this.completeWordList = [];
     
     return this;
 };

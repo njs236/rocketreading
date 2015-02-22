@@ -52,6 +52,11 @@ CurrentGameData.prototype.setGameAndWordList = function (game) {
 	this.wordListCount = this.wordList.length;
 };
 
+CurrentGameData.prototype.setCurrentGame = function (game) {
+    "use strict";
+	this.myGame = game;
+};
+
 CurrentGameData.prototype.setCurrentWord = function (currentWord) {
     "use strict";
     this.currentWord = currentWord;

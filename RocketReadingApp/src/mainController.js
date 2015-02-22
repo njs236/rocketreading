@@ -326,6 +326,8 @@ var mainController = {
         clearInterval(gameTimer);
         // Save the gameTimer to the currentGameData object
         rocketReadingModel.getCurrentGameData().saveGameTime();
+        // Clear the myLevel property of the currentGamesData object to null to prevent a converting circular structure to JSON error from happening
+        rocketReadingModel.getCurrentGameData().setCurrentLevel(null);
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?)

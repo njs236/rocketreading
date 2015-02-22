@@ -27,9 +27,14 @@ Level.prototype.addGame = function (newName, newList, myLevelName, newGameNumber
     /*localStorage.setItem(this.name, JSON.stringify(this));*/
 };
 
+Level.prototype.setAllGames = function (allGames) {
+    "use strict";
+    this.allMyGames = allGames;
+};
+
 Level.prototype.getAllGames = function () {
     return this.allMyGames;
-}
+};
 
 Level.prototype.setAvatar = function (avatar) {
 	this.myAvatar = avatar;

@@ -371,12 +371,9 @@ var mainController = {
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
-<<<<<<< HEAD
         game.updateHighScore();
         // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?) - No, this does not solve the problem
         rocketReadingModel.clearCurrentGameData();
-=======
->>>>>>> origin/CollabTest
         // Save data to local storage
         storageController.saveCurrentGameData();
         storageController.saveAllGamesData();

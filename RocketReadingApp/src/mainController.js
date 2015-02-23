@@ -94,21 +94,22 @@ var mainController = {
 		myViewModelRR.displayPlayerName(username);
 	},
     
-    setAccessTo : function () {
+    setAccessTo : function (finishedGame) {
         /* This function receives three inputs;
         levelGameReached
         pointsToPassLevel
         checkForBonusGameCompletion */
         var aGame,
         aLevel, 
+        level,
+        game,
         levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
-        level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
-        game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
         pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
         /*bonusGame = mainController.checkForBonusGameCompletion(level, game);*/
         /*We need to account for these eventualities:
         when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels. */
         for (aLevel of rocketReadingModel.getAllLevels()) {
+            //The total array is made up of levels that are accessible, and the games in them as accessible, the Level that the current User is upto, being accessible, and its games being accessible upto the reached game, the level that inaccessible and all the games of that level are inaccessible;
             if (aLevel.getLevelNumber() < levelGameReached[0]) {
                 aLevel.setAccessTo(true);
                 for (aGame of aLevel.getAllGames()) {
@@ -119,19 +120,32 @@ var mainController = {
                 for (aGame of aLevel.getAllGames()) {
                     if (aGame.gameNumber <= levelGameReached[1]) {
                         aGame.setAccessTo(true);
+                    } else {
+                        aGame.setAccessTo(false);
                     };
                 };
+            } else {
+                aLevel.setAccessTo(false);
+                for (aGame of aLevel.getAllGames()) {
+                    aGame.setAccessTo(false);
+                }
             };
         };
         /*
         When a player finishes a game, the script will enable access to the next game and the next level (if bonusgame has been reached)
         */
+        if (finishedGame === true) {
+        level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+        game = rocketReadingModel.getCurrentGameData().getCurrentGame(),    
+        
         /*then the mainpart of the function is going into all the games
         and setting access to.
         setAccessTo (in game and level objects)
         it outputs to display the locked or unlocked pictures of levels and games. and adds or removes event Listeners for those buttons.
         Finally, it outputs with updating the LevelGameReached.(if the user has achieved the right results. )
         */
+        rocketReadingModel.getMyPlayer.setLevelGameReached=temp;
+        }
     },
     
     
@@ -338,12 +352,7 @@ var mainController = {
         // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
         
         // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
-        /*if (rocketReadingModel.getCurrentGameData().getLevelGameReached()[0] !== 0) {*/
-        mainController.updateLevelGameReached();
-        /*} else {
-            
-        }*/
-        
+        mainController.setAccessTo(true);
         // Create a bare current data object and assign it as a property of the Rocket-Reading object
         // mainController.resetCurrentGameData(null, null, null, null); // No, see the following:
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this.

@@ -80,7 +80,7 @@ RocketReadingModel.prototype.registerPlayer = function (newUser, newFirstName, n
 
 RocketReadingModel.prototype.setPlayer = function (player) {
     "use strict";
-    var newPlayer = new Player(player.userName, player.firstName, player.lastName, player.school, player.class, player.totalScore, player.levelGameReached, player.bonusGameReached, player.pointsToPassLevel),
+    var newPlayer = new Player(player.userName, player.firstName, player.lastName, player.school, player.classRoom, player.totalScore, player.levelGameReached, player.bonusGameReached, player.pointsToPassLevel),
     
     newAllGamesData = new AllGamesData(player.allGamesData.level0Game1, player.allGamesData.level0Game2, player.allGamesData.level0Game3, player.allGamesData.level0Game4, player.allGamesData.level0Game5,  player.allGamesData.level0Game6, player.allGamesData.level1Game1, player.allGamesData.level1Game2, player.allGamesData.level1Game3, player.allGamesData.level1Game4, player.allGamesData.level2Game1, player.allGamesData.level2Game2, player.allGamesData.level2Game3, player.allGamesData.level2Game4, player.allGamesData.level3Game1, player.allGamesData.level3Game2, player.allGamesData.level3Game3, player.allGamesData.level3Game4, player.allGamesData.level4Game1,  player.allGamesData.level4Game2, player.allGamesData.level4Game3, player.allGamesData.level4Game4, player.allGamesData.level5Game1, player.allGamesData.level5Game2, player.allGamesData.level5Game3, player.allGamesData.level5Game4, player.allGamesData.level6Game1, player.allGamesData.level6Game2, player.allGamesData.level6Game3, player.allGamesData.level6Game4 ),
     

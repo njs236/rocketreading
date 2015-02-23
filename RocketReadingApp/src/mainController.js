@@ -146,10 +146,10 @@ var mainController = {
             level = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
             currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
             game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
-            bonusGame = mainController.checkForBonusGameCompletion(levelGameReached[0]),
+            bonusGameCheck = mainController.getCurrentGameData().getCurrentGame().getCompletion();
             pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
             
-            if ((bonusGame !== null) && (pointsToPassLevel <= currentLevel.calculateScore()) && (levelGameReached[1] === level.getAllGames().length)) {
+            if ((bonusGameCheck === true) && (pointsToPassLevel <= currentLevel.calculateScore()) && (levelGameReached[1] === level.getAllGames().length)) {
                 temp.push(rocketReadingModel.findLevelByNumber(level.getLevelNumber() + 1));
                 temp.push(1);
                 console.log("setAccessTo: " + temp);
@@ -346,26 +346,39 @@ var mainController = {
 		myViewModelRR.displayGameOptions(outputGameOptions);
 	},    
     
+    // *******************************************
+	// ********** Game Screen Section ************
+	// *******************************************
     
-    //Game Screen
-    
-    checkForBonusGameCompletion : function (levelReached) {
-    //This method both sets and ensures that the BonusGame completed will result in a succesful attempt at unlocking the next level.
+    /*
+    setBonusGameCompletion: function () {
         "use strict";
-        // If the currentLevel that is being played is the bonus level
-        var aLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel;
-        if (aLevel === 0) {
-            // Then look for the current game and set it to completed.
+        
+    };*/
+    
+    checkForBonusGameCompletion : function (/*levelReached*/) {
+    //This method both sets and ensures that the BonusGame completed will result in a successful attempt at unlocking the next level.
+        "use strict";
+        // If the currentLevel that is being played is the bonus level ...
+        var result = false,
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber();
+        if (levelNumber === 0) {
+            // ... then look for the current game and set it to completed.
             rocketReadingModel.getCurrentGameData().getCurrentGame().setCompletion();
-        };
-        // If the bonusGame for the level is completed, then it will return the value
+        };/*
+        // If the bonusGame for the level is completed, then it will return the value 'true'
         if (rocketReadingModel.getBonusGame(levelReached).getCompletion() === true ) {
-            console.log("checkForBonusGameCompletion:" + rocketReadingModel.getBonusGame(levelReached).getCompletion())
-            return game;
+            console.log("checkForBonusGameCompletion:" + rocketReadingModel.getBonusGame(levelReached).getCompletion());
+            result = true;
+            console.log("checkForBonusGameCompletion(): " + result);
+            return result;
+           
         } else {
-            console.log("checkForBonusGameCompletion:" + rocketReadingModel.getBonusGame(levelReached).getCompletion())
-            return null;
-        };
+            console.log("checkForBonusGameCompletion:" + rocketReadingModel.getBonusGame(levelReached).getCompletion());
+            result = false;
+            console.log("checkForBonusGameCompletion(): " + result);
+            return result;
+        };*/
     },
     
     
@@ -377,7 +390,8 @@ var mainController = {
             levelNumber = level.getLevelNumber(),
             wordList = game.getWordList().slice(0),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame(),
-            playerName = rocketReadingModel.getMyPlayer().getUserName();
+            playerName = rocketReadingModel.getMyPlayer().getUserName(),
+            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached();
         alert ("Game Finished! You completed Level "+ levelNumber + "Game " + gameNumber);
         // Stop the total game timer
         clearInterval(gameTimer);
@@ -387,6 +401,8 @@ var mainController = {
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         game.updateHighScore();
+        // The system checks whether a user has completed a bonus game
+        mainController.checkForBonusGameCompletion(levelGame[0]);
         // If the number of the player's level-game reached is the same as the number of the level-game which the player has just played then the system will update the user's levelGameReached property
         if (rocketReadingModel.getMyPlayer().getLevelGameReached()[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] && rocketReadingModel.getMyPlayer().getLevelGameReached()[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]) {
             // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 

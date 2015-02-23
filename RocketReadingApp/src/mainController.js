@@ -94,7 +94,8 @@ var mainController = {
 		myViewModelRR.displayPlayerName(username);
 	},
     
-    setAccessTo : function (finishedGame) {
+    setAccessTo : function () {
+        "use strict";
         /* This function receives three inputs;
         levelGameReached
         pointsToPassLevel
@@ -105,8 +106,8 @@ var mainController = {
         currentLevel,
         game,
         temp = [],
-        levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
-        pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
+        levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached();
+        // pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
         /*bonusGame = mainController.checkForBonusGameCompletion(level, game);*/
         /*We need to account for these eventualities:
         when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels. */
@@ -124,28 +125,35 @@ var mainController = {
                         aGame.setAccessTo(true);
                     } else {
                         aGame.setAccessTo(false);
-                    };
-                };
+                    }
+                }
             } else {
                 aLevel.setAccessTo(false);
                 for (aGame of aLevel.getAllGames()) {
                     aGame.setAccessTo(false);
                 }
-            };
-        };
-        /*
-        When a player finishes a game, the script will enable access to the next game and the next level (if bonusgame has been reached)
-        */
-        if (finishedGame === true) {
-            level = rocketReadingModel.findLevelByNumber(levelGameReached[0]);
-            currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel();
-            game = rocketReadingModel.getCurrentGameData().getCurrentGame();
-            bonusGame = mainController.checkForBonusGameCompletion(levelGameReached[0]);
+            }
+        }
+    },
+    
+    setLevelGameReached: function () {      
+        "use strict";
+        // When a player finishes a game, the script will enable access to the next game and the next level (if bonus game has been completed too)
+    
+        // if (finishedGame === true) {
+        var temp = [],
+            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
+            level = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
+            currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+            game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+            bonusGame = mainController.checkForBonusGameCompletion(levelGameReached[0]),
+            pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
+            
             if ((bonusGame !== null) && (pointsToPassLevel <= currentLevel.calculateScore()) && (levelGameReached[1] === level.getAllGames().length)) {
                 temp.push(rocketReadingModel.findLevelByNumber(level.getLevelNumber() + 1));
                 temp.push(1);
-            }
-            if (game.gameNumber < currentLevel.getAllGames().length) {
+                console.log("setAccessTo: " + temp);
+            } else if (game.getNumber() < currentLevel.getAllGames().length) {
                 temp.push(level.getLevelNumber());
                 temp.push(rocketReadingModel.findGameByNumber(game.getNumber() + 1).getNumber());
                 console.log("setAccessTo: " + temp);
@@ -157,11 +165,13 @@ var mainController = {
             Finally, it outputs with updating the LevelGameReached.(if the user has achieved the right results. )
             */
             rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-            mainController.setAccessTo();
-        };
+            // mainController.setAccessTo();
+        //};
     },   
-    
-    //Home Screen
+   
+    // ***********************************************
+	// ************ Home Screen Section **************
+	// ***********************************************
     
         checkAdvanceNextGame: function () {
     // This function checks whether the player needs to complete a bonus game before advancing to the next level
@@ -345,7 +355,7 @@ var mainController = {
         // If the currentLevel that is being played is the bonus level
         var aLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel;
         if (aLevel === 0) {
-            // Then look for the currentgame and set it to completed.
+            // Then look for the current game and set it to completed.
             rocketReadingModel.getCurrentGameData().getCurrentGame().setCompletion();
         };
         // If the bonusGame for the level is completed, then it will return the value
@@ -377,8 +387,12 @@ var mainController = {
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         game.updateHighScore();
-        // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
-        mainController.setAccessTo(true);
+        // If the number of the player's level-game reached is the same as the number of the level-game which the player has just played then the system will update the user's levelGameReached property
+        if (rocketReadingModel.getMyPlayer().getLevelGameReached()[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] && rocketReadingModel.getMyPlayer().getLevelGameReached()[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]) {
+            // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
+            mainController.setLevelGameReached();
+            mainController.setAccessTo();
+        }
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
         // Save data to local storage

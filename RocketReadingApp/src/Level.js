@@ -10,10 +10,11 @@ var Level = function (newDescription, newLevelNumber, newGames, newNumberGames, 
 };
 
 Level.prototype.calculateScore = function () {
-    var temp;
+    var temp = 0;
     for (aGame of this.allMyGames ){
         temp += aGame.highScore
     };
+    console.log("Total scores of level: " + temp);
     return temp;
 };
 

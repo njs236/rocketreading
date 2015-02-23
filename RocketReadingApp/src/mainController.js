@@ -136,7 +136,7 @@ var mainController = {
         }
     },
     
-    setLevelGameReached: function () {      
+    setLevelGameReached: function (currentLevel, gameNumber) {      
         "use strict";
         // When a player finishes a game, the script will enable access to the next game and the next level (if bonus game has been completed too)
     
@@ -145,8 +145,8 @@ var mainController = {
             bonusGameCheck = false,
             levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
             level = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
-            currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
-            game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+            // currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+            // game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
             pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
             
             // There will need to be a check that there is a bonus game in allGamesData which corresponds to the level number of the game the user has just played
@@ -164,9 +164,9 @@ var mainController = {
                 temp.push(1);
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-            } else if (game.getNumber() < currentLevel.getAllGames().length) {
+            } else if (gameNumber < currentLevel.getAllGames().length) {
                 temp.push(level.getLevelNumber());
-                temp.push(rocketReadingModel.findGameByNumber(game.getNumber() + 1).getNumber());
+                temp.push(rocketReadingModel.findGameByNumber(gameNumber + 1).getNumber());
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
             }     
@@ -423,12 +423,15 @@ var mainController = {
         // There needs to be a test whether the user has completed the last game for the current level. 
         if (rocketReadingModel.getMyPlayer().getLevelGameReached()[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] && rocketReadingModel.getMyPlayer().getLevelGameReached()[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]) {
             // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
-            mainController.setLevelGameReached();
+            mainController.setLevelGameReached(level, gameNumber);
             mainController.setAccessTo();
         }
         // There also needs to be a check if the user has completed a bonus game (and the games for the level which has the level number which matches the bonus game number have been completed, and the points for those games is above the threshold)
-        if ((rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber() === 0) && rocketReadingModel.getAllGamesData().checkLevelGamesCompleted()) {
-            // code
+        // Although the call of checkLevelGamesCompleted() takes gameNumber as a parameter, the function will actually use this value to determine the number of the level it will check for all-games completion
+        if ( (levelNumber === 0) && (rocketReadingModel.getAllGamesData().checkLevelGamesCompleted(gameNumber) === true) && (rocketReadingModel.getMyPlayer().getLevelGameReached()[0] === gameNumber) ) {
+            // Passing setLevelGameReached() the gameNumber to determine the level which will be looked at. Passing null for the second parameter - will this work?
+            mainController.setLevelGameReached(rocketReadingModel.findLevelByNumber(gameNumber), null);
+            mainController.setAccessTo();
         }
         
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening

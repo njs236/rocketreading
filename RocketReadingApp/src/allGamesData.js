@@ -135,6 +135,23 @@ AllGamesData.prototype.saveGameData = function (levelNumber, gameNumber, current
     this.getGameDataArray(levelNumber, gameNumber).push(currentGameData);
 };
 
+AllGamesData.prototype.checkLevelGamesCompleted = function (levelNumber) {
+    "use strict";
+    var count,
+        result = false,
+        gamesLength = rocketReadingModel.getAllGamesFromLevel(levelNumber).length;
+    for (count = 1; count <= gamesLength; count += 1) { 
+        if (this.getGameDataArray(levelNumber, count).length > 0) {
+            result = true;
+        } else {
+            return false;
+        }        
+    }
+    // The following line will only happen if the result is never false
+    console.log("checkLevelGamesCompleted(): result = " + result);
+    return result;
+};
+
 AllGamesData.prototype.updateAllGamesData = function (username, gameData) {
     "use strict";
     var playerData = JSON.parse(localStorage.getItem(username));

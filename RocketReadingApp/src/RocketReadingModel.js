@@ -173,7 +173,7 @@ RocketReadingModel.prototype.findLevelGamesNames = function (levelNumber) {
 RocketReadingModel.prototype.getAllGamesFromLevel = function (inputLevelNumber) {
 	"use strict"
 	// Function returns a collection of games from a found level
-	return this.findLevelByNumber(inputLevelNumber).getMyLevels();
+	return this.findLevelByNumber(inputLevelNumber).getMyGames();
 };
 
 

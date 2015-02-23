@@ -54,7 +54,7 @@ Level.prototype.getDescription = function () {
 	return this.description;
 };
 
-Level.prototype.getMyLevels = function () {
+Level.prototype.getMyGames = function () {
 	return this.allMyGames;
 };
 

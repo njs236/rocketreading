@@ -93,10 +93,12 @@ div.gameInfoBox {
 
 #gameWordTable {
 	height:100%;
+    width: 100%;
 	margin: 0 auto;
 }
 
 #gameWordTable td {
+    font-size : 2em;
 	text-align:center;
 	padding: 0em 1.5em;
 }
@@ -129,7 +131,7 @@ img.medalIcon {
 
 #gameWordAndTable {
     float: left;
-    width: 70%;
+    width: 95%;
     height: 100%;
 }
 
@@ -147,8 +149,8 @@ img.medalIcon {
 }
 
 #gameCanvasContainer {
-    float: left;
+    float: right;
     height: 100%;
-    width: 30%;
+    width: 5%;
     /*bottom: 10px;*/
 }

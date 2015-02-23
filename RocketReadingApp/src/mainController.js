@@ -421,15 +421,20 @@ var mainController = {
         // If the number of the player's level-game reached is the same as the number of the level-game which the player has just played then the system will update the user's levelGameReached property
         
         // There needs to be a test whether the user has completed the last game for the current level. 
-        if (rocketReadingModel.getMyPlayer().getLevelGameReached()[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] && rocketReadingModel.getMyPlayer().getLevelGameReached()[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]) {
+        if (levelGameReached[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] &&
+            levelGameReached[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1] && 
+            (levelNumber !== rocketReadingModel.getAllLevels().length - 1 && gameNumber !== level.getAllGames().length)) {
             // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
             mainController.setLevelGameReached(level, gameNumber);
             mainController.setAccessTo();
         }
         // There also needs to be a check if the user has completed a bonus game (and the games for the level which has the level number which matches the bonus game number have been completed, and the points for those games is above the threshold)
         // Although the call of checkLevelGamesCompleted() takes gameNumber as a parameter, the function will actually use this value to determine the number of the level it will check for all-games completion
-        if ( (levelNumber === 0) && (rocketReadingModel.getAllGamesData().checkLevelGamesCompleted(gameNumber) === true) && (rocketReadingModel.getMyPlayer().getLevelGameReached()[0] === gameNumber) ) {
-            // Passing setLevelGameReached() the gameNumber to determine the level which will be looked at. Passing null for the second parameter - will this work?
+        if ( (levelNumber === 0) && 
+            (rocketReadingModel.getAllGamesData().checkLevelGamesCompleted(gameNumber) === true) && 
+            (levelGameReached[0] === gameNumber) && 
+            (levelGameReached[0] !== rocketReadingModel.getAllLevels().length - 1) ) {
+            // Passing setLevelGameReached() the gameNumber to determine the level which will be looked at. Passing null for the second parameter - will this work? Seems to
             mainController.setLevelGameReached(rocketReadingModel.findLevelByNumber(gameNumber), null);
             mainController.setAccessTo();
         }

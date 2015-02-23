@@ -5,6 +5,7 @@ var Game = function (newName, newList, myLevelName, newGameNumber, newAccessible
     this.gameNumber = newGameNumber || null;
     this.accessible = newAccessible || false;
     this.highScore = 0;
+    this.bonusGameCompleted = false;
 	return this;
 };
 

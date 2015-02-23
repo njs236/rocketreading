@@ -11,7 +11,7 @@ var Level = function (newDescription, newLevelNumber, newGames, newNumberGames, 
 
 Level.prototype.calculateScore = function () {
     var temp;
-    for (aGame of allMyGames ){
+    for (aGame of this.allMyGames ){
         temp += aGame.highScore
     };
     return temp;

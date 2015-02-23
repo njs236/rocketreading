@@ -21,17 +21,11 @@ Player.prototype.getLevelGameReached = function () {
     return this.levelGameReached;
 };
 
-Player.prototype.setLevelGameReached = function () {
+Player.prototype.setLevelGameReached = function (temp) {
     "use strict";
-    // Happy Day Scenario
-    var level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
-    game = rocketReadingModel.getCurrentGameData().getCurrentGame();
-    if (game.gameNumber === level.allMyGames.length) {
-        this.levelGameReached[0] += 1;
-        this.levelGameReached[1] = 1;
-    } else {
-        
-    }
+    this.levelGameReached = [];
+    this.levelGameReached.push(temp[0]);
+    this.levelGameReached.push(temp[1]);
 };
 
 Player.prototype.getPointsToPassLevel = function () {

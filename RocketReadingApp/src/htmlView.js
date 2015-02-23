@@ -236,8 +236,8 @@ var viewHTMLModule = {
 				gameSelectMainDiv.lastChild.appendChild(newDiv);
 			};
 			
-            newAnchor = document.createElement("A");
-            newAnchor.href = "#gameIntroModal";
+            // newAnchor = document.createElement("A");
+            // newAnchor.href = "#gameIntroModal";
 			newDiv = document.createElement("DIV");
 			newDiv.className = "gameSelectScreenGame";
 			//console.log("gameScreenButton" + (count + 1));
@@ -247,9 +247,9 @@ var viewHTMLModule = {
             newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
             
-            newAnchor.appendChild(newDiv);
+            // newAnchor.appendChild(newDiv);
 			
-			gameSelectMainDiv.lastChild.appendChild(newAnchor);
+			gameSelectMainDiv.lastChild.appendChild(newDiv);
 			
 			// Adding event-listeners to the div. The setGameWordList() function now has an input parameter. Need to use closures in order to ensure the correct parameter is passed to the setGameWordList() function
             newDiv.addEventListener("click", this.setGameAndWordList);
@@ -706,6 +706,7 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		document.getElementById("gamesScreen").hidden = false;
 		console.log("HTMLView.js : Showing game screen");
+        location.hash = "gameIntroModal";
 	},
    
 	showHighScoresScreen: function () {

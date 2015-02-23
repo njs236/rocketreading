@@ -507,6 +507,7 @@ var viewHTMLModule = {
             duration = audio.duration;
             // duration = duration * 1000 + 1000; // Give the player a bonus second
             duration = duration * 1000;
+            // It is worthwhile assigning these setTimeouts to variables because the timers will need to stopped if the user leaves the current game and moves to a different screen
             learnWordTimerA = setTimeout(function (){	
                 if (attr === 'normalWord') {
                     viewHTMLModule.eventClickAdd();
@@ -516,7 +517,6 @@ var viewHTMLModule = {
                 // this is for repeating words based on Learn Word scenario
                     learnWordCount -= 1;
                     if (learnWordCount === 3) {
-                        // It may not be worthwhile assigning these setTimeouts to variables because it seems that these timers should not be stopped - the sequence will play through and then the user will have a go at identifying the word
                         learnWordTimerB = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
                     } else if (learnWordCount === 2) {
                         // The word to be learned is displayed in dotted lines and the word will have been announced again

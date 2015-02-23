@@ -137,27 +137,27 @@ var mainController = {
         When a player finishes a game, the script will enable access to the next game and the next level (if bonusgame has been reached)
         */
         if (finishedGame === true) {
-        temp = [],
-        level = rocketReadingModel.findLevelByNumber(levelGameReached[0]);
-        currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel();
-        game = rocketReadingModel.getCurrentGameData().getCurrentGame();
-        bonusGame = mainController.checkForBonusGameCompletion(levelGameReached[0]);
-        if (bonusGame !== null && pointsToPassLevel <= currentLevel.calculateScore() && levelGameReached[1] === level.getAllGames().length) {
-            temp.push(rocketReadingModel.findLevelByNumber((level.levelNumber)+1));
-            temp.push(1);
-        } else if (game.gameNumber < currentLevel.getAllGames().length) {
-        temp.push(level.getLevelNumber());
-        temp.push(rocketReadingModel.findGameByNumber((game.gameNumber)+1).getNumber);
-        console.log("setAccessTo: " + temp);
-        }; 
-        /*then the mainpart of the function is going into all the games
-        and setting access to.
-        setAccessTo (in game and level objects)
-        it outputs to display the locked or unlocked pictures of levels and games. and adds or removes event Listeners for those buttons.
-        Finally, it outputs with updating the LevelGameReached.(if the user has achieved the right results. )
-        */
-        rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-        mainController.setAccessTo();
+            level = rocketReadingModel.findLevelByNumber(levelGameReached[0]);
+            currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel();
+            game = rocketReadingModel.getCurrentGameData().getCurrentGame();
+            bonusGame = mainController.checkForBonusGameCompletion(levelGameReached[0]);
+            if ((bonusGame !== null) && (pointsToPassLevel <= currentLevel.calculateScore()) && (levelGameReached[1] === level.getAllGames().length)) {
+                temp.push(rocketReadingModel.findLevelByNumber(level.getLevelNumber() + 1));
+                temp.push(1);
+            }
+            if (game.gameNumber < currentLevel.getAllGames().length) {
+                temp.push(level.getLevelNumber());
+                temp.push(rocketReadingModel.findGameByNumber(game.getNumber() + 1).getNumber());
+                console.log("setAccessTo: " + temp);
+            }; 
+            /*then the mainpart of the function is going into all the games
+            and setting access to.
+            setAccessTo (in game and level objects)
+            it outputs to display the locked or unlocked pictures of levels and games. and adds or removes event Listeners for those buttons.
+            Finally, it outputs with updating the LevelGameReached.(if the user has achieved the right results. )
+            */
+            rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
+            mainController.setAccessTo();
         };
     },   
     
@@ -341,10 +341,11 @@ var mainController = {
     
     checkForBonusGameCompletion : function (levelReached) {
     //This method both sets and ensures that the BonusGame completed will result in a succesful attempt at unlocking the next level.
-    // If the currentLevel that is being played is the bonus level
-        aLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel;
+        "use strict";
+        // If the currentLevel that is being played is the bonus level
+        var aLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel;
         if (aLevel === 0) {
-        // Then look for the currentgame and set it to completed.
+            // Then look for the currentgame and set it to completed.
             rocketReadingModel.getCurrentGameData().getCurrentGame().setCompletion();
         };
         // If the bonusGame for the level is completed, then it will return the value

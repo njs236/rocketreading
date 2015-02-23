@@ -45,8 +45,9 @@ RocketReadingModel.prototype.clearCurrentGameData = function () {
 };
 
 RocketReadingModel.prototype.getBonusGame = function (levelNumber) {
-    var level = this.findLevelByNumber(0);
-    var theGame;
+    "use strict";
+    var theGame,
+        level = this.findLevelByNumber(0);
     for (theGame of level.getAllGames()) {
         if (theGame.gameNumber === levelNumber) {
             console.log("getBonusGame: " +theGame);

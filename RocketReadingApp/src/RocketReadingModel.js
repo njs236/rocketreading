@@ -45,12 +45,13 @@ RocketReadingModel.prototype.clearCurrentGameData = function () {
 };
 
 RocketReadingModel.prototype.getBonusGame = function (levelNumber) {
-    var level = rocketReadingModel.findLevelByNumber(0),
-    aGame;
-    for (aGame of level.getAllGames) {
-        if (aGame.gameNumber === levelNumber) {
-            return aGame;
-        }
+    var level = this.findLevelByNumber(0);
+    var theGame;
+    for (theGame of level.getAllGames()) {
+        if (theGame.gameNumber === levelNumber) {
+            console.log("getBonusGame: " +theGame);
+            return theGame;
+        };
     };
 };
 

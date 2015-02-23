@@ -197,4 +197,8 @@ CurrentGameData.prototype.getIncorrectWord = function () {
 CurrentGameData.prototype.addWordsSoundsIncorrect = function (word) {
     "use strict";
     this.wordsSoundsIncorrect.push(word);
-};    
+};  
+
+CurrentGameData.prototype.getGameScore = function () {
+    return this.gameScore;
+}  

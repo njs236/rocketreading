@@ -719,6 +719,17 @@ var viewHTMLModule = {
         document.getElementById("registerScreen").hidden = false;
         console.log("HTMLView.js: Showing Register Screen");
     },
+	
+	closePauseMenu : function () {
+		"use strict";
+		location.hash = "Close";
+	},
+	
+	openGameIntro : function () {
+		"use strict";
+		location.hash = "gameIntroModal";
+	},
+	
 	// ******************************************
 	// ********** Initialise Section ************
 	// ******************************************
@@ -757,7 +768,8 @@ var viewHTMLModule = {
         document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
         document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
-		
+		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
+		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closePauseMenu);
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
 	}

@@ -236,8 +236,8 @@ var viewHTMLModule = {
 				gameSelectMainDiv.lastChild.appendChild(newDiv);
 			};
 			
-            newAnchor = document.createElement("A");
-            newAnchor.href = "#gameIntroModal";
+            // newAnchor = document.createElement("A");
+            // newAnchor.href = "#gameIntroModal";
 			newDiv = document.createElement("DIV");
 			newDiv.className = "gameSelectScreenGame";
 			//console.log("gameScreenButton" + (count + 1));
@@ -247,9 +247,9 @@ var viewHTMLModule = {
             newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
             
-            newAnchor.appendChild(newDiv);
+            // newAnchor.appendChild(newDiv);
 			
-			gameSelectMainDiv.lastChild.appendChild(newAnchor);
+			gameSelectMainDiv.lastChild.appendChild(newDiv);
 			
 			// Adding event-listeners to the div. The setGameWordList() function now has an input parameter. Need to use closures in order to ensure the correct parameter is passed to the setGameWordList() function
             // This is looking for a tag that determines accessibility. 
@@ -504,6 +504,7 @@ var viewHTMLModule = {
             duration = audio.duration;
             // duration = duration * 1000 + 1000; // Give the player a bonus second
             duration = duration * 1000;
+            // It is worthwhile assigning these setTimeouts to variables because the timers will need to stopped if the user leaves the current game and moves to a different screen
             learnWordTimerA = setTimeout(function (){	
                 if (attr === 'normalWord') {
                     viewHTMLModule.eventClickAdd();
@@ -513,7 +514,6 @@ var viewHTMLModule = {
                 // this is for repeating words based on Learn Word scenario
                     learnWordCount -= 1;
                     if (learnWordCount === 3) {
-                        // It may not be worthwhile assigning these setTimeouts to variables because it seems that these timers should not be stopped - the sequence will play through and then the user will have a go at identifying the word
                         learnWordTimerB = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
                     } else if (learnWordCount === 2) {
                         // The word to be learned is displayed in dotted lines and the word will have been announced again
@@ -703,6 +703,7 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		document.getElementById("gamesScreen").hidden = false;
 		console.log("HTMLView.js : Showing game screen");
+        location.hash = "gameIntroModal";
 	},
    
 	showHighScoresScreen: function () {

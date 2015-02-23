@@ -166,6 +166,7 @@ var mainController = {
         
     },
     
+    /* This function has now been incorporated into the nextWord ()
     setNextWord: function() {
         "use strict";
         if (rocketReadingModel.getCurrentGameData().getIncorrectWord() === null) {
@@ -178,7 +179,7 @@ var mainController = {
             // Any text in the space for displaying the word to be learned will be cleared
             myViewModelRR.clearLearnWord();
         }
-    },
+    },*/
    
     loadPreviousGame: function () {
         "use strict";
@@ -187,11 +188,14 @@ var mainController = {
         // The system get the user's current game details and opens the particular screen
         mainController.gameInitialise();
         myViewModelRR.showGameScreen();
+        
+        // The following code is not necessary - the game will now start when the user clicks the start link of the modal screen (which will display now when the game screen opens)
+        /*
         // Ideally, when the user clicks the Continue button and returns to the saved game the modal screen should be displayed. And so, when the user clicks the Start link on the modal page the game timer should then start
         // The game timer is started again
         mainController.startGameTimer();
         // The current word from the saved game is set as the current word for the first test which the user will have to do when they return to playing their saved game
-        mainController.setNextWord();
+        mainController.setNextWord();*/
     },    
     
     
@@ -367,12 +371,17 @@ var mainController = {
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
+<<<<<<< HEAD
         game.updateHighScore();
         // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?) - No, this does not solve the problem
         rocketReadingModel.clearCurrentGameData();
+=======
+>>>>>>> origin/CollabTest
         // Save data to local storage
         storageController.saveCurrentGameData();
         storageController.saveAllGamesData();
+        // The user's current game data object is cleared
+        rocketReadingModel.clearCurrentGameData();
         // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
         
         // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
@@ -537,11 +546,27 @@ var mainController = {
         var listArray = rocketReadingModel.getCurrentGameData().getWordList(),
 			currentWordIndex = Math.floor(Math.random() * listArray.length),
             currentWord = listArray[currentWordIndex];
-        rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
-        learnWordCount = 0;
-        myViewModelRR.updateCurrentWord(currentWord, 'normalWord', null);
+        // The system checks to see whether the user has a current word - if not the system select a current word and uses this for the first test of the user's new game. To make this work, the current word will need to be cleared at the end of each test & once the user has successfully identified the word.
+        if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {
+            rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
+            learnWordCount = 0;
+            myViewModelRR.updateCurrentWord(currentWord, 'normalWord', null);
+        } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
+            //  The system checks to see whether the user has an incorrect word. 
+            if (rocketReadingModel.getCurrentGameData().getIncorrectWord() === null) {
+            learnWordCount = 0;
+            myViewModelRR.updateCurrentWord(rocketReadingModel.getCurrentGameData().getCurrentWord(), 'normalWord', null);
+            // If the user has an incorrect word, the user will have to learn this word when he or she returns to their game.
+            } else if (rocketReadingModel.getCurrentGameData().getIncorrectWord() !== null) {
+                // If the currentGameData has an incorrect word (ie the user got a word wrong just before the user left the game and this word was recorded as being the incorrect word in the saved game's data) then the learn word word will be enabled and the user will have to click this to proceed. 
+                mainController.enableLearnWord();
+                // The cells of the table will be disabled - no this is not necessary
+                // Any text in the space for displaying the word to be learned will be cleared
+                myViewModelRR.clearLearnWord();
+            }
+        }
     },
-	
+   
 	spliceWord : function (currentWordIndex) {
         "use strict";
 		var listArray = rocketReadingModel.getCurrentGameData().getWordList();
@@ -791,6 +816,8 @@ var mainController = {
 
 		if (listArrayCount > 0) {
             mainController.gameInitialise();
+             // The current word property is cleared or set to null - to enable the nextWord() to select a new currentWord for the next test in the game
+            rocketReadingModel.getCurrentGameData().setCurrentWord(null);
 			mainController.nextWord();
 		} else if (listArrayCount === 0) {
             mainController.finishGame();

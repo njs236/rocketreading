@@ -142,29 +142,43 @@ var mainController = {
     
         // if (finishedGame === true) {
         var temp = [],
+            bonusGameCheck = false,
             levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
             level = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
             currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
             game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
-            bonusGameCheck = mainController.getCurrentGameData().getCurrentGame().getCompletion();
             pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
             
+            // There will need to be a check that there is a bonus game in allGamesData which corresponds to the level number of the game the user has just played
+            if (rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0] !== undefined) {
+                // Get the bonusGameCompleted property from the allGamesData property
+                // bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, 1)[0].getCurrentGame().getCompletion(), 
+                // If data is loaded from LS then the data inside the allGamesData property will not be of the currentGameData class. So, that is why the end of the following line has 'myGame.bonusGameCompleted' instead of 'getCurrentGame().getCompletion()'
+                // There just needs to be a check that there is at least one object in allGamesData for the appropriate levelGame object: 'currentLevel.getLevelNumber())[0]'
+                bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted;
+            }
+            
+            // There should also be a check that the current level number is not the maximum level number
             if ((bonusGameCheck === true) && (pointsToPassLevel <= currentLevel.calculateScore()) && (levelGameReached[1] === level.getAllGames().length)) {
-                temp.push(rocketReadingModel.findLevelByNumber(level.getLevelNumber() + 1));
+                temp.push(rocketReadingModel.findLevelByNumber(level.getLevelNumber() + 1).getLevelNumber());
                 temp.push(1);
                 console.log("setAccessTo: " + temp);
+                rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
             } else if (game.getNumber() < currentLevel.getAllGames().length) {
                 temp.push(level.getLevelNumber());
                 temp.push(rocketReadingModel.findGameByNumber(game.getNumber() + 1).getNumber());
                 console.log("setAccessTo: " + temp);
-            }; 
+                rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
+            }     
+            // If the above two conditions do not apply then do not call rocketReadingModel.getMyPlayer().setLevelGameReached(temp)
+                   
             /*then the mainpart of the function is going into all the games
             and setting access to.
             setAccessTo (in game and level objects)
             it outputs to display the locked or unlocked pictures of levels and games. and adds or removes event Listeners for those buttons.
             Finally, it outputs with updating the LevelGameReached.(if the user has achieved the right results. )
             */
-            rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
+            // rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
             // mainController.setAccessTo();
         //};
     },   
@@ -400,15 +414,23 @@ var mainController = {
 
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
+        // Update the high-score
         game.updateHighScore();
         // The system checks whether a user has completed a bonus game
         mainController.checkForBonusGameCompletion(levelGame[0]);
         // If the number of the player's level-game reached is the same as the number of the level-game which the player has just played then the system will update the user's levelGameReached property
+        
+        // There needs to be a test whether the user has completed the last game for the current level. 
         if (rocketReadingModel.getMyPlayer().getLevelGameReached()[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] && rocketReadingModel.getMyPlayer().getLevelGameReached()[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]) {
             // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
             mainController.setLevelGameReached();
             mainController.setAccessTo();
         }
+        // There also needs to be a check if the user has completed a bonus game (and the games for the level which has the level number which matches the bonus game number have been completed, and the points for those games is above the threshold)
+        if ((rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber() === 0) && rocketReadingModel.getAllGamesData().checkLevelGamesCompleted()) {
+            // code
+        }
+        
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
         // Save data to local storage
@@ -419,7 +441,7 @@ var mainController = {
         // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
         // Create a bare current data object and assign it as a property of the Rocket-Reading object
         // mainController.resetCurrentGameData(null, null, null, null); // No, see the following:
-        // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this.
+        // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
     },
     

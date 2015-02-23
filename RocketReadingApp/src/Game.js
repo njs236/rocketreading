@@ -1,4 +1,5 @@
 var Game = function (newName, newList, myLevelName, newGameNumber, newAccessible) {
+    "use strict";
 	this.gameName = newName || 'unnamed';
     this.myWordList = newList || [];
 	this.levelName = myLevelName || 'unnamed';
@@ -10,26 +11,32 @@ var Game = function (newName, newList, myLevelName, newGameNumber, newAccessible
 };
 
 Game.prototype.getNumber = function () {
+    "use strict";
 	return this.gameNumber;
 };
 
 Game.prototype.getWordList = function () {
+    "use strict";
 	return this.myWordList;
 };
 
 Game.prototype.getGameName = function () {
+    "use strict";
 	return this.gameName;
 };
 
 Game.prototype.setAccessTo = function (bool) {
+    "use strict";
     this.accessible = bool;
 }
 
 Game.prototype.getAccessibility = function () {
+    "use strict";
     return this.accessible;
 };
 
 Game.prototype.updateHighScore = function () {
+    "use strict";
     var comparison = rocketReadingModel.getCurrentGameData().getGameScore();
     if (comparison > this.highScore) {
         this.highScore = comparison;
@@ -37,9 +44,11 @@ Game.prototype.updateHighScore = function () {
 };
 
 Game.prototype.setCompletion = function () {
+    "use strict";
     this.bonusGameCompleted = true;
 }
 
 Game.prototype.getCompletion = function () {
+    "use strict";
     return this.bonusGameCompleted;
 }

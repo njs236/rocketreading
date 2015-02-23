@@ -367,22 +367,20 @@ var mainController = {
         clearInterval(gameTimer);
         // Save the gameTimer to the currentGameData object
         rocketReadingModel.getCurrentGameData().saveGameTime();
-        // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
-        rocketReadingModel.getCurrentGameData().setCurrentLevel({});
+
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         game.updateHighScore();
-        // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?) - No, this does not solve the problem
-        rocketReadingModel.clearCurrentGameData();
+        // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
+        mainController.setAccessTo(true);
+        // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
+        rocketReadingModel.getCurrentGameData().setCurrentLevel({});
         // Save data to local storage
         storageController.saveCurrentGameData();
         storageController.saveAllGamesData();
-        // The user's current game data object is cleared
+        // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?) - No, this does not solve the problem
         rocketReadingModel.clearCurrentGameData();
         // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
-        
-        // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
-        mainController.setAccessTo(true);
         // Create a bare current data object and assign it as a property of the Rocket-Reading object
         // mainController.resetCurrentGameData(null, null, null, null); // No, see the following:
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this.

@@ -407,18 +407,18 @@ var mainController = {
         // Save the gameTimer to the currentGameData object
         rocketReadingModel.getCurrentGameData().saveGameTime();
 
-        // Save the current game data to rocketReadingModel.myAllGamesData
-        rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         // Update the high-score
         rocketReadingModel.getMyPlayer().checkHighScore(levelNumber, gameNumber);
-        // The system checks whether a user has completed a bonus game
+        // The system checks whether a user has completed a bonus game and if so sets the bonus game as being completed
         mainController.checkForBonusGameCompletion(levelGame[0]);
-        // If the number of the player's level-game reached is the same as the number of the level-game which the player has just played then the system will update the user's levelGameReached property
+        // Save the current game data to rocketReadingModel.myAllGamesData
+        rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         
-        // There needs to be a test whether the user has completed the last game for the current level. 
+        // If the number of the player's level reached is the same as the level number of the level-game which the player has just played then the system will check to see whether to update the user's levelGameReached property
         if (levelGameReached[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] 
-                // The following test would not always be applicable - a player could be replaying an earlier game in that level
+                // There needs to be a test whether the user has completed the last game for the current level. Actually, this is not actually true - a player could be replaying an earlier game in that level
                 // && levelGameReached[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]
+                // Also, the player's levelGameReached will not be updated if the player is on the last and final level
                 && (levelNumber !== rocketReadingModel.getAllLevels().length - 1 && gameNumber !== level.getAllGames().length)) {
             // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
             mainController.setLevelGameReached(level, gameNumber);

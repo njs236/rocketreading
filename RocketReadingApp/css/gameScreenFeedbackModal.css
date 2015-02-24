@@ -1,0 +1,37 @@
+.feedbackModal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(1,0,0,0);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.feedbackModal:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.feedbackModal > div {
+	width: 20%;
+	height: 10%;
+	position: relative;
+	margin: 20% auto;
+	padding: 0 2.5%;
+	border: 1px solid black;
+	border-radius: 1em;
+	background: red;
+	text-align:center;
+}
+
+.feedbackModal h1 {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}

@@ -516,7 +516,7 @@ var viewHTMLModule = {
             // duration = duration * 1000 + 1000; // Give the player a bonus second
             duration = duration * 1000;
             // It is worthwhile assigning these setTimeouts to variables because the timers will need to stopped if the user leaves the current game and moves to a different screen
-            learnWordTimerA = setTimeout(function (){	
+            learnWordTimerA = setTimeout(function (){
                 if (attr === 'normalWord') {
                     viewHTMLModule.eventClickAdd();
                     mainController.createWordTimer();
@@ -532,6 +532,7 @@ var viewHTMLModule = {
                     } else if (learnWordCount === 1) {
                         // The word is included as part of a spoken sentence
                         learnWordTimerD = setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
+						window.setTimeout(viewHTMLModule.learnWordIsFinished(),1500);
                     } else if (learnWordCount === 0) {
                         // Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
                         viewHTMLModule.eventClickAdd();
@@ -752,6 +753,20 @@ var viewHTMLModule = {
 	hideFeedbackModal : function() {
 		"use strict";
 		location.hash = "";
+	},
+	
+	learnWordIsActive : function ()  {
+		"use strict";
+		console.log("HTMLVIEW: hiding table");
+		document.getElementById("gameWordTable").hidden = true;
+	
+	},
+	
+	learnWordIsFinished : function ()  {
+		"use strict";
+		console.log("HTMLVIEW: showing table");
+		document.getElementById("gameWordTable").hidden = false;
+	
 	},
 	
 	// ******************************************

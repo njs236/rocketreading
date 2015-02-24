@@ -270,7 +270,19 @@ var myViewModelRR = {
 	correctGuess : function () {
 		"use strict";
 		this.view.correctGuess();
-	}
+	},
+	
+	
+	learnWordIsActive : function () {
+		"use strict"
+		this.view.learnWordIsActive();
+	},
+	
+	
+	learnWordIsFinished : function () {
+		"use strict";
+		this.view.learnWordIsFinished();
+	},
     /*
     displayGameIntroConfirm: function () {
         "use strict";

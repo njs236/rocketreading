@@ -812,8 +812,9 @@ var mainController = {
                 // The completeWordList property of currentGameData needs to be repopulated 
                     // mainController.resetCompleteWordList(); // - actually this does not need to be done at this point. It only needs to be done in the createTable() function after the array has been randomised
                 // The incorrect property of currentGameData can be set to null
-                rocketReadingModel.getCurrentGameData().setIncorrectWord(null);   
-                alert ("Correct Word! You selected " + word);
+                rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
+				myViewModelRR.correctGuess();
+                //alert ("Correct Word! You selected " + word);
                 mainController.exitingLearnWord();
             } else {
                 // This is reducing the table contents if the word selected is wrong. 
@@ -850,6 +851,7 @@ var mainController = {
         "use strict";
         var currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord(),
             characterArray = currentWord.split('');
+		myViewModelRR.learnWordIsActive();
         myViewModelRR.displayWord(characterArray, "Comic Sans MS");
         learnWordCount = 4;
         myViewModelRR.updateCurrentWord(currentWord, 'learnWord', characterArray);

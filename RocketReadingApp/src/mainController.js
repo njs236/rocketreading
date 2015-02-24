@@ -151,13 +151,16 @@ var mainController = {
                 // bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, 1)[0].getCurrentGame().getCompletion(), 
                 // If data is loaded from LS then the data inside the allGamesData property will not be of the currentGameData class. So, that is why the end of the following line has 'myGame.bonusGameCompleted' instead of 'getCurrentGame().getCompletion()'
                 // There just needs to be a check that there is at least one object in allGamesData for the appropriate levelGame object: 'currentLevel.getLevelNumber())[0]'
-                bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted 
+                bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted;
+                console.log("setLevelGameReached() - bonusGameCheck = " + rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted);
+                
             }
             
             // There should also be a check that the current level number is not the maximum level number
             if ((bonusGameCheck === true) 
                     && (pointsToPassLevel <= Number(rocketReadingModel.getMyPlayer().calculateSumHighScores(currentLevel.getLevelNumber()))) 
                     && (levelGameReached[1] === level.getAllGames().length)) {
+                console.log("setLevelGameReached(): level's total high scores" + rocketReadingModel.getMyPlayer().calculateSumHighScores(currentLevel.getLevelNumber()));
                 temp.push(rocketReadingModel.findLevelByNumber(levelGameReached[0] + 1).getLevelNumber());
                 temp.push(1);
                 console.log("setAccessTo: " + temp);

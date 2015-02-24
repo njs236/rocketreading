@@ -742,6 +742,18 @@ var viewHTMLModule = {
 		location.hash = "gameIntroModal";
 	},
 	
+	correctGuess : function() {
+		"use strict";
+		location.hash = "gameFeedbackModal";
+		window.setTimeout(this.hideFeedbackModal, 1000);
+	},
+	
+	
+	hideFeedbackModal : function() {
+		"use strict";
+		location.hash = "";
+	},
+	
 	// ******************************************
 	// ********** Initialise Section ************
 	// ******************************************

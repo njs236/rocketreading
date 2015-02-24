@@ -265,8 +265,12 @@ var myViewModelRR = {
     setUniformCellWidth: function () {
         "use strict";
         this.view.setUniformCellWidth();
-    }
+    },
     
+	correctGuess : function () {
+		"use strict";
+		this.view.correctGuess();
+	}
     /*
     displayGameIntroConfirm: function () {
         "use strict";

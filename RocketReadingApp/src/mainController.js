@@ -779,7 +779,8 @@ var mainController = {
                             rocketReadingModel.getCurrentGameData().setMedal('bronze');
                             rocketReadingModel.getCurrentGameData().setScore(1);
                         }
-                    alert ("Correct Word! You selected " + word);
+                    //alert ("Correct Word! You selected " + word);
+					myViewModelRR.correctGuess();
                     mainController.initialiseNextWord();
                 } else {
                     // this is the incorrect word selection

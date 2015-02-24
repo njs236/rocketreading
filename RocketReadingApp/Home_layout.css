@@ -345,5 +345,25 @@ div.homeOptionsRight {
 }
 
 #homeExit img {
- width: 100%;
+    width: 100%;
+}
+
+#homeModalContent h1 {
+    text-align: center;
+}
+
+#homeModalHeading {
+    height: 20%;
+    width: 100%;
+}
+
+#homeHeadingCenter {
+    height: 65%;
+    width: 100%;
+}
+
+#homeModalContent h1 {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }

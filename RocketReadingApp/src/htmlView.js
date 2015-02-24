@@ -91,6 +91,16 @@ var viewHTMLModule = {
 		//document.getElementById('welcome').textContent = 'Welcome, ' + username;
 		console.groupEnd();
 	},
+    
+    checkLogout: function () {
+        "use strict";
+        location.hash = "homeCheckLogoutModal";
+    },
+    
+    logoutPlayer: function () {
+        "use strict";
+        mainController.logoutPlayer();
+    },
 	
 	// ***********************************************
 	// ********** End Home Screen Section ************
@@ -188,6 +198,7 @@ var viewHTMLModule = {
 		};
 		
 	},
+   
 	// ********************************************
 	// ***** End Level Select Screen Section ******
 	// ********************************************
@@ -677,6 +688,7 @@ var viewHTMLModule = {
 	showHomeScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
+        this.closeModal();
 		document.getElementById("homeScreen").hidden = false;
 		console.log("HTMLView.js : Showing home screen");
 	},
@@ -720,7 +732,7 @@ var viewHTMLModule = {
         console.log("HTMLView.js: Showing Register Screen");
     },
 	
-	closePauseMenu : function () {
+	closeModal : function () {
 		"use strict";
 		location.hash = "Close";
 	},
@@ -749,9 +761,13 @@ var viewHTMLModule = {
 		// Home Screen
 		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
-		document.getElementById("homeExit").addEventListener("click",this.showLoginScreen);
         document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
-		
+        document.getElementById("homeExit").addEventListener("click",this.checkLogout);
+        document.getElementById("homeLogoutYes").addEventListener("click",this.showLoginScreen);
+        document.getElementById("homeLogoutYes").addEventListener("click",this.closeModal);
+        document.getElementById("homeLogoutYes").addEventListener("click",this.logoutPlayer);
+        document.getElementById("homeLogoutNo").addEventListener("click",this.closeModal);
+        
 		// Level Select Screen
 		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);
 		
@@ -769,7 +785,7 @@ var viewHTMLModule = {
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
         document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
-		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closePauseMenu);
+		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closeModal);
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
 	}

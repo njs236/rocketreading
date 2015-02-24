@@ -187,26 +187,12 @@ var mainController = {
 	// ************ Home Screen Section **************
 	// ***********************************************
     
-        checkAdvanceNextGame: function () {
+    checkAdvanceNextGame: function () {
     // This function checks whether the player needs to complete a bonus game before advancing to the next level
         "use strict";
         
     },
     
-    /* This function has now been incorporated into the nextWord ()
-    setNextWord: function() {
-        "use strict";
-        if (rocketReadingModel.getCurrentGameData().getIncorrectWord() === null) {
-            learnWordCount = 0;
-            myViewModelRR.updateCurrentWord(rocketReadingModel.getCurrentGameData().getCurrentWord(), 'normalWord', null);
-        } else if (rocketReadingModel.getCurrentGameData().getIncorrectWord() !== null) {
-            // If the currentGameData has an incorrect word (ie the user got a word wrong just before the user left the game and this word was recorded as being the incorrect word in the saved game's data) then the learn word word will be enabled and the user will have to click this to proceed. 
-            mainController.enableLearnWord();
-            // The cells of the table will be disabled - no this is not necessary
-            // Any text in the space for displaying the word to be learned will be cleared
-            myViewModelRR.clearLearnWord();
-        }
-    },*/
    
     loadPreviousGame: function () {
         "use strict";
@@ -254,8 +240,6 @@ var mainController = {
         }
     },
 	
-
-    
     disableBarTimer: function () {
     // The timers for the bar timer are cleared and the bar is hidden
         "use strict";        
@@ -264,8 +248,18 @@ var mainController = {
         clearTimeout(bronzeBar);
     },
     
+    logoutPlayer: function () {
+        "use strict";
+        rocketReadingModel.addAllGamesData(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, null, null, null, null, null, null);
+        rocketReadingModel.registerPlayer(null, null, null, null, null, null, null, null, null);
+    },
     
-    //Level Select Screen
+    
+    // ********************************************
+	// ******* Level Select Screen Section ********
+	// ********************************************
+    
     
     setCurrentLevel : function () {
 		"use strict";

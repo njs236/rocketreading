@@ -688,7 +688,7 @@ var viewHTMLModule = {
 	showHomeScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
-        this.closeModal();
+        viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
 		console.log("HTMLView.js : Showing home screen");
 	},

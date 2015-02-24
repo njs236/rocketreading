@@ -71,6 +71,8 @@ RocketReadingModel.prototype.getAllGamesData = function () {
 RocketReadingModel.prototype.registerPlayer = function (newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel) {
     "use strict";
     var newPlayer = new Player(newUser, newFirstName, newLastName, newSchool, newClassRoom, newTotalScore, newLevelReached, newBonusGameReached, newPointsToPassLevel);
+    
+    newPlayer.addHighScores(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	newPlayer.currentGameData = this.myCurrentGameData;
 	newPlayer.allGamesData = this.myAllGamesData;
     // Save the player in local storage
@@ -86,6 +88,7 @@ RocketReadingModel.prototype.setPlayer = function (player) {
     
     newCurrentGameData = new CurrentGameData(player.currentGameData.myLevel, player.currentGameData.myGame, player.currentGameData.wordList, player.currentGameData.currentWord, player.currentGameData.currentLevelGame, player.currentGameData.savedLevelGame, player.currentGameData.gameScore, player.currentGameData.gameMedals, player.currentGameData.lastTestTime, player.currentGameData.totalGameTime, player.currentGameData.wordsSoundsCorrect, player.currentGameData.wordsSoundsIncorrect);
 	
+    newPlayer.addHighScores(player.highScores.level0Game1HS, player.highScores.level0Game2HS, player.highScores.level0Game3HS, player.highScores.level0Game4HS, player.highScores.level0Game5HS, player.highScores.level0Game6HS, player.highScores.level1Game1HS, player.highScores.level1Game2HS, player.highScores.level1Game3HS, player.highScores.level1Game4HS, player.highScores.level2Game1HS, player.highScores.level2Game2HS, player.highScores.level2Game3HS, player.highScores.level2Game4HS, player.highScores.level3Game1HS, player.highScores.level3Game2HS, player.highScores.level3Game3HS, player.highScores.level3Game4HS,player.highScores.level4Game1HS, player.highScores.level4Game2HS, player.highScores.level4Game3HS, player.highScores.level4Game4HS, player.highScores.level5Game1HS, player.highScores.level5Game2HS, player.highScores.level5Game3HS, player.highScores.level5Game4HS, player.highScores.level6Game1HS, player.highScores.level6Game2HS, player.highScores.level6Game3HS, player.highScores.level6Game4HS);
     this.myPlayer = newPlayer;
     this.myAllGamesData = newAllGamesData;
     this.myCurrentGameData = newCurrentGameData;

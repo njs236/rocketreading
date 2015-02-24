@@ -146,7 +146,7 @@ var mainController = {
             levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
             level = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
             // currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
-            // game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+            game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
             pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
             
             // There will need to be a check that there is a bonus game in allGamesData which corresponds to the level number of the game the user has just played
@@ -166,10 +166,10 @@ var mainController = {
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
             } else if (gameNumber < currentLevel.getAllGames().length) {
                 temp.push(level.getLevelNumber());
-                temp.push(rocketReadingModel.findGameByNumber(gameNumber + 1).getNumber());
+                temp.push((game.gameNumber) + 1);
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-            }     
+            };           
             // If the above two conditions do not apply then do not call rocketReadingModel.getMyPlayer().setLevelGameReached(temp)
                    
             /*then the mainpart of the function is going into all the games
@@ -179,7 +179,7 @@ var mainController = {
             Finally, it outputs with updating the LevelGameReached.(if the user has achieved the right results. )
             */
             // rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-            // mainController.setAccessTo();
+            
         //};
     },   
    

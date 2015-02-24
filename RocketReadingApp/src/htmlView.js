@@ -321,12 +321,12 @@ var viewHTMLModule = {
     
     setLearnWordOn: function () {
         "use strict";
-        document.getElementById('learnWordText').className = "learning";
+        document.getElementById('learnWordButton').hidden = false;
     },
     
     setLearnWordNormal: function () {
         "use strict";
-        document.getElementById('learnWordText').className = "normal";
+        document.getElementById('learnWordButton').hidden = true;
     },
 	
 	toggleLearnWord : function () {
@@ -341,12 +341,12 @@ var viewHTMLModule = {
 	
 	addEventLearnWord : function () {
         "use strict";
-		var learnWordButton = document.getElementById('learnWordText');
+		//var learnWordButton = document.getElementById('learnWordButton');
 		learnWordListener = function () {
 			myViewModelRR.removeLearnWord();
 			mainController.learnWord();
 		};
-		learnWordButton.addEventListener("click", learnWordListener);
+		document.getElementById('learnWordButton').addEventListener("click", learnWordListener);
 	},
 	
 	removeLearnWord : function () {

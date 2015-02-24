@@ -678,7 +678,7 @@ var mainController = {
         // The event listener for learning a word is removed
         myViewModelRR.removeLearnWord();
         // The learn word heading is un-highlighted
-        myViewModelRR.setLearnWordNormal();
+        //myViewModelRR.setLearnWordNormal();
     },
     
     replayGame: function () {

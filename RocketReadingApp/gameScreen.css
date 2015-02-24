@@ -39,27 +39,24 @@
 	width:20%;
 	height:100%;
 	float:left;
+}
+
+#learnWordButton {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	width:100%;
+	height:30%;
 	text-align:center;
-	position:relative;
+	border: 1px solid black;
+	border-radius: 0.5em;
+	background-color:lime;
 }
 
-#learnWordText.normal {
-	vertical-align:middle;
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-right: -50%;
-	transform: translate(-50%, -50%);
-}
-
-#learnWordText.learning{
-	vertical-align:middle;
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-right: -50%;
-	transform: translate(-50%, -50%);
-	color: red;
+#learnWordText {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 #gameDisplayWord p {

@@ -1,11 +1,11 @@
-var Game = function (newName, newList, myLevelName, newGameNumber, newAccessible) {
+var Game = function (newName, newList, myLevelName, newGameNumber, newAccessible/*, newHighScore*/) {
     "use strict";
 	this.gameName = newName || 'unnamed';
     this.myWordList = newList || [];
 	this.levelName = myLevelName || 'unnamed';
     this.gameNumber = newGameNumber || null;
     this.accessible = newAccessible || false;
-    this.highScore = 0;
+    // this.highScore = newHighScore || 0;
     this.bonusGameCompleted = false;
 	return this;
 };

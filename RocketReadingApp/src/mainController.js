@@ -102,10 +102,6 @@ var mainController = {
         checkForBonusGameCompletion */
         var aGame,
         aLevel, 
-        level,
-        currentLevel,
-        game,
-        temp = [],
         levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached();
         // pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
         /*bonusGame = mainController.checkForBonusGameCompletion(level, game);*/
@@ -156,11 +152,16 @@ var mainController = {
                 // If data is loaded from LS then the data inside the allGamesData property will not be of the currentGameData class. So, that is why the end of the following line has 'myGame.bonusGameCompleted' instead of 'getCurrentGame().getCompletion()'
                 // There just needs to be a check that there is at least one object in allGamesData for the appropriate levelGame object: 'currentLevel.getLevelNumber())[0]'
                 bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted;
+                console.log("setLevelGameReached() - bonusGameCheck = " + rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted);
+                
             }
             
             // There should also be a check that the current level number is not the maximum level number
-            if ((bonusGameCheck === true) && (pointsToPassLevel <= currentLevel.calculateScore()) && (levelGameReached[1] === level.getAllGames().length)) {
-                temp.push(rocketReadingModel.findLevelByNumber(level.getLevelNumber() + 1).getLevelNumber());
+            if ((bonusGameCheck === true) 
+                    && (pointsToPassLevel <= Number(rocketReadingModel.getMyPlayer().calculateSumHighScores(currentLevel.getLevelNumber()))) 
+                    && (levelGameReached[1] === level.getAllGames().length)) {
+                console.log("setLevelGameReached(): level's total high scores" + rocketReadingModel.getMyPlayer().calculateSumHighScores(currentLevel.getLevelNumber()));
+                temp.push(rocketReadingModel.findLevelByNumber(levelGameReached[0] + 1).getLevelNumber());
                 temp.push(1);
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
@@ -169,7 +170,10 @@ var mainController = {
                 temp.push((game.gameNumber) + 1);
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-            };           
+            } else {
+                // If the above two conditions do not apply then do not call rocketReadingModel.getMyPlayer().setLevelGameReached(temp)
+                console.log("Nothing has been set in setLevelGameReached()");
+            }               
             // If the above two conditions do not apply then do not call rocketReadingModel.getMyPlayer().setLevelGameReached(temp)
                    
             /*then the mainpart of the function is going into all the games
@@ -406,28 +410,29 @@ var mainController = {
         // Save the gameTimer to the currentGameData object
         rocketReadingModel.getCurrentGameData().saveGameTime();
 
+        // Update the high-score
+        rocketReadingModel.getMyPlayer().checkHighScore(levelNumber, gameNumber);
+        // The system checks whether a user has completed a bonus game and if so sets the bonus game as being completed
+        mainController.checkForBonusGameCompletion(levelGame[0]);
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
-        // Update the high-score
-        game.updateHighScore();
-        // The system checks whether a user has completed a bonus game
-        mainController.checkForBonusGameCompletion(levelGame[0]);
-        // If the number of the player's level-game reached is the same as the number of the level-game which the player has just played then the system will update the user's levelGameReached property
         
-        // There needs to be a test whether the user has completed the last game for the current level. 
-        if (levelGameReached[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] &&
-            levelGameReached[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1] && 
-            (levelNumber !== rocketReadingModel.getAllLevels().length - 1 && gameNumber !== level.getAllGames().length)) {
+        // If the number of the player's level reached is the same as the level number of the level-game which the player has just played then the system will check to see whether to update the user's levelGameReached property
+        if (levelGameReached[0] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] 
+                // There needs to be a test whether the user has completed the last game for the current level. Actually, this is not actually true - a player could be replaying an earlier game in that level
+                // && levelGameReached[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]
+                // Also, the player's levelGameReached will not be updated if the player is on the last and final level
+                && (levelNumber !== rocketReadingModel.getAllLevels().length - 1 && gameNumber !== level.getAllGames().length)) {
             // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
             mainController.setLevelGameReached(level, gameNumber);
             mainController.setAccessTo();
         }
         // There also needs to be a check if the user has completed a bonus game (and the games for the level which has the level number which matches the bonus game number have been completed, and the points for those games is above the threshold)
         // Although the call of checkLevelGamesCompleted() takes gameNumber as a parameter, the function will actually use this value to determine the number of the level it will check for all-games completion
-        if ( (levelNumber === 0) && 
-            (rocketReadingModel.getAllGamesData().checkLevelGamesCompleted(gameNumber) === true) && 
-            (levelGameReached[0] === gameNumber) && 
-            (levelGameReached[0] !== rocketReadingModel.getAllLevels().length - 1) ) {
+        if ( (levelNumber === 0) 
+                && (rocketReadingModel.getAllGamesData().checkLevelGamesCompleted(gameNumber) === true) 
+                && (levelGameReached[0] === gameNumber) 
+                && (levelGameReached[0] !== rocketReadingModel.getAllLevels().length - 1) ) {
             // Passing setLevelGameReached() the gameNumber to determine the level which will be looked at. Passing null for the second parameter - will this work? Seems to
             mainController.setLevelGameReached(rocketReadingModel.findLevelByNumber(gameNumber), null);
             mainController.setAccessTo();

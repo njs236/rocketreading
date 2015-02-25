@@ -170,7 +170,10 @@ var mainController = {
                 temp.push((game.gameNumber) + 1);
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-            };           
+            } else {
+                // If the above two conditions do not apply then do not call rocketReadingModel.getMyPlayer().setLevelGameReached(temp)
+                console.log("Nothing has been set in setLevelGameReached()");
+            }               
             // If the above two conditions do not apply then do not call rocketReadingModel.getMyPlayer().setLevelGameReached(temp)
                    
             /*then the mainpart of the function is going into all the games

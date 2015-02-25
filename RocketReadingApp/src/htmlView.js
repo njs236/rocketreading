@@ -338,21 +338,23 @@ var viewHTMLModule = {
 			learnWordButton.className = "normal";
 		}
 	},
+    
+    learnWordListener: function () {
+		"use strict";	
+        myViewModelRR.removeLearnWord();
+		mainController.learnWord();
+    },
 	
 	addEventLearnWord : function () {
         "use strict";
 		//var learnWordButton = document.getElementById('learnWordButton');
-		learnWordListener = function () {
-			myViewModelRR.removeLearnWord();
-			mainController.learnWord();
-		};
-		document.getElementById('learnWordButton').addEventListener("click", learnWordListener);
+		document.getElementById('learnWordButton').addEventListener("click", viewHTMLModule.learnWordListener);
 	},
 	
 	removeLearnWord : function () {
         "use strict";
-		var learnWordButton = document.getElementById('learnWordText');
-		learnWordButton.removeEventListener("click", learnWordListener);
+		var learnWordButton = document.getElementById('learnWordButton');
+		learnWordButton.removeEventListener("click", viewHTMLModule.learnWordListener);
 	},
 	
 	displayTable : function (inputArray) {

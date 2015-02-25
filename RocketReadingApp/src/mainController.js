@@ -165,7 +165,8 @@ var mainController = {
                 temp.push(1);
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-            } else if (gameNumber < currentLevel.getAllGames().length) {
+                // The next conditional test should not be called if the game number of the player's levelGameReached is higher than the game number of the current game
+            } else if ((gameNumber < currentLevel.getAllGames().length) && (levelGameReached[1] <= gameNumber)){
                 temp.push(level.getLevelNumber());
                 temp.push((game.gameNumber) + 1);
                 console.log("setAccessTo: " + temp);
@@ -866,6 +867,7 @@ var mainController = {
         "use strict";
 		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
 		myViewModelRR.toggleLearnWord();
+        myViewModelRR.clearLearnWord();
 	},
     
 	initialiseNextWord : function () {

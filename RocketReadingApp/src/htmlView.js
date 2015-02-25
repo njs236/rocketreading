@@ -547,10 +547,10 @@ var viewHTMLModule = {
         var count = 0,
             letters,
             string = '',
-            displayWord = document.getElementById('gameDisplayWord');
+            wordToBeLearned = document.getElementById('gameDisplayWord');
         letters = document.createElement('P');
         letters.id = "gameLearnWordText";
-        displayWord.appendChild(letters);
+        wordToBeLearned.appendChild(letters);
         for (count; count < characterArray.length; count++) {
             string = string + characterArray[count] + "  ";
         };

@@ -145,15 +145,13 @@ var mainController = {
             game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
             pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
             
-            // There will need to be a check that there is a bonus game in allGamesData which corresponds to the level number of the game the user has just played
+            // There needs to be a check that there is data for a bonus game in allGamesData which corresponds to the level number of the game the user has just played. This condition will check that there is at least one object in allGamesData for the appropriate levelGame object. So: 'currentLevel.getLevelNumber())[0]'
             if (rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0] !== undefined) {
                 // Get the bonusGameCompleted property from the allGamesData property
                 // bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, 1)[0].getCurrentGame().getCompletion(), 
                 // If data is loaded from LS then the data inside the allGamesData property will not be of the currentGameData class. So, that is why the end of the following line has 'myGame.bonusGameCompleted' instead of 'getCurrentGame().getCompletion()'
-                // There just needs to be a check that there is at least one object in allGamesData for the appropriate levelGame object: 'currentLevel.getLevelNumber())[0]'
                 bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted;
                 console.log("setLevelGameReached() - bonusGameCheck = " + rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted);
-                
             }
             
             // There should also be a check that the current level number is not the maximum level number
@@ -362,12 +360,7 @@ var mainController = {
     // *******************************************
 	// ********** Game Screen Section ************
 	// *******************************************
-    
-    /*
-    setBonusGameCompletion: function () {
-        "use strict";
-        
-    };*/
+   
     
     checkForBonusGameCompletion : function (/*levelReached*/) {
     //This method both sets and ensures that the BonusGame completed will result in a successful attempt at unlocking the next level.
@@ -411,7 +404,7 @@ var mainController = {
         // Save the gameTimer to the currentGameData object
         rocketReadingModel.getCurrentGameData().saveGameTime();
 
-        // Update the high-score
+        // Check to see if the high-score should be updated
         rocketReadingModel.getMyPlayer().checkHighScore(levelNumber, gameNumber);
         // The system checks whether a user has completed a bonus game and if so sets the bonus game as being completed
         mainController.checkForBonusGameCompletion(levelGame[0]);
@@ -446,9 +439,6 @@ var mainController = {
         storageController.saveAllGamesData();
         // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?) - No, this does not solve the problem
         rocketReadingModel.clearCurrentGameData();
-        // The player's levelGameReached or bonusGameReached property should be updated (if applicable)
-        // Create a bare current data object and assign it as a property of the Rocket-Reading object
-        // mainController.resetCurrentGameData(null, null, null, null); // No, see the following:
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
     },
@@ -768,6 +758,7 @@ var mainController = {
             myViewModelRR.hideBarTimer();
             clearTimeout(silverBar);
             clearTimeout(bronzeBar);
+            // If the user has run out of time to answer a test this function will be called with a null argument
             if (word !== null) {
                 if (word === currentWord) {
                     mainController.spliceWord(wordIndex);

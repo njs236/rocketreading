@@ -422,7 +422,7 @@ var mainController = {
                 // There needs to be a test whether the user has completed the last game for the current level. Actually, this is not actually true - a player could be replaying an earlier game in that level
                 // && levelGameReached[1] === rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[1]
                 // Also, the player's levelGameReached will not be updated if the player is on the last and final level
-                && (levelNumber !== rocketReadingModel.getAllLevels().length - 1 && gameNumber !== level.getAllGames().length)) {
+                && ((levelNumber !== rocketReadingModel.getAllLevels().length - 1) || (gameNumber !== level.getAllGames().length))) {
             // If the player has unlocked a new level-game then the system will have to make this level-game accessible to the player 
             mainController.setLevelGameReached(level, gameNumber);
             mainController.setAccessTo();

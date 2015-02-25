@@ -746,7 +746,7 @@ var viewHTMLModule = {
 	correctGuess : function() {
 		"use strict";
 		location.hash = "gameFeedbackModal";
-		window.setTimeout(this.hideFeedbackModal, 1000);
+		window.setTimeout(this.hideFeedbackModal, 500);
 	},
 	
 	
@@ -809,7 +809,9 @@ var viewHTMLModule = {
         document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
         document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
+		document.getElementById("gameBack").addEventListener("click", this.closeModal);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
+		document.getElementById("gameStart").addEventListener("click", this.closeModal);
         document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
 		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closeModal);

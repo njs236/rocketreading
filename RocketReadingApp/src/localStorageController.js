@@ -11,6 +11,7 @@ var localStorageController =  {
         "use strict";
         var player = rocketReadingModel.getMyPlayer();
         player.setAllGamesData(rocketReadingModel.getAllGamesData());
+        
         console.groupCollapsed("localStorageController : saveAllGamesData()");
         console.log("player userName: " + player.userName);
         console.log("player firstName: " + player.firstName);
@@ -24,6 +25,7 @@ var localStorageController =  {
         console.log("player currentGameData: " + player.currentGameData);
         console.log("player allGamesData: " + player.allGamesData);
         console.groupEnd();
+        
         localStorage.setItem(rocketReadingModel.getMyPlayer().getUserName(), JSON.stringify(player));
     },
     

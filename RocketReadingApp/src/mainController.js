@@ -259,8 +259,15 @@ var mainController = {
     
     logoutPlayer: function () {
         "use strict";
-        rocketReadingModel.addAllGamesData(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-        rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, null, null, null, null, null, null);
+        // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
+        rocketReadingModel.getCurrentGameData().setCurrentLevel({});
+        // The currentGameData should be saved to the player's local storage file, so that the player can return to their un-finished game when they log back in (although this is not possible atm).
+        storageController.saveCurrentGameData();
+        // Save the player's allGamesData in case this has not already been done, ie a player has not finished any games.
+        storageController.saveAllGamesData();
+        // Clear the data 
+        rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);
+        rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, 0, [0,0,0], null, null, [], []);
         rocketReadingModel.registerPlayer(null, null, null, null, null, null, null, null, null);
     },
     
@@ -444,10 +451,10 @@ var mainController = {
         
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
-        // Save data to local storage
-        storageController.saveCurrentGameData();
+        // Save data to local storage (which will also be done when a player logs out)
+        // storageController.saveCurrentGameData(); - this is unnecessary after a player has finished a game.
         storageController.saveAllGamesData();
-        // Clear the current data object - this has to be done before the player object is saved to local storage or else a converting circular structure to JSON error occurs (?) - No, this does not solve the problem
+        // Clear the current data object
         rocketReadingModel.clearCurrentGameData();
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);

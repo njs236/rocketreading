@@ -160,54 +160,54 @@ var loadGameData = function () {
     
     theLevel = rocketReadingModel.findLevelByNumber(0);
     rocketReadingModel.addAvatar("bonusGame", theLevel);
-    theLevel.addGame("Alphabet Sounds", alphabetSoundsList, theLevel.getDescription(), 1, true);
-    theLevel.addGame("Consonant Blends 1", constantBlends1List, theLevel.getDescription(), 2, true);
-    theLevel.addGame("Consonant Blends 2", constantBlends2List, theLevel.getDescription(), 3, true);
-    theLevel.addGame("Short Vowel Sounds", shortVowelsList, theLevel.getDescription(), 4, true);
-    theLevel.addGame("Long Vowels Sounds", longVowelsList, theLevel.getDescription(), 5, true);
-    theLevel.addGame("Middle Sounds", middleSoundsList, theLevel.getDescription(), 6, true);
+    theLevel.addGame("Alphabet Sounds", alphabetSoundsList, theLevel.getDescription(), 1, true, false);
+    theLevel.addGame("Consonant Blends 1", constantBlends1List, theLevel.getDescription(), 2, true, false);
+    theLevel.addGame("Consonant Blends 2", constantBlends2List, theLevel.getDescription(), 3, true, false);
+    theLevel.addGame("Short Vowel Sounds", shortVowelsList, theLevel.getDescription(), 4, true, false);
+    theLevel.addGame("Long Vowels Sounds", longVowelsList, theLevel.getDescription(), 5, true, false);
+    theLevel.addGame("Middle Sounds", middleSoundsList, theLevel.getDescription(), 6, true, false);
 	
     theLevel = rocketReadingModel.findLevelByNumber(1);
 	rocketReadingModel.addAvatar("trainingAcademy", theLevel);
-    theLevel.addGame("Game 1", wordList1, theLevel.getDescription(), 1, true);
-    theLevel.addGame("Game 2", wordList2, theLevel.getDescription(), 2, false);
-    theLevel.addGame("Game 3", wordList3, theLevel.getDescription(), 3, false);
-    theLevel.addGame("Game 4", wordList4, theLevel.getDescription(), 4, false);
+    theLevel.addGame("Game 1", wordList1, theLevel.getDescription(), 1, true, false);
+    theLevel.addGame("Game 2", wordList2, theLevel.getDescription(), 2, false, false);
+    theLevel.addGame("Game 3", wordList3, theLevel.getDescription(), 3, false, false);
+    theLevel.addGame("Game 4", wordList4, theLevel.getDescription(), 4, false, false);
     
     theLevel = rocketReadingModel.findLevelByNumber(2);
 	rocketReadingModel.addAvatar("city", theLevel);
-    theLevel.addGame("Game 1", wordList5, theLevel.getDescription(), 1, false);
-    theLevel.addGame("Game 2", wordList6, theLevel.getDescription(), 2, false);
-    theLevel.addGame("Game 3", wordList7, theLevel.getDescription(), 3, false);
-    theLevel.addGame("Game 4", wordList8, theLevel.getDescription(), 4, false);
+    theLevel.addGame("Game 1", wordList5, theLevel.getDescription(), 1, false, false);
+    theLevel.addGame("Game 2", wordList6, theLevel.getDescription(), 2, false, false);
+    theLevel.addGame("Game 3", wordList7, theLevel.getDescription(), 3, false, false);
+    theLevel.addGame("Game 4", wordList8, theLevel.getDescription(), 4, false, false);
 
     theLevel = rocketReadingModel.findLevelByNumber(3);
 	rocketReadingModel.addAvatar("rocket", theLevel);
-    theLevel.addGame("Game 1", wordList9, theLevel.getDescription(), 1, false);
-    theLevel.addGame("Game 2", wordList10, theLevel.getDescription(), 2, false);
-    theLevel.addGame("Game 3", wordList11, theLevel.getDescription(), 3, false);
-    theLevel.addGame("Game 4", wordList12, theLevel.getDescription(), 4, false);
+    theLevel.addGame("Game 1", wordList9, theLevel.getDescription(), 1, false, false);
+    theLevel.addGame("Game 2", wordList10, theLevel.getDescription(), 2, false, false);
+    theLevel.addGame("Game 3", wordList11, theLevel.getDescription(), 3, false, false);
+    theLevel.addGame("Game 4", wordList12, theLevel.getDescription(), 4, false, false);
     
     theLevel = rocketReadingModel.findLevelByNumber(4);
 	rocketReadingModel.addAvatar("orbit", theLevel);
-    theLevel.addGame("Game 1", wordList13, theLevel.getDescription(), 1, false);
-    theLevel.addGame("Game 2", wordList14, theLevel.getDescription(), 2, false);
-    theLevel.addGame("Game 3", wordList15, theLevel.getDescription(), 3, false);
-    theLevel.addGame("Game 4", wordList16, theLevel.getDescription(), 4, false);
+    theLevel.addGame("Game 1", wordList13, theLevel.getDescription(), 1, false, false);
+    theLevel.addGame("Game 2", wordList14, theLevel.getDescription(), 2, false, false);
+    theLevel.addGame("Game 3", wordList15, theLevel.getDescription(), 3, false, false);
+    theLevel.addGame("Game 4", wordList16, theLevel.getDescription(), 4, false, false);
     
     theLevel = rocketReadingModel.findLevelByNumber(5);
 	rocketReadingModel.addAvatar("moon", theLevel);
-    theLevel.addGame("Game 1", wordList17, theLevel.getDescription(), 1, false);
-    theLevel.addGame("Game 2", wordList18, theLevel.getDescription(), 2, false);
-    theLevel.addGame("Game 3", wordList19, theLevel.getDescription(), 3, false);
-    theLevel.addGame("Game 4", wordList20, theLevel.getDescription(), 4, false);
+    theLevel.addGame("Game 1", wordList17, theLevel.getDescription(), 1, false, false);
+    theLevel.addGame("Game 2", wordList18, theLevel.getDescription(), 2, false, false);
+    theLevel.addGame("Game 3", wordList19, theLevel.getDescription(), 3, false, false);
+    theLevel.addGame("Game 4", wordList20, theLevel.getDescription(), 4, false, false);
     
     theLevel = rocketReadingModel.findLevelByNumber(6);
 	rocketReadingModel.addAvatar("trevor", theLevel);
-    theLevel.addGame("Game 1", wordList21, theLevel.getDescription(), 1, false);
-    theLevel.addGame("Game 2", wordList22, theLevel.getDescription(), 2, false);
-    theLevel.addGame("Game 3", wordList23, theLevel.getDescription(), 3, false);
-    theLevel.addGame("Game 4", wordList24, theLevel.getDescription(), 4, false);
+    theLevel.addGame("Game 1", wordList21, theLevel.getDescription(), 1, false, false);
+    theLevel.addGame("Game 2", wordList22, theLevel.getDescription(), 2, false, false);
+    theLevel.addGame("Game 3", wordList23, theLevel.getDescription(), 3, false, false);
+    theLevel.addGame("Game 4", wordList24, theLevel.getDescription(), 4, false, false);
     
 };
 

@@ -146,8 +146,9 @@ var mainController = {
         var temp = [],
             bonusGameCheck = false,
             levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
+            level = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
             // currentLevel = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
-            currentLevel = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
+            // currentLevel = rocketReadingModel.findLevelByNumber(levelGameReached[0]),
             game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
             pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
             
@@ -407,7 +408,7 @@ var mainController = {
         // If the currentLevel that is being played is the bonus level ...
         var result = false,
             // levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber();
-            levelNumber = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]);
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0];
         if (levelNumber === 0) {
             // ... then look for the current game and set it to completed.
             rocketReadingModel.getCurrentGameData().getCurrentGame().setCompletion();
@@ -476,7 +477,7 @@ var mainController = {
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
         // Save data to local storage (which will also be done when a player logs out)
-        // Saving currentGameData should not be necessary to do but it's good to keep this code here in case a player exits the program by closing the window of the browser and not logging out through the game:
+        // Saving currentGameData should not be necessary to do but it's good to call this function here in case a player exits the program by closing the window of the browser and not logging out through the game (& see below: the currentGameData will soon be cleared):
         storageController.saveCurrentGameData(); 
         storageController.saveAllGamesData();
         // Clear the current data object

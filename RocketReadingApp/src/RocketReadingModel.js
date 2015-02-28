@@ -152,7 +152,8 @@ RocketReadingModel.prototype.findLevelByNumber = function (levelNumber) {
 
 RocketReadingModel.prototype.findGameByNumber = function (number) {
     "use strict";
-    var aLevel = this.getCurrentGameData().getCurrentLevel(),
+    // var aLevel = this.getCurrentGameData().getCurrentLevel(),
+    var aLevel = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]),
 	aGame;
     for (aGame of aLevel.allMyGames) {
 		if (aGame.getNumber() === number) {

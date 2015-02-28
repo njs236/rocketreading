@@ -506,7 +506,7 @@ var viewHTMLModule = {
 	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";
 		var duration,
-            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0],
             gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
 			audio = document.createElement('AUDIO');
 		document.getElementById("gameGame").appendChild(audio);

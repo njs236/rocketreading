@@ -2,7 +2,10 @@
 
 var mainController = {
     
-    //Register Screen
+    // *************************************
+	// ******* Register Screen Section *****
+	// *************************************
+    
     registerPlayer : function () {
         "use strict";
         var userName = document.getElementById('registerUserName').value,
@@ -13,7 +16,10 @@ var mainController = {
         rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 450);
     },    
     
-    //Login Screen
+    // *************************************
+	// ******* Login Screen Section ********
+	// *************************************
+    
     loginMethods: {
         validateLogin: function (userName, userPassword) {
             "use strict";
@@ -106,7 +112,7 @@ var mainController = {
         // pointsToPassLevel = rocketReadingModel.getMyPlayer().getPointsToPassLevel();
         /*bonusGame = mainController.checkForBonusGameCompletion(level, game);*/
         /*We need to account for these eventualities:
-        when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels. */
+        when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels they are allowed to access. */
         for (aLevel of rocketReadingModel.getAllLevels()) {
             //The total array is made up of levels that are accessible, and the games in them as accessible, the Level that the current User is upto, being accessible, and its games being accessible upto the reached game, the level that inaccessible and all the games of that level are inaccessible;
             if (aLevel.getLevelNumber() < levelGameReached[0]) {
@@ -134,7 +140,7 @@ var mainController = {
     
     setLevelGameReached: function (currentLevel, gameNumber) {      
         "use strict";
-        // When a player finishes a game, the script will enable access to the next game and the next level (if bonus game has been completed too)
+        // When a player finishes a game, the script will enable access to the next game and the next level (if bonus game has been completed too and the player has achieved enough points)
     
         // if (finishedGame === true) {
         var temp = [],
@@ -148,10 +154,10 @@ var mainController = {
             // There needs to be a check that there is data for a bonus game in allGamesData which corresponds to the level number of the game the user has just played. This condition will check that there is at least one object in allGamesData for the appropriate levelGame object. So: 'currentLevel.getLevelNumber())[0]'
             if (rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0] !== undefined) {
                 // Get the bonusGameCompleted property from the allGamesData property
-                // bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, 1)[0].getCurrentGame().getCompletion(), 
+                bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, 1)[0].getCurrentGame().getCompletion(), 
                 // If data is loaded from LS then the data inside the allGamesData property will not be of the currentGameData class. So, that is why the end of the following line has 'myGame.bonusGameCompleted' instead of 'getCurrentGame().getCompletion()'
-                bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted;
-                console.log("setLevelGameReached() - bonusGameCheck = " + rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted);
+                // bonusGameCheck = rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].myGame.bonusGameCompleted; /* This is no longer necessary - data encapsulation is now in place */
+                console.log("setLevelGameReached() - bonusGameCheck = " + rocketReadingModel.getAllGamesData().getGameDataArray(0, currentLevel.getLevelNumber())[0].getCurrentGame().getCompletion());
             }
             
             // There should also be a check that the current level number is not the maximum level number
@@ -303,7 +309,11 @@ var mainController = {
         //myViewModelRR.displayLevelList(allLevels);
     },   
     
-    //Game Select Screen
+    
+    // *******************************************
+	// ******* Game Select Screen Section ********
+	// *******************************************
+    
     
     getStringNumber: function (inputId) {
         "use string";
@@ -894,8 +904,9 @@ var mainController = {
         rocketReadingModel.addCurrentGameData(newLevel, newGame, newWordList, null, newCurrentLevelGame, null, 0, [0,0,0], 0, 0, [], []);
     }
     
-    //High Scores Screen
-    
+    // ******************************************
+	// ********** High Scores Section ***********
+	// ******************************************
     
     
     //Instructions Screen

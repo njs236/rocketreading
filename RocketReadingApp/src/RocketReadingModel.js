@@ -13,7 +13,7 @@ var RocketReadingModel = function() {
     this.levelThreshold = 450;
 };
 
-    // A single instance of the Rocket Reading Model is instantiated
+// A single instance of the Rocket Reading Model is instantiated
 rocketReadingModel = new RocketReadingModel();
 
 
@@ -32,6 +32,7 @@ RocketReadingModel.prototype.getAllLevels = function () {
 RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
 	var newCurrentGameData = new CurrentGameData(newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect);
 	this.myCurrentGameData = newCurrentGameData;
+    return newCurrentGameData;
 };
 
 RocketReadingModel.prototype.getCurrentGameData = function () {
@@ -79,20 +80,41 @@ RocketReadingModel.prototype.registerPlayer = function (newUser, newFirstName, n
     storageController.registerPlayer(newPlayer);
 };
 
+RocketReadingModel.prototype.loadGameData = function (gameData) {
+    "use strict";
+    var gameData = new Game(gameData.gameName, gameData.myWordList, gameData.levelName, gameData.gameNumber, gameData.accessible, gameData.bonusGameCompleted);
+    
+    return gameData;
+};
+
+RocketReadingModel.prototype.loadCurrentGameData = function (gameDataArray) {
+    /* This function will create currentGameData type objects for each array in a player's
+    allGamesData level-game property */
+    "use strict";
+    var index,
+        gameData = [],
+        aLength = gameDataArray.length;    
+    // console.log("Test loadCurrentGameData():" + aLength); // Test 
+    
+    for (index = 0; index < aLength; index += 1) {
+        gameData[index] = new CurrentGameData(gameDataArray[index].myLevel, this.loadGameData(gameDataArray[index].myGame), gameDataArray[index].wordList, gameDataArray[index].currentWord, gameDataArray[index].currentLevelGame, gameDataArray[index].savedLevelGame, gameDataArray[index].gameScore, gameDataArray[index].gameMedals, gameDataArray[index].lastTestTime, gameDataArray[index].totalGameTime, gameDataArray[index].wordsSoundsCorrect, gameDataArray[index].wordsSoundsIncorrect);
+    }
+    return gameData;
+};
+
 
 RocketReadingModel.prototype.setPlayer = function (player) {
     "use strict";
     var newPlayer = new Player(player.userName, player.firstName, player.lastName, player.school, player.classRoom, player.totalScore, player.levelGameReached, player.bonusGameReached, player.pointsToPassLevel),
     
-    newAllGamesData = new AllGamesData(player.allGamesData.level0Game1, player.allGamesData.level0Game2, player.allGamesData.level0Game3, player.allGamesData.level0Game4, player.allGamesData.level0Game5,  player.allGamesData.level0Game6, player.allGamesData.level1Game1, player.allGamesData.level1Game2, player.allGamesData.level1Game3, player.allGamesData.level1Game4, player.allGamesData.level2Game1, player.allGamesData.level2Game2, player.allGamesData.level2Game3, player.allGamesData.level2Game4, player.allGamesData.level3Game1, player.allGamesData.level3Game2, player.allGamesData.level3Game3, player.allGamesData.level3Game4, player.allGamesData.level4Game1,  player.allGamesData.level4Game2, player.allGamesData.level4Game3, player.allGamesData.level4Game4, player.allGamesData.level5Game1, player.allGamesData.level5Game2, player.allGamesData.level5Game3, player.allGamesData.level5Game4, player.allGamesData.level6Game1, player.allGamesData.level6Game2, player.allGamesData.level6Game3, player.allGamesData.level6Game4 ),
+    newAllGamesData = new AllGamesData(this.loadCurrentGameData(player.allGamesData.level0Game1), this.loadCurrentGameData(player.allGamesData.level0Game2), this.loadCurrentGameData(player.allGamesData.level0Game3), this.loadCurrentGameData(player.allGamesData.level0Game4), this.loadCurrentGameData(player.allGamesData.level0Game5),  this.loadCurrentGameData(player.allGamesData.level0Game6), this.loadCurrentGameData(player.allGamesData.level1Game1), this.loadCurrentGameData(player.allGamesData.level1Game2), this.loadCurrentGameData(player.allGamesData.level1Game3), this.loadCurrentGameData(player.allGamesData.level1Game4), this.loadCurrentGameData(player.allGamesData.level2Game1), this.loadCurrentGameData(player.allGamesData.level2Game2), this.loadCurrentGameData(player.allGamesData.level2Game3), this.loadCurrentGameData(player.allGamesData.level2Game4), this.loadCurrentGameData(player.allGamesData.level3Game1), this.loadCurrentGameData(player.allGamesData.level3Game2), this.loadCurrentGameData(player.allGamesData.level3Game3), this.loadCurrentGameData(player.allGamesData.level3Game4), this.loadCurrentGameData(player.allGamesData.level4Game1),  this.loadCurrentGameData(player.allGamesData.level4Game2), this.loadCurrentGameData(player.allGamesData.level4Game3), this.loadCurrentGameData(player.allGamesData.level4Game4), this.loadCurrentGameData(player.allGamesData.level5Game1), this.loadCurrentGameData(player.allGamesData.level5Game2), this.loadCurrentGameData(player.allGamesData.level5Game3), this.loadCurrentGameData(player.allGamesData.level5Game4), this.loadCurrentGameData(player.allGamesData.level6Game1), this.loadCurrentGameData(player.allGamesData.level6Game2), this.loadCurrentGameData(player.allGamesData.level6Game3), this.loadCurrentGameData(player.allGamesData.level6Game4)),
     
-    newCurrentGameData = new CurrentGameData(player.currentGameData.myLevel, player.currentGameData.myGame, player.currentGameData.wordList, player.currentGameData.currentWord, player.currentGameData.currentLevelGame, player.currentGameData.savedLevelGame, player.currentGameData.gameScore, player.currentGameData.gameMedals, player.currentGameData.lastTestTime, player.currentGameData.totalGameTime, player.currentGameData.wordsSoundsCorrect, player.currentGameData.wordsSoundsIncorrect);
+    newCurrentGameData = new CurrentGameData(player.currentGameData.myLevel, this.loadGameData(player.currentGameData.myGame), player.currentGameData.wordList, player.currentGameData.currentWord, player.currentGameData.currentLevelGame, player.currentGameData.savedLevelGame, player.currentGameData.gameScore, player.currentGameData.gameMedals, player.currentGameData.lastTestTime, player.currentGameData.totalGameTime, player.currentGameData.wordsSoundsCorrect, player.currentGameData.wordsSoundsIncorrect);
 	
     newPlayer.addHighScores(player.highScores.level0Game1HS, player.highScores.level0Game2HS, player.highScores.level0Game3HS, player.highScores.level0Game4HS, player.highScores.level0Game5HS, player.highScores.level0Game6HS, player.highScores.level1Game1HS, player.highScores.level1Game2HS, player.highScores.level1Game3HS, player.highScores.level1Game4HS, player.highScores.level2Game1HS, player.highScores.level2Game2HS, player.highScores.level2Game3HS, player.highScores.level2Game4HS, player.highScores.level3Game1HS, player.highScores.level3Game2HS, player.highScores.level3Game3HS, player.highScores.level3Game4HS,player.highScores.level4Game1HS, player.highScores.level4Game2HS, player.highScores.level4Game3HS, player.highScores.level4Game4HS, player.highScores.level5Game1HS, player.highScores.level5Game2HS, player.highScores.level5Game3HS, player.highScores.level5Game4HS, player.highScores.level6Game1HS, player.highScores.level6Game2HS, player.highScores.level6Game3HS, player.highScores.level6Game4HS);
     this.myPlayer = newPlayer;
     this.myAllGamesData = newAllGamesData;
     this.myCurrentGameData = newCurrentGameData;
-    //console.log("RocketReadingModel.setPlayer() level reached - " + rocketReadingModel.getMyPleyer());
 };
 
 RocketReadingModel.prototype.getMyPlayer = function () {

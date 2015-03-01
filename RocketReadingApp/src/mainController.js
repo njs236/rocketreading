@@ -202,15 +202,14 @@ var mainController = {
         "use strict";
         
     },
-    
    
     loadPreviousGame: function () {
         "use strict";
-        // The system clears the current data's saved game data
-        rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);
         // The system get the user's current game details and opens the particular screen
         mainController.gameInitialise();
         myViewModelRR.showGameScreen();
+        // Event listeners for the 'back' button of the game intro modal window will be added
+        myViewModelRR.addEventListContinueGameBack();
         
         // The following code is not necessary - the game will now start when the user clicks the start link of the modal screen (which will display now when the game screen opens)
         /*
@@ -485,7 +484,12 @@ var mainController = {
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
     },
-
+    
+    setSavedGameNull: function () {
+        "use strict";
+        // The system clears the current data's saved game data
+        rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);    
+    },
     
     disableLearnWordTimers: function () {
         "use strict";

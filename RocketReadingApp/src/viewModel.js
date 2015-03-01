@@ -278,11 +278,15 @@ var myViewModelRR = {
 		this.view.learnWordIsActive();
 	},
 	
-	
 	learnWordIsFinished : function () {
 		"use strict";
 		this.view.learnWordIsFinished();
 	},
+    
+    addEventListContinueGameBack: function () {
+        "use strict";
+        this.view.addEventListContinueGameBack();
+    }
     /*
     displayGameIntroConfirm: function () {
         "use strict";

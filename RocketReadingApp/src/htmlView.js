@@ -63,16 +63,19 @@ var viewHTMLModule = {
 	
 	attemptLogin : function() {
 		"use strict";
+		// Function is attached as an event listener to the Login Button on the login screen
 		mainController.processLogin(document.getElementById("loginUserName").value, document.getElementById("loginPassword").value);
 	},
 	
 	loginSuccessful : function() {
 		"use strict";
+		// Function occurs when the view is told login is successful from the controller
 		this.showHomeScreen();
 	},
 	
 	badLogin : function () {
 		"use strict";
+		// Function occurs when the view is told login is unsuccessful from the controller
 		document.getElementById("loginPassword").value = "";
 	},
 	
@@ -94,11 +97,13 @@ var viewHTMLModule = {
     
     checkLogout: function () {
         "use strict";
+		// Function displays the logout confirmation menu
         location.hash = "homeCheckLogoutModal";
     },
     
     logoutPlayer: function () {
         "use strict";
+		// Added as event listener to the logout button
         mainController.logoutPlayer();
     },
 	
@@ -127,6 +132,9 @@ var viewHTMLModule = {
 		console.groupCollapsed("Input")
 		console.log(levelList);
 		console.groupEnd();
+		
+		
+		
 		
 		if ( (levelList.length > 0 ) && ( levelList[0].length === 4 ) ){
 			console.log(levelList);

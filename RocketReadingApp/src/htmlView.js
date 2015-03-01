@@ -268,12 +268,12 @@ var viewHTMLModule = {
                 newDiv.addEventListener("click", this.setGameAndWordList);
                 newDiv.addEventListener("click", mainController.checkGameResumption);
                 newDiv.addEventListener("click", this.showGameScreen);
-                document.getElementById("gameBack").addEventListener("click", this.addEventListGameBack);
             }
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 			
-		};
+		}
 		this.showGameSelectScreen();
+        viewHTMLModule.addEventListGameBack();
 	},
 	// *******************************************
 	// ***** End Game Select Screen Section ******
@@ -652,20 +652,20 @@ var viewHTMLModule = {
     addEventListGameBack: function() {
     // This event listener will be added if the user has selected a game to play from the game select screen
         "use strict";
-        document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showGameSelectScreen);
     },
     
     addEventListContinueGameBack: function () {
     // This event listener will be added if the user is continuing a game
         "use strict";
-        document.getElementById("gameBack").addEventListener("click", this.showHomeScreen);
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showHomeScreen);
     },
     
     removeEventListsGameBack: function () {
         "use strict";
-        document.getElementById("gameBack").removeEventListener("click", this.showHomeScreen);
-        // Not good: what if the user clicks the game again - "gameBack" will have not event-listener
-        document.getElementById("gameBack").removeEventListener("click", this.showGameSelectScreen);
+        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showHomeScreen);
+        // Not so good: what if the user clicks the game again - "gameBack" will have not event-listener
+        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showGameSelectScreen);
     },
     
     /*displayGameIntroConfirm: function () {
@@ -722,6 +722,8 @@ var viewHTMLModule = {
 		"use strict";
 		viewHTMLModule.hideAllPages();
 		document.getElementById("levelSelectScreen").hidden = false;
+        // If the play goes back to the level select screen then the game modal screen's 'gameBack' event-listener can be removed
+        viewHTMLModule.removeEventListsGameBack();
 		console.log("HTMLView.js : Showing level select screen");
 	},
 	
@@ -730,7 +732,6 @@ var viewHTMLModule = {
 		"use strict";
 		viewHTMLModule.hideAllPages();
 		document.getElementById("gameSelectScreen").hidden = false;
-        viewHTMLModule.removeEventListsGameBack();
 		console.log("HTMLView.js : Showing game select screen");
 	},
 	

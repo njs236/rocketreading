@@ -375,19 +375,10 @@ var mainController = {
      checkGameResumption: function () {
     // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
         "use strict";
-        var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
-            // level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
-            level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]),
-            wordList = rocketReadingModel.getCurrentGameData().getWordList(),
-            levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
+        var levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
             // Check with the user whether they wish to resume the old game or start a new game
         } else {
-            // The data for the previous game in the current object needs to be cleared and data for the new game set
-            // Not all properties will be clobbered by the resetCurrentGameData() function - all the properties of currentGameData should really be set-able by addCurrentGameData()
-            rocketReadingModel.clearCurrentGameData();
-            // Create a new current data object, setting it the appropriate values for the currentLevelGame, myGame, myLevel and wordList properties, and then assign it as a property of the Rocket-Reading object
-            mainController.resetCurrentGameData(level, game, wordList, levelGame);
             // The system will disable and turn off the learn word mode in case it was turned on when the user was playing another game and then the user left that game without successfully answering that word
             mainController.disableLearnWord();
             mainController.resetGameTimers();
@@ -684,6 +675,17 @@ var mainController = {
     
     startGame: function () {
         "use strict";
+        var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+            // level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+            level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]),
+            wordList = rocketReadingModel.getCurrentGameData().getWordList(),
+            levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
+            
+        // The data for the previous game in the current object needs to be cleared and data for the new game set. Not all properties will be clobbered by the resetCurrentGameData() function - all the properties of currentGameData should really be set-able by addCurrentGameData()
+        rocketReadingModel.clearCurrentGameData();
+        // Create a new current data object, setting it the appropriate values for the currentLevelGame, myGame, myLevel and wordList properties, and then assign it as a property of the Rocket-Reading object. 
+        mainController.resetCurrentGameData(level, game, wordList, levelGame);
+        
         // Start the game timer
         mainController.startGameTimer();
         // Determine which word the user will be tested on

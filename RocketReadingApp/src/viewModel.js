@@ -35,7 +35,7 @@ var myViewModelRR = {
 		var myMethods = [],
 			viewMethods = [],
 			// put any methods in here that viewModules should not have
-			whiteListMethods = ["testViewModule", "setView", "gamesRequiredLevel"],
+			whiteListMethods = ["testViewModule", "setView"],
 			count,
 			error = false;
 			

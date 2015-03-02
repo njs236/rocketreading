@@ -47,18 +47,18 @@ var viewHTMLModule = {
 	// **********************************
 	// ******* End Tests Section ********
 	// **********************************
-    
-    // Register Screen Section
-    
-    clearFields : function () {
+	
+	// Register Screen Section
+	
+	clearFields : function () {
 		"use strict";
 		// Function clear the login fields
-        document.getElementById('registerUserName').value = '';
-        document.getElementById('registerFirstName').value = '';
-        document.getElementById('registerLastName').value = '';
-        document.getElementById('registerSchool').value = '';
-        document.getElementById('registerClass').value = '';
-    },
+		document.getElementById('registerUserName').value = '';
+		document.getElementById('registerFirstName').value = '';
+		document.getElementById('registerLastName').value = '';
+		document.getElementById('registerSchool').value = '';
+		document.getElementById('registerClass').value = '';
+	},
 	// *************************************
 	// ******* Login Screen Section ********
 	// *************************************
@@ -96,18 +96,18 @@ var viewHTMLModule = {
 		//document.getElementById('welcome').textContent = 'Welcome, ' + username;
 		console.groupEnd();
 	},
-    
-    checkLogout: function () {
-        "use strict";
+	
+	checkLogout: function () {
+		"use strict";
 		// Function displays the logout confirmation menu
-        location.hash = "homeCheckLogoutModal";
-    },
-    
-    logoutPlayer: function () {
-        "use strict";
+		location.hash = "homeCheckLogoutModal";
+	},
+	
+	logoutPlayer: function () {
+		"use strict";
 		// Added as event listener to the logout button
-        mainController.logoutPlayer();
-    },
+		mainController.logoutPlayer();
+	},
 	
 	// ***********************************************
 	// ********** End Home Screen Section ************
@@ -123,9 +123,11 @@ var viewHTMLModule = {
 		// This function populates the level select screen with levels from the game
 		// This function takes an input 2D array containing the
 		// level data in the following format
-		// ["01",avatarName,"Ice Cream Zone"]
-		// ["02",avatarName,"Jungle Zone"]
-		// ["03",avatarName,"Clouds Zone"]
+		// [levelNumber,avatarName,levelName,unlocked]
+		// for example :
+		// ["1",avatarName,"Ice Cream Zone",true]
+		// ["2",avatarName,"Jungle Zone",false]
+		// ["3",avatarName,"Clouds Zone",false]
 		var count,
 			newDiv,
 			newHeading,
@@ -136,77 +138,76 @@ var viewHTMLModule = {
 		console.log(levelList);
 		console.groupEnd();
 		
-		
-		
-		
-		if ( (levelList.length > 0 ) && ( levelList[0].length === 4 ) ){
-			console.log(levelList);
-			// Remove all HTML bits under main section
-			while ( levelSelectMainDiv.hasChildNodes() ){
-				levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
-			};
-			
-			// Shift bonus games to the end
-			if ( levelList[0][0] === 0 ) {
-				console.log("displayLevelList() : Shifted Things");
-				levelList.push(levelList[0]); // add first element to the end
-				levelList.splice(0,1); // remove the first entry
-				console.log(levelList);
-			};
-			
-			// Iterate over all level info and make div boxes
-			for ( count = 0; count < levelList.length; count = count + 1) {
-				// create a new row if we are at 3 boxes
-				if ( count % 3 === 0 ) {
-					newDiv = document.createElement("DIV");
-					newDiv.className = "levelSelectRow";
-					levelSelectMainDiv.appendChild(newDiv);
-				};
-				
-				// checking for last item in list, creates an empty div to center it
-				if ( levelList.length === (count + 1) && levelList.length % 3 === 1 ) {
-					console.log("displayLevelList() : Last Item");
-					newDiv = document.createElement("DIV");
-					newDiv.className = "levelSelectIconContainer";
-					levelSelectMainDiv.lastChild.appendChild(newDiv);
-				};
-				
-				newDiv = document.createElement("DIV");
-				newDiv.className = "levelSelectIconContainer";
-				if (levelList[count][3] === false) {
-                    newDiv.className += " locked";
-                };
-				newDiv.id = "level" + levelList[count][0];
-				newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
-				              
-				newHeading = document.createElement("H2");
-				newHeading.textContent = levelList[count][2];
-				newDiv.appendChild(newHeading);
-				levelSelectMainDiv.lastChild.appendChild(newDiv);
-                
-                // This is for setting access to the Levels based on
-                // accessibility methods in the level.
-				if (levelList[count][3] === true) {
-                    newDiv.addEventListener("click", mainController.setCurrentLevel);
-                    newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
-                };
-                
-                newDiv = document.createElement("DIV");
-                newDiv.className = 'levelSelectLockContainer';
-                newDiv.id = "divImgLockContainer" + levelList[count][0];
-                if (levelList[count][3] === true) {
-                    newDiv.hidden = 'true';                    
-                }
-                
-                document.getElementById("level" + levelList[count][0]).appendChild(newDiv);
-                
-			};
-			this.showLevelSelectScreen();
-			console.groupEnd();
-		} else {
+		if ( (levelList.length === 0 ) || ( levelList[0].length !== 4 ) ){
 			console.groupEnd();
 			throw "Error : Input Data does not match required format";
 		};
+		
+		console.log(levelList);
+		// Remove all HTML bits under main section
+		while ( levelSelectMainDiv.hasChildNodes() ){
+			levelSelectMainDiv.removeChild(levelSelectMainDiv.firstChild);
+		};
+		
+		// Shift bonus games to the end
+		if ( levelList[0][0] === 0 ) {
+			console.log("displayLevelList() : Shifted Things");
+			levelList.push(levelList[0]); // add first element to the end
+			levelList.splice(0,1); // remove the first entry
+			console.log(levelList);
+		};
+		
+		// Iterate over all level info and make div boxes
+		for ( count = 0; count < levelList.length; count = count + 1) {
+			// create a new row if we are at 3 boxes
+			if ( count % 3 === 0 ) {
+				newDiv = document.createElement("DIV");
+				newDiv.className = "levelSelectRow";
+				levelSelectMainDiv.appendChild(newDiv);
+			};
+			
+			// checking for last item in list, creates an empty div to center it
+			if ( levelList.length === (count + 1) && levelList.length % 3 === 1 ) {
+				console.log("displayLevelList() : Last Item");
+				newDiv = document.createElement("DIV");
+				newDiv.className = "levelSelectIconContainer";
+				levelSelectMainDiv.lastChild.appendChild(newDiv);
+			};
+			
+			// Create a new level div
+			newDiv = document.createElement("DIV");
+			newDiv.className = "levelSelectIconContainer";
+			if (levelList[count][3] === false) {
+				newDiv.className += " locked";
+			};
+			newDiv.id = "level" + levelList[count][0];
+			// there should be an image in the images folder matching the avatar name
+			newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
+			
+			newHeading = document.createElement("H2");
+			newHeading.textContent = levelList[count][2];
+			newDiv.appendChild(newHeading);
+			levelSelectMainDiv.lastChild.appendChild(newDiv);
+			
+			// This is for setting access to the Levels based on
+			// accessibility methods in the level.
+			if (levelList[count][3] === true) {
+				newDiv.addEventListener("click", mainController.setCurrentLevel);
+				newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
+			};
+			
+			newDiv = document.createElement("DIV");
+			newDiv.className = 'levelSelectLockContainer';
+			newDiv.id = "divImgLockContainer" + levelList[count][0];
+			if (levelList[count][3] === true) {
+				newDiv.hidden = 'true';					   
+			}
+			
+			document.getElementById("level" + levelList[count][0]).appendChild(newDiv);
+			
+		};
+		this.showLevelSelectScreen();
+		console.groupEnd();
 		
 	},
    
@@ -217,11 +218,11 @@ var viewHTMLModule = {
 	// *******************************************
 	// ******* Game Select Screen Section ********
 	// *******************************************
-    
-    setGameAndWordList: function () {
-        "use strict";
-        mainController.setGameAndWordList(this.id);
-    },
+	
+	setGameAndWordList: function () {
+		"use strict";
+		mainController.setGameAndWordList(this.id);
+	},
 	
 	displayGameOptions: function (gameOptionsData) {
 		// displayGameOptions() Function v1.3
@@ -229,7 +230,7 @@ var viewHTMLModule = {
 		// from the previously chosen level.
 		// function accepts a 2D array of games for an input level
 		// in the following format.
-        // [ 1 , "game01", true ]
+		// [ 1 , "game01", true ]
 		// [ 2 , "game02", false ]
 		// [ 3 , "game03", false ]
 		
@@ -264,19 +265,19 @@ var viewHTMLModule = {
 			//console.log("gameScreenButton" + gameOptionsData[count][0]);
 			newDiv.id = "gameScreenButton" + gameOptionsData[count][0];
 			newHeading = document.createElement("H1");
-            newHeading.textContent = gameOptionsData[count][1];
+			newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
-            
+			
 			gameSelectMainDiv.lastChild.appendChild(newDiv);
 			
 			// Adding event-listeners to the div. The setGameWordList() function now has an input parameter. Need to use closures in order to ensure the correct parameter is passed to the setGameWordList() function
-            // This is looking for a tag that determines accessibility. 
-            if (gameOptionsData[count][2] === true) {
-                newDiv.addEventListener("click", this.setGameAndWordList);
-                newDiv.addEventListener("click", mainController.checkGameResumption);
-                newDiv.addEventListener("click", this.showGameScreen);
-            }
-            // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
+			// This is looking for a tag that determines accessibility. 
+			if (gameOptionsData[count][2] === true) {
+				newDiv.addEventListener("click", this.setGameAndWordList);
+				newDiv.addEventListener("click", mainController.checkGameResumption);
+				newDiv.addEventListener("click", this.showGameScreen);
+			}
+			// newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 			
 		};
 		this.showGameSelectScreen();
@@ -311,7 +312,7 @@ var viewHTMLModule = {
 	
 	
 	guessWord : function () {
-        "use strict";
+		"use strict";
 		//add code in here to select word based on clickable event.
 		// var clickedWord = this.textContent;
 		mainController.validateWords(this.textContent);
@@ -332,21 +333,21 @@ var viewHTMLModule = {
 		document.getElementById("bronzeStarCounter").textContent = inputArray[2];
 	
 	},
-    
-    setLearnWordOn: function () {
-        "use strict";
+	
+	setLearnWordOn: function () {
+		"use strict";
 		//Function Reveals the learn word button
-        document.getElementById('learnWordButton').hidden = false;
-    },
-    
-    setLearnWordNormal: function () {
-        "use strict";
+		document.getElementById('learnWordButton').hidden = false;
+	},
+	
+	setLearnWordNormal: function () {
+		"use strict";
 		//Function hides the learn word button
-        document.getElementById('learnWordButton').hidden = true;
-    },
+		document.getElementById('learnWordButton').hidden = true;
+	},
 	
 	toggleLearnWord : function () {
-        "use strict";
+		"use strict";
 		var learnWordButton = document.getElementById('learnWordText');
 		if (learnWordButton.className === "normal") {
 			learnWordButton.className = "learning";
@@ -354,27 +355,27 @@ var viewHTMLModule = {
 			learnWordButton.className = "normal";
 		}
 	},
-    
-    learnWordListener: function () {
+	
+	learnWordListener: function () {
 		"use strict";
-        myViewModelRR.removeLearnWord();
+		myViewModelRR.removeLearnWord();
 		mainController.learnWord();
-    },
+	},
 	
 	addEventLearnWord : function () {
-        "use strict";
+		"use strict";
 		//var learnWordButton = document.getElementById('learnWordButton');
 		document.getElementById('learnWordButton').addEventListener("click", viewHTMLModule.learnWordListener);
 	},
 	
 	removeLearnWord : function () {
-        "use strict";
+		"use strict";
 		var learnWordButton = document.getElementById('learnWordButton');
 		learnWordButton.removeEventListener("click", viewHTMLModule.learnWordListener);
 	},
 	
 	displayTable : function (inputArray) {
-        // "use strict";
+		// "use strict";
 		var newRow,
 			newCell,
 			wordCount,
@@ -398,45 +399,45 @@ var viewHTMLModule = {
 			newCell.id = "cell" + wordCount;
 			newCell.className = "gameWordCell";
 		}/*
-        var count,
-            cellArray,
-            widestCell,
-            widestCellWidth = 0;
-        // Setting the cells of the table to a uniform size
-        cellArray = document.getElementsByClassName("gameWordCell");
-        for ( count = 0; count < cellArray.length; count = count + 1) {
-            if ( cellArray[count].offsetWidth > widestCellWidth ) {
-                widestCellWidth = cellArray[count].offsetWidth;
-                widestCell = count;
-            }
-        }
-        console.log("hi");
-        console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
-        document.styleSheets[0].insertRule("td.wordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 1);*/
-    },
-    
-    setUniformCellWidth: function () {
-        "use strict";
-        var count,
-            cellArray,
-            widestCell,
-            widestCellWidth = 0;
-        // Setting the cells of the table to a uniform size
-        cellArray = document.getElementsByClassName("gameWordCell");
-        for ( count = 0; count < cellArray.length; count = count + 1) {
-            if ( cellArray[count].offsetWidth > widestCellWidth ) {
-                widestCellWidth = cellArray[count].offsetWidth;
-                widestCell = count;
-            }
-        }
-        console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
-        document.styleSheets[0].insertRule("td.gameWordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
+		var count,
+			cellArray,
+			widestCell,
+			widestCellWidth = 0;
+		// Setting the cells of the table to a uniform size
+		cellArray = document.getElementsByClassName("gameWordCell");
+		for ( count = 0; count < cellArray.length; count = count + 1) {
+			if ( cellArray[count].offsetWidth > widestCellWidth ) {
+				widestCellWidth = cellArray[count].offsetWidth;
+				widestCell = count;
+			}
+		}
+		console.log("hi");
+		console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
+		document.styleSheets[0].insertRule("td.wordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 1);*/
+	},
+	
+	setUniformCellWidth: function () {
+		"use strict";
+		var count,
+			cellArray,
+			widestCell,
+			widestCellWidth = 0;
+		// Setting the cells of the table to a uniform size
+		cellArray = document.getElementsByClassName("gameWordCell");
+		for ( count = 0; count < cellArray.length; count = count + 1) {
+			if ( cellArray[count].offsetWidth > widestCellWidth ) {
+				widestCellWidth = cellArray[count].offsetWidth;
+				widestCell = count;
+			}
+		}
+		console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
+		document.styleSheets[0].insertRule("td.gameWordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
 	},
 	
 	eventClickAdd : function () {
-        "use strict";
+		"use strict";
 		var cellCount,
-            cells = document.getElementsByClassName('gameWordCell');
+			cells = document.getElementsByClassName('gameWordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].addEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
@@ -444,236 +445,236 @@ var viewHTMLModule = {
 	},
 	
 	removeEventClick : function () {
-        "use strict";
+		"use strict";
 		var cellCount,
-            cells = document.getElementsByClassName('gameWordCell');
+			cells = document.getElementsByClassName('gameWordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
 			cells[cellCount].removeEventListener("click", viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
 		};
 	},
 	 
-    displayWordsCompleted: function (progressData) {
-        "use strict";
-        document.getElementById("gameProgressText").textContent = progressData[0] + "/" + progressData[1] + " Words Complete";   
-    },
-    
-    displayScore: function (score) {
-        "use strict";
-        document.getElementById("gameScore").textContent = score;
-    },
-    
-    displayLevelGameNumber: function (levelGame) {
-        "use strict";
-        if (levelGame[0] === 0) {
-            levelGame[0] = "Bonus";
-        }
-        document.getElementById("gameLevelIDText").textContent = "Level " + levelGame[0] + " - Game " + levelGame[1];
-    },
+	displayWordsCompleted: function (progressData) {
+		"use strict";
+		document.getElementById("gameProgressText").textContent = progressData[0] + "/" + progressData[1] + " Words Complete";	 
+	},
+	
+	displayScore: function (score) {
+		"use strict";
+		document.getElementById("gameScore").textContent = score;
+	},
+	
+	displayLevelGameNumber: function (levelGame) {
+		"use strict";
+		if (levelGame[0] === 0) {
+			levelGame[0] = "Bonus";
+		}
+		document.getElementById("gameLevelIDText").textContent = "Level " + levelGame[0] + " - Game " + levelGame[1];
+	},
 	
 	displayAvatar: function (avatar) {
 		var theAvatar = document.getElementById('gameAvatar');
 		theAvatar.src = "images/" + avatar.getName() + ".png";
 	},
-    
-    displayGameTimer: function () {
-        "use strict";
-        var secsDisplay,
-            minsDisplay;
-        gameTimerSecs += Number(1);
-        if (gameTimerSecs % 60 === 0) {
-            gameTimerMins += Number(1);
-        }
-        secsDisplay = gameTimerSecs % 60;
-        if (secsDisplay < 10) {
-            secsDisplay = '0' + secsDisplay;    
-        }
-        document.getElementById("gameTimer").textContent = gameTimerMins + " : " + secsDisplay;
-    },
-    
-    resetGameTimer: function () {
-        "use strict";
-        document.getElementById("gameTimer").textContent = "0 : 00";
-    },
-    
-    playWordInSentence: function (currentWord, attr, characterArray) {
-        "use strict";
-        // Clear the display of the word which the player has to learn
-        myViewModelRR.clearLearnWord();
-        // The system will play an audio recording of a sentence containing the current word to be learned
-        // and possibly the word will flash when the word is spoken - that would be hard to get right for every different sentence!
-        
-        // Then after the sentence is finished the word will disappear
-        
-        // And then the word will be announced one last time
-        learnWordTimerE = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 1000); 
-    },
-    
-    displayDottedWord: function (currentWord, attr, characterArray) {
-        "use strict";
-        // Clear the display of the word which the player has to learn
-        myViewModelRR.clearLearnWord();
-        // Display the current word on the game screen in JarmanDotted font
-        viewHTMLModule.displayWord(characterArray, "JarmanDotted");
-        // The word is spoken at the same time it is displayed in dotted letters
-        viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray);
-    },
+	
+	displayGameTimer: function () {
+		"use strict";
+		var secsDisplay,
+			minsDisplay;
+		gameTimerSecs += Number(1);
+		if (gameTimerSecs % 60 === 0) {
+			gameTimerMins += Number(1);
+		}
+		secsDisplay = gameTimerSecs % 60;
+		if (secsDisplay < 10) {
+			secsDisplay = '0' + secsDisplay;	
+		}
+		document.getElementById("gameTimer").textContent = gameTimerMins + " : " + secsDisplay;
+	},
+	
+	resetGameTimer: function () {
+		"use strict";
+		document.getElementById("gameTimer").textContent = "0 : 00";
+	},
+	
+	playWordInSentence: function (currentWord, attr, characterArray) {
+		"use strict";
+		// Clear the display of the word which the player has to learn
+		myViewModelRR.clearLearnWord();
+		// The system will play an audio recording of a sentence containing the current word to be learned
+		// and possibly the word will flash when the word is spoken - that would be hard to get right for every different sentence!
+		
+		// Then after the sentence is finished the word will disappear
+		
+		// And then the word will be announced one last time
+		learnWordTimerE = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 1000); 
+	},
+	
+	displayDottedWord: function (currentWord, attr, characterArray) {
+		"use strict";
+		// Clear the display of the word which the player has to learn
+		myViewModelRR.clearLearnWord();
+		// Display the current word on the game screen in JarmanDotted font
+		viewHTMLModule.displayWord(characterArray, "JarmanDotted");
+		// The word is spoken at the same time it is displayed in dotted letters
+		viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray);
+	},
 	
 	updateCurrentWord : function (currentWord, attr, characterArray) {
-        "use strict";
+		"use strict";
 		var duration,
-            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0],
-            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+			levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0],
+			gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
 			audio = document.createElement('AUDIO');
 		document.getElementById("gameGame").appendChild(audio);
-        audio.setAttribute("src","audio/Level" + levelNumber + "Game " + gameNumber + "/" + currentWord + ".wav")
-        audio.setAttribute("id","audioPlayer");
-        audio.play()
-        audio.addEventListener('loadedmetadata', function(){
-            duration = audio.duration;
-            // duration = duration * 1000 + 1000; // Give the player a bonus second
-            duration = duration * 1000;
-            // It is worthwhile assigning these setTimeouts to variables because the timers will need to stopped if the user leaves the current game and moves to a different screen
-            learnWordTimerA = setTimeout(function (){
-                if (attr === 'normalWord') {
-                    viewHTMLModule.eventClickAdd();
-                    mainController.createWordTimer();
-                    mainController.requestBarTimer();
-                } else if (attr === 'learnWord') {
-                // this is for repeating words based on Learn Word scenario
-                    learnWordCount -= 1;
-                    if (learnWordCount === 3) {
-                        learnWordTimerB = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
-                    } else if (learnWordCount === 2) {
-                        // The word to be learned is displayed in dotted lines and the word will have been announced again
-                        learnWordTimerC = setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
-                    } else if (learnWordCount === 1) {
-                        // The word is included as part of a spoken sentence
-                        learnWordTimerD = setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
+		audio.setAttribute("src","audio/Level" + levelNumber + "Game " + gameNumber + "/" + currentWord + ".wav")
+		audio.setAttribute("id","audioPlayer");
+		audio.play()
+		audio.addEventListener('loadedmetadata', function(){
+			duration = audio.duration;
+			// duration = duration * 1000 + 1000; // Give the player a bonus second
+			duration = duration * 1000;
+			// It is worthwhile assigning these setTimeouts to variables because the timers will need to stopped if the user leaves the current game and moves to a different screen
+			learnWordTimerA = setTimeout(function (){
+				if (attr === 'normalWord') {
+					viewHTMLModule.eventClickAdd();
+					mainController.createWordTimer();
+					mainController.requestBarTimer();
+				} else if (attr === 'learnWord') {
+				// this is for repeating words based on Learn Word scenario
+					learnWordCount -= 1;
+					if (learnWordCount === 3) {
+						learnWordTimerB = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
+					} else if (learnWordCount === 2) {
+						// The word to be learned is displayed in dotted lines and the word will have been announced again
+						learnWordTimerC = setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
+					} else if (learnWordCount === 1) {
+						// The word is included as part of a spoken sentence
+						learnWordTimerD = setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
 						window.setTimeout(viewHTMLModule.learnWordIsFinished(),1500);
-                    } else if (learnWordCount === 0) {
-                        // Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
-                        viewHTMLModule.eventClickAdd();
-                    }
-                }
-            }, duration);
-        });
-    },
+					} else if (learnWordCount === 0) {
+						// Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
+						viewHTMLModule.eventClickAdd();
+					}
+				}
+			}, duration);
+		});
+	},
   
-    displayWord : function (characterArray, fontType) {
-        "use strict";
-        var count = 0,
-            letters,
-            string = '',
-            wordToBeLearned = document.getElementById('gameDisplayWord');
-        letters = document.createElement('P');
-        letters.id = "gameLearnWordText";
-        wordToBeLearned.appendChild(letters);
-        for (count; count < characterArray.length; count++) {
-            string = string + characterArray[count] + "  ";
-        };
-        letters.textContent = string;
-        
-        if (fontType === "Comic Sans MS") {
-            document.getElementById("gameLearnWordText").className = "fontComicSansMS";
-        } else if (fontType === "JarmanDotted") {
-            document.getElementById("gameLearnWordText").className = "fontJarmanDotted";
-        }
-    },
-    
-    clearLearnWord: function () {
-        "use strict";
-        var learnWord = document.getElementById("gameDisplayWord");
-        while ( learnWord.hasChildNodes() ){
-            learnWord.removeChild(learnWord.firstChild);
-	    };
-    },
-    
-    animateBarTimer: function (lastTime, myTimerBar) {
-        "use strict";
-        var canvas = document.getElementById("gameTimerCanvas"),
-            context = canvas.getContext("2d"),
-            date = new Date(),
-            time = date.getTime(),
-            timeDiff = time - lastTime,
-            linearSpeed = canvas.height / 8, // pixels per second
-            linearDistEachFrame = linearSpeed * timeDiff / 1000;
-     
-        if (myTimerBar.y < canvas.height) {
-            myTimerBar.y += linearDistEachFrame;
-        }
-        lastTime = time;
-     
-        // clear
-        context.clearRect(0, 0, canvas.width, canvas.height);
-     
-        // draw
-        context.beginPath();
-        context.rect(myTimerBar.x, myTimerBar.y, myTimerBar.width, myTimerBar.height);
-     
-        context.fillStyle = barColour;
-        context.fill();
-        context.lineWidth = myTimerBar.borderWidth;
-        context.strokeStyle = barBorderColour;
-        context.stroke();
-     
-        // request new frame
-        requestAnimFrame(function(){
-            viewHTMLModule.animateBarTimer(lastTime, myTimerBar);
-        });
-    },
-    
-    changeBarSilver: function () {
-        "use strict"
-        console.log("changeBarBronsze() has run");
-        barColour = "silver";
-        barBorderColour = "silver";
-    },
+	displayWord : function (characterArray, fontType) {
+		"use strict";
+		var count = 0,
+			letters,
+			string = '',
+			wordToBeLearned = document.getElementById('gameDisplayWord');
+		letters = document.createElement('P');
+		letters.id = "gameLearnWordText";
+		wordToBeLearned.appendChild(letters);
+		for (count; count < characterArray.length; count++) {
+			string = string + characterArray[count] + "	 ";
+		};
+		letters.textContent = string;
+		
+		if (fontType === "Comic Sans MS") {
+			document.getElementById("gameLearnWordText").className = "fontComicSansMS";
+		} else if (fontType === "JarmanDotted") {
+			document.getElementById("gameLearnWordText").className = "fontJarmanDotted";
+		}
+	},
+	
+	clearLearnWord: function () {
+		"use strict";
+		var learnWord = document.getElementById("gameDisplayWord");
+		while ( learnWord.hasChildNodes() ){
+			learnWord.removeChild(learnWord.firstChild);
+		};
+	},
+	
+	animateBarTimer: function (lastTime, myTimerBar) {
+		"use strict";
+		var canvas = document.getElementById("gameTimerCanvas"),
+			context = canvas.getContext("2d"),
+			date = new Date(),
+			time = date.getTime(),
+			timeDiff = time - lastTime,
+			linearSpeed = canvas.height / 8, // pixels per second
+			linearDistEachFrame = linearSpeed * timeDiff / 1000;
+	 
+		if (myTimerBar.y < canvas.height) {
+			myTimerBar.y += linearDistEachFrame;
+		}
+		lastTime = time;
+	 
+		// clear
+		context.clearRect(0, 0, canvas.width, canvas.height);
+	 
+		// draw
+		context.beginPath();
+		context.rect(myTimerBar.x, myTimerBar.y, myTimerBar.width, myTimerBar.height);
+	 
+		context.fillStyle = barColour;
+		context.fill();
+		context.lineWidth = myTimerBar.borderWidth;
+		context.strokeStyle = barBorderColour;
+		context.stroke();
+	 
+		// request new frame
+		requestAnimFrame(function(){
+			viewHTMLModule.animateBarTimer(lastTime, myTimerBar);
+		});
+	},
+	
+	changeBarSilver: function () {
+		"use strict"
+		console.log("changeBarBronsze() has run");
+		barColour = "silver";
+		barBorderColour = "silver";
+	},
 
-    changeBarBronze: function () {
-        "use strict"
-        console.log("changeBarBronze() has run");
-        barColour = "Peru";
-        barBorderColour = "Peru";
-    },
-    
-    hideBarTimer: function () {
-        "use strict";    
-        document.getElementById("gameTimerCanvas").style.display = "none";
-    },
-    
-    startBarTimer: function () {
-        "use strict"; 
-        var myTimerBar = {
-                x: 0,
-                y: 0,
-                width: 50,
-                borderWidth: 1,
-            }, 
-            date = new Date(),
-            time = date.getTime();
-        
-        document.getElementById("gameTimerCanvas").style.display = "block";  
-        myTimerBar.height = document.getElementById("gameTimerCanvas").height;
-        barColour = "gold";
-        barBorderColour = "gold";
-        // Call the function to animate the timer-bar
-        viewHTMLModule.animateBarTimer(time, myTimerBar);
-        
-        silverBar = setTimeout("viewHTMLModule.changeBarSilver()", 2000);
-        bronzeBar = setTimeout("viewHTMLModule.changeBarBronze()", 4000);
-    },
-    
-    /*displayGameIntroConfirm: function () {
-        "use strict";
-        var userChoice = confirm("Click OK to start the game. Or click Cancel to go back to the previous page");
-        if (userChoice) {
-            mainController.startGame();    
-        } else {
-            this.showGameSelectScreen();
-        }
-    },*/
-    
+	changeBarBronze: function () {
+		"use strict"
+		console.log("changeBarBronze() has run");
+		barColour = "Peru";
+		barBorderColour = "Peru";
+	},
+	
+	hideBarTimer: function () {
+		"use strict";	 
+		document.getElementById("gameTimerCanvas").style.display = "none";
+	},
+	
+	startBarTimer: function () {
+		"use strict"; 
+		var myTimerBar = {
+				x: 0,
+				y: 0,
+				width: 50,
+				borderWidth: 1,
+			}, 
+			date = new Date(),
+			time = date.getTime();
+		
+		document.getElementById("gameTimerCanvas").style.display = "block";	 
+		myTimerBar.height = document.getElementById("gameTimerCanvas").height;
+		barColour = "gold";
+		barBorderColour = "gold";
+		// Call the function to animate the timer-bar
+		viewHTMLModule.animateBarTimer(time, myTimerBar);
+		
+		silverBar = setTimeout("viewHTMLModule.changeBarSilver()", 2000);
+		bronzeBar = setTimeout("viewHTMLModule.changeBarBronze()", 4000);
+	},
+	
+	/*displayGameIntroConfirm: function () {
+		"use strict";
+		var userChoice = confirm("Click OK to start the game. Or click Cancel to go back to the previous page");
+		if (userChoice) {
+			mainController.startGame();	   
+		} else {
+			this.showGameSelectScreen();
+		}
+	},*/
+	
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************
@@ -707,7 +708,7 @@ var viewHTMLModule = {
 	showHomeScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
-        viewHTMLModule.closeModal();
+		viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
 		console.log("HTMLView.js : Showing home screen");
 	},
@@ -734,7 +735,7 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		document.getElementById("gamesScreen").hidden = false;
 		console.log("HTMLView.js : Showing game screen");
-        location.hash = "gameIntroModal";
+		location.hash = "gameIntroModal";
 	},
    
 	showHighScoresScreen: function () {
@@ -743,13 +744,13 @@ var viewHTMLModule = {
 		document.getElementById("highScoresScreen").hidden = false;
 		console.log("HTMLView.js : Showing High Score screen");
 	},
-    
-    showRegisterScreen : function () {
-        "use strict";
-        viewHTMLModule.hideAllPages();
-        document.getElementById("registerScreen").hidden = false;
-        console.log("HTMLView.js: Showing Register Screen");
-    },
+	
+	showRegisterScreen : function () {
+		"use strict";
+		viewHTMLModule.hideAllPages();
+		document.getElementById("registerScreen").hidden = false;
+		console.log("HTMLView.js: Showing Register Screen");
+	},
 	
 	closeModal : function () {
 		"use strict";
@@ -773,7 +774,7 @@ var viewHTMLModule = {
 		location.hash = "";
 	},
 	
-	learnWordIsActive : function ()  {
+	learnWordIsActive : function ()	 {
 		"use strict";
 		console.log("HTMLVIEW: hiding table");
 		document.getElementById("gameWordTable").hidden = true;
@@ -792,27 +793,27 @@ var viewHTMLModule = {
 	// ******************************************
 	
 	intitialiseView : function()  {
-        // Register Screen
-        
-        document.getElementById("registerData").addEventListener("click", mainController.registerPlayer);
-        document.getElementById("registerData").addEventListener("click", this.clearFields);
-        document.getElementById("registerData").addEventListener("click",this.showLoginScreen);
-        document.getElementById("registerExit").addEventListener("click",this.showLoginScreen);
-       
+		// Register Screen
+		
+		document.getElementById("registerData").addEventListener("click", mainController.registerPlayer);
+		document.getElementById("registerData").addEventListener("click", this.clearFields);
+		document.getElementById("registerData").addEventListener("click",this.showLoginScreen);
+		document.getElementById("registerExit").addEventListener("click",this.showLoginScreen);
+	   
 		// Login Screen
 		document.getElementById("loginEnterBtn").addEventListener("click", this.attemptLogin, false);
-        document.getElementById("loginRegisterBtn").addEventListener("click", this.showRegisterScreen);
+		document.getElementById("loginRegisterBtn").addEventListener("click", this.showRegisterScreen);
 		
 		// Home Screen
 		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
-        document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
-        document.getElementById("homeExit").addEventListener("click",this.checkLogout);
-        document.getElementById("homeLogoutYes").addEventListener("click",this.showLoginScreen);
-        document.getElementById("homeLogoutYes").addEventListener("click",this.closeModal);
-        document.getElementById("homeLogoutYes").addEventListener("click",this.logoutPlayer);
-        document.getElementById("homeLogoutNo").addEventListener("click",this.closeModal);
-        
+		document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
+		document.getElementById("homeExit").addEventListener("click",this.checkLogout);
+		document.getElementById("homeLogoutYes").addEventListener("click",this.showLoginScreen);
+		document.getElementById("homeLogoutYes").addEventListener("click",this.closeModal);
+		document.getElementById("homeLogoutYes").addEventListener("click",this.logoutPlayer);
+		document.getElementById("homeLogoutNo").addEventListener("click",this.closeModal);
+		
 		// Level Select Screen
 		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);
 		
@@ -821,16 +822,16 @@ var viewHTMLModule = {
 		
 		// Game Screen
 		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
-        // This clears the timer of an individual test in a game if the user returns to the home page
+		// This clears the timer of an individual test in a game if the user returns to the home page
 		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // mainController.leaveCurrentGame() can call this
-        // If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
-        document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
-        document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
-        document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
+		// If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
+		document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
+		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
+		document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
 		document.getElementById("gameBack").addEventListener("click", this.closeModal);
-        document.getElementById("gameStart").addEventListener("click", mainController.startGame);
+		document.getElementById("gameStart").addEventListener("click", mainController.startGame);
 		document.getElementById("gameStart").addEventListener("click", this.closeModal);
-        document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
+		document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
 		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closeModal);
 		// High Scores Screen

@@ -20,7 +20,7 @@ var viewHTMLModule = {
 	
 	listExtraFunctions : function() {
 		"use strict"
-		// Functiom v1.1
+		// Function v1.1
 		// Function compares this modules methods against the controllers methods
 		// this test wont throw exceptions and is only used to check for unneeded functions
 		var controllerFunctions = [],
@@ -51,6 +51,8 @@ var viewHTMLModule = {
     // Register Screen Section
     
     clearFields : function () {
+		"use strict";
+		// Function clear the login fields
         document.getElementById('registerUserName').value = '';
         document.getElementById('registerFirstName').value = '';
         document.getElementById('registerLastName').value = '';
@@ -118,6 +120,7 @@ var viewHTMLModule = {
 	displayLevelList: function (levelList) {
 		"use strict"
 		// displayLevelList() function v1.6
+		// This function populates the level select screen with levels from the game
 		// This function takes an input 2D array containing the
 		// level data in the following format
 		// ["01",avatarName,"Ice Cream Zone"]
@@ -222,7 +225,8 @@ var viewHTMLModule = {
 	
 	displayGameOptions: function (gameOptionsData) {
 		// displayGameOptions() Function v1.3
-		//
+		// This function populates the game select screen with games
+		// from the previously chosen level.
 		// function accepts a 2D array of games for an input level
 		// in the following format.
         // [ 1 , "game01", true ]
@@ -232,7 +236,6 @@ var viewHTMLModule = {
 		"use strict";
 		var count,
 			newHeading,
-            newAnchor,
 			newDiv,
 			gameSelectMainDiv = document.getElementById("gameOptionsContainer");
 		// The html inside the div containing the game options needs
@@ -255,8 +258,6 @@ var viewHTMLModule = {
 				gameSelectMainDiv.lastChild.appendChild(newDiv);
 			};
 			
-            // newAnchor = document.createElement("A");
-            // newAnchor.href = "#gameIntroModal";
 			newDiv = document.createElement("DIV");
 			newDiv.className = "gameSelectScreenGame";
 			//console.log("gameScreenButton" + (count + 1));
@@ -266,8 +267,6 @@ var viewHTMLModule = {
             newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
             
-            // newAnchor.appendChild(newDiv);
-			
 			gameSelectMainDiv.lastChild.appendChild(newDiv);
 			
 			// Adding event-listeners to the div. The setGameWordList() function now has an input parameter. Need to use closures in order to ensure the correct parameter is passed to the setGameWordList() function
@@ -321,6 +320,13 @@ var viewHTMLModule = {
 	
 	displayMedalCounts : function (inputArray) {
 		"use strict";
+		// Function updates the medal counters with values in the array
+		// Input pattern :
+		// [GoldCount,SilverCount,BronzeCount]
+		
+		if ( inputArray.length !== 3){
+			throw "Display Medal Counts Error, Array Is the wrong length";
+		};
 		document.getElementById("goldStarCounter").textContent = inputArray[0];
 		document.getElementById("silverStarCounter").textContent = inputArray[1];
 		document.getElementById("bronzeStarCounter").textContent = inputArray[2];
@@ -329,11 +335,13 @@ var viewHTMLModule = {
     
     setLearnWordOn: function () {
         "use strict";
+		//Function Reveals the learn word button
         document.getElementById('learnWordButton').hidden = false;
     },
     
     setLearnWordNormal: function () {
         "use strict";
+		//Function hides the learn word button
         document.getElementById('learnWordButton').hidden = true;
     },
 	
@@ -348,7 +356,7 @@ var viewHTMLModule = {
 	},
     
     learnWordListener: function () {
-		"use strict";	
+		"use strict";
         myViewModelRR.removeLearnWord();
 		mainController.learnWord();
     },

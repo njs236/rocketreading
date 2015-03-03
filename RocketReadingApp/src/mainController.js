@@ -684,6 +684,7 @@ var mainController = {
         mainController.startGameTimer();
         // Determine which word the user will be tested on
         mainController.nextWord();
+		myViewModelRR.learnWordIsFinished();
     },
     
     enableLearnWord: function () {

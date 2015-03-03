@@ -200,7 +200,7 @@ var viewHTMLModule = {
 			newDiv.className = 'levelSelectLockContainer';
 			newDiv.id = "divImgLockContainer" + levelList[count][0];
 			if (levelList[count][3] === true) {
-				newDiv.hidden = 'true';					   
+				newDiv.hidden = 'true';   
 			}
 			
 			document.getElementById("level" + levelList[count][0]).appendChild(newDiv);
@@ -230,6 +230,7 @@ var viewHTMLModule = {
 		// from the previously chosen level.
 		// function accepts a 2D array of games for an input level
 		// in the following format.
+		// [ gameNum, gameName, unlocked]
 		// [ 1 , "game01", true ]
 		// [ 2 , "game02", false ]
 		// [ 3 , "game03", false ]

@@ -372,7 +372,7 @@ var mainController = {
 		myViewModelRR.displayGameOptions(outputGameOptions);
 	},    
     
-     checkGameResumption: function () {
+    checkGameResumption: function () {
     // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
         "use strict";
         var levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
@@ -719,9 +719,14 @@ var mainController = {
         mainController.disableLearnWordTimers();
         // Also, any text in the space for displaying the word to be learned will be cleared
         myViewModelRR.clearLearnWord();
+        // In case the user clicks the back button of the game intro modal screen, the following should only occur once the user clicks 'play'. Otherwise, if the user clicks the back button of the pause game window modal screen then they will not be able to return to the game they were playing.
+        // Event listeners for the 'back' and 'start' buttons of the game intro modal window are added
+        //myViewModelRR.addEventListReplayGameBack();
+        //myViewModelRR.addEventListStartReplayGame();
+        
         // The system checks to see if the user has data in the currentGameData object
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
-            // If so, then the system will wipe this data
+            // If so, then the system will wipe this data. 
             rocketReadingModel.clearCurrentGameData();
             // Clear the timer for the last word test
             myViewModelRR.clearTimer();
@@ -763,7 +768,7 @@ var mainController = {
         // Set the complete word list as a copy of currentGameData.myGame.myWordList
         rocketReadingModel.getCurrentGameData().setCompleteWordList(completeWordList);
         
-        // The game screen is setup
+        // The game screen is setup 
         mainController.createTable();
         mainController.displayMedalCounts();
         mainController.displayScore();
@@ -772,6 +777,32 @@ var mainController = {
         mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
     },
+    
+    
+    newGameInitialise: function () {
+        "use strict";
+        var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
+            completeWordList = rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().slice(0),
+            // levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0],
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+            levelGame = [levelNumber, gameNumber];
+        // Set the currentLevelGame property of currentGameData
+        rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGame);
+        // Set the complete word list as a copy of currentGameData.myGame.myWordList
+        rocketReadingModel.getCurrentGameData().setCompleteWordList(completeWordList);
+        
+        // A game screen will be displayed containing default values for a new game
+        mainController.createTable();
+        myViewModelRR.displayMedalCounts([0,0,0]);
+		myViewModelRR.displayScore(0);
+        myViewModelRR.displayWordsCompleted(0, rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
+        // These will be tricky to get round
+        mainController.displayCurrentLevelGame(); 
+        mainController.displayAvatar();
+        //mainController.loadGameScreenIntro();
+    },
+    
     
  	validateWords : function (word) {
         "use strict";

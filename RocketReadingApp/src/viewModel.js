@@ -286,7 +286,12 @@ var myViewModelRR = {
     addEventListContinueGameBack: function () {
         "use strict";
         this.view.addEventListContinueGameBack();
-    }
+    },
+    
+    addEventListReplayGameBack: function () {
+        "use strict";
+        this.view.addEventListReplayGameBack();
+    },
     /*
     displayGameIntroConfirm: function () {
         "use strict";

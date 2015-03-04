@@ -664,8 +664,12 @@ var viewHTMLModule = {
     removeEventListsGameBack: function () {
         "use strict";
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showHomeScreen);
-        // Not so good: what if the user clicks the game again - "gameBack" will have not event-listener
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showGameSelectScreen);
+    },
+    
+    addEventListReplayGameBack: function () {
+        "use strict";
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showGamePauseModal);
     },
     
     /*displayGameIntroConfirm: function () {
@@ -756,6 +760,11 @@ var viewHTMLModule = {
         viewHTMLModule.hideAllPages();
         document.getElementById("registerScreen").hidden = false;
         console.log("HTMLView.js: Showing Register Screen");
+    },
+    
+    showGamePauseModal: function() {
+        "use strict";
+        location.hash = "gameModal";
     },
 	
 	closeModal : function () {

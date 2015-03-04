@@ -682,7 +682,7 @@ var viewHTMLModule = {
     
     removeEventListNewGameStart: function () {
         "use strict";
-        document.getElementById("gameStart").removeEventListener("click", viewHTMLModule.addEventListNewGameStart);
+        document.getElementById("gameStart").removeEventListener("click", mainController.setSavedGameNull);
     },
     
     /*displayGameIntroConfirm: function () {
@@ -730,7 +730,7 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
         viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
-        // These functions will cover situations in which the user returns to the home page in case the user will click the continue button
+        // This function will cover a situation in which the user returns to the home page and then clicks the continue button
         viewHTMLModule.removeEventListsGameBack();
         viewHTMLModule.removeEventListNewGameStart();
 		console.log("HTMLView.js : Showing home screen");

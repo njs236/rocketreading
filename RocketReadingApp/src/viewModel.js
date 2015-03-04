@@ -292,6 +292,11 @@ var myViewModelRR = {
         "use strict";
         this.view.addEventListReplayGameBack();
     },
+    
+    removeEventListNewGameStart: function () {
+        "use strict";
+        this.view.removeEventListNewGameStart();
+    }
     /*
     displayGameIntroConfirm: function () {
         "use strict";

@@ -797,10 +797,12 @@ var mainController = {
         myViewModelRR.displayMedalCounts([0,0,0]);
 		myViewModelRR.displayScore(0);
         myViewModelRR.displayWordsCompleted(0, rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
-        // These will be tricky to get round
+        // These two will be tricky to get round
         mainController.displayCurrentLevelGame(); 
         mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
+        // The event listener which led to this function being called will be removed
+        myViewModelRR.removeEventListNewGameStart();
     },
     
     

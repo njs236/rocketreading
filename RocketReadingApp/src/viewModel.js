@@ -283,6 +283,10 @@ var myViewModelRR = {
 		"use strict";
 		this.view.learnWordIsFinished();
 	},
+    
+    displayNextGame : function (levelNumber, gameNumber, medalCounts) {
+        this.view.displayNextGame(levelNumber, gameNumber, medalCounts);
+    },
     /*
     displayGameIntroConfirm: function () {
         "use strict";

@@ -438,8 +438,9 @@ var mainController = {
             wordList = game.getWordList().slice(0),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame(),
             playerName = rocketReadingModel.getMyPlayer().getUserName(),
-            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached();
-        alert ("Game Finished! You completed Level "+ levelNumber + "Game " + gameNumber);
+            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
+            medalCounts = rocketReadingModel.getCurrentGameData().getMedalCounts();
+        myViewModelRR.displayNextGame(levelNumber, gameNumber, medalCounts)
         // Stop the total game timer
         clearInterval(gameTimer);
         // Save the gameTimer to the currentGameData object

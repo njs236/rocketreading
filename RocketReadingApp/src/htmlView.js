@@ -767,6 +767,19 @@ var viewHTMLModule = {
 		bronzeBar = setTimeout("viewHTMLModule.changeBarBronze()", 4000);
 	},
 	
+    displayNextGame : function (levelNumber, gameNumber, medalCounts) {
+        var goldStars = document.getElementById('goldStars'),
+            silverStars = document.getElementById('silverStars'),
+            bronzeStars = document.getElementById('bronzeStars'),
+            H1;
+        goldStars.textContent = medalCounts[0];
+        silverStars.textContent = medalCounts[1];
+        bronzeStars.textContent = medalCounts[2];
+        H1 = document.createElement("H1");
+        document.getElementById('gameNextGameCongratulations').appendChild(H1);
+        H1.textContent = "Game Finished! You completed Level "+ levelNumber + "Game " + gameNumber;  
+    },
+    
 	/*displayGameIntroConfirm: function () {
 		"use strict";
 		var userChoice = confirm("Click OK to start the game. Or click Cancel to go back to the previous page");

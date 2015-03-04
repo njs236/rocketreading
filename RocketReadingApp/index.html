@@ -48,10 +48,11 @@
 		
 		<!-- Game Select Screen Section -->
 		<link rel="stylesheet" href="css/gameSelectScreen.css">
-		<link rel="stylesheet" href="css/gameScreenFeedbackModal.css">
 		
 		<!-- Game Screen Section -->
 		<link rel="stylesheet" href="css/gameScreenModal.css">
+        <link rel="stylesheet" href="css/gameScreenNextGameModal.css">
+		<link rel="stylesheet" href="css/gameScreenFeedbackModal.css">
 		<link rel="stylesheet" href="gameScreen.css">
 		
 		<!-- Init Last Scripts -->
@@ -255,8 +256,31 @@
 				<div class="feedbackModal" id="gameFeedbackModal"> <!-- Congrats or feedback modal -->
 					<div>
 						<h1 id="feedbackField">Good Job!</h1>
-					</div>
+                    </div>
 				</div>
+                <div class="nextGameModal" id="gameNextGameModal">
+                    <div id="gameNextGameCongratulations" class="gameNextGameTitle">
+                    </div>
+                    <div id="gameMedalsDiv" class="gameInfoBoxHorizontal">
+						<div class="medalIconDiv">
+							<img class="medalIcon" src="images/goldStar.svg"><h1 id="goldStar" class="medalCounter">2</h1>
+						</div>
+						<div class="medalIconDiv">
+							<img class="medalIcon" src="images/silverStar.svg"><h1 id="silverStar" class="medalCounter">5</h1>
+						</div>
+						<div class="medalIconDiv">
+                                <img class="medalIcon" src="images/bronzeStar.svg"><h1 id="bronzeStar" class="medalCounter">4</h1>
+						</div>
+					</div>
+                    <div class="modalOptionRow">
+						<div class="modalOption" id="gameModalOptionNextGame">
+							<h1>Next Game</h1>
+						</div>
+						<div class="modalOption" id="gameModalLeaveGameScreen">
+							<h1>Go Back</h1>
+						</div>
+					</div>
+                </div>
                 <div id="gameGame">
 					<div id="gameLeftSide">
 						<div id="gameTimerDiv" class="gameInfoBox">

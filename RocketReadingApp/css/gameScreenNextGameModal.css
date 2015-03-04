@@ -1,0 +1,27 @@
+.nextGameModal {
+    z-index: 99999;
+}
+
+.nextGameModal > div {
+    width: 20%;
+    height: 10%;
+	position: relative;
+	margin: 20% auto;
+}
+
+.gameInfoBoxHorizontal {
+}
+
+.gameInfoBoxHorizontal.gameMedalDiv {
+    float: left;
+}
+
+.gameNextGameTitle h1 {
+    
+}
+
+img.medalIcon {
+	height:100%;
+	width:auto;
+	float:left;
+}

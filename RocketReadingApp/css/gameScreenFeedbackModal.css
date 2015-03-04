@@ -5,7 +5,7 @@
 	bottom: 0;
 	left: 0;
 	background: rgba(1,0,0,0);
-	z-index: 99999;
+	z-index: 99998;
 	opacity:0;
 	-webkit-transition: opacity 100ms ease-in;
 	-moz-transition: opacity 100ms ease-in;

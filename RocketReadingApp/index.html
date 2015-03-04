@@ -234,53 +234,52 @@
 				</div>
 				<!-- closes gameModal div -->
                 <!-- game gameIntroModal div -->
-                <div> <!-- intro screen modal -->
-                    <div id="gameIntroModal" class="modalDialog">
-                        <div id="gameModalContent">
-							<div class="gameIntroModalRow">
-								<div class="gameModalAnchor">
-									<img id="gameStart" src="images/goflag.png">
-									<!-- <h2>Click Start to begin the game</h2><br>
-									<a id="gameStart" href="#Close">Start</a> -->
-								</div>
-								<div class="gameModalAnchor">
-									<img id="gameBack" src="images/goback.png">
-									<!--<h2>Or click Back to choose a different game</h2><br>                            
-									<a id="gameBack" href="#Close">Back</a> -->
-								</div>
+				<div id="gameIntroModal" class="modalDialog">
+					<div id="gameModalContent">
+						<div class="gameIntroModalRow">
+							<div class="gameModalAnchor">
+								<img id="gameStart" src="images/goflag.png">
+								<!-- <h2>Click Start to begin the game</h2><br>
+								<a id="gameStart" href="#Close">Start</a> -->
 							</div>
-                        </div>
-                    </div>
-                </div>
+							<div class="gameModalAnchor">
+								<img id="gameBack" src="images/goback.png">
+								<!--<h2>Or click Back to choose a different game</h2><br>                            
+								<a id="gameBack" href="#Close">Back</a> -->
+							</div>
+						</div>
+					</div>
+				</div>
                 <!-- closes game gameIntroModal div -->
 				<div class="feedbackModal" id="gameFeedbackModal"> <!-- Congrats or feedback modal -->
 					<div>
 						<h1 id="feedbackField">Good Job!</h1>
                     </div>
 				</div>
-                <div class="nextGameModal" id="gameNextGameModal">
-                    <div id="gameNextGameCongratulations" class="gameNextGameTitle">
-                    </div>
-                    <div id="gameMedalsDiv" class="gameInfoBoxHorizontal">
-						<div class="medalIconDiv">
-							<img class="medalIcon" src="images/goldStar.svg"><h1 id="goldStar" class="medalCounter">2</h1>
+                <div class="modalDialog" id="gameNextGameModal">
+					<div id ="gameNextGameModalContent">
+						<div class="gameNextGameModalRow">
+							<div class="gameNextGameModalMedalContainer">
+								<img src="images/goldStar.svg"><h1 id="goldStar" class="medalCounter">2</h1>
+							</div>
+							<div class="gameNextGameModalMedalContainer">
+								<img src="images/silverStar.svg"><h1 id="silverStar" class="medalCounter">5</h1>
+							</div>
+							<div class="gameNextGameModalMedalContainer">
+									<img src="images/bronzeStar.svg"><h1 id="bronzeStar" class="medalCounter">4</h1>
+							</div>
+							<div class="dummy"></div>
 						</div>
-						<div class="medalIconDiv">
-							<img class="medalIcon" src="images/silverStar.svg"><h1 id="silverStar" class="medalCounter">5</h1>
-						</div>
-						<div class="medalIconDiv">
-                                <img class="medalIcon" src="images/bronzeStar.svg"><h1 id="bronzeStar" class="medalCounter">4</h1>
+						<div class="gameNextGameModalRow">
+							<div class="gameNextGameButton" id="gameNextGameButtonBack">
+								<h1>Main Menu</h1>
+							</div>
+							<div class="gameNextGameButton" id="gameNextGameButtonBack">
+								<h1>Retry</h1>
+							</div>
 						</div>
 					</div>
-                    <div class="modalOptionRow">
-						<div class="modalOption" id="gameModalOptionNextGame">
-							<h1>Next Game</h1>
-						</div>
-						<div class="modalOption" id="gameModalLeaveGameScreen">
-							<h1>Go Back</h1>
-						</div>
-					</div>
-                </div>
+				</div>
                 <div id="gameGame">
 					<div id="gameLeftSide">
 						<div id="gameTimerDiv" class="gameInfoBox">

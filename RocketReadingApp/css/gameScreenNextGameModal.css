@@ -1,27 +1,30 @@
-.nextGameModal {
-    z-index: 99999;
-}
-
-.nextGameModal > div {
-    width: 20%;
-    height: 10%;
+#gameNextGameModalContent {
+	width: 50%;
+	height: 50%;
 	position: relative;
-	margin: 20% auto;
+	margin: 10% auto;
 }
 
-.gameInfoBoxHorizontal {
+div.gameNextGameModalRow {
+	width:100%;
+	height:50%;
 }
 
-.gameInfoBoxHorizontal.gameMedalDiv {
-    float: left;
+div.gameNextGameModalMedalContainer {
+	height:100%;
+	width: calc( 100% / 3);
+	float :left;
 }
 
-.gameNextGameTitle h1 {
-    
-}
-
-img.medalIcon {
+div.gameNextGameModalMedalContainer img{
 	height:100%;
 	width:auto;
+}
+
+div.gameNextGameButton {
+	width:calc( 100% / 2);
+	height:100%;
+	background-color:pink;
 	float:left;
+	text-align:center;
 }

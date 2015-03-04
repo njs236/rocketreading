@@ -226,3 +226,22 @@ HighScores.prototype.getHighScore = function (levelNumber, gameNumber) {
             return this.level6Game4HS;
     }
 };
+
+HighScores.prototype.getHighScoresForLevel = function (levelNumber) {
+	"use strict";
+	var outputArray = [],
+		gameCount = 0,
+		count = 0;
+	console.group("HighScores.proto.getHighScoresForLevel");
+	console.log("Input level : " + levelNumber);
+	gameCount = rocketReadingModel.getAllGamesFromLevel(levelNumber).length;
+	
+	outputArray.push(levelNumber);
+	for ( count = 1; count <= gameCount; count = count + 1){
+		console.log("Count is : " + count);
+		outputArray.push(this.getHighScore(levelNumber, count));
+		console.log("getHighScoresForLevel: Added to array : " + this.getHighScore(levelNumber, count));
+	};
+	console.groupEnd();
+	return outputArray;
+};

@@ -35,7 +35,7 @@ var myViewModelRR = {
 		var myMethods = [],
 			viewMethods = [],
 			// put any methods in here that viewModules should not have
-			whiteListMethods = ["testViewModule", "setView"],
+			whiteListMethods = ["testViewModule", "setView", "displayHighScores"],
 			count,
 			error = false;
 			
@@ -292,5 +292,23 @@ var myViewModelRR = {
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************
-
+	// **************************************************
+	// ************* High Scores Section ****************
+	// **************************************************
+	
+	displayHighScores : function (levelNumer){
+		"use strict";
+		var outputArray = [];
+		console.group("ViewController : displayHighScores");
+		console.log("Input level is " + levelNumer);
+		outputArray = mainController.getHighScoresForLevel(levelNumer);
+		
+		console.groupEnd();
+		this.view.displayHighScores(outputArray);
+	}
+	
+	
+	// **************************************************
+	// ************ End High Scores Section *************
+	// **************************************************
 };

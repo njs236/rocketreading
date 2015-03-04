@@ -112,7 +112,108 @@ var viewHTMLModule = {
 	// ***********************************************
 	// ********** End Home Screen Section ************
 	// ***********************************************
+
+	// **************************************************
+	// ********** High Scores Screen Section ************
+	// **************************************************
 	
+	highScoresPageClearScores : function () {
+		"use strict";
+		// this function removes all high scores from the screen
+		var tableArea = document.getElementById("highScoresTableArea")
+		while ( tableArea.hasChildNodes() ) {
+			tableArea.removeChild(tableArea.firstChild);
+		};
+	},
+	
+	highScoresPageBuildLevelSelect : function () {
+		"use strict";
+		// this function removes all high scores from the screen
+		var buttonArea = document.getElementById("highScoresIcons"),
+			count = 0,
+			levelList = [],
+			newDiv,
+			newHeading;
+		
+		console.groupCollapsed("highScoresPageBuildLevelSelect");
+		
+		while ( buttonArea.hasChildNodes() ){
+			buttonArea.removeChild(buttonArea.lastChild);
+		}
+		
+		console.log(mainController.requestAllLevels());
+		levelList = mainController.requestAllLevels();
+		for ( count = 0; count < levelList.length; count = count + 1){
+			console.log("Building level " + levelList[count][0]);
+			newDiv = document.createElement("DIV");
+			newDiv.className = "highScoreIcon";
+			newDiv.id = "highScoreScreenLevel" + levelList[count][0];
+			newDiv.style.backgroundImage = "url(images/" + levelList[count][1] + ".png)";
+			newDiv.addEventListener("click",this.highScoresPageParseButton);
+			
+			newHeading = document.createElement("H2");
+			newHeading.textContent = levelList[count][2];
+			
+			newDiv.appendChild(newHeading);
+			buttonArea.appendChild(newDiv);
+		}
+			
+		console.groupEnd();
+	},
+	
+	highScoresPageParseButton : function () {
+		"use strict";
+		// this function takes an input id from the dom and parses it for level numbers
+		// and clears the table then requests a new one with the parsed value.
+		var levelId;
+		
+		console.group("HTML View : highScoresPageParseButton()");
+		console.log("Input id : " + this.id);
+		levelId = mainController.getStringNumber(this.id);
+		console.log("Level Id post-parse : " + levelId);
+		viewHTMLModule.highScoresPageClearScores();
+		console.groupEnd();
+		myViewModelRR.displayHighScores(levelId);
+	},
+	
+	displayHighScores : function (inputArray) {
+		"use strict";
+		var newHeading,
+			newTable,
+			newRow,
+			newCell,
+			parentDiv,
+			count;
+		
+		parentDiv = document.getElementById("highScoresTableArea");
+		
+		newHeading = document.createElement("H2");
+		newHeading.textContent = "High Scores for level " + inputArray[0];
+		
+		parentDiv.appendChild(newHeading);
+		
+		
+		newTable = document.createElement("TABLE");
+		newTable.id = "highScoresTableDisplay";
+		
+		parentDiv.appendChild(newTable);
+		newRow = newTable.insertRow(-1);
+		for ( count = 1; count <= (inputArray.length -1); count = count + 1){
+			newCell = newRow.insertCell(-1);
+			newCell.textContent = "Game " + count;
+		};
+		
+		newRow = newTable.insertRow(-1);
+		for ( count = 1; count < inputArray.length; count = count + 1){
+			newCell = newRow.insertCell(-1);
+			newCell.textContent = inputArray[count];
+		};
+	},
+	// **************************************************
+	// ************ End High Scores Section ************
+	// **************************************************
+	
+
 	// ********************************************
 	// ******* Level Select Screen Section ********
 	// ********************************************
@@ -133,8 +234,8 @@ var viewHTMLModule = {
 			newHeading,
 			levelSelectMainDiv = document.getElementById("levelSelectScreenMainArea");
 		
-		console.groupCollapsed("viewModule : displayLevelList()");
-		console.groupCollapsed("Input")
+		console.group("viewModule : displayLevelList()");
+		console.group("Input")
 		console.log(levelList);
 		console.groupEnd();
 		
@@ -206,7 +307,7 @@ var viewHTMLModule = {
 			document.getElementById("level" + levelList[count][0]).appendChild(newDiv);
 			
 		};
-		this.showLevelSelectScreen();
+		//this.showLevelSelectScreen();
 		console.groupEnd();
 		
 	},
@@ -718,6 +819,7 @@ var viewHTMLModule = {
 	showLevelSelectScreen: function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
+		myViewModelRR.displayLevelList(mainController.requestAllLevels());
 		document.getElementById("levelSelectScreen").hidden = false;
 		console.log("HTMLView.js : Showing level select screen");
 	},
@@ -743,6 +845,8 @@ var viewHTMLModule = {
 		"use strict";
 		viewHTMLModule.hideAllPages();
 		document.getElementById("highScoresScreen").hidden = false;
+		viewHTMLModule.highScoresPageBuildLevelSelect();
+		viewHTMLModule.highScoresPageClearScores();
 		console.log("HTMLView.js : Showing High Score screen");
 	},
 	
@@ -806,7 +910,7 @@ var viewHTMLModule = {
 		document.getElementById("loginRegisterBtn").addEventListener("click", this.showRegisterScreen);
 		
 		// Home Screen
-		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
+		document.getElementById("homePlayGame").addEventListener("click", this.showLevelSelectScreen);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
 		document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
 		document.getElementById("homeExit").addEventListener("click",this.checkLogout);

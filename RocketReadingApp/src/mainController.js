@@ -311,12 +311,11 @@ var mainController = {
 			outputArray.push(transientArray);
 			transientArray = [];
 		};
-		
-		myViewModelRR.displayLevelList(outputArray);
+		return outputArray;
+		//myViewModelRR.displayLevelList(outputArray);
 		
         //myViewModelRR.displayLevelList(allLevels);
     },   
-    
     
     // *******************************************
 	// ******* Game Select Screen Section ********
@@ -920,13 +919,27 @@ var mainController = {
     resetCurrentGameData: function (newLevel, newGame, newWordList, newCurrentLevelGame) {
         "use strict";
         rocketReadingModel.addCurrentGameData(newLevel, newGame, newWordList, null, newCurrentLevelGame, null, 0, [0,0,0], 0, 0, [], []);
-    }
+    },
     
-    // ******************************************
-	// ********** High Scores Section ***********
-	// ******************************************
+    // **********************************************
+	// ************ High Scores Section *************
+	// **********************************************
     
-    
+	getHighScoresForLevel : function(levelNumber) {
+		"use strict";
+		var outputArray = [];
+		console.group("Maincontroller : getAllHighScores()");
+		outputArray = rocketReadingModel.myPlayer.highScores.getHighScoresForLevel(levelNumber);
+		console.log("High Scores :");
+		console.log(outputArray);
+		console.groupEnd();
+		return outputArray;
+	}
+	
+	
+    // **********************************************
+	// ********** End High Scores Section ***********
+	// **********************************************
     //Instructions Screen
 
     

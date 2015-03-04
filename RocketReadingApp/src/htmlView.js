@@ -274,7 +274,9 @@ var viewHTMLModule = {
 		}
 		this.showGameSelectScreen();
         viewHTMLModule.addEventListGameBack();
+        viewHTMLModule.addEventListNewGameStart();
 	},
+    
 	// *******************************************
 	// ***** End Game Select Screen Section ******
 	// *******************************************
@@ -655,6 +657,12 @@ var viewHTMLModule = {
         document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showGameSelectScreen);
     },
     
+    addEventListNewGameStart: function () {
+    // The following function should not be called if the user is returning to a previous game. This event listener will only be added if the user is starting a new game
+        "use strict";
+        document.getElementById("gameStart").addEventListener("click", mainController.setSavedGameNull);
+    },
+    
     addEventListContinueGameBack: function () {
     // This event listener will be added if the user is continuing a game
         "use strict";
@@ -670,6 +678,11 @@ var viewHTMLModule = {
     addEventListReplayGameBack: function () {
         "use strict";
         document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showGamePauseModal);
+    },
+    
+    removeEventListNewGameStart: function () {
+        "use strict";
+        document.getElementById("gameStart").removeEventListener("click", viewHTMLModule.addEventListNewGameStart);
     },
     
     /*displayGameIntroConfirm: function () {
@@ -717,7 +730,9 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
         viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
+        // These functions will cover situations in which the user returns to the home page in case the user will click the continue button
         viewHTMLModule.removeEventListsGameBack();
+        viewHTMLModule.removeEventListNewGameStart();
 		console.log("HTMLView.js : Showing home screen");
 	},
 	
@@ -726,8 +741,9 @@ var viewHTMLModule = {
 		"use strict";
 		viewHTMLModule.hideAllPages();
 		document.getElementById("levelSelectScreen").hidden = false;
-        // If the play goes back to the level select screen then the game modal screen's 'gameBack' event-listener can be removed
+        // If the player goes back to the level select screen then the game modal screen's 'gameBack' event-listener can be removed
         viewHTMLModule.removeEventListsGameBack();
+        viewHTMLModule.removeEventListNewGameStart();
 		console.log("HTMLView.js : Showing level select screen");
 	},
 	
@@ -846,7 +862,6 @@ var viewHTMLModule = {
 		document.getElementById("gameBack").addEventListener("click", this.closeModal);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
 		document.getElementById("gameStart").addEventListener("click", this.closeModal);
-        document.getElementById("gameStart").addEventListener("click", mainController.setSavedGameNull);
         document.getElementById("gameStart").addEventListener("click", this.removeEventListsGameBack);
         document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);

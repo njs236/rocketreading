@@ -144,8 +144,8 @@ HighScores.prototype.getHighScore = function (levelNumber, gameNumber) {
         case ("level0Game3HS"):
             return this.level0Game3HS;
             
-        case ("level0Game4S"):
-            return this.level0Game4S;
+        case ("level0Game4HS"):
+            return this.level0Game4HS;
             
         case ("level0Game5HS"):
             return this.level0Game5HS;
@@ -231,7 +231,7 @@ HighScores.prototype.getHighScoresForLevel = function (levelNumber) {
 	"use strict";
 	var outputArray = [],
 		gameCount = 0,
-		count = 0;
+		count;
 	console.group("HighScores.proto.getHighScoresForLevel");
 	console.log("Input level : " + levelNumber);
 	gameCount = rocketReadingModel.getAllGamesFromLevel(levelNumber).length;
@@ -239,8 +239,10 @@ HighScores.prototype.getHighScoresForLevel = function (levelNumber) {
 	outputArray.push(levelNumber);
 	for ( count = 1; count <= gameCount; count = count + 1){
 		console.log("Count is : " + count);
+		console.log("The score for game " + count + " is " + this.getHighScore(levelNumber, count));
 		outputArray.push(this.getHighScore(levelNumber, count));
 		console.log("getHighScoresForLevel: Added to array : " + this.getHighScore(levelNumber, count));
+		console.log(outputArray);
 	};
 	console.groupEnd();
 	return outputArray;

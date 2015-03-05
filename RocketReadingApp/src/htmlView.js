@@ -268,7 +268,6 @@ var viewHTMLModule = {
                 newDiv.addEventListener("click", this.setGameAndWordList);
                 newDiv.addEventListener("click", mainController.checkGameResumption);
                 newDiv.addEventListener("click", this.showGameScreen);
-                newDiv.addEventListener("click", this.addEventListGameStartNew);
             }
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 			

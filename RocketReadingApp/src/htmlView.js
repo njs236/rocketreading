@@ -951,15 +951,34 @@ var viewHTMLModule = {
 		// This clears the timer of an individual test in a game if the user returns to the home page
 		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // mainController.leaveCurrentGame() can call this
 		// If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
-		document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
-		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
-		document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
-		document.getElementById("gameBack").addEventListener("click", this.closeModal);
+		
+		// Game Welcome Modal
+			// Start Button
 		document.getElementById("gameStart").addEventListener("click", mainController.startGame);
 		document.getElementById("gameStart").addEventListener("click", this.closeModal);
+			// Back Button
+		document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
+		document.getElementById("gameBack").addEventListener("click", this.closeModal);
+
+		// Game Menu Modal
+			// Home Button
+		document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
+		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
+			// Resume Button
+		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closeModal);
+			// Replay Button
 		document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
-		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closeModal);
+
+		
+		// Game Screen Next Game Modal
+			// Home Button
+		document.getElementById("gameNextGameButtonMenu").addEventListener("click",this.showHomeScreen);
+			// Retry Button
+		document.getElementById("gameNextGameButtonRetry").addEventListener("click",mainController.replayGame);
+		document.getElementById("gameNextGameButtonRetry").addEventListener("click",this.openGameIntro);
+		
+		
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
 	}

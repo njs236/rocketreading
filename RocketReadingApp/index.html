@@ -214,6 +214,7 @@
                 
 			</div>
 			<div id="gamesScreen" class="navScreen" hidden>
+				<!-- Open Game Menu Modal -->
 				<div id="gameModal" class="modalDialog">
 					<!-- Modal Menu -->
 					<div id="gameModalDialog">
@@ -252,12 +253,13 @@
 				</div>
                 <!-- closes game gameIntroModal div -->
                 <!-- opens game feedBackModal div -->
-				<div class="feedbackModal" id="gameFeedbackModal"> <!-- Congrats or feedback modal -->
+				<div class="feedbackModal" id="gameFeedbackModal"><!-- Congrats or feedback modal -->
 					<div>
 						<h1 id="feedbackField">Good Job!</h1>
                     </div>
 				</div>
-                <!-- opens game nextGameModal div -->
+				<!-- Closes Feedback Modal -->
+				<!-- Opens NextGame Modal -->
                 <div class="modalDialog" id="gameNextGameModal">
 					<div id ="gameNextGameModalContent">
 						<div class="gameNextGameModalRow">
@@ -276,10 +278,10 @@
 							<div class="dummy"></div>
 						</div>
 						<div class="gameNextGameModalRow">
-							<div class="gameNextGameButton" id="gameNextGameButtonBack">
+							<div class="gameNextGameButton" id="gameNextGameButtonMenu">
 								<h1>Main Menu</h1>
 							</div>
-							<div class="gameNextGameButton" id="gameNextGameButtonBack">
+							<div class="gameNextGameButton" id="gameNextGameButtonRetry">
 								<h1>Retry</h1>
 							</div>
 						</div>

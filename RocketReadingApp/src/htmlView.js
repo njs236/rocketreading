@@ -775,7 +775,7 @@ var viewHTMLModule = {
         silverStars.textContent = medalCounts[1];
         bronzeStars.textContent = medalCounts[2];
         H1 = document.getElementById("gameNextGameMessage");
-        H1.textContent = "Game Finished! You completed Level "+ levelNumber + " Game " + gameNumber;  
+        H1.textContent = "Game Finished! You completed Level "+ levelNumber + " Game " + gameNumber;
     },
     
 	/*displayGameIntroConfirm: function () {

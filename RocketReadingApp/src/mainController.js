@@ -440,7 +440,7 @@ var mainController = {
             playerName = rocketReadingModel.getMyPlayer().getUserName(),
             levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
             medalCounts = rocketReadingModel.getCurrentGameData().getMedalCounts();
-        myViewModelRR.displayNextGame(levelNumber, gameNumber, medalCounts)
+        myViewModelRR.displayNextGame(levelNumber, gameNumber, medalCounts);
         // Stop the total game timer
         clearInterval(gameTimer);
         // Save the gameTimer to the currentGameData object

@@ -825,7 +825,8 @@ var mainController = {
                     rocketReadingModel.getCurrentGameData().addWordsSoundsIncorrect(currentWord);
                     // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
                     myViewModelRR.removeEventClick();
-                    myViewModelRR.toggleLearnWord();
+                    //myViewModelRR.toggleLearnWord();
+					myViewModelRR.learnWordIsActive();
                     myViewModelRR.addEventLearnWord();
                 }
             } else {

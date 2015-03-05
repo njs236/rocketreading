@@ -904,6 +904,7 @@ var viewHTMLModule = {
 		"use strict";
 		console.log("HTMLVIEW: hiding table");
 		document.getElementById("gameWordTable").hidden = true;
+		this.setLearnWordOn();
 	
 	},
 	
@@ -911,6 +912,7 @@ var viewHTMLModule = {
 		"use strict";
 		console.log("HTMLVIEW: showing table");
 		document.getElementById("gameWordTable").hidden = false;
+		this.setLearnWordNormal();
 	},
 	
 	showFinishedGameModal : function () {

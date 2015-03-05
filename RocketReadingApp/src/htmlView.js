@@ -669,7 +669,7 @@ var viewHTMLModule = {
 			letters,
 			string = '',
 			wordToBeLearned = document.getElementById('gameDisplayWord');
-		letters = document.createElement('P');
+		letters = document.createElement('H1');
 		letters.id = "gameLearnWordText";
 		wordToBeLearned.appendChild(letters);
 		for (count; count < characterArray.length; count++) {

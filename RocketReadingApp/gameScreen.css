@@ -59,11 +59,14 @@
 	transform: translateY(-50%);
 }
 
-#gameDisplayWord p {
-    font-size : 3em;
+#gameDisplayWord h1 {
     color: #0f0;
-    /*text-align: center;*/
-    padding-left: 30px;
+	max-width:100%;
+}
+
+#gameDisplayWord {
+	text-align:center;
+	font-size:4em;
 }
 
 #gameRightSideTopRight {

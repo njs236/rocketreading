@@ -662,7 +662,7 @@ var viewHTMLModule = {
     addEventListGameStartContinue: function () {
     // The following function should not be called if the user is returning to a previous game. This event listener will only be added if the user is starting a new game
         "use strict";
-        document.getElementById("gameStart").addEventListener("click", mainController.gameStartContinue);
+        document.getElementById("gameStart").addEventListener("click", mainController.startGameContinue);
     },
     
     addEventListReplayGame: function () {

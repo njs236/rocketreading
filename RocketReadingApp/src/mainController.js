@@ -382,7 +382,7 @@ var mainController = {
             // The system will disable and turn off the learn word mode in case it was turned on when the user was playing another game and then the user left that game without successfully answering that word
             mainController.disableLearnWord();
             mainController.resetGameTimers();
-            mainController.gameInitialise();
+            mainController.newGameInitialise();
         }
     },
     
@@ -819,7 +819,7 @@ var mainController = {
         mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
         // The event listener which led to this function being called will be removed
-        myViewModelRR.removeEventListGameStart();
+        // myViewModelRR.removeEventListGameStart();
     },
     
     

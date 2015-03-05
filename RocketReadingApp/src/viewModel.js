@@ -288,14 +288,14 @@ var myViewModelRR = {
         this.view.addEventListContinueGameBack();
     },
     
-    addEventListReplayGameBack: function () {
+    addEventListGameBackReplay: function () {
         "use strict";
-        this.view.addEventListReplayGameBack();
+        this.view.addEventListGameStartReplay();
     },
     
-    removeEventListNewGameStart: function () {
+    removeEventListGameStart: function () {
         "use strict";
-        this.view.removeEventListNewGameStart();
+        this.view.removeEventListGameStart();
     }
     /*
     displayGameIntroConfirm: function () {

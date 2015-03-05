@@ -690,6 +690,16 @@ var mainController = {
         mainController.startGameTimer();
         // Determine which word the user will be tested on
         mainController.nextWord();
+        // The event listener which led to this function being called will be removed
+        myViewModelRR.removeEventListGameStart(); 
+    },
+    
+    startGameContinue: function () {
+        "use strict";
+        // Start the game timer
+        mainController.startGameTimer();
+        // Determine which word the user will be tested on
+        mainController.nextWord();
     },
     
     enableLearnWord: function () {
@@ -746,6 +756,13 @@ var mainController = {
         // The system starts a new game and initialises the game screen - really, the completeWordList could be set by resetCurrentGameData() - a bit of refactoring to achieve this
         mainController.gameInitialise();
         // mainController.startGame(); // If the 'gameIntroModal' modal window opens then the game will start when the player clicks the start link.
+        
+        // Start the game timer
+        mainController.startGameTimer();
+        // Determine which word the user will be tested on
+        mainController.nextWord();
+        // The event listener which led to this function being called will be removed
+        myViewModelRR.removeEventListGameStart(); 
     },
 
     resetGameTimers: function () {
@@ -802,7 +819,7 @@ var mainController = {
         mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
         // The event listener which led to this function being called will be removed
-        myViewModelRR.removeEventListNewGameStart();
+        myViewModelRR.removeEventListGameStart();
     },
     
     

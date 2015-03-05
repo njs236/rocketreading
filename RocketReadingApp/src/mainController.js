@@ -376,14 +376,15 @@ var mainController = {
     // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
         "use strict";
         var levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
+        /* This needs work:
         if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
             // Check with the user whether they wish to resume the old game or start a new game
-        } else {
+        } else {*/
             // The system will disable and turn off the learn word mode in case it was turned on when the user was playing another game and then the user left that game without successfully answering that word
             mainController.disableLearnWord();
             mainController.resetGameTimers();
             mainController.newGameInitialise();
-        }
+      //}
     },
     
     

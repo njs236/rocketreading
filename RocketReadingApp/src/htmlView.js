@@ -787,6 +787,12 @@ var viewHTMLModule = {
 			this.showGameSelectScreen();
 		}
 	},*/
+	finishedGame : function () {
+		"use strict";
+		this.closeModal;
+		this.showFinishedGameModal;
+	},
+	
 	
 	// *******************************************
 	// ********* End Game Screen Section *********
@@ -901,7 +907,11 @@ var viewHTMLModule = {
 		"use strict";
 		console.log("HTMLVIEW: showing table");
 		document.getElementById("gameWordTable").hidden = false;
+	},
 	
+	showFinishedGameModal : function () {
+		"use strict";
+		document.location.hash = "gameNextGameModal";
 	},
 	
 	// ******************************************

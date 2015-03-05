@@ -293,6 +293,12 @@ var myViewModelRR = {
         myViewModelRR.view.displayGameIntroConfirm();
     },*/
     
+	finishedGame : function () {
+		"use strict";
+		this.view.finishedGame();
+	
+	},
+	
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************

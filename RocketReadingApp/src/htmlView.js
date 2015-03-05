@@ -653,10 +653,10 @@ var viewHTMLModule = {
 					} else if (learnWordCount === 1) {
 						// The word is included as part of a spoken sentence
 						learnWordTimerD = setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
-						window.setTimeout(viewHTMLModule.learnWordIsFinished(),1500);
 					} else if (learnWordCount === 0) {
 						// Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
 						viewHTMLModule.eventClickAdd();
+						viewHTMLModule.learnWordIsFinished();
 					}
 				}
 			}, duration);

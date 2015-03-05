@@ -34,13 +34,14 @@ div.screenHeaderFooter {
 	width:90%;
 	text-align:center;
 	margin:0px auto;
-	
 }
 
 div.screenHeaderFooter h1{
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
+	color: rgba(251, 239, 126, .9);
+	-webkit-text-stroke: 1px black;
 }
 
 div.screenHeader {

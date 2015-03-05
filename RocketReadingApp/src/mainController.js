@@ -426,8 +426,20 @@ var mainController = {
             return result;
         };*/
     },
-    
-    
+  
+    finishGameScreen : function () {
+        "use strict";
+        var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+            gameNumber = game.getNumber(),
+            level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]),
+            levelNumber = level.getLevelNumber(),
+            medalCounts = rocketReadingModel.getCurrentGameData().getMedalCounts();
+        window.setTimeout(function () {
+            myViewModelRR.displayNextGame(levelNumber, gameNumber, medalCounts);
+        }
+        ,400); 
+    },
+
     finishGame: function () {
         "use strict";
         var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
@@ -438,12 +450,7 @@ var mainController = {
             wordList = game.getWordList().slice(0),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame(),
             playerName = rocketReadingModel.getMyPlayer().getUserName(),
-            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
-            medalCounts = rocketReadingModel.getCurrentGameData().getMedalCounts();
-        window.setTimeout(function () {
-            myViewModelRR.displayNextGame(levelNumber, gameNumber, medalCounts);
-        }
-        ,2000);
+            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached();       
         // Stop the total game timer
         clearInterval(gameTimer);
         // Save the gameTimer to the currentGameData object
@@ -908,7 +915,7 @@ var mainController = {
             rocketReadingModel.getCurrentGameData().setCurrentWord(null);
 			mainController.nextWord();
 		} else if (listArrayCount === 0) {
-            mainController.finishGame();
+            mainController.finishGameScreen();
 		}
 	},
     

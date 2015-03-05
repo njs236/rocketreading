@@ -777,6 +777,7 @@ var viewHTMLModule = {
         H1 = document.getElementById("gameNextGameMessage");
         H1.textContent = "Game Finished! You completed Level "+ levelNumber + " Game " + gameNumber;
         this.finishedGame();
+        mainController.finishGame;
     },
     
 	/*displayGameIntroConfirm: function () {
@@ -790,7 +791,7 @@ var viewHTMLModule = {
 	},*/
 	finishedGame : function () {
 		"use strict";
-		this.closeModal();
+		/*this.closeModal();*/
 		this.showFinishedGameModal();
 	},
 	
@@ -878,6 +879,7 @@ var viewHTMLModule = {
 	closeModal : function () {
 		"use strict";
 		location.hash = "Close";
+        console.log("closeModal");
 	},
 	
 	openGameIntro : function () {
@@ -895,6 +897,7 @@ var viewHTMLModule = {
 	hideFeedbackModal : function() {
 		"use strict";
 		location.hash = "";
+        console.log("hideFeedbackModal");
 	},
 	
 	learnWordIsActive : function ()	 {
@@ -913,6 +916,7 @@ var viewHTMLModule = {
 	showFinishedGameModal : function () {
 		"use strict";
 		document.location.hash = "gameNextGameModal";
+        console.log("showFinishedGameModal");
 	},
 	
 	// ******************************************

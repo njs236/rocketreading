@@ -426,7 +426,8 @@ var mainController = {
             return result;
         };*/
     },
-  
+    
+    /*
     finishGameScreen : function () {
         "use strict";
         var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
@@ -438,7 +439,7 @@ var mainController = {
             myViewModelRR.displayGameResults(levelNumber, gameNumber, medalCounts);
         }
         ,400); 
-    },
+    },*/
 
     finishGame: function () {
         "use strict";
@@ -450,7 +451,13 @@ var mainController = {
             wordList = game.getWordList().slice(0),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame(),
             playerName = rocketReadingModel.getMyPlayer().getUserName(),
-            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached();       
+            levelGameReached = rocketReadingModel.getMyPlayer().getLevelGameReached(),
+            medalCounts = rocketReadingModel.getCurrentGameData().getMedalCounts();
+        // The game results screen is displayed
+        window.setTimeout(function () {
+            myViewModelRR.displayGameResults(levelNumber, gameNumber, medalCounts);
+        }
+        ,400); 
         // Stop the total game timer
         clearInterval(gameTimer);
         // Save the gameTimer to the currentGameData object
@@ -494,7 +501,7 @@ var mainController = {
         rocketReadingModel.clearCurrentGameData();
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
-		// myViewModelRR.finishedGame(); // This method has already been called from finishGameScreen()
+		// myViewModelRR.finishedGame(); // This method has already been called from viewHTMLModule.displayGameResults()
     },
 
     
@@ -652,6 +659,7 @@ var mainController = {
                 myViewModelRR.clearLearnWord();
             }
         }
+        console.log("H1 - global var? " + H1);
     },
    
 	spliceWord : function (currentWordIndex) {
@@ -918,7 +926,9 @@ var mainController = {
             rocketReadingModel.getCurrentGameData().setCurrentWord(null);
 			mainController.nextWord();
 		} else if (listArrayCount === 0) {
-            mainController.finishGameScreen();
+            // The game results modal is displayed and the system determines whether the user has unlocked a new game or level
+            // mainController.finishGameScreen(); // The function which displays the finish-game modal can be called from finishGame()
+            mainController.finishGame();
 		}
 	},
     

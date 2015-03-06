@@ -770,26 +770,17 @@ var viewHTMLModule = {
     displayGameResults : function (levelNumber, gameNumber, medalCounts) {
         var goldStars = document.getElementById('gameNextModalGoldStar'),
             silverStars = document.getElementById('gameNextModalSilverStar'),
-            bronzeStars = document.getElementById('gameNextModalBronzeStar');
+            bronzeStars = document.getElementById('gameNextModalBronzeStar'),
+            finishMessage = document.getElementById("gameNextGameMessage");
         goldStars.textContent = medalCounts[0];
         silverStars.textContent = medalCounts[1];
         bronzeStars.textContent = medalCounts[2];
-        H1 = document.getElementById("gameNextGameMessage");
-        H1.textContent = "Game Finished! You completed Level "+ levelNumber + " Game " + gameNumber;
+        finishMessage.textContent = "Game Finished! You completed Level "+ levelNumber + " Game " + gameNumber;
         // this.finishedGame();
         this.showFinishedGameModal();
-        mainController.finishGame();
+        // mainController.finishGame(); // This function can be called from initialiseNextWord()
     },
     
-	/*displayGameIntroConfirm: function () {
-		"use strict";
-		var userChoice = confirm("Click OK to start the game. Or click Cancel to go back to the previous page");
-		if (userChoice) {
-			mainController.startGame();	   
-		} else {
-			this.showGameSelectScreen();
-		}
-	},*/
     // This function may not be necessary if it is only called from one place
 	finishedGame : function () {
 		"use strict";

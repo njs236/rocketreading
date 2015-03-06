@@ -923,7 +923,12 @@ var mainController = {
             mainController.gameInitialise();
              // The current word property is cleared or set to null - to enable the nextWord() to select a new currentWord for the next test in the game
             rocketReadingModel.getCurrentGameData().setCurrentWord(null);
-			mainController.nextWord();
+            // Putting in a short gap between the end of a test and the next word-test
+            window.setTimeout(function () {
+                mainController.nextWord();
+            }
+            , 650); 
+			// mainController.nextWord();
 		} else if (listArrayCount === 0) {
             // The game results modal is displayed and the system determines whether the user has unlocked a new game or level
             // mainController.finishGameScreen(); // The function which displays the finish-game modal can be called from finishGame()

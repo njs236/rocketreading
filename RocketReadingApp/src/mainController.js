@@ -659,7 +659,6 @@ var mainController = {
                 myViewModelRR.clearLearnWord();
             }
         }
-        console.log("H1 - global var? " + H1);
     },
    
 	spliceWord : function (currentWordIndex) {

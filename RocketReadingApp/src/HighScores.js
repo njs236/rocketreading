@@ -47,8 +47,8 @@ HighScores.prototype.setHighScore = function (levelNumber, gameNumber, score) {
         case ("level0Game3HS"):
             this.level0Game3HS = score;
             break;
-        case ("level0Game4S"):
-            this.level0Game4S = score;
+        case ("level0Game4HS"):
+            this.level0Game4HS = score;
             break;
         case ("level0Game5HS"):
             this.level0Game5HS = score;

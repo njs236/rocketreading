@@ -767,7 +767,7 @@ var viewHTMLModule = {
 		bronzeBar = setTimeout("viewHTMLModule.changeBarBronze()", 4000);
 	},
 	
-    displayNextGame : function (levelNumber, gameNumber, medalCounts) {
+    displayGameResults : function (levelNumber, gameNumber, medalCounts) {
         var goldStars = document.getElementById('gameNextModalGoldStar'),
             silverStars = document.getElementById('gameNextModalSilverStar'),
             bronzeStars = document.getElementById('gameNextModalBronzeStar');
@@ -776,8 +776,9 @@ var viewHTMLModule = {
         bronzeStars.textContent = medalCounts[2];
         H1 = document.getElementById("gameNextGameMessage");
         H1.textContent = "Game Finished! You completed Level "+ levelNumber + " Game " + gameNumber;
-        this.finishedGame();
-        mainController.finishGame;
+        // this.finishedGame();
+        this.showFinishedGameModal();
+        mainController.finishGame();
     },
     
 	/*displayGameIntroConfirm: function () {
@@ -789,6 +790,7 @@ var viewHTMLModule = {
 			this.showGameSelectScreen();
 		}
 	},*/
+    // This function may not be necessary if it is only called from one place
 	finishedGame : function () {
 		"use strict";
 		/*this.closeModal();*/

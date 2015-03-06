@@ -435,7 +435,7 @@ var mainController = {
             levelNumber = level.getLevelNumber(),
             medalCounts = rocketReadingModel.getCurrentGameData().getMedalCounts();
         window.setTimeout(function () {
-            myViewModelRR.displayNextGame(levelNumber, gameNumber, medalCounts);
+            myViewModelRR.displayGameResults(levelNumber, gameNumber, medalCounts);
         }
         ,400); 
     },
@@ -494,7 +494,7 @@ var mainController = {
         rocketReadingModel.clearCurrentGameData();
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
-		myViewModelRR.finishedGame();
+		// myViewModelRR.finishedGame(); // This method has already been called from finishGameScreen()
     },
 
     
@@ -816,7 +816,7 @@ var mainController = {
                             rocketReadingModel.getCurrentGameData().setScore(1);
                         }
                     //alert ("Correct Word! You selected " + word);
-					myViewModelRR.correctGuess();
+					// myViewModelRR.correctGuess();  // Shifting the calling of this function into initialiseNextWord(), so that it isn't called if the player finishes the current game
                     mainController.initialiseNextWord();
                 } else {
                     // this is the incorrect word selection
@@ -850,7 +850,7 @@ var mainController = {
                     // mainController.resetCompleteWordList(); // - actually this does not need to be done at this point. It only needs to be done in the createTable() function after the array has been randomised
                 // The incorrect property of currentGameData can be set to null
                 rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
-				myViewModelRR.correctGuess();
+				// myViewModelRR.correctGuess(); // Shifting the calling of this function into initialiseNextWord(), so that it isn't called if the player finishes the current game
                 //alert ("Correct Word! You selected " + word);
                 mainController.exitingLearnWord();
             } else {
@@ -911,6 +911,8 @@ var mainController = {
 		mainController.displayScore();
 
 		if (listArrayCount > 0) {
+            // Display the gameFeedbackModal window
+            myViewModelRR.correctGuess();
             mainController.gameInitialise();
              // The current word property is cleared or set to null - to enable the nextWord() to select a new currentWord for the next test in the game
             rocketReadingModel.getCurrentGameData().setCurrentWord(null);

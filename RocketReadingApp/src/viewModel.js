@@ -284,8 +284,8 @@ var myViewModelRR = {
 		this.view.learnWordIsFinished();
 	},
     
-    displayNextGame : function (levelNumber, gameNumber, medalCounts) {
-        this.view.displayNextGame(levelNumber, gameNumber, medalCounts);
+    displayGameResults : function (levelNumber, gameNumber, medalCounts) {
+        this.view.displayGameResults(levelNumber, gameNumber, medalCounts);
     },
     /*
     displayGameIntroConfirm: function () {

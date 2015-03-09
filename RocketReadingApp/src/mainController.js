@@ -568,7 +568,7 @@ var mainController = {
         // Display the table with the (un-)randomised complete wordlist
 		myViewModelRR.displayTable(rocketReadingModel.getCurrentGameData().getCompleteWordList());
         // Set the cells of the table to have a uniform width
-        myViewModelRR.setUniformCellWidth();
+        myViewModelRR.setUniformCellWidth("gameWordCell");
 	},
 	
 	displayMedalCounts : function () {

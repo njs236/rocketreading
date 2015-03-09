@@ -204,6 +204,7 @@ var viewHTMLModule = {
 		newRow = newTable.insertRow(-1);
 		for ( count = 1; count <= (inputArray.length -1); count = count + 1){
 			newCell = newRow.insertCell(-1);
+            newCell.className = "highScoresCell";
             if (count !== (inputArray.length - 1)) {
                 newCell.textContent = "Game " + count;
             } else {
@@ -215,7 +216,11 @@ var viewHTMLModule = {
 		for ( count = 1; count < inputArray.length; count = count + 1){
 			newCell = newRow.insertCell(-1);
 			newCell.textContent = inputArray[count];
+            newCell.className = "highScoresCell";
 		};
+        
+		// Setting the cells of the high scores table to a uniform size
+        viewHTMLModule.setUniformCellWidth("highScoresCell");
 	},
 	// **************************************************
 	// ************ End High Scores Section ************
@@ -508,32 +513,17 @@ var viewHTMLModule = {
 			newCell.innerHTML = inputArray[wordCount];
 			newCell.id = "cell" + wordCount;
 			newCell.className = "gameWordCell";
-		}/*
-		var count,
-			cellArray,
-			widestCell,
-			widestCellWidth = 0;
-		// Setting the cells of the table to a uniform size
-		cellArray = document.getElementsByClassName("gameWordCell");
-		for ( count = 0; count < cellArray.length; count = count + 1) {
-			if ( cellArray[count].offsetWidth > widestCellWidth ) {
-				widestCellWidth = cellArray[count].offsetWidth;
-				widestCell = count;
-			}
 		}
-		console.log("hi");
-		console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
-		document.styleSheets[0].insertRule("td.wordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 1);*/
 	},
 	
-	setUniformCellWidth: function () {
+	setUniformCellWidth: function (cellClassName) {
 		"use strict";
 		var count,
 			cellArray,
 			widestCell,
 			widestCellWidth = 0;
 		// Setting the cells of the table to a uniform size
-		cellArray = document.getElementsByClassName("gameWordCell");
+		cellArray = document.getElementsByClassName(cellClassName);
 		for ( count = 0; count < cellArray.length; count = count + 1) {
 			if ( cellArray[count].offsetWidth > widestCellWidth ) {
 				widestCellWidth = cellArray[count].offsetWidth;
@@ -541,7 +531,7 @@ var viewHTMLModule = {
 			}
 		}
 		console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
-		document.styleSheets[0].insertRule("td.gameWordCell { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
+		document.styleSheets[0].insertRule("td." + cellClassName + " { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
 	},
 	
 	eventClickAdd : function () {

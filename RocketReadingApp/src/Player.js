@@ -10,9 +10,10 @@ var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRo
     this.levelGameReached = newLevelGameReached || '';
     this.bonusGameReached = newBonusGameReached || '';
     this.pointsToPassLevel = newPointsToPassLevel || '';
+    // The following properties belong to Player, but are created in the course of a game
     // this.highScores = newHighScores || {};
-    //this.currentGameData = {};
-    //this.allGamesData = {};
+    // this.currentGameData = {};
+    // this.allGamesData = {};
     
     return this;
 };
@@ -85,3 +86,8 @@ Player.prototype.calculateSumHighScores = function (levelNumber) {
     console.log("calculateSumHighScores(): " + sum);
     return sum;
 };
+
+Player.prototype.getHighScores = function () {
+    "use strict";
+    return this.highScores;
+}

@@ -200,7 +200,11 @@ var viewHTMLModule = {
 		newRow = newTable.insertRow(-1);
 		for ( count = 1; count <= (inputArray.length -1); count = count + 1){
 			newCell = newRow.insertCell(-1);
-			newCell.textContent = "Game " + count;
+            if (count !== (inputArray.length - 1)) {
+                newCell.textContent = "Game " + count;
+            } else {
+                newCell.textContent = "Total";
+            }
 		};
 		
 		newRow = newTable.insertRow(-1);

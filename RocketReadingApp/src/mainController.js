@@ -956,9 +956,20 @@ var mainController = {
     
 	getHighScoresForLevel : function(levelNumber) {
 		"use strict";
-		var outputArray = [];
+		var outputArrayLength,
+            outputArray = [],
+            index = 1,
+            totalLevelHS = 0;
 		console.group("Maincontroller : getAllHighScores()");
-		outputArray = rocketReadingModel.myPlayer.highScores.getHighScoresForLevel(levelNumber);
+		outputArray = rocketReadingModel.getMyPlayer().getHighScores().getHighScoresForLevel(levelNumber);
+        
+        outputArrayLength = outputArray.length;
+        // Start the index at 1 because the first item in the array is the level number
+        for (index = 1; index < outputArrayLength; index += 1) {
+            totalLevelHS += outputArray[index];
+        }
+        // The total of the high scores for that level is added to the end of the output array
+        outputArray.push(totalLevelHS);
 		console.log("High Scores :");
 		console.log(outputArray);
 		console.groupEnd();

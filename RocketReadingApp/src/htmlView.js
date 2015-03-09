@@ -188,7 +188,11 @@ var viewHTMLModule = {
 		parentDiv = document.getElementById("highScoresTableArea");
 		
 		newHeading = document.createElement("H2");
-		newHeading.textContent = "High Scores for level " + inputArray[0];
+        if (inputArray[0] !== 0) {
+            newHeading.textContent = "High Scores for level " + inputArray[0];
+        } else if (inputArray[0] === 0){
+            newHeading.textContent = "High Scores for bonus level";
+        }
 		
 		parentDiv.appendChild(newHeading);
 		

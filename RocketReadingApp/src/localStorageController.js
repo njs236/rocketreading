@@ -1,5 +1,9 @@
-var localStorageController =  {
-	Communication : '',
+rocketReadingModel.localStorageController = ( function () {
+    
+	var Communication = '';
+    
+    return {
+        
 	getPlayer : function (uname) {
 		return JSON.parse(localStorage.getItem(uname));
 	},
@@ -36,4 +40,6 @@ var localStorageController =  {
         localStorage.setItem(rocketReadingModel.getMyPlayer().getUserName(), JSON.stringify(player));
     },
     
-};
+    }
+    
+}());

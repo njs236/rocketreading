@@ -1,17 +1,19 @@
 // HTMLView Module v1.9
 //
-var viewHTMLModule = {
-	
+rocketReadingModel.viewHTMLModule = ( function () {
+    
 	// ********* Attributes **********
-	name : "HTML View Module",
-	
+    
+    var name = "HTML View Module";
+    
+    return {
 	
 	// ************************************
 	// ********* Get/Set Section **********
 	// ************************************
 	
 	getName : function() {
-		return this.name;
+		return name;
 	},
 	
 	// **********************************
@@ -28,7 +30,7 @@ var viewHTMLModule = {
 			count;
 			
 			myFunctions = testController.getAllMethods(this);
-			controllerFunctions = testController.getAllMethods(myViewModelRR);
+			controllerFunctions = testController.getAllMethods(rocketReadingModel.myViewModelRR);
 			
 			
 			console.group("HTML View : testModule()");
@@ -63,7 +65,7 @@ var viewHTMLModule = {
 	
 	attemptLogin : function() {
 		"use strict";
-		mainController.processLogin(document.getElementById("loginUserName").value, document.getElementById("loginPassword").value);
+		rocketReadingModel.mainController.processLogin(document.getElementById("loginUserName").value, document.getElementById("loginPassword").value);
 	},
 	
 	loginSuccessful : function() {
@@ -99,7 +101,7 @@ var viewHTMLModule = {
     
     logoutPlayer: function () {
         "use strict";
-        mainController.logoutPlayer();
+        rocketReadingModel.mainController.logoutPlayer();
     },
 	
 	// ***********************************************
@@ -209,7 +211,7 @@ var viewHTMLModule = {
     
     setGameAndWordList: function () {
         "use strict";
-        mainController.setGameAndWordList(this.id);
+        rocketReadingModel.mainController.setGameAndWordList(this.id);
     },
 	
 	displayGameOptions: function (gameOptionsData) {
@@ -273,8 +275,8 @@ var viewHTMLModule = {
 			
 		}
 		this.showGameSelectScreen();
-        viewHTMLModule.addEventListGameBack();
-        viewHTMLModule.addEventListGameStartNew();
+        rocketReadingModel.viewHTMLModule.addEventListGameBack();
+        rocketReadingModel.viewHTMLModule.addEventListGameStartNew();
 	},
     
 	// *******************************************
@@ -310,7 +312,7 @@ var viewHTMLModule = {
         "use strict";
 		//add code in here to select word based on clickable event.
 		// var clickedWord = this.textContent;
-		mainController.validateWords(this.textContent);
+		rocketReadingModel.mainController.validateWords(this.textContent);
 	},
 	
 	
@@ -344,8 +346,8 @@ var viewHTMLModule = {
     
     learnWordListener: function () {
 		"use strict";	
-        myViewModelRR.removeLearnWord();
-		mainController.learnWord();
+        rocketReadingModel.myViewModelRR.removeLearnWord();
+		rocketReadingModel.mainController.learnWord();
     },
 	
 	addEventLearnWord : function () {
@@ -435,7 +437,7 @@ var viewHTMLModule = {
 		var cellCount,
             cells = document.getElementsByClassName('gameWordCell');
 		for (cellCount = 0; cellCount < cells.length; cellCount = cellCount + 1) {
-			cells[cellCount].removeEventListener("click", viewHTMLModule.guessWord);
+			cells[cellCount].removeEventListener("click", rocketReadingModel.viewHTMLModule.guessWord);
 			/*console.log("displayTable(inputArray): newCell.text: " + cells[cellCount].textContent)*/
 		};
 	},
@@ -486,7 +488,7 @@ var viewHTMLModule = {
     playWordInSentence: function (currentWord, attr, characterArray) {
         "use strict";
         // Clear the display of the word which the player has to learn
-        myViewModelRR.clearLearnWord();
+        rocketReadingModel.myViewModelRR.clearLearnWord();
         // The system will play an audio recording of a sentence containing the current word to be learned
         // and possibly the word will flash when the word is spoken - that would be hard to get right for every different sentence!
         
@@ -499,11 +501,11 @@ var viewHTMLModule = {
     displayDottedWord: function (currentWord, attr, characterArray) {
         "use strict";
         // Clear the display of the word which the player has to learn
-        myViewModelRR.clearLearnWord();
+        rocketReadingModel.myViewModelRR.clearLearnWord();
         // Display the current word on the game screen in JarmanDotted font
-        viewHTMLModule.displayWord(characterArray, "JarmanDotted");
+        rocketReadingModel.viewHTMLModule.displayWord(characterArray, "JarmanDotted");
         // The word is spoken at the same time it is displayed in dotted letters
-        viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray);
+        rocketReadingModel.viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray);
     },
 	
 	updateCurrentWord : function (currentWord, attr, characterArray) {
@@ -523,24 +525,24 @@ var viewHTMLModule = {
             // It is worthwhile assigning these setTimeouts to variables because the timers will need to stopped if the user leaves the current game and moves to a different screen
             learnWordTimerA = setTimeout(function (){
                 if (attr === 'normalWord') {
-                    viewHTMLModule.eventClickAdd();
-                    mainController.createWordTimer();
-                    mainController.requestBarTimer();
+                    rocketReadingModel.viewHTMLModule.eventClickAdd();
+                    rocketReadingModel.mainController.createWordTimer();
+                    rocketReadingModel.mainController.requestBarTimer();
                 } else if (attr === 'learnWord') {
                 // this is for repeating words based on Learn Word scenario
                     learnWordCount -= 1;
                     if (learnWordCount === 3) {
-                        learnWordTimerB = setTimeout(function() { viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
+                        learnWordTimerB = setTimeout(function() { rocketReadingModel.viewHTMLModule.updateCurrentWord(currentWord, attr, characterArray); }, 100);
                     } else if (learnWordCount === 2) {
                         // The word to be learned is displayed in dotted lines and the word will have been announced again
-                        learnWordTimerC = setTimeout(function() { viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
+                        learnWordTimerC = setTimeout(function() { rocketReadingModel.viewHTMLModule.displayDottedWord(currentWord, attr, characterArray); }, 1000);
                     } else if (learnWordCount === 1) {
                         // The word is included as part of a spoken sentence
-                        learnWordTimerD = setTimeout(function() { viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
+                        learnWordTimerD = setTimeout(function() { rocketReadingModel.viewHTMLModule.playWordInSentence(currentWord, attr, characterArray); }, 1500);
 						window.setTimeout(viewHTMLModule.learnWordIsFinished(),1500);
                     } else if (learnWordCount === 0) {
                         // Then the user should be given the chance to identify the word in the table after the word has been spoken for the last time. The cells of the table will be enabled
-                        viewHTMLModule.eventClickAdd();
+                        rocketReadingModel.viewHTMLModule.eventClickAdd();
                     }
                 }
             }, duration);
@@ -645,7 +647,7 @@ var viewHTMLModule = {
         barColour = "gold";
         barBorderColour = "gold";
         // Call the function to animate the timer-bar
-        viewHTMLModule.animateBarTimer(time, myTimerBar);
+        rocketReadingModel.viewHTMLModule.animateBarTimer(time, myTimerBar);
         
         silverBar = setTimeout("viewHTMLModule.changeBarSilver()", 2000);
         bronzeBar = setTimeout("viewHTMLModule.changeBarBronze()", 4000);
@@ -654,51 +656,51 @@ var viewHTMLModule = {
     addEventListGameStartNew: function () {
     // This function should not be called if the user is returning to a previous game. These event listener should only be added if the user is starting a new game
         "use strict";
-        document.getElementById("gameStart").addEventListener("click", mainController.setSavedGameNull);
-        document.getElementById("gameStart").addEventListener("click", mainController.startGame);
+        document.getElementById("gameStart").addEventListener("click", rocketReadingModel.mainController.setSavedGameNull);
+        document.getElementById("gameStart").addEventListener("click", rocketReadingModel.mainController.startGame);
     },
     
     addEventListGameStartContinue: function () {
     // The following function should not be called if the user is returning to a previous game. This event listener will only be added if the user is starting a new game
         "use strict";
-        document.getElementById("gameStart").addEventListener("click", mainController.startGameContinue);
+        document.getElementById("gameStart").addEventListener("click", rocketReadingModel.mainController.startGameContinue);
     },
     
     addEventListReplayGame: function () {
         "use strict";
-        document.getElementById("gameStart").addEventListener("click", mainController.replayGame);
+        document.getElementById("gameStart").addEventListener("click", rocketReadingModel.mainController.replayGame);
     },
     
     removeEventListGameStart: function () {
         "use strict";
-        document.getElementById("gameStart").removeEventListener("click", mainController.setSavedGameNull);
+        document.getElementById("gameStart").removeEventListener("click", rocketReadingModel.mainController.setSavedGameNull);
         document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartNew);
         document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartContinue);
-        document.getElementById("gameStart").removeEventListener("click", mainController.startGame);
+        document.getElementById("gameStart").removeEventListener("click", rocketReadingModel.mainController.startGame);
     },
     
     addEventListGameBack: function() {
     // This event listener will be added if the user has selected a game to play from the game select screen
         "use strict";
-        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showGameSelectScreen);
+        document.getElementById("gameBack").addEventListener("click", rocketReadingModel.viewHTMLModule.showGameSelectScreen);
     },
     
     addEventListContinueGameBack: function () {
     // This event listener will be added if the user is continuing a game
         "use strict";
-        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showHomeScreen);
+        document.getElementById("gameBack").addEventListener("click", rocketReadingModel.viewHTMLModule.showHomeScreen);
     },
     
     addEventListGameBackReplay: function () {
         "use strict";
-        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.closeModal);
+        document.getElementById("gameBack").addEventListener("click", rocketReadingModel.viewHTMLModule.closeModal);
     },
     
     removeEventListsGameBack: function () {
         "use strict";
-        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showHomeScreen);
-        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showGameSelectScreen);
-        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.closeModal);
+        document.getElementById("gameBack").removeEventListener("click", rocketReadingModel.viewHTMLModule.showHomeScreen);
+        document.getElementById("gameBack").removeEventListener("click", rocketReadingModel.viewHTMLModule.showGameSelectScreen);
+        document.getElementById("gameBack").removeEventListener("click", rocketReadingModel.viewHTMLModule.closeModal);
     },
     
     
@@ -736,7 +738,7 @@ var viewHTMLModule = {
 	
 	showLoginScreen: function () {
 		"use strict";
-		viewHTMLModule.hideAllPages();
+		rocketReadingModel.viewHTMLModule.hideAllPages();
 		document.getElementById("loginScreen").hidden = false;
 		console.log("HTMLView.js : Showing login screen");
 	},
@@ -744,30 +746,30 @@ var viewHTMLModule = {
 	
 	showHomeScreen: function () {
 		"use strict";
-		viewHTMLModule.hideAllPages();
-        viewHTMLModule.closeModal();
+		rocketReadingModel.viewHTMLModule.hideAllPages();
+        rocketReadingModel.viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
         // This function will cover a situation in which the user returns to the home page and then clicks the continue button
-        viewHTMLModule.removeEventListsGameBack();
-        viewHTMLModule.removeEventListGameStart();
+        rocketReadingModel.viewHTMLModule.removeEventListsGameBack();
+        rocketReadingModel.viewHTMLModule.removeEventListGameStart();
 		console.log("HTMLView.js : Showing home screen");
 	},
 	
 	
 	showLevelSelectScreen: function () {
 		"use strict";
-		viewHTMLModule.hideAllPages();
+		rocketReadingModel.viewHTMLModule.hideAllPages();
 		document.getElementById("levelSelectScreen").hidden = false;
         // If the player goes back to the level select screen then the game modal screen's 'gameBack' event-listener can be removed
-        viewHTMLModule.removeEventListsGameBack();
-        viewHTMLModule.removeEventListGameStart();
+        rocketReadingModel.viewHTMLModule.removeEventListsGameBack();
+        rocketReadingModel.viewHTMLModule.removeEventListGameStart();
 		console.log("HTMLView.js : Showing level select screen");
 	},
 	
 	
 	showGameSelectScreen: function () {
 		"use strict";
-		viewHTMLModule.hideAllPages();
+		rocketReadingModel.viewHTMLModule.hideAllPages();
 		document.getElementById("gameSelectScreen").hidden = false;
 		console.log("HTMLView.js : Showing game select screen");
 	},
@@ -775,7 +777,7 @@ var viewHTMLModule = {
 	
 	showGameScreen: function () {
 		"use strict";
-		viewHTMLModule.hideAllPages();
+		rocketReadingModel.viewHTMLModule.hideAllPages();
 		document.getElementById("gamesScreen").hidden = false;
 		console.log("HTMLView.js : Showing game screen");
         location.hash = "gameIntroModal";
@@ -783,14 +785,14 @@ var viewHTMLModule = {
    
 	showHighScoresScreen: function () {
 		"use strict";
-		viewHTMLModule.hideAllPages();
+		rocketReadingModel.viewHTMLModule.hideAllPages();
 		document.getElementById("highScoresScreen").hidden = false;
 		console.log("HTMLView.js : Showing High Score screen");
 	},
     
     showRegisterScreen : function () {
         "use strict";
-        viewHTMLModule.hideAllPages();
+        rocketReadingModel.viewHTMLModule.hideAllPages();
         document.getElementById("registerScreen").hidden = false;
         console.log("HTMLView.js: Showing Register Screen");
     },
@@ -803,7 +805,7 @@ var viewHTMLModule = {
 	closeModal : function () {
 		"use strict";
 		location.hash = "Close";
-        viewHTMLModule.removeEventListsGameBack();
+        rocketReadingModel.viewHTMLModule.removeEventListsGameBack();
 	},
 	
 	openGameIntro : function () {
@@ -844,7 +846,7 @@ var viewHTMLModule = {
 	intitialiseView : function()  {
         // Register Screen
         
-        document.getElementById("registerData").addEventListener("click", mainController.registerPlayer);
+        document.getElementById("registerData").addEventListener("click", rocketReadingModel.mainController.registerPlayer);
         document.getElementById("registerData").addEventListener("click", this.clearFields);
         document.getElementById("registerData").addEventListener("click",this.showLoginScreen);
         document.getElementById("registerExit").addEventListener("click",this.showLoginScreen);
@@ -854,9 +856,9 @@ var viewHTMLModule = {
         document.getElementById("loginRegisterBtn").addEventListener("click", this.showRegisterScreen);
 		
 		// Home Screen
-		document.getElementById("homePlayGame").addEventListener("click", mainController.requestAllLevels);
+		document.getElementById("homePlayGame").addEventListener("click", rocketReadingModel.mainController.requestAllLevels);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
-        document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
+        document.getElementById("homeContinue").addEventListener("click", rocketReadingModel.mainController.resolveContinueBtn);
         document.getElementById("homeContinue").addEventListener("click", this.addEventListGameStartContinue);
         document.getElementById("homeExit").addEventListener("click",this.checkLogout);
         document.getElementById("homeLogoutYes").addEventListener("click",this.showLoginScreen);
@@ -875,7 +877,7 @@ var viewHTMLModule = {
         // This clears the timer of an individual test in a game if the user returns to the home page
 		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // mainController.leaveCurrentGame() can call this
         // If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
-        document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
+        document.getElementById("gameHomeLink").addEventListener("click", rocketReadingModel.mainController.leaveCurrentGame);
         document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
         // document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
 		document.getElementById("gameBack").addEventListener("click", this.closeModal);
@@ -883,13 +885,15 @@ var viewHTMLModule = {
         // document.getElementById("gameStart").addEventListener("click", mainController.startGame);
 		document.getElementById("gameStart").addEventListener("click", this.closeModal);
         document.getElementById("gameStart").addEventListener("click", this.removeEventListsGameBack);
-        document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListReplayGame);
+        document.getElementById("gameReplay").addEventListener("click", rocketReadingModel.viewHTMLModule.addEventListReplayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
         document.getElementById("gameReplay").addEventListener("click", this.addEventListReplayGame);
-        document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListGameBackReplay);
+        document.getElementById("gameReplay").addEventListener("click", rocketReadingModel.viewHTMLModule.addEventListGameBackReplay);
         document.getElementById("gameReplay").addEventListener("click", this.addEventListGameStartNew);
 		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closeModal);
 		// High Scores Screen
 		document.getElementById("highScoreScreenHomeButton").addEventListener("click", this.showHomeScreen);
 	}
-};
+    
+    }
+} () );

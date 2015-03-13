@@ -1,11 +1,13 @@
 // ViewController v2.1
 //
 
-var myViewModelRR = {
-	
-	// ********* Attributes **********
-	view : {},
-	name : "ViewController for Rocket Reading",
+rocketReadingModel.myViewModelRR = ( function () {
+    
+    // ********* Attributes **********
+	var view = {},
+        name = "ViewController for Rocket Reading";
+    
+    return {
 	
 	// ************************************
 	// ********* Get/Set Section **********
@@ -15,10 +17,10 @@ var myViewModelRR = {
 		"use strict";
 		if ( typeof inputView == "object" ) {
 			if (this.testViewModule(inputView)){
-				this.view = inputView;
-				console.log("viewController : My View is now '" + this.view.getName() + "'");
-				this.view.intitialiseView();
-				return "viewController : My View is now " + this.view.getName();
+				view = inputView;
+				console.log("viewController : My View is now '" + view.getName() + "'");
+				view.intitialiseView();
+				return "viewController : My View is now " + view.getName();
 			};
 		} else {
 			throw "viewController : setView() : I only take objects!";
@@ -40,7 +42,9 @@ var myViewModelRR = {
 			error = false;
 			
 		console.group("myViewModelRR : testViewModule()");
-		if ( typeof viewHTMLModule == "object" ){
+        // I have changed the following line to make the conditional test return true
+		// if ( typeof viewHTMLModule == "object" ){ 
+		if ( typeof viewModule == "object" ){
 			console.log("Testing " + viewModule.getName());
 			myMethods = testController.getAllMethods(this);
 			viewMethods = testController.getAllMethods(viewModule);
@@ -75,12 +79,12 @@ var myViewModelRR = {
 	
 	loginSuccessful : function () {
 		"use strict"
-		this.view.loginSuccessful();
+		view.loginSuccessful();
 	},
 	
 	badLogin : function () {
 		"use strict"
-		this.view.badLogin();
+		view.badLogin();
 	},
 	
 	// ****************************************************
@@ -94,7 +98,7 @@ var myViewModelRR = {
 	displayPlayerName : function (username) {
 		"use strict";
 		if ( typeof username == "string" ) {
-			this.view.displayPlayerName(username);
+			view.displayPlayerName(username);
 		} else {
 			throw "Error : viewController : displayPlayerName() : Input must be a string";
 		};
@@ -109,7 +113,7 @@ var myViewModelRR = {
 	
 	displayLevelList: function (inputLevels) {
 		"use strict";
-		this.view.displayLevelList(inputLevels);
+		view.displayLevelList(inputLevels);
 	},
 
 	// ********************************************
@@ -130,8 +134,8 @@ var myViewModelRR = {
 		// [ 2 , "game02" ]
 		// [ 3 , "game03" ]
 		// Console view output
-		this.view.displayGameOptions(gameOptionsInfo);
-		//this.view.showGameSelectScreen();
+		view.displayGameOptions(gameOptionsInfo);
+		//view.showGameSelectScreen();
 	},
 	// *******************************************
 	// ***** End Game Select Screen Section ******
@@ -162,55 +166,55 @@ var myViewModelRR = {
 			};
 		};
 		console.groupEnd();
-		this.view.displayMedalCounts(inputArray);
+		view.displayMedalCounts(inputArray);
 	},
 	
 	clearTimer : function () {
-		this.view.clearTimer();
+		view.clearTimer();
 	},
     
     resetGameTimer: function () {
         "use strict";
-        this.view.resetGameTimer();
+        view.resetGameTimer();
     },
 	
 	displayTable : function (inputArray) {
-		this.view.displayTable(inputArray);
+		view.displayTable(inputArray);
 	},
     
     displayWordsCompleted: function (progressData) {
         "use strict";
-        this.view.displayWordsCompleted(progressData);
+        view.displayWordsCompleted(progressData);
     },
     
     displayScore: function (score) {
         "use strict";
-        this.view.displayScore(score);
+        view.displayScore(score);
     },
     
     displayLevelGameNumber: function (levelGame) {
         "use strict";
-        this.view.displayLevelGameNumber(levelGame)
+        view.displayLevelGameNumber(levelGame)
     },
     
     displayGameTimer: function () {
         "use strict";
-        this.view.displayGameTimer();
+        view.displayGameTimer();
     },
 	
 	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";
-		this.view.updateCurrentWord(currentWord, attr, characterArray);
+		view.updateCurrentWord(currentWord, attr, characterArray);
 	},
     
     displayWord : function (characterArray, fontType) {
         "use strict";
-        this.view.displayWord(characterArray, fontType);
+        view.displayWord(characterArray, fontType);
     },
     
     clearLearnWord: function () {
         "use strict";
-        this.view.clearLearnWord();
+        view.clearLearnWord();
     },
     
     showGameScreen: function() {
@@ -219,83 +223,83 @@ var myViewModelRR = {
     },
 	
 	toggleLearnWord : function () {
-		this.view.toggleLearnWord();
+		view.toggleLearnWord();
 	},
 	
 	displayAvatar : function (avatar) {
-		this.view.displayAvatar(avatar);
+		view.displayAvatar(avatar);
 	},
 	
 	eventClickAdd : function () {
-		this.view.eventClickAdd();
+		view.eventClickAdd();
 	},
 	
 	removeEventClick : function () {
-		this.view.removeEventClick();
+		view.removeEventClick();
 	},
 	
 	addEventLearnWord : function () {
-		this.view.addEventLearnWord();
+		view.addEventLearnWord();
 	},
 	
 	removeLearnWord : function () {
-		this.view.removeLearnWord();
+		view.removeLearnWord();
 	},
     
     setLearnWordOn: function () {
         "use strict";
-        this.view.setLearnWordOn();
+        view.setLearnWordOn();
     },
     
     setLearnWordNormal: function () {
         "use strict";
-        this.view.setLearnWordNormal();
+        view.setLearnWordNormal();
     },
     
     startBarTimer: function () {
         "use strict"; 
-        this.view.startBarTimer();
+        view.startBarTimer();
     },
     
     hideBarTimer: function () {
         "use strict"; 
-        this.view.hideBarTimer();
+        view.hideBarTimer();
     },
     
     setUniformCellWidth: function () {
         "use strict";
-        this.view.setUniformCellWidth();
+        view.setUniformCellWidth();
     },
     
 	correctGuess : function () {
 		"use strict";
-		this.view.correctGuess();
+		view.correctGuess();
 	},
 	
 	
 	learnWordIsActive : function () {
 		"use strict"
-		this.view.learnWordIsActive();
+		view.learnWordIsActive();
 	},
 	
 	learnWordIsFinished : function () {
 		"use strict";
-		this.view.learnWordIsFinished();
+		view.learnWordIsFinished();
 	},
     
     addEventListContinueGameBack: function () {
         "use strict";
-        this.view.addEventListContinueGameBack();
+        view.addEventListContinueGameBack();
     },
     
     addEventListGameBackReplay: function () {
         "use strict";
-        this.view.addEventListGameStartReplay();
+        view.addEventListGameStartReplay();
     },
     
     removeEventListGameStart: function () {
         "use strict";
-        this.view.removeEventListGameStart();
+        view.removeEventListGameStart();
     }
     /*
     displayGameIntroConfirm: function () {
@@ -306,5 +310,7 @@ var myViewModelRR = {
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************
+    
+    }
 
-};
+} () );

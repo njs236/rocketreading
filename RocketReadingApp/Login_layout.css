@@ -18,15 +18,25 @@
 #loginScreen {
     height: 100%;
     width: 100%;
+    background-image: url(./images/logInBackground.jpg);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 #loginForm {
     padding: 1em;
-    width: 100%;
-    height: 100%;
+    width: 45%;
+    max-width: 28em;
+    min-width: 20em;
+    height: auto;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    background-color: rgba(255,255,255, .5);
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 1em;
 }
 
 #loginFieldset {
@@ -37,13 +47,14 @@
 	border: none;
 }
 
-#loginFieldset h1 {
+#loginFieldset h2, #loginFieldset p{
+    padding: 0.25em 0;
+/*     text-align: center;
+ */}
+ 
+ #loginFieldset h1 {
     color: DarkSlateBlue; 
-}
-
-#loginFieldset h2, #loginFieldset h1, #loginFieldset p{
-    padding: 0.5em 0;
-    text-align: center;
+    padding:0;
 }
 
 #loginFieldset h2 {
@@ -52,9 +63,9 @@
    
 #loginFormLabelDiv {
     display: inline-block;
-    position: relative;
+    /* position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
 }
 
 #loginFormLabelDiv label {

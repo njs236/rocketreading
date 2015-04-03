@@ -589,12 +589,12 @@ var viewHTMLModule = {
 		if (secsDisplay < 10) {
 			secsDisplay = '0' + secsDisplay;	
 		}
-		document.getElementById("gameTimer").textContent = gameTimerMins + " : " + secsDisplay;
+		document.getElementById("gameTimer").textContent = gameTimerMins + ":" + secsDisplay;
 	},
 	
 	resetGameTimer: function () {
 		"use strict";
-		document.getElementById("gameTimer").textContent = "0 : 00";
+		document.getElementById("gameTimer").textContent = "0:00";
 	},
 	
 	playWordInSentence: function (currentWord, attr, characterArray) {

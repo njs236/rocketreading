@@ -1,3 +1,7 @@
+#gameRightSide *{
+    font-family: Comic Sans MS, Arial, Helvetica, sans-serif;
+}
+
 #gameGame {
 	position:absolute;
 	height:100%;
@@ -5,27 +9,27 @@
 }
 
 #gameLeftSide {
-	width:15%;
+	width:9%;
 	height:100%;
 	float:left;
 }
 
 #gameRightSide {
-	width:85%;
+	width:91%;
 	height:100%;
 	float:left;
-	padding: 2em;
+	padding: 1em;
 }
 
 #gameRightSideTop {
 	width:100%;
-	height:30%;
+	height:25%;
 	border-bottom:solid 1px #aaa;
 }
 
 #gameRightSideBottom {
 	width:100%;
-	height:70%;
+	height:75%;
 	position:relative;
 }
 
@@ -40,6 +44,20 @@
 	height:100%;
 	float:left;
 }
+
+#gameRightSideTopRight {
+	width:55%;
+	height:100%;
+	float:left;
+	text-align:right;
+}
+
+/*#gameRightSideTopFarRight {
+    position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align:center;
+}*/
 
 #learnWordButton {
 	position: relative;
@@ -69,13 +87,6 @@
 	font-size:4em;
 }
 
-#gameRightSideTopRight {
-	width:55%;
-	height:100%;
-	float:left;
-	text-align:right;
-}
-
 div.gameInfoBox {
 	width:calc(100% - 2em);
 	margin:2em 1em;
@@ -98,15 +109,17 @@ div.gameInfoBox {
 }
 
 #gameWordTable td {
-    font-size : 2em;
+    /*font-family: Comic Sans MS, Arial, Helvetica, sans-serif;*/
+    font-size : 2.3em;
 	text-align:center;
 	padding: 0em 1.5em;
 }
 
 div.medalIconDiv {
 	width:100%;
-	height:calc(33% - 0.6em);
+	height:calc(33% - 1em);
 	padding-left:5%;
+    padding-right:5%;
 }
 
 div.medalIconDiv:nth-child(2) {
@@ -120,8 +133,10 @@ img.medalIcon {
 }
 
 .medalCounter {
-	float:left;
-	margin-top:20%;
+	/*margin-top:20%;*/
+    position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 #gameAvatar {

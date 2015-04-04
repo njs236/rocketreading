@@ -846,12 +846,6 @@ var viewHTMLModule = {
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
     },
     
-    addEventListStartClearSavedGame: function () {
-    // This event listener will clear the record of the player having a saved game
-        "use strict";
-        document.getElementById("gameStart").addEventListener("click", mainController.setSavedGameNull);
-    },
-    
     addEventListGameStartContinue: function () {
     // The following function should not be called if the user is returning to a previous game. This event listener will only be added if the user is starting a new game
         "use strict";
@@ -1084,8 +1078,9 @@ var viewHTMLModule = {
 			// Resume Button
 		document.getElementById("gameModalOptionResumeGame").addEventListener("click",this.closeModal);
 			// Replay Button
+		document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
-        document.getElementById("gameReplay").addEventListener("click", this.addEventListStartClearSavedGame);
+        document.getElementById("gameReplay").addEventListener("click", this.addEventListGameStartNew);
         document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListReplayGame);
         document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListGameBackReplay);
 

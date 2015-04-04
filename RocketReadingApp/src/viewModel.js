@@ -303,21 +303,6 @@ var myViewModelRR = {
 		this.view.finishedGame();
 	
 	},
-    
-    addEventListContinueGameBack: function () {
-        "use strict";
-        this.view.addEventListContinueGameBack();
-    },
-    
-    addEventListGameBackReplay: function () {
-        "use strict";
-        this.view.addEventListGameStartReplay();
-    },
-    
-    removeEventListGameStart: function () {
-        "use strict";
-        this.view.removeEventListGameStart();
-    },
 	
 	// *******************************************
 	// ********* End Game Screen Section *********

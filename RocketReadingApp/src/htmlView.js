@@ -888,13 +888,17 @@ var viewHTMLModule = {
         document.getElementById("gameBack").addEventListener("click", viewHTMLModule.closeModal);
     },
     
+    addEventListOpenNextGame: function () {
+        "use strict";
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.openNextGameModal);
+    },
+    
     removeEventListsGameBack: function () {
         "use strict";
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showHomeScreen);
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showGameSelectScreen);
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.closeModal);
     },
-	
 	
 	// *******************************************
 	// ********* End Game Screen Section *********
@@ -993,6 +997,11 @@ var viewHTMLModule = {
 		"use strict";
 		location.hash = "gameIntroModal";
 	},
+    
+    openNextGameModal : function () {
+        "use strict";
+        location.hash = "gameNextGameModal";
+    },
 	
 	correctGuess : function() {
 		"use strict";
@@ -1094,8 +1103,10 @@ var viewHTMLModule = {
 			// Home Button
 		document.getElementById("gameNextGameButtonMenu").addEventListener("click",this.showHomeScreen);
 			// Retry Button
-		document.getElementById("gameNextGameButtonRetry").addEventListener("click",mainController.replayGame);
-		document.getElementById("gameNextGameButtonRetry").addEventListener("click",this.openGameIntro);
+        document.getElementById("gameNextGameButtonRetry").addEventListener("click", this.openGameIntro);
+		document.getElementById("gameNextGameButtonRetry").addEventListener("click", this.addEventListStartClearSavedGame);
+        document.getElementById("gameNextGameButtonRetry").addEventListener("click", viewHTMLModule.addEventListReplayGame);
+		document.getElementById("gameNextGameButtonRetry").addEventListener("click", viewHTMLModule.addEventListOpenNextGame);
 		
 		
 		// High Scores Screen

@@ -1,13 +1,11 @@
 // ViewController v2.1
 //
 
-rocketReadingModel.myViewModelRR = ( function () {
-    
-    // ********* Attributes **********
-	var view = {},
-        name = "ViewController for Rocket Reading";
-    
-    return {
+var myViewModelRR = {
+	
+	// ********* Attributes **********
+	view : {},
+	name : "ViewController for Rocket Reading",
 	
 	// ************************************
 	// ********* Get/Set Section **********
@@ -17,10 +15,10 @@ rocketReadingModel.myViewModelRR = ( function () {
 		"use strict";
 		if ( typeof inputView == "object" ) {
 			if (this.testViewModule(inputView)){
-				view = inputView;
-				console.log("viewController : My View is now '" + view.getName() + "'");
-				view.intitialiseView();
-				return "viewController : My View is now " + view.getName();
+				this.view = inputView;
+				console.log("viewController : My View is now '" + this.view.getName() + "'");
+				this.view.intitialiseView();
+				return "viewController : My View is now " + this.view.getName();
 			};
 		} else {
 			throw "viewController : setView() : I only take objects!";
@@ -42,9 +40,7 @@ rocketReadingModel.myViewModelRR = ( function () {
 			error = false;
 			
 		console.group("myViewModelRR : testViewModule()");
-        // I have changed the following line to make the conditional test return true
-		// if ( typeof viewHTMLModule == "object" ){ 
-		if ( typeof viewModule == "object" ){
+		if ( typeof viewHTMLModule == "object" ){
 			console.log("Testing " + viewModule.getName());
 			myMethods = testController.getAllMethods(this);
 			viewMethods = testController.getAllMethods(viewModule);
@@ -79,12 +75,12 @@ rocketReadingModel.myViewModelRR = ( function () {
 	
 	loginSuccessful : function () {
 		"use strict"
-		view.loginSuccessful();
+		this.view.loginSuccessful();
 	},
 	
 	badLogin : function () {
 		"use strict"
-		view.badLogin();
+		this.view.badLogin();
 	},
 	
 	// ****************************************************
@@ -98,7 +94,7 @@ rocketReadingModel.myViewModelRR = ( function () {
 	displayPlayerName : function (username) {
 		"use strict";
 		if ( typeof username == "string" ) {
-			view.displayPlayerName(username);
+			this.view.displayPlayerName(username);
 		} else {
 			throw "Error : viewController : displayPlayerName() : Input must be a string";
 		};
@@ -113,7 +109,7 @@ rocketReadingModel.myViewModelRR = ( function () {
 	
 	displayLevelList: function (inputLevels) {
 		"use strict";
-		view.displayLevelList(inputLevels);
+		this.view.displayLevelList(inputLevels);
 	},
 
 	// ********************************************
@@ -134,8 +130,8 @@ rocketReadingModel.myViewModelRR = ( function () {
 		// [ 2 , "game02" ]
 		// [ 3 , "game03" ]
 		// Console view output
-		view.displayGameOptions(gameOptionsInfo);
-		//view.showGameSelectScreen();
+		this.view.displayGameOptions(gameOptionsInfo);
+		//this.view.showGameSelectScreen();
 	},
 	// *******************************************
 	// ***** End Game Select Screen Section ******
@@ -166,55 +162,55 @@ rocketReadingModel.myViewModelRR = ( function () {
 			};
 		};
 		console.groupEnd();
-		view.displayMedalCounts(inputArray);
+		this.view.displayMedalCounts(inputArray);
 	},
 	
 	clearTimer : function () {
-		view.clearTimer();
+		this.view.clearTimer();
 	},
     
     resetGameTimer: function () {
         "use strict";
-        view.resetGameTimer();
+        this.view.resetGameTimer();
     },
 	
 	displayTable : function (inputArray) {
-		view.displayTable(inputArray);
+		this.view.displayTable(inputArray);
 	},
     
     displayWordsCompleted: function (progressData) {
         "use strict";
-        view.displayWordsCompleted(progressData);
+        this.view.displayWordsCompleted(progressData);
     },
     
     displayScore: function (score) {
         "use strict";
-        view.displayScore(score);
+        this.view.displayScore(score);
     },
     
     displayLevelGameNumber: function (levelGame) {
         "use strict";
-        view.displayLevelGameNumber(levelGame)
+        this.view.displayLevelGameNumber(levelGame)
     },
     
     displayGameTimer: function () {
         "use strict";
-        view.displayGameTimer();
+        this.view.displayGameTimer();
     },
 	
 	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";
-		view.updateCurrentWord(currentWord, attr, characterArray);
+		this.view.updateCurrentWord(currentWord, attr, characterArray);
 	},
     
     displayWord : function (characterArray, fontType) {
         "use strict";
-        view.displayWord(characterArray, fontType);
+        this.view.displayWord(characterArray, fontType);
     },
     
     clearLearnWord: function () {
         "use strict";
-        view.clearLearnWord();
+        this.view.clearLearnWord();
     },
     
     showGameScreen: function() {
@@ -223,83 +219,83 @@ rocketReadingModel.myViewModelRR = ( function () {
     },
 	
 	toggleLearnWord : function () {
-		view.toggleLearnWord();
+		this.view.toggleLearnWord();
 	},
 	
 	displayAvatar : function (avatar) {
-		view.displayAvatar(avatar);
+		this.view.displayAvatar(avatar);
 	},
 	
 	eventClickAdd : function () {
-		view.eventClickAdd();
+		this.view.eventClickAdd();
 	},
 	
 	removeEventClick : function () {
-		view.removeEventClick();
+		this.view.removeEventClick();
 	},
 	
 	addEventLearnWord : function () {
-		view.addEventLearnWord();
+		this.view.addEventLearnWord();
 	},
 	
 	removeLearnWord : function () {
-		view.removeLearnWord();
+		this.view.removeLearnWord();
 	},
     
     setLearnWordOn: function () {
         "use strict";
-        view.setLearnWordOn();
+        this.view.setLearnWordOn();
     },
     
     setLearnWordNormal: function () {
         "use strict";
-        view.setLearnWordNormal();
+        this.view.setLearnWordNormal();
     },
     
     startBarTimer: function () {
         "use strict"; 
-        view.startBarTimer();
+        this.view.startBarTimer();
     },
     
     hideBarTimer: function () {
         "use strict"; 
-        view.hideBarTimer();
+        this.view.hideBarTimer();
     },
     
     setUniformCellWidth: function () {
         "use strict";
-        view.setUniformCellWidth();
+        this.view.setUniformCellWidth();
     },
     
 	correctGuess : function () {
 		"use strict";
-		view.correctGuess();
+		this.view.correctGuess();
 	},
 	
 	
 	learnWordIsActive : function () {
 		"use strict"
-		view.learnWordIsActive();
+		this.view.learnWordIsActive();
 	},
 	
 	learnWordIsFinished : function () {
 		"use strict";
-		view.learnWordIsFinished();
+		this.view.learnWordIsFinished();
 	},
     
     addEventListContinueGameBack: function () {
         "use strict";
-        view.addEventListContinueGameBack();
+        this.view.addEventListContinueGameBack();
     },
     
     addEventListGameBackReplay: function () {
         "use strict";
-        view.addEventListGameStartReplay();
+        this.view.addEventListGameStartReplay();
     },
     
     removeEventListGameStart: function () {
         "use strict";
-        view.removeEventListGameStart();
+        this.view.removeEventListGameStart();
     }
     /*
     displayGameIntroConfirm: function () {
@@ -310,7 +306,5 @@ rocketReadingModel.myViewModelRR = ( function () {
 	// *******************************************
 	// ********* End Game Screen Section *********
 	// *******************************************
-    
-    }
 
-} () );
+};

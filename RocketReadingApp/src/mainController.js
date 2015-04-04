@@ -1,8 +1,6 @@
 // The system creates a mainController object which aims to resolve requests that involve data analysis
 
-rocketReadingModel.mainController = ( function () {
-    "use strict";
-    return {
+var mainController = {
     
     // *************************************
 	// ******* Register Screen Section *****
@@ -25,7 +23,7 @@ rocketReadingModel.mainController = ( function () {
     loginMethods: {
         validateLogin: function (userName, userPassword) {
             "use strict";
-           if  (( rocketReadingModel.storageController.getPlayer(userName).userName === userName) && ( rocketReadingModel.storageController.getPlayer(userName).firstName === userPassword )) {
+           if  (( storageController.getPlayer(userName).userName === userName) && ( storageController.getPlayer(userName).firstName === userPassword )) {
                 return true;
             } else {
                 return false;
@@ -68,15 +66,15 @@ rocketReadingModel.mainController = ( function () {
         "use strict";
 		console.group("Login Process");
 		console.log(userName + userPassword);
-        if (rocketReadingModel.mainController.loginMethods.validateFieldInput(userName, userPassword)) {
+        if (mainController.loginMethods.validateFieldInput(userName, userPassword)) {
 			console.log("Fields Valid");
-            if (rocketReadingModel.mainController.loginMethods.validateUserExists(userName)) {
+            if (mainController.loginMethods.validateUserExists(userName)) {
 				console.log("User Exists");
-				if ( rocketReadingModel.mainController.loginMethods.validateLogin( userName, userPassword ) ){
+				if ( mainController.loginMethods.validateLogin( userName, userPassword ) ){
 					console.groupEnd();
-					rocketReadingModel.myViewModelRR.loginSuccessful();
-					rocketReadingModel.mainController.setPlayer(userName);
-                    rocketReadingModel.mainController.setAccessTo();
+					myViewModelRR.loginSuccessful();
+					mainController.setPlayer(userName);
+                    mainController.setAccessTo();
 				} else {
 					console.log("%cprocessLogin : Bad Password","color:red");
 					myViewModelRR.badLogin();
@@ -85,7 +83,7 @@ rocketReadingModel.mainController = ( function () {
             } else {
                 console.log("No login ...");
 				console.groupEnd();
-				rocketReadingModel.myViewModelRR.badLogin();
+				myViewModelRR.badLogin();
             }
         }
 		
@@ -95,11 +93,11 @@ rocketReadingModel.mainController = ( function () {
 	setPlayer: function (username) {
     // This function is for loading player data from the local storage 
         "use strict";
-		var playerData = rocketReadingModel.storageController.getPlayer(username);
+		var playerData = storageController.getPlayer(username);
         console.log("mainController.setPlayer(): setPlayer() player's school - " + playerData.school);
         // It's interesting to see what happens when passing the score as 0 (and the constructor does not set the total score as 0 if there is not input parameter for this attribute.
 		rocketReadingModel.setPlayer(playerData);
-		rocketReadingModel.myViewModelRR.displayPlayerName(username);
+		myViewModelRR.displayPlayerName(username);
 	},
     
     setAccessTo : function () {
@@ -313,7 +311,7 @@ rocketReadingModel.mainController = ( function () {
 			transientArray = [];
 		};
 		
-		rocketReadingModel.myViewModelRR.displayLevelList(outputArray);
+		myViewModelRR.displayLevelList(outputArray);
 		
         //myViewModelRR.displayLevelList(allLevels);
     },   
@@ -986,16 +984,10 @@ rocketReadingModel.mainController = ( function () {
     
     
     //Instructions Screen
+
     
-    /* Public methods 
+
     
-    initialiseModule = function () {    
-        //  
-        
-        
-        return { mainControllerModule: initialiseModule };
-    }*/
-    
-    }
+
 	 
-}() );
+};

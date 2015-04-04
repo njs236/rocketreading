@@ -1,28 +1,25 @@
-rocketReadingModel.storageController = ( function () {
-	var controllerType = {};
-    
-    return {
-        
+var storageController = {
+	ControllerType : {},
 	getPlayer : function (uname) {
         //uname is a static string that is passed from the owning function.
-        return controllerType.getPlayer(uname);	
+        return this.ControllerType.getPlayer(uname);	
     },
-	setControllerType : function (object) {
-		controllerType = object;
-		// return controllerType;
+	setControllerType : function (string) {
+		this.ControllerType = string;
+		return this.ControllerType;
 	},
     
     registerPlayer : function (player) {
-        controllerType.registerPlayer(player);
+        this.ControllerType.registerPlayer(player);
     },
     
     saveAllGamesData : function () {
-        controllerType.saveAllGamesData();
+        this.ControllerType.saveAllGamesData();
     },
     
     saveCurrentGameData : function () {
-        controllerType.saveCurrentGameData();
+        this.ControllerType.saveCurrentGameData();
     }
-    
-    }
-}());
+};
+
+storageController.setControllerType(localStorageController);

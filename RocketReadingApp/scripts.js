@@ -1,5 +1,3 @@
-rocketReadingModel.scripts = ( function () {
-
 // Global vars
 
 var gameTimerSecs = 0,
@@ -22,9 +20,7 @@ var gameTimerSecs = 0,
 
 // Adding a user to local storage
 
-return {
-
-    loadGameData : function () {
+var loadGameData = function () {
     "use strict";
     var theLevel,
         wordList1 = ["I","am","the","go","going","to","shop","car","at","in","is","Mum","here","and","see","Dad","a","cat","can","said","run","running","jump","jumping","school"],
@@ -213,9 +209,9 @@ return {
     theLevel.addGame("Game 3", wordList23, theLevel.getDescription(), 3, false, false);
     theLevel.addGame("Game 4", wordList24, theLevel.getDescription(), 4, false, false);
     
-},
+};
 
-    initialise : function () {
+var initialise = function () {
 	"use strict";
 	//addLevel();
 	//generateLists();
@@ -225,16 +221,11 @@ return {
 	// homeInitialise();
 	// loginInitialise();
 
-    // A single instance of the Rocket Reading Model is instantiated
-    // rocketReadingModel = new RocketReadingModel();
-    
-    this.loadGameData();
+    loadGameData();
 	//mainController.initialiseView();
-    rocketReadingModel.myViewModelRR.setView(rocketReadingModel.viewHTMLModule);
-    rocketReadingModel.storageController.setControllerType(rocketReadingModel.localStorageController);
-    
-},
-/*
+    myViewModelRR.setView(viewHTMLModule);
+};
+
 window.requestAnimFrame = (function(callback){
     "use strict";
     return window.requestAnimationFrame ||
@@ -245,9 +236,5 @@ window.requestAnimFrame = (function(callback){
     function(callback){
         window.setTimeout(callback, 1000 / 60);
     };
-})();*/
+})();
 
-    }
-    
-} () );
-    

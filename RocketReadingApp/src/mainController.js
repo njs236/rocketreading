@@ -778,7 +778,7 @@ var mainController = {
         }
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the particular level-game the user will be replaying.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
-        // The system clears the timer vars and timer display
+        // The system clears the timers vars and timer display
         mainController.resetGameTimers();
         // The system starts a new game and initialises the game screen - really, the completeWordList could be set by resetCurrentGameData() - a bit of refactoring to achieve this
         mainController.gameInitialise();

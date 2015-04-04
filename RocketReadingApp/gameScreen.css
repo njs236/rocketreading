@@ -9,13 +9,13 @@
 }
 
 #gameLeftSide {
-	width:9%;
+	width:12%;
 	height:100%;
 	float:left;
 }
 
 #gameRightSide {
-	width:91%;
+	width:88%;
 	height:100%;
 	float:left;
 	padding: 1em;
@@ -40,13 +40,13 @@
 }
 
 #gameRightSideTopMiddle {
-	width:20%;
+	width:25%;
 	height:100%;
 	float:left;
 }
 
 #gameRightSideTopRight {
-	width:55%;
+	width:50%;
 	height:100%;
 	float:left;
 	text-align:right;
@@ -64,7 +64,7 @@
 	top: 50%;
 	transform: translateY(-50%);
 	width:100%;
-	height:30%;
+	height:45%;
 	text-align:center;
 	border: 1px solid black;
 	border-radius: 0.5em;
@@ -110,9 +110,8 @@ div.gameInfoBox {
 
 #gameWordTable td {
     /*font-family: Comic Sans MS, Arial, Helvetica, sans-serif;*/
-    font-size : 2.3em;
+    font-size : 2.4em;
 	text-align:center;
-	padding: 0em 1.5em;
 	padding: 0em 0.6em;
 }
 
@@ -120,7 +119,7 @@ div.medalIconDiv {
 	width:100%;
 	height:calc(33% - 1em);
 	padding-left:5%;
-    padding-right:5%;
+    /*padding-right:5%;*/
 }
 
 div.medalIconDiv:nth-child(2) {

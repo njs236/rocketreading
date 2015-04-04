@@ -567,8 +567,8 @@ var mainController = {
         mainController.resetCompleteWordList(); // Because randomiseArray() is no longer run, the complete word list no longer needs to be reset.*/
         // Display the table with the (un-)randomised complete wordlist
 		myViewModelRR.displayTable(rocketReadingModel.getCurrentGameData().getCompleteWordList());
-        // Set the cells of the table to have a uniform width
-        myViewModelRR.setUniformCellWidth("gameWordCell");
+        // Set the cells of the table to have a uniform width - the function to do this is called by the above method
+        // myViewModelRR.setStandardCellSize("gameWordCell");
 	},
 	
 	displayMedalCounts : function () {

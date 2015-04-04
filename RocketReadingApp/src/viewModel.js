@@ -262,9 +262,14 @@ var myViewModelRR = {
         this.view.hideBarTimer();
     },
     
-    setUniformCellWidth: function () {
+    setUniformCellWidth: function (cellClassName) {
         "use strict";
-        this.view.setUniformCellWidth();
+        this.view.setUniformCellWidth(cellClassName);
+    },
+    
+    setStandardCellSize: function (cellClassName) {
+        "use strict";
+        this.view.setStandardCellSize(cellClassName);
     },
     
 	correctGuess : function () {

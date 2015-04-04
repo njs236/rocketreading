@@ -514,6 +514,8 @@ var viewHTMLModule = {
 			newCell.id = "cell" + wordCount;
 			newCell.className = "gameWordCell";
 		}
+        // Set the cells of the table to a uniform size
+        viewHTMLModule.setUniformCellWidth("gameWordCell");
 	},
 	
 	setUniformCellWidth: function (cellClassName) {
@@ -531,8 +533,31 @@ var viewHTMLModule = {
 			}
 		}
 		console.log("displayTable(): widestCellWidth: " + widestCellWidth + "  Stylesheet: " + document.styleSheets[0]);
-		document.styleSheets[0].insertRule("td." + cellClassName + " { width : calc(" + widestCellWidth + "px + 1.5em);}", 0);
+		document.styleSheets[0].insertRule("td." + cellClassName + " { width : calc(" + widestCellWidth + "px + 1.5em);}", 1);
 	},
+    
+    setStandardCellSize : function (cellClass) {
+        "use strict";
+        var count,
+            widestCell,
+            widestCellWidth = 0,        
+            cellArray = document.getElementsByClassName(cellClass),
+            highestCellHeight = cellArray[0].offsetHeight;
+            console.log("highestCellHeight: " + highestCellHeight); // test
+        for ( count = 0; count < cellArray.length; count = count + 1) {
+            if ( cellArray[count].offsetWidth > widestCellWidth ) {
+                widestCellWidth = cellArray[count].offsetWidth;
+                widestCell = count;
+            }
+        }
+        
+        console.log("Widest cell: " + widestCellWidth); // test
+        // The box-sizing of the bonus table cells has been set to content-box to enable the following line to make all the cells the same width and height as the heading cells.
+        for (count = 0; count < cellArray.length; count += 1) {
+            cellArray[count].style.width = "calc(" + widestCellWidth + "px + 0.6em)";
+            cellArray[count].style.height = highestCellHeight + "px"; 
+        }
+    },        
 	
 	eventClickAdd : function () {
 		"use strict";

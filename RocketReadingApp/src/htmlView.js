@@ -1082,6 +1082,7 @@ var viewHTMLModule = {
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
         document.getElementById("gameReplay").addEventListener("click", this.addEventListGameStartNew);
         document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListReplayGame);
+        document.getElementById("gameReplay").addEventListener("click", this.addEventListReplayGame);
         document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListGameBackReplay);
 
 		

@@ -13,31 +13,25 @@
 	color: rgba(251, 239, 126, .9);
 }
 
-#imgGSSLeftImage{
+#imgGSSLeftImage, #imgGSSRightImage {
     position: absolute;
     bottom: 1%;
     z-index: 5;
     width: 30%;
     height: 50%;
     overflow: auto;
-    background-image: url(../images/Mission01Kay.png);
-    background-position: left bottom;
     background-size: contain;
     background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+#imgGSSLeftImage {
+    background-position: left bottom;
 }
 
 #imgGSSRightImage{
-    position: absolute;
     right: 0;
-    bottom: 1%;
-    z-index: 5;
-    width: 30%;
-    height: 50%;
-    overflow: auto;
-    background-image: url(../images/Mission01Dewingerfier.png);
     background-position: right bottom;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 #gameSelectButtonContainer{
@@ -81,4 +75,8 @@ div.gameSelectScreenRow{
 .gameSelectLocked {
     opacity: .4;
     cursor: not-allowed;
+}
+
+.gameSelectEmpty{
+    cursor: auto;
 }

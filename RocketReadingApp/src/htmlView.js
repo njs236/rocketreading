@@ -362,6 +362,9 @@ var viewHTMLModule = {
         
         // update the background image for the current level, the image for the level must be a .jpg and be saved with the same file name as the first game of the level.
         document.getElementById("gameSelectScreen").style.backgroundImage = "url(images/" + encodeURIComponent(gameOptionsData[0][1]) + ".jpg)";
+        // set the foreground pictures
+        document.getElementById("imgGSSLeftImage").style.backgroundImage = "url(images/left" + encodeURIComponent(gameOptionsData[0][1]) + ".png)";
+        document.getElementById("imgGSSRightImage").style.backgroundImage = "url(images/right" + encodeURIComponent(gameOptionsData[0][1]) + ".png)";
 		
 		for (count = 0; count < gameOptionsData.length; count += 1) { 
 			if (count % 3 === 0) {
@@ -373,7 +376,7 @@ var viewHTMLModule = {
 			if ( gameOptionsData.length === (count + 1) && gameOptionsData.length % 3 === 1 ) {
 				console.log("displayGameOptions() : Last Item");
 				newDiv = document.createElement("DIV");
-				newDiv.className = "gameSelectScreenGame";
+				newDiv.className = "gameSelectScreenGame gameSelectEmpty";
 				gameSelectMainDiv.lastChild.appendChild(newDiv);
 			};
 			

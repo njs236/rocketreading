@@ -1,3 +1,37 @@
+#gameSelectScreen{
+    background-image: url(../images/mission01Background.jpg);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+#imgGSSLeftImage{
+    position: absolute;
+    bottom: 1%;
+    z-index: 5;
+    width: 30%;
+    height: 50%;
+    overflow: auto;
+    background-image: url(../images/Mission01Kay.png);
+    background-position: left bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#imgGSSRightImage{
+    position: absolute;
+    right: 0;
+    bottom: 1%;
+    z-index: 5;
+    width: 30%;
+    height: 50%;
+    overflow: auto;
+    background-image: url(../images/Mission01Dewingerfier.png);
+    background-position: right bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 #gameSelectButtonContainer{
 	position:absolute;
 	width:100%;

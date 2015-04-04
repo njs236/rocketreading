@@ -79,7 +79,7 @@ rocketReadingModel.mainController = ( function () {
                     rocketReadingModel.mainController.setAccessTo();
 				} else {
 					console.log("%cprocessLogin : Bad Password","color:red");
-					myViewModelRR.badLogin();
+					rocketReadingModel.myViewModelRR.badLogin();
 				};
 				
             } else {
@@ -281,7 +281,7 @@ rocketReadingModel.mainController = ( function () {
     
     setCurrentLevel : function () {
 		"use strict";
-		var levelNumber = mainController.getStringNumber(this.id),
+		var levelNumber = rocketReadingModel.mainController.getStringNumber(this.id),
 			levelGame = [levelNumber, null];
 		
 		rocketReadingModel.getCurrentGameData().setCurrentLevel(rocketReadingModel.findLevelByNumber(levelNumber));
@@ -333,7 +333,7 @@ rocketReadingModel.mainController = ( function () {
 	setGameAndWordList : function (gameString) {
 		"use strict";
         // Using this.id as the argument for getStringNumber() will not work now because this function is being called by other functions
-		var gameNumber = mainController.getStringNumber(gameString),
+		var gameNumber = rocketReadingModel.mainController.getStringNumber(gameString),
             levelGames = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         levelGames[1] = gameNumber;
 		console.log("setGameAndWordList() - gameNumber (regex):" + gameNumber);
@@ -351,7 +351,7 @@ rocketReadingModel.mainController = ( function () {
 		// [ 2 , "game02" ]
 		// [ 3 , "game03" ]
 		var outputGameOptions = [],
-			levelNumber = mainController.getStringNumber(this.id),
+			levelNumber = rocketReadingModel.mainController.getStringNumber(this.id),
 			count,
 			tempArray = [],
 			gamesArray = [];
@@ -371,7 +371,7 @@ rocketReadingModel.mainController = ( function () {
 			tempArray = [];
 		};
 		console.groupEnd();
-		myViewModelRR.displayGameOptions(outputGameOptions);
+		rocketReadingModel.myViewModelRR.displayGameOptions(outputGameOptions);
 	},    
     
     checkGameResumption: function () {
@@ -383,9 +383,9 @@ rocketReadingModel.mainController = ( function () {
             // Check with the user whether they wish to resume the old game or start a new game
         } else {*/
             // The system will disable and turn off the learn word mode in case it was turned on when the user was playing another game and then the user left that game without successfully answering that word
-            mainController.disableLearnWord();
-            mainController.resetGameTimers();
-            mainController.newGameInitialise();
+            rocketReadingModel.mainController.disableLearnWord();
+            rocketReadingModel.mainController.resetGameTimers();
+            rocketReadingModel.mainController.newGameInitialise();
       //}
     },
     
@@ -442,7 +442,7 @@ rocketReadingModel.mainController = ( function () {
         // Check to see if the high-score should be updated
         rocketReadingModel.getMyPlayer().checkHighScore(levelNumber, gameNumber);
         // The system checks whether a user has completed a bonus game and if so sets the bonus game as being completed
-        mainController.checkForBonusGameCompletion(levelGame[0]);
+        rocketReadingModel.mainController.checkForBonusGameCompletion(levelGame[0]);
         // Save the current game data to rocketReadingModel.myAllGamesData
         rocketReadingModel.getAllGamesData().saveGameData(levelNumber, gameNumber, rocketReadingModel.getCurrentGameData());
         
@@ -463,8 +463,8 @@ rocketReadingModel.mainController = ( function () {
                 && (levelGameReached[0] === gameNumber) 
                 && (levelGameReached[0] !== rocketReadingModel.getAllLevels().length - 1) ) {
             // Passing setLevelGameReached() the gameNumber to determine the level which will be looked at. Passing null for the second parameter - will this work? Seems to
-            mainController.setLevelGameReached(rocketReadingModel.findLevelByNumber(gameNumber), null);
-            mainController.setAccessTo();
+            rocketReadingModel.mainController.setLevelGameReached(rocketReadingModel.findLevelByNumber(gameNumber), null);
+            rocketReadingModel.mainController.setAccessTo();
         }
         
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
@@ -476,7 +476,7 @@ rocketReadingModel.mainController = ( function () {
         // Clear the current data object
         rocketReadingModel.clearCurrentGameData();
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
-        mainController.resetCurrentGameData(level, game, wordList, levelGame);
+        rocketReadingModel.mainController.resetCurrentGameData(level, game, wordList, levelGame);
     },
     
     setSavedGameNull: function () {
@@ -502,7 +502,7 @@ rocketReadingModel.mainController = ( function () {
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
         // In case the learn word sequence is running when the player leaves the game, the timers which are involved in this sequence are all turned off
-        mainController.disableLearnWordTimers();
+        rocketReadingModel.mainController.disableLearnWordTimers();
         console.log("mainController: leaveCurrentGame() current word: " + rocketReadingModel.getCurrentGameData().getCurrentWord());
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
             //If the user has not finished the current game then the system needs to save the current game timer to the current game state object
@@ -512,14 +512,14 @@ rocketReadingModel.mainController = ( function () {
             clearInterval(aTimer);
             rocketReadingModel.getCurrentGameData().clearMyTimer();
             // The timers for the bar timer are hidden and cleared 
-            myViewModelRR.hideBarTimer();
+            rocketReadingModel.myViewModelRR.hideBarTimer();
             clearTimeout(silverBar);
             clearTimeout(bronzeBar);
             // The current game data is recorded as having a saved game
             rocketReadingModel.getCurrentGameData().setSavedLevelGame(levelGame);
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {
             // If the user has completed the current game then the game screen's properties will be cleared and reset, eg the total game time will be reset to 0.
-            mainController.resetGameTimers();
+            rocketReadingModel.mainController.resetGameTimers();
         }
     },
     
@@ -546,21 +546,21 @@ rocketReadingModel.mainController = ( function () {
         // After the wordlist has been randomised, the complete word list needs to be repopulated. This is necessary because the complete word list may need to be used in validateWords()
         mainController.resetCompleteWordList(); // Because randomiseArray() is no longer run, the complete word list no longer needs to be reset.*/
         // Display the table with the (un-)randomised complete wordlist
-		myViewModelRR.displayTable(rocketReadingModel.getCurrentGameData().getCompleteWordList());
+		rocketReadingModel.myViewModelRR.displayTable(rocketReadingModel.getCurrentGameData().getCompleteWordList());
         // Set the cells of the table to have a uniform width
-        myViewModelRR.setUniformCellWidth();
+        rocketReadingModel.myViewModelRR.setUniformCellWidth();
 	},
 	
 	displayMedalCounts : function () {
 		var medals = rocketReadingModel.getCurrentGameData().getMedalCounts();
 		console.log("getMedalCounts:" + medals)
-		myViewModelRR.displayMedalCounts(medals);
+		rocketReadingModel.myViewModelRR.displayMedalCounts(medals);
 	},
 	
 	displayScore : function() {
         "use strict";
 		var score = rocketReadingModel.getCurrentGameData().getScore();
-		myViewModelRR.displayScore(score);
+		rocketReadingModel.myViewModelRR.displayScore(score);
 	},
 	
 	displayWordsCompletedData : function () {
@@ -570,7 +570,7 @@ rocketReadingModel.mainController = ( function () {
         // progressData.push(rocketReadingModel.getCurrentGameData().getWordListCount());
         progressData.push(rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
         // Or: progressData.push(rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().length);
-		myViewModelRR.displayWordsCompleted(progressData);
+		rocketReadingModel.myViewModelRR.displayWordsCompleted(progressData);
 	},
     
     displayCurrentLevelGame: function () {
@@ -580,33 +580,33 @@ rocketReadingModel.mainController = ( function () {
         levelGame.push( rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0] );
         levelGame.push( rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber() );
         // Or could just access the currentLevelGame property of currentGameData (if this property is set every time a level or game is set)
-        myViewModelRR.displayLevelGameNumber(levelGame);
+        rocketReadingModel.myViewModelRR.displayLevelGameNumber(levelGame);
     },
 	
     // Is this function used?
 	getLevelNumber : function () {
         "use strict";
 		var levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber();
-		myViewModelRR.displayLevelNumber(levelNumber);
+		rocketReadingModel.myViewModelRR.displayLevelNumber(levelNumber);
 	},
 	
 	getGameNumber : function () {
         "use strict";
 		var gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber();
-		myViewModelRR.displayGameNumber(gameNumber);
+		rocketReadingModel.myViewModelRR.displayGameNumber(gameNumber);
 	},
 	
 	displayAvatar : function () {
         "use strict";
 		// var avatar = rocketReadingModel.getCurrentGameData().getCurrentLevel().getAvatar();
         var avatar = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]).getAvatar();
-		myViewModelRR.displayAvatar(avatar);
+		rocketReadingModel.myViewModelRR.displayAvatar(avatar);
 	},
 	
 	getWordListCount : function () {
         "use strict";
 		var wordListCount = rocketReadingModel.getCurrentGameData().getWordListCount();
-		myViewModelRR.displayWordListCount(wordListCount);
+		rocketReadingModel.myViewModelRR.displayWordListCount(wordListCount);
 	},
     
     /* setTimerGameScreenIntro: function () {
@@ -617,26 +617,26 @@ rocketReadingModel.mainController = ( function () {
     
     nextWord: function() {
         "use strict";
-        var listArray = rocketReadingModel.getCurrentGameData().getWordList(),
+        var listArray = RocketReadingModel.getCurrentGameData().getWordList(),
 			currentWordIndex = Math.floor(Math.random() * listArray.length),
             currentWord = listArray[currentWordIndex];
         // The system checks to see whether the user has a current word - if not the system select a current word and uses this for the first test of the user's new game. To make this work, the current word will need to be cleared at the end of each test & once the user has successfully identified the word.
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {
             rocketReadingModel.getCurrentGameData().setCurrentWord(currentWord);
             learnWordCount = 0;
-            myViewModelRR.updateCurrentWord(currentWord, 'normalWord', null);
+            rocketReadingModel.myViewModelRR.updateCurrentWord(currentWord, 'normalWord', null);
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
             //  The system checks to see whether the user has an incorrect word. 
             if (rocketReadingModel.getCurrentGameData().getIncorrectWord() === null) {
             learnWordCount = 0;
-            myViewModelRR.updateCurrentWord(rocketReadingModel.getCurrentGameData().getCurrentWord(), 'normalWord', null);
+            rocketReadingModel.myViewModelRR.updateCurrentWord(rocketReadingModel.getCurrentGameData().getCurrentWord(), 'normalWord', null);
             // If the user has an incorrect word, the user will have to learn this word when he or she returns to their game.
             } else if (rocketReadingModel.getCurrentGameData().getIncorrectWord() !== null) {
                 // If the currentGameData has an incorrect word (ie the user got a word wrong just before the user left the game and this word was recorded as being the incorrect word in the saved game's data) then the learn word word will be enabled and the user will have to click this to proceed. 
-                mainController.enableLearnWord();
+                rocketReadingModel.mainController.enableLearnWord();
                 // The cells of the table will be disabled - no this is not necessary
                 // Any text in the space for displaying the word to be learned will be cleared
-                myViewModelRR.clearLearnWord();
+                rocketReadingModel.myViewModelRR.clearLearnWord();
             }
         }
     },
@@ -650,7 +650,7 @@ rocketReadingModel.mainController = ( function () {
     
     requestBarTimer: function () {
         "use strict"; 
-        myViewModelRR.startBarTimer();
+        rocketReadingModel.myViewModelRR.startBarTimer();
     },
     
 	createWordTimer : function () {
@@ -666,14 +666,14 @@ rocketReadingModel.mainController = ( function () {
         "use strict";
 		rocketReadingModel.getCurrentGameData().incrementTimer(milliseconds);
 		if (rocketReadingModel.getCurrentGameData().getTimer() >= 8000) {
-			mainController.validateWords();
+			rocketReadingModel.mainController.validateWords();
 		}
 		/*console.log("returnMilliseconds:" + rocketReadingModel.getCurrentGameData().getTimer())*/
 	},
 	
     startGameTimer: function () {
         "use strict";
-        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
+        rocketReadingModel.scripts.gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
     },
     
     startGame: function () {
@@ -687,36 +687,36 @@ rocketReadingModel.mainController = ( function () {
         // The data for the previous game in the current object needs to be cleared and data for the new game set. Not all properties will be clobbered by the resetCurrentGameData() function - all the properties of currentGameData should really be set-able by addCurrentGameData()
         rocketReadingModel.clearCurrentGameData();
         // Create a new current data object, setting it the appropriate values for the currentLevelGame, myGame, myLevel and wordList properties, and then assign it as a property of the Rocket-Reading object. 
-        mainController.resetCurrentGameData(level, game, wordList, levelGame);
+        rocketReadingModel.mainController.resetCurrentGameData(level, game, wordList, levelGame);
         
         // Start the game timer
-        mainController.startGameTimer();
+        rocketReadingModel.mainController.startGameTimer();
         // Determine which word the user will be tested on
-        mainController.nextWord();
+        rocketReadingModel.mainController.nextWord();
         // The event listener which led to this function being called will be removed
-        myViewModelRR.removeEventListGameStart(); 
+        rocketReadingModel.myViewModelRR.removeEventListGameStart(); 
     },
     
     startGameContinue: function () {
         "use strict";
         // Start the game timer
-        mainController.startGameTimer();
+        rocketReadingModel.mainController.startGameTimer();
         // Determine which word the user will be tested on
-        mainController.nextWord();
+        rocketReadingModel.mainController.nextWord();
     },
     
     enableLearnWord: function () {
         "use strict";
         // The event listener for learning a word is added
-        myViewModelRR.addEventLearnWord();
+        rocketReadingModel.myViewModelRR.addEventLearnWord();
         // The learn word heading is highlighted
-        myViewModelRR.setLearnWordOn();
+        rocketReadingModel.myViewModelRR.setLearnWordOn();
     },
     
     disableLearnWord: function () {
         "use strict";
         // The event listener for learning a word is removed
-        myViewModelRR.removeLearnWord();
+        rocketReadingModel.myViewModelRR.removeLearnWord();
         // The learn word heading is un-highlighted
         //myViewModelRR.setLearnWordNormal();
     },
@@ -729,9 +729,9 @@ rocketReadingModel.mainController = ( function () {
             wordList = rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().slice(0),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
         // In case the learn word sequence is running when the player leaves the game, the timers which are involved in this sequence are all turned off
-        mainController.disableLearnWordTimers();
+        rocketReadingModel.mainController.disableLearnWordTimers();
         // Also, any text in the space for displaying the word to be learned will be cleared
-        myViewModelRR.clearLearnWord();
+        rocketReadingModel.myViewModelRR.clearLearnWord();
         // In case the user clicks the back button of the game intro modal screen, the following should only occur once the user clicks 'play'. Otherwise, if the user clicks the back button of the pause game window modal screen then they will not be able to return to the game they were playing.
         // Event listeners for the 'back' and 'start' buttons of the game intro modal window are added
         //myViewModelRR.addEventListReplayGameBack();
@@ -742,37 +742,37 @@ rocketReadingModel.mainController = ( function () {
             // If so, then the system will wipe this data. 
             rocketReadingModel.clearCurrentGameData();
             // Clear the timer for the last word test
-            myViewModelRR.clearTimer();
+            rocketReadingModel.myViewModelRR.clearTimer();
             // Stop the total game timer
             clearInterval(gameTimer);
             // The bar timer needs to be disabled and cleared
-            mainController.disableBarTimer();
+            rocketReadingModel.mainController.disableBarTimer();
             // In case the game is in learn word mode when the user clicks the replay button, the system will disable this mode
-            mainController.disableLearnWord();
+            rocketReadingModel.mainController.disableLearnWord();
             // The incorrect property of currentGameData is set to null in case it has a value
             // rocketReadingModel.getCurrentGameData().setIncorrectWord(null); // This should not be necessary
         }
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the particular level-game the user will be replaying.
-        mainController.resetCurrentGameData(level, game, wordList, levelGame);
+        rocketReadingModel.mainController.resetCurrentGameData(level, game, wordList, levelGame);
         // The system clears the timers vars and timer display
-        mainController.resetGameTimers();
+        rocketReadingModel.mainController.resetGameTimers();
         // The system starts a new game and initialises the game screen - really, the completeWordList could be set by resetCurrentGameData() - a bit of refactoring to achieve this
-        mainController.gameInitialise();
+        rocketReadingModel.mainController.gameInitialise();
         // mainController.startGame(); // If the 'gameIntroModal' modal window opens then the game will start when the player clicks the start link.
         
         // Start the game timer
-        mainController.startGameTimer();
+        rocketReadingModel.mainController.startGameTimer();
         // Determine which word the user will be tested on
-        mainController.nextWord();
+        rocketReadingModel.mainController.nextWord();
         // The event listener which led to this function being called will be removed
-        myViewModelRR.removeEventListGameStart(); 
+        rocketReadingModel.myViewModelRR.removeEventListGameStart(); 
     },
 
     resetGameTimers: function () {
         "use strict";
-        gameTimerSecs = 0;
-        gameTimerMins = 0;
-        myViewModelRR.resetGameTimer();
+        rocketReadingModel.scripts.gameTimerSecs = 0;
+        rocketReadingModel.scripts.gameTimerMins = 0;
+        rocketReadingModel.myViewModelRR.resetGameTimer();
     },
     
     gameInitialise: function () {
@@ -789,12 +789,12 @@ rocketReadingModel.mainController = ( function () {
         rocketReadingModel.getCurrentGameData().setCompleteWordList(completeWordList);
         
         // The game screen is setup 
-        mainController.createTable();
-        mainController.displayMedalCounts();
-        mainController.displayScore();
-        mainController.displayWordsCompletedData();
-        mainController.displayCurrentLevelGame();
-        mainController.displayAvatar();
+        rocketReadingModel.mainController.createTable();
+        rocketReadingModel.mainController.displayMedalCounts();
+        rocketReadingModel.mainController.displayScore();
+        rocketReadingModel.mainController.displayWordsCompletedData();
+        rocketReadingModel.mainController.displayCurrentLevelGame();
+        rocketReadingModel.mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
     },
     
@@ -813,13 +813,13 @@ rocketReadingModel.mainController = ( function () {
         rocketReadingModel.getCurrentGameData().setCompleteWordList(completeWordList);
         
         // A game screen will be displayed containing default values for a new game
-        mainController.createTable();
-        myViewModelRR.displayMedalCounts([0,0,0]);
-		myViewModelRR.displayScore(0);
-        myViewModelRR.displayWordsCompleted(0, rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
+        rocketReadingModel.mainController.createTable();
+        rocketReadingModel.myViewModelRR.displayMedalCounts([0,0,0]);
+		rocketReadingModel.myViewModelRR.displayScore(0);
+        rocketReadingModel.myViewModelRR.displayWordsCompleted(0, rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
         // These two will be tricky to get round
-        mainController.displayCurrentLevelGame(); 
-        mainController.displayAvatar();
+        rocketReadingModel.mainController.displayCurrentLevelGame(); 
+        rocketReadingModel.mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
         // The event listener which led to this function being called will be removed
         // myViewModelRR.removeEventListGameStart();
@@ -839,15 +839,15 @@ rocketReadingModel.mainController = ( function () {
 		/*console.log("validateWords:" + myTimer);*/
         // This is the happy day scenario
         if (incorrectWord === null) {
-            myViewModelRR.clearTimer();
+            rocketReadingModel.myViewModelRR.clearTimer();
             // The timers for the bar timer are hidden and cleared 
-            myViewModelRR.hideBarTimer();
+            rocketReadingModel.myViewModelRR.hideBarTimer();
             clearTimeout(silverBar);
             clearTimeout(bronzeBar);
             // If the user has run out of time to answer a test this function will be called with a null argument
             if (word !== null) {
                 if (word === currentWord) {
-                    mainController.spliceWord(wordIndex);
+                    rocketReadingModel.mainController.spliceWord(wordIndex);
                     rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
                         if (myTimer <= 2000) {
                             //do things here
@@ -863,25 +863,25 @@ rocketReadingModel.mainController = ( function () {
                             rocketReadingModel.getCurrentGameData().setScore(1);
                         }
                     //alert ("Correct Word! You selected " + word);
-					myViewModelRR.correctGuess();
-                    mainController.initialiseNextWord();
+					rocketReadingModel.myViewModelRR.correctGuess();
+                    rocketReadingModel.mainController.initialiseNextWord();
                 } else {
                     // this is the incorrect word selection
                     rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
                     // Add the current word to the incorrect words / sounds property of the currentGameData
                     rocketReadingModel.getCurrentGameData().addWordsSoundsIncorrect(currentWord);
                     // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
-                    myViewModelRR.removeEventClick();
-                    myViewModelRR.toggleLearnWord();
-                    myViewModelRR.addEventLearnWord();
+                    rocketReadingModel.myViewModelRR.removeEventClick();
+                    rocketReadingModel.myViewModelRR.toggleLearnWord();
+                    rocketReadingModel.myViewModelRR.addEventLearnWord();
                 }
             } else {
                 // this is the too long selection
                 rocketReadingModel.getCurrentGameData().setIncorrectWord(currentWord);
                 // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
-                myViewModelRR.removeEventClick();
-                myViewModelRR.toggleLearnWord();
-                myViewModelRR.addEventLearnWord();
+                rocketReadingModel.myViewModelRR.removeEventClick();
+                rocketReadingModel.myViewModelRR.toggleLearnWord();
+                rocketReadingModel.myViewModelRR.addEventLearnWord();
             }
         // This is the rules for the Learn Word function: if the user has previously chosen the wrong word when trying to identify the current word
         } else {
@@ -889,16 +889,16 @@ rocketReadingModel.mainController = ( function () {
             // myViewModelRR.removeLearnWord();
             if (word === currentWord) {
                 // What happens when you select the right word after you have previously got it incorrect
-				mainController.spliceWord(wordIndex);
+				rocketReadingModel.mainController.spliceWord(wordIndex);
 				rocketReadingModel.getCurrentGameData().addToWordSoundsCorrect(word);
-                mainController.initialiseNextWord();
+                rocketReadingModel.mainController.initialiseNextWord();
                 // The completeWordList property of currentGameData needs to be repopulated 
                     // mainController.resetCompleteWordList(); // - actually this does not need to be done at this point. It only needs to be done in the createTable() function after the array has been randomised
                 // The incorrect property of currentGameData can be set to null
                 rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
-				myViewModelRR.correctGuess();
+				rocketReadingModel.myViewModelRR.correctGuess();
                 //alert ("Correct Word! You selected " + word);
-                mainController.exitingLearnWord();
+                rocketReadingModel.mainController.exitingLearnWord();
             } else {
                 // This is reducing the table contents if the word selected is wrong. 
                 incorrectWordListArray = rocketReadingModel.getCurrentGameData().getCompleteWordList();
@@ -914,11 +914,11 @@ rocketReadingModel.mainController = ( function () {
                 // This works even if the index of the array in which the data is going to be placed is one more than its current size
                 incorrectWordListArray[randomWordIndex] = currentWord;
                 console.log("validateWords(): incorrectWordListArray after getting choice incorrect again - " + incorrectWordListArray);
-                myViewModelRR.displayTable(incorrectWordListArray);
+                rocketReadingModel.myViewModelRR.displayTable(incorrectWordListArray);
                 
                 // All of the event listeners for the cells of the table should be removed - so that the user has to click the learn word button to proceed
                 // myViewModelRR.removeEventClick(); // This is not needed if the eventClickAdd() is not added in exitingLearnWord()
-                myViewModelRR.eventClickAdd();
+                rocketReadingModel.myViewModelRR.eventClickAdd();
             };
 		};
 
@@ -934,35 +934,35 @@ rocketReadingModel.mainController = ( function () {
         "use strict";
         var currentWord = rocketReadingModel.getCurrentGameData().getCurrentWord(),
             characterArray = currentWord.split('');
-		myViewModelRR.learnWordIsActive();
-        myViewModelRR.displayWord(characterArray, "Comic Sans MS");
+		rocketReadingModel.myViewModelRR.learnWordIsActive();
+        rocketReadingModel.myViewModelRR.displayWord(characterArray, "Comic Sans MS");
         learnWordCount = 4;
-        myViewModelRR.updateCurrentWord(currentWord, 'learnWord', characterArray);
+        rocketReadingModel.myViewModelRR.updateCurrentWord(currentWord, 'learnWord', characterArray);
 	},
 	
 	exitingLearnWord : function () {
         "use strict";
 		rocketReadingModel.getCurrentGameData().setIncorrectWord(null);
-		myViewModelRR.toggleLearnWord();
-        myViewModelRR.clearLearnWord();
+		rocketReadingModel.myViewModelRR.toggleLearnWord();
+        rocketReadingModel.myViewModelRR.clearLearnWord();
 	},
     
 	initialiseNextWord : function () {
         "use strict";
         var listArrayCount = rocketReadingModel.getCurrentGameData().getWordListLength();
-		myViewModelRR.removeEventClick();
+		rocketReadingModel.myViewModelRR.removeEventClick();
 		rocketReadingModel.getCurrentGameData().clearMyTimer();
-		mainController.displayMedalCounts();
-		mainController.displayWordsCompletedData();
-		mainController.displayScore();
+		rocketReadingModel.mainController.displayMedalCounts();
+		rocketReadingModel.mainController.displayWordsCompletedData();
+		rocketReadingModel.mainController.displayScore();
 
 		if (listArrayCount > 0) {
-            mainController.gameInitialise();
+            rocketReadingModel.mainController.gameInitialise();
              // The current word property is cleared or set to null - to enable the nextWord() to select a new currentWord for the next test in the game
             rocketReadingModel.getCurrentGameData().setCurrentWord(null);
-			mainController.nextWord();
+			rocketReadingModel.mainController.nextWord();
 		} else if (listArrayCount === 0) {
-            mainController.finishGame();
+            rocketReadingModel.mainController.finishGame();
 		}
 	},
     

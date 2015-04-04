@@ -178,8 +178,8 @@ rocketReadingModel.viewHTMLModule = ( function () {
                 // This is for setting access to the Levels based on
                 // accessibility methods in the level.
 				if (levelList[count][3] === true) {
-                    newDiv.addEventListener("click", mainController.setCurrentLevel);
-                    newDiv.addEventListener("click", mainController.requestAllGamesForLevel);
+                    newDiv.addEventListener("click", rocketReadingModel.mainController.setCurrentLevel);
+                    newDiv.addEventListener("click", rocketReadingModel.mainController.requestAllGamesForLevel);
                 };
                 
                 newDiv = document.createElement("DIV");
@@ -268,7 +268,7 @@ rocketReadingModel.viewHTMLModule = ( function () {
             // This is looking for a tag that determines accessibility. 
             if (gameOptionsData[count][2] === true) {
                 newDiv.addEventListener("click", this.setGameAndWordList);
-                newDiv.addEventListener("click", mainController.checkGameResumption);
+                newDiv.addEventListener("click", rocketReadingModel.mainController.checkGameResumption);
                 newDiv.addEventListener("click", this.showGameScreen);
             }
             // newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
@@ -353,13 +353,13 @@ rocketReadingModel.viewHTMLModule = ( function () {
 	addEventLearnWord : function () {
         "use strict";
 		//var learnWordButton = document.getElementById('learnWordButton');
-		document.getElementById('learnWordButton').addEventListener("click", viewHTMLModule.learnWordListener);
+		document.getElementById('learnWordButton').addEventListener("click", rocketReadingModel.viewHTMLModule.learnWordListener);
 	},
 	
 	removeLearnWord : function () {
         "use strict";
 		var learnWordButton = document.getElementById('learnWordButton');
-		learnWordButton.removeEventListener("click", viewHTMLModule.learnWordListener);
+		learnWordButton.removeEventListener("click", rocketReadingModel.viewHTMLModule.learnWordListener);
 	},
 	
 	displayTable : function (inputArray) {
@@ -608,7 +608,7 @@ rocketReadingModel.viewHTMLModule = ( function () {
      
         // request new frame
         requestAnimFrame(function(){
-            viewHTMLModule.animateBarTimer(lastTime, myTimerBar);
+            rocketReadingModel.viewHTMLModule.animateBarTimer(lastTime, myTimerBar);
         });
     },
     

@@ -37,13 +37,13 @@ var rocketReadingModel = new RocketReadingModel(null, null, null, null, null, nu
 RocketReadingModel.prototype.addLevel = function (newDescription, newLevelNumber, newGames, newNumberGames, newAccessible) {
     "use strict";
     var newLevel = new Level(newDescription, newLevelNumber, newGames, newNumberGames, newAccessible);
-    allMyLevels.push (newLevel);
-    levelCount += Number(1);
+    this.allMyLevels.push (newLevel);
+    this.levelCount += Number(1);
 };
 
 RocketReadingModel.prototype.getAllLevels = function () {
     "use strict";
-    return allMyLevels;
+    return this.allMyLevels;
 };
 
 RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
@@ -54,12 +54,12 @@ RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, n
 
 RocketReadingModel.prototype.getCurrentGameData = function () {
 	"use strict";
-    return myCurrentGameData;
+    return this.myCurrentGameData;
 };
 
 RocketReadingModel.prototype.clearCurrentGameData = function () {
     "use strict";
-    myCurrentGameData = {};
+    this.myCurrentGameData = {};
 };
 
 RocketReadingModel.prototype.getBonusGame = function (levelNumber) {
@@ -78,7 +78,7 @@ RocketReadingModel.prototype.addAllGamesData = function (newLevel1Game1, newLeve
     "use strict";
     //These are purely for memory basis, when you load the program and there is no player Data. But it's also used to load into local storage when registering a player. 
 	var newAllGamesData = new AllGamesData(newLevel1Game1, newLevel1Game2, newLevel1Game3, newLevel1Game4, newLevel2Game1, newLevel2Game2, newLevel2Game3, newLevel2Game4, newLevel3Game1, newLevel3Game2, newLevel3Game3, newLevel3Game4, newLevel4Game1,  newLevel4Game2, newLevel4Game3, newLevel4Game4, newLevel5Game1, newLevel5Game2, newLevel5Game3, newLevel5Game4, newLevel6Game1, newLevel6Game2, newLevel6Game3, newLevel6Game4, newBonusGame1, newBonusGame2, newBonusGame3, newBonusGame4, newBonusGame5, newBonusGame6);
-	myAllGamesData = newAllGamesData;
+	this.myAllGamesData = newAllGamesData;
 };
 
 RocketReadingModel.prototype.getAllGamesData = function () {
@@ -129,13 +129,13 @@ RocketReadingModel.prototype.setPlayer = function (player) {
     newCurrentGameData = new CurrentGameData(player.currentGameData.myLevel, this.loadGameData(player.currentGameData.myGame), player.currentGameData.wordList, player.currentGameData.currentWord, player.currentGameData.currentLevelGame, player.currentGameData.savedLevelGame, player.currentGameData.gameScore, player.currentGameData.gameMedals, player.currentGameData.lastTestTime, player.currentGameData.totalGameTime, player.currentGameData.wordsSoundsCorrect, player.currentGameData.wordsSoundsIncorrect);
 	
     newPlayer.addHighScores(player.highScores.level0Game1HS, player.highScores.level0Game2HS, player.highScores.level0Game3HS, player.highScores.level0Game4HS, player.highScores.level0Game5HS, player.highScores.level0Game6HS, player.highScores.level1Game1HS, player.highScores.level1Game2HS, player.highScores.level1Game3HS, player.highScores.level1Game4HS, player.highScores.level2Game1HS, player.highScores.level2Game2HS, player.highScores.level2Game3HS, player.highScores.level2Game4HS, player.highScores.level3Game1HS, player.highScores.level3Game2HS, player.highScores.level3Game3HS, player.highScores.level3Game4HS,player.highScores.level4Game1HS, player.highScores.level4Game2HS, player.highScores.level4Game3HS, player.highScores.level4Game4HS, player.highScores.level5Game1HS, player.highScores.level5Game2HS, player.highScores.level5Game3HS, player.highScores.level5Game4HS, player.highScores.level6Game1HS, player.highScores.level6Game2HS, player.highScores.level6Game3HS, player.highScores.level6Game4HS);
-    myPlayer = newPlayer;
-    myAllGamesData = newAllGamesData;
-    myCurrentGameData = newCurrentGameData;
+    this.myPlayer = newPlayer;
+    this.myAllGamesData = newAllGamesData;
+    this.myCurrentGameData = newCurrentGameData;
 };
 
 RocketReadingModel.prototype.getMyPlayer = function () {
-	return myPlayer;
+	return this.myPlayer;
 };
 
 

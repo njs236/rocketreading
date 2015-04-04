@@ -359,7 +359,7 @@ var viewHTMLModule = {
 		while ( gameSelectMainDiv.hasChildNodes() ){
 			gameSelectMainDiv.removeChild(gameSelectMainDiv.firstChild);
 		};
-        
+		
         // update the background image for the current level, the image for the level must be a .jpg and be saved with the same file name as the first game of the level.
         document.getElementById("gameSelectScreen").style.backgroundImage = "url(images/" + encodeURIComponent(gameOptionsData[0][1]) + ".jpg)";
         // set the foreground pictures
@@ -420,6 +420,8 @@ var viewHTMLModule = {
 			
 		};
 		this.showGameSelectScreen();
+        viewHTMLModule.addEventListGameBack();
+        viewHTMLModule.addEventListGameStartNew();
 	},
 	// *******************************************
 	// ***** End Game Select Screen Section ******
@@ -834,6 +836,58 @@ var viewHTMLModule = {
 		/*this.closeModal();*/
 		this.showFinishedGameModal();
 	},
+    
+    // Event listeners:
+    
+    addEventListGameStartNew: function () {
+    // This function should not be called if the user is returning to a previous game. These event listener should only be added if the user is starting a new game
+        "use strict";
+        document.getElementById("gameStart").addEventListener("click", mainController.setSavedGameNull);
+        document.getElementById("gameStart").addEventListener("click", mainController.startGame);
+    },
+    
+    addEventListGameStartContinue: function () {
+    // The following function should not be called if the user is returning to a previous game. This event listener will only be added if the user is starting a new game
+        "use strict";
+        document.getElementById("gameStart").addEventListener("click", mainController.startGameContinue);
+    },
+    
+    addEventListReplayGame: function () {
+        "use strict";
+        document.getElementById("gameStart").addEventListener("click", mainController.replayGame);
+    },
+    
+    removeEventListGameStart: function () {
+        "use strict";
+        document.getElementById("gameStart").removeEventListener("click", mainController.setSavedGameNull);
+        document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartNew);
+        document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartContinue);
+        document.getElementById("gameStart").removeEventListener("click", mainController.startGame);
+    },
+    
+    addEventListGameBack: function() {
+    // This event listener will be added if the user has selected a game to play from the game select screen
+        "use strict";
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showGameSelectScreen);
+    },
+    
+    addEventListContinueGameBack: function () {
+    // This event listener will be added if the user is continuing a game
+        "use strict";
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.showHomeScreen);
+    },
+    
+    addEventListGameBackReplay: function () {
+        "use strict";
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.closeModal);
+    },
+    
+    removeEventListsGameBack: function () {
+        "use strict";
+        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showHomeScreen);
+        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showGameSelectScreen);
+        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.closeModal);
+    },
 	
 	
 	// *******************************************
@@ -871,6 +925,9 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
+        // The following function will cover a situation in which the user returns to the home page and then clicks the continue button
+        viewHTMLModule.removeEventListsGameBack();
+        viewHTMLModule.removeEventListGameStart();
 		console.log("HTMLView.js : Showing home screen");
 	},
 	
@@ -880,6 +937,9 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		myViewModelRR.displayLevelList(mainController.requestAllLevels());
 		document.getElementById("levelSelectScreen").hidden = false;
+        // If the player goes back to the level select screen then the game modal screen's 'gameBack' event-listener can be removed
+        viewHTMLModule.removeEventListsGameBack();
+        viewHTMLModule.removeEventListGameStart();
 		console.log("HTMLView.js : Showing level select screen");
 	},
 	
@@ -919,6 +979,7 @@ var viewHTMLModule = {
 	closeModal : function () {
 		"use strict";
 		location.hash = "Close";
+        viewHTMLModule.removeEventListsGameBack();
         console.log("closeModal");
 	},
 	
@@ -981,6 +1042,7 @@ var viewHTMLModule = {
 		document.getElementById("homePlayGame").addEventListener("click", this.showLevelSelectScreen);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
 		document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
+        document.getElementById("homeContinue").addEventListener("click", this.addEventListGameStartContinue);
 		document.getElementById("homeExit").addEventListener("click",this.checkLogout);
 		document.getElementById("homeLogoutYes").addEventListener("click",this.showLoginScreen);
 		document.getElementById("homeLogoutYes").addEventListener("click",this.closeModal);
@@ -996,15 +1058,17 @@ var viewHTMLModule = {
 		// Game Screen
 		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
 		// This clears the timer of an individual test in a game if the user returns to the home page
-		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // mainController.leaveCurrentGame() can call this
-		// If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
+		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // // 
+        // If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
+        document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
 		
 		// Game Welcome Modal
 			// Start Button
-		document.getElementById("gameStart").addEventListener("click", mainController.startGame);
+		//document.getElementById("gameStart").addEventListener("click", mainController.startGame);
 		document.getElementById("gameStart").addEventListener("click", this.closeModal);
+        document.getElementById("gameStart").addEventListener("click", this.removeEventListsGameBack);
 			// Back Button
-		document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
+		//document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
 		document.getElementById("gameBack").addEventListener("click", this.closeModal);
 
 		// Game Menu Modal
@@ -1016,6 +1080,10 @@ var viewHTMLModule = {
 			// Replay Button
 		document.getElementById("gameReplay").addEventListener("click", mainController.replayGame);
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
+        document.getElementById("gameReplay").addEventListener("click", this.addEventListGameStartNew);
+        document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListReplayGame);
+        document.getElementById("gameReplay").addEventListener("click", this.addEventListReplayGame);
+        document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListGameBackReplay);
 
 		
 		// Game Screen Next Game Modal

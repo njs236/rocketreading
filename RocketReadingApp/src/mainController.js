@@ -207,12 +207,10 @@ var mainController = {
     loadPreviousGame: function () {
         "use strict";
         // The system clears the current data's saved game data
-        // rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);
-        // The system gets the user's current game details and opens the particular screen
+        rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);
+        // The system get the user's current game details and opens the particular screen
         mainController.gameInitialise();
         myViewModelRR.showGameScreen();
-        // Event listeners for the 'back' button of the game intro modal window will be added
-        myViewModelRR.addEventListContinueGameBack();
         
         // The following code is not necessary - the game will now start when the user clicks the start link of the modal screen (which will display now when the game screen opens)
         /*

@@ -169,10 +169,10 @@ var loadGameData = function () {
 	
     theLevel = rocketReadingModel.findLevelByNumber(1);
 	rocketReadingModel.addAvatar("trainingAcademy", theLevel);
-    theLevel.addGame("Game 1", wordList1, theLevel.getDescription(), 1, true, false);
-    theLevel.addGame("Game 2", wordList2, theLevel.getDescription(), 2, false, false);
-    theLevel.addGame("Game 3", wordList3, theLevel.getDescription(), 3, false, false);
-    theLevel.addGame("Game 4", wordList4, theLevel.getDescription(), 4, false, false);
+    theLevel.addGame("1. Calibrate the Dewingerfier", wordList1, theLevel.getDescription(), 1, true, false);
+    theLevel.addGame("2. Get Word Fit", wordList2, theLevel.getDescription(), 2, false, false);
+    theLevel.addGame("3. Collect Power", wordList3, theLevel.getDescription(), 3, false, false);
+    theLevel.addGame("4. Final Exam", wordList4, theLevel.getDescription(), 4, false, false);
     
     theLevel = rocketReadingModel.findLevelByNumber(2);
 	rocketReadingModel.addAvatar("city", theLevel);

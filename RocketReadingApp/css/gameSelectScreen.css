@@ -1,8 +1,16 @@
 #gameSelectScreen{
-    background-image: url(../images/mission01Background.jpg);
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+
+#gameSelectButtonContainer h1 {
+	text-shadow:
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+	color: rgba(251, 239, 126, .9);
 }
 
 #imgGSSLeftImage{
@@ -41,13 +49,36 @@
 div.gameSelectScreenRow{
 	width:100%;
 	height:50%;
-	border: 2px solid green;
 }
 
-div.gameSelectScreenGame{
+.gameSelectScreenGame{
 	width:calc(100% / 3);
+    position: relative;
 	height:100%;
-	border: 2px solid cyan;
 	float:left;
 	text-align:center;
+    padding: 1em;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    cursor: pointer;
+}
+
+.gameSelectLockContainer {
+    overflow: auto;
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    height: 25%;
+    width: 100%;
+    background-image: url(../images/imgLock.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.gameSelectLocked {
+    opacity: .4;
+    cursor: not-allowed;
 }

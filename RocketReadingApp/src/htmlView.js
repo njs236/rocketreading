@@ -359,6 +359,9 @@ var viewHTMLModule = {
 		while ( gameSelectMainDiv.hasChildNodes() ){
 			gameSelectMainDiv.removeChild(gameSelectMainDiv.firstChild);
 		};
+        
+        // update the background image for the current level, the image for the level must be a .jpg and be saved with the same file name as the first game of the level.
+        document.getElementById("gameSelectScreen").style.backgroundImage = "url(images/" + encodeURIComponent(gameOptionsData[0][1]) + ".jpg)";
 		
 		for (count = 0; count < gameOptionsData.length; count += 1) { 
 			if (count % 3 === 0) {
@@ -379,6 +382,12 @@ var viewHTMLModule = {
 			//console.log("gameScreenButton" + (count + 1));
 			//console.log("gameScreenButton" + gameOptionsData[count][0]);
 			newDiv.id = "gameScreenButton" + gameOptionsData[count][0];
+            // add the background image to the div (image must be a .png with the same name as the word list)
+            newDiv.style.backgroundImage = "url(images/" + encodeURIComponent(gameOptionsData[count][1]) + ".png)";
+            if (gameOptionsData[count][2] === false) {
+				newDiv.className += " gameSelectLocked";
+			}
+            
 			newHeading = document.createElement("H1");
 			newHeading.textContent = gameOptionsData[count][1];
 			newDiv.appendChild(newHeading);
@@ -392,6 +401,18 @@ var viewHTMLModule = {
 				newDiv.addEventListener("click", mainController.checkGameResumption);
 				newDiv.addEventListener("click", this.showGameScreen);
 			}
+            
+            // add a lock to the div if it is not yet accessible to the user
+            
+            newDiv = document.createElement("DIV");
+			newDiv.className = 'gameSelectLockContainer';
+			newDiv.id = "divImgLockContainer" + gameOptionsData[count][0];
+			if (gameOptionsData[count][2] === true) {
+				newDiv.hidden = 'true';   
+			}
+			
+			document.getElementById("gameScreenButton" + gameOptionsData[count][0]).appendChild(newDiv);
+            
 			// newDiv.addEventListener("click", mainController.setTimerGameScreenIntro);
 			
 		};

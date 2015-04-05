@@ -9,13 +9,13 @@
 }
 
 #gameLeftSide {
-	width:12%;
+	width:120px;
 	height:100%;
 	float:left;
 }
 
 #gameRightSide {
-	width:88%;
+	width: calc(100% - 120px);
 	height:100%;
 	float:left;
 	padding: 1em;
@@ -99,7 +99,7 @@ div.gameInfoBox {
 
 #gameMedalsDiv {
 	height:45%;
-
+    padding:1em 0em;
 }
 
 #gameWordTable {
@@ -117,26 +117,42 @@ div.gameInfoBox {
 
 div.medalIconDiv {
 	width:100%;
-	height:calc(33% - 1em);
-	padding-left:5%;
-    /*padding-right:5%;*/
+	height:calc(33% - 0.6em);
+    padding: 0 5%;
+   
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-position:center;
 }
 
 div.medalIconDiv:nth-child(2) {
 	margin:1em 0em;
 }
-
+/*
 img.medalIcon {
-	height:100%;
-	width:auto;
+	height:auto;
+	width:100%;
 	float:left;
-}
+    margin: 5% 0;  
+}*/
 
 .medalCounter {
 	/*margin-top:20%;*/
     position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+	top: 65%;
+	transform: translateY(-65%);
+}
+
+#medalIcon1 {
+    background-image:url("images/goldStar.svg");
+}
+
+#medalIcon2 {
+    background-image:url("images/silverStar.svg");
+}
+
+#medalIcon3 {
+    background-image:url("images/bronzeStar.svg");
 }
 
 #gameAvatar {

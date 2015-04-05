@@ -865,10 +865,14 @@ var viewHTMLModule = {
     
     removeEventListGameStart: function () {
         "use strict";
+        // There is no point in removing the following functions because they are not actually added as event-listeners
+        // Instead they contain lines which add event listeners
+        // document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartNew);
+        // document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartContinue);
         document.getElementById("gameStart").removeEventListener("click", mainController.setSavedGameNull);
-        document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartNew);
-        document.getElementById("gameStart").removeEventListener("click", this.addEventListGameStartContinue);
+        document.getElementById("gameStart").removeEventListener("click", mainController.startGameContinue);
         document.getElementById("gameStart").removeEventListener("click", mainController.startGame);
+        document.getElementById("gameStart").removeEventListener("click", mainController.replayGame);
     },
     
     addEventListGameBack: function() {
@@ -898,6 +902,7 @@ var viewHTMLModule = {
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showHomeScreen);
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.showGameSelectScreen);
         document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.closeModal);
+        document.getElementById("gameBack").removeEventListener("click", viewHTMLModule.openNextGameModal);
     },
 	
 	// *******************************************
@@ -1082,6 +1087,7 @@ var viewHTMLModule = {
 		//document.getElementById("gameStart").addEventListener("click", mainController.startGame);
 		document.getElementById("gameStart").addEventListener("click", this.closeModal);
         document.getElementById("gameStart").addEventListener("click", this.removeEventListsGameBack);
+        //document.getElementById("gameStart").addEventListener("click", this.removeEventListGameStart); 
 			// Back Button
 		//document.getElementById("gameBack").addEventListener("click", this.showGameSelectScreen);
 		document.getElementById("gameBack").addEventListener("click", this.closeModal);

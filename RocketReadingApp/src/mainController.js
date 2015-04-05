@@ -207,10 +207,12 @@ var mainController = {
     loadPreviousGame: function () {
         "use strict";
         // The system clears the current data's saved game data
-        rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);
-        // The system get the user's current game details and opens the particular screen
+        // rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);
+        // The system gets the user's current game details and opens the particular screen
         mainController.gameInitialise();
         myViewModelRR.showGameScreen();
+        // Event listeners for the 'back' button of the game intro modal window will be added
+        myViewModelRR.addEventListContinueGameBack();
         
         // The following code is not necessary - the game will now start when the user clicks the start link of the modal screen (which will display now when the game screen opens)
         /*
@@ -503,6 +505,12 @@ var mainController = {
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
 		// myViewModelRR.finishedGame(); // This method has already been called from viewHTMLModule.displayGameResults()
     },
+    
+    setSavedGameNull: function () {
+        "use strict";
+        // The system clears the current data's saved game data
+        rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);    
+    },
 
     
     disableLearnWordTimers: function () {
@@ -698,6 +706,27 @@ var mainController = {
     
     startGame: function () {
         "use strict";
+        var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
+            // level = rocketReadingModel.getCurrentGameData().getCurrentLevel(),
+            level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]),
+            wordList = rocketReadingModel.getCurrentGameData().getWordList(),
+            levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
+            
+        // The data for the previous game in the current object needs to be cleared and data for the new game set. Not all properties will be clobbered by the resetCurrentGameData() function - all the properties of currentGameData should really be set-able by addCurrentGameData()
+        rocketReadingModel.clearCurrentGameData();
+        // Create a new current data object, setting it the appropriate values for the currentLevelGame, myGame, myLevel and wordList properties, and then assign it as a property of the Rocket-Reading object. 
+        mainController.resetCurrentGameData(level, game, wordList, levelGame);
+        
+        // Start the game timer
+        mainController.startGameTimer();
+        // Determine which word the user will be tested on
+        mainController.nextWord();
+        // The event listener which led to this function being called will be removed
+        myViewModelRR.removeEventListGameStart(); 
+    },
+    
+    startGameContinue: function () {
+        "use strict";
         // Start the game timer
         mainController.startGameTimer();
         // Determine which word the user will be tested on
@@ -749,11 +778,18 @@ var mainController = {
         }
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the particular level-game the user will be replaying.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
-        // The system clears the timers vars and timer display
+        // The system clears the timer vars and timer display
         mainController.resetGameTimers();
         // The system starts a new game and initialises the game screen - really, the completeWordList could be set by resetCurrentGameData() - a bit of refactoring to achieve this
         mainController.gameInitialise();
         // mainController.startGame(); // If the 'gameIntroModal' modal window opens then the game will start when the player clicks the start link.
+        
+        // Start the game timer
+        mainController.startGameTimer();
+        // Determine which word the user will be tested on
+        mainController.nextWord();
+        // The event listener which led to this function being called will be removed
+        myViewModelRR.removeEventListGameStart(); 
     },
 
     resetGameTimers: function () {
@@ -784,6 +820,32 @@ var mainController = {
         mainController.displayCurrentLevelGame();
         mainController.displayAvatar();
         //mainController.loadGameScreenIntro();
+    },
+    
+    newGameInitialise: function () {
+        "use strict";
+        var wordList = rocketReadingModel.getCurrentGameData().getWordList(),
+            completeWordList = rocketReadingModel.getCurrentGameData().getCurrentGame().getWordList().slice(0),
+            // levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevel().getLevelNumber(),
+            levelNumber = rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0],
+            gameNumber = rocketReadingModel.getCurrentGameData().getCurrentGame().getNumber(),
+            levelGame = [levelNumber, gameNumber];
+        // Set the currentLevelGame property of currentGameData
+        rocketReadingModel.getCurrentGameData().setCurrentLevelGame(levelGame);
+        // Set the complete word list as a copy of currentGameData.myGame.myWordList
+        rocketReadingModel.getCurrentGameData().setCompleteWordList(completeWordList);
+        
+        // A game screen will be displayed containing default values for a new game
+        mainController.createTable();
+        myViewModelRR.displayMedalCounts([0,0,0]);
+		myViewModelRR.displayScore(0);
+        myViewModelRR.displayWordsCompleted(0, rocketReadingModel.getCurrentGameData().getCompleteWordList().length);
+        // These two will be tricky to get round
+        mainController.displayCurrentLevelGame(); 
+        mainController.displayAvatar();
+        //mainController.loadGameScreenIntro();
+        // The event listener which led to this function being called will be removed
+        // myViewModelRR.removeEventListGameStart();
     },
     
  	validateWords : function (word) {

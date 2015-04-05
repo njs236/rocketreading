@@ -722,8 +722,7 @@ var mainController = {
         // Determine which word the user will be tested on
         mainController.nextWord();
         // The event listener which led to this function being called will be removed
-        // An event listener is added to the start game button to do this
-        // myViewModelRR.removeEventListGameStart(); 
+        myViewModelRR.removeEventListGameStart(); 
     },
     
     startGameContinue: function () {

@@ -889,7 +889,7 @@ var viewHTMLModule = {
     
     addEventListGameBackReplay: function () {
         "use strict";
-        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.closeModal);
+        document.getElementById("gameBack").addEventListener("click", viewHTMLModule.openGameOptions);
     },
     
     addEventListOpenNextGame: function () {
@@ -1002,6 +1002,11 @@ var viewHTMLModule = {
 		"use strict";
 		location.hash = "gameIntroModal";
 	},
+    
+    openGameOptions : function () {
+        "use strict";
+        location.hash = "gameModal";
+    },
     
     openNextGameModal : function () {
         "use strict";

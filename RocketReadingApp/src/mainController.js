@@ -662,7 +662,9 @@ var mainController = {
             // If the user has an incorrect word, the user will have to learn this word when he or she returns to their game.
             } else if (rocketReadingModel.getCurrentGameData().getIncorrectWord() !== null) {
                 // If the currentGameData has an incorrect word (ie the user got a word wrong just before the user left the game and this word was recorded as being the incorrect word in the saved game's data) then the learn word word will be enabled and the user will have to click this to proceed. 
-                mainController.enableLearnWord();
+                // mainController.enableLearnWord();
+                myViewModelRR.learnWordIsActive();
+                myViewModelRR.addEventLearnWord();
                 // The cells of the table will be disabled - no this is not necessary
                 // Any text in the space for displaying the word to be learned will be cleared
                 myViewModelRR.clearLearnWord();

@@ -6,8 +6,12 @@
 
 #levelSelectScreen h2 {
 	font-size: 1.5em;
-	-webkit-text-stroke: 1px black;
-	color: rgba(251, 239, 126, .9);
+	text-shadow:
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+	color: rgba(251, 239, 126, .8);
 }
 
 .levelSelectRow {
@@ -28,6 +32,10 @@
 	text-align:center;
 	padding-top:1em;
     cursor: pointer;
+}
+
+#level1:hover > h2, #level2:hover > h2, #level3:hover > h2, #level4:hover > h2, #level5:hover > h2, #level6:hover > h2, #level7:hover > h2, #level0:hover > h2{
+    color: rgba(251, 239, 126, 1);
 }
 
 .levelSelectLockContainer {

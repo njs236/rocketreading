@@ -531,6 +531,7 @@ var mainController = {
         clearInterval(gameTimer);
         // In case the learn word sequence is running when the player leaves the game, the timers which are involved in this sequence are all turned off
         mainController.disableLearnWordTimers();
+        myViewModelRR.learnWordIsFinished();
         console.log("mainController: leaveCurrentGame() current word: " + rocketReadingModel.getCurrentGameData().getCurrentWord());
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
             //If the user has not finished the current game then the system needs to save the current game timer to the current game state object
@@ -753,7 +754,6 @@ var mainController = {
         mainController.startGameTimer();
         // Determine which word the user will be tested on
         mainController.nextWord();
-		myViewModelRR.learnWordIsFinished();
         // The event listener which led to this function being called will be removed
         myViewModelRR.removeEventListGameStart();
     },

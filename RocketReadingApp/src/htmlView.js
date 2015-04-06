@@ -401,7 +401,8 @@ var viewHTMLModule = {
 			// This is looking for a tag that determines accessibility. 
 			if (gameOptionsData[count][2] === true) {
 				newDiv.addEventListener("click", this.setGameAndWordList);
-				newDiv.addEventListener("click", mainController.checkGameResumption);
+                // The following function will be called later on (or else it can wipe a player's saved game)
+				// newDiv.addEventListener("click", mainController.checkGameResumption);
 				newDiv.addEventListener("click", this.showGameScreen);
 			}
             
@@ -840,9 +841,10 @@ var viewHTMLModule = {
     // Event listeners:
     
     addEventListGameStartNew: function () {
-    // This function should not be called if the user is returning to a previous game. These event listener should only be added if the user is starting a new game
+    // This function should not be called if the user is returning to a previous game. These event listeners should only be added if the user is starting a new game
         "use strict";
         document.getElementById("gameStart").addEventListener("click", mainController.setSavedGameNull);
+        document.getElementById("gameStart").addEventListener("click", mainController.checkGameResumption);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
     },
     
@@ -873,6 +875,7 @@ var viewHTMLModule = {
         document.getElementById("gameStart").removeEventListener("click", mainController.startGameContinue);
         document.getElementById("gameStart").removeEventListener("click", mainController.startGame);
         document.getElementById("gameStart").removeEventListener("click", mainController.replayGame);
+        document.getElementById("gameStart").removeEventListener("click", mainController.checkGameResumption);
     },
     
     addEventListGameBack: function() {
@@ -892,7 +895,7 @@ var viewHTMLModule = {
         document.getElementById("gameBack").addEventListener("click", viewHTMLModule.openGameOptions);
     },
     
-    addEventListOpenNextGame: function () {
+    addEventListBackNextGame: function () {
         "use strict";
         document.getElementById("gameBack").addEventListener("click", viewHTMLModule.openNextGameModal);
     },
@@ -1116,8 +1119,8 @@ var viewHTMLModule = {
 			// Retry Button
         document.getElementById("gameNextGameButtonRetry").addEventListener("click", this.openGameIntro);
 		document.getElementById("gameNextGameButtonRetry").addEventListener("click", this.addEventListStartClearSavedGame);
-        document.getElementById("gameNextGameButtonRetry").addEventListener("click", viewHTMLModule.addEventListReplayGame);
-		document.getElementById("gameNextGameButtonRetry").addEventListener("click", viewHTMLModule.addEventListOpenNextGame);
+        document.getElementById("gameNextGameButtonRetry").addEventListener("click", viewHTMLModule.addEventListGameStartNew);
+		document.getElementById("gameNextGameButtonRetry").addEventListener("click", viewHTMLModule.addEventListBackNextGame);
 		
 		
 		// High Scores Screen

@@ -164,6 +164,26 @@ CurrentGameData.prototype.addToWordSoundsCorrect = function (word){
 	this.wordsSoundsCorrect.push(word);
 }
 
+CurrentGameData.prototype.getWordSoundsCorrect = function (){
+    "use strict";
+    return this.wordsSoundsCorrect;
+}
+
+CurrentGameData.prototype.removeFromWordList = function (wordsArray) {
+    "use strict";
+    var index = 0,
+        innerIndex = 0,
+        wordsArrayLength = wordsArray.length,
+        wordListLength = this.wordList.length;
+    for (index = 0; index < wordsArrayLength; index += 1) {
+        for (innerIndex = 0; innerIndex < wordListLength; innerIndex += 1) {
+            if (wordsArray[index] == this.wordList[innerIndex]) {
+                this.wordList.splice(innerIndex, 1);
+            }
+        }
+    }
+}
+
 CurrentGameData.prototype.getWordListLength = function () {
     "use strict";
 	return this.wordList.length;

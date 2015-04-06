@@ -206,8 +206,15 @@ var mainController = {
    
     loadPreviousGame: function () {
         "use strict";
-        // The system clears the current data's saved game data
-        // rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);
+        // The system may need to set the user's current game's level-game to that of the current game's savedLevelGame if the
+        // player, since leaving their last game part-way through, has started the process of playing another game (which may well 
+        // set the current game's level game to a different one than that of their saved game), but did not go through with playing 
+        // the new game and has instead returned to the home screen and clicked 'Continue'.
+        rocketReadingModel.getCurrentGameData().setCurrentLevelGame(rocketReadingModel.getCurrentGameData().getSavedLevelGame());
+        mainController.setGameAndWordList(rocketReadingModel.getCurrentGameData().getSavedLevelGame()[1].toString());
+        // The system needs to remove from the word list the words which the user has successfully answered
+        rocketReadingModel.getCurrentGameData().removeFromWordList(rocketReadingModel.getCurrentGameData().getWordSoundsCorrect());
+        
         // The system gets the user's current game details and opens the particular screen
         mainController.gameInitialise();
         myViewModelRR.showGameScreen();

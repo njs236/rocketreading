@@ -1106,7 +1106,7 @@ var viewHTMLModule = {
 			// Replay Button
 		document.getElementById("gameReplay").addEventListener("click", this.openGameIntro);
         document.getElementById("gameReplay").addEventListener("click", this.addEventListStartClearSavedGame);
-        document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListReplayGame);
+        document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListGameStartNew);
         document.getElementById("gameReplay").addEventListener("click", viewHTMLModule.addEventListGameBackReplay);
 
 		

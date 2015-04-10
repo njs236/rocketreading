@@ -104,9 +104,9 @@ Player.prototype.getSavedLevelGame = function () {
     return this.savedLevelGame;
 };
 
-Player.prototype.setSavedGameData = function (savedGameData) {
+Player.prototype.addSavedGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord) {
     "use strict";
-    this.savedGameData = savedGameData;
+    this.savedGameData = new CurrentGameData(newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord);
 };
 
 Player.prototype.getSavedGameData = function () {

@@ -13,7 +13,7 @@ var mainController = {
             lastName = document.getElementById('registerLastName').value,
             school = document.getElementById('registerSchool').value,
             classroom = document.getElementById('registerClass').value;
-        rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 450);
+        rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 450, null, null);
     },    
     
     // *************************************
@@ -89,7 +89,7 @@ var mainController = {
 		
     },
     
-    
+ 
 	setPlayer: function (username) {
     // This function is for loading player data from the local storage 
         "use strict";
@@ -212,9 +212,8 @@ var mainController = {
             levelObject = rocketReadingModel.findLevelByNumber(rocketReadingModel.getMyPlayer().getSavedLevelGame()[0]);
         // The system will need to load the player's saved game data into the current game data object
         rocketReadingModel.addCurrentGameData(levelObject, savedGameData.myGame, savedGameData.wordList, savedGameData.currentWord, savedGameData.currentLevelGame, savedGameData.gameScore, savedGameData.gameMedals, savedGameData.lastTestTime, savedGameData.totalGameTime, savedGameData.wordsSoundsCorrect, savedGameData.wordsSoundsIncorrect, savedGameData.incorrectWord /*, savedGameData.myTimer, savedGameData.completeWordList*/);
-        // Once the saved game has been loaded then the savedGameData and the savedLevelGame data should be cleared. This will stop a user being able to continue a game once the user has finished a game. When savedLevelGame was previously a property of currentGameData, it would have been cleared when a user finished a game and the currentGameData object was partly reset.
-        rocketReadingModel.getMyPlayer().setSavedGameData(null);
-        rocketReadingModel.getMyPlayer().setSavedLevelGame(null);
+        
+        // Once the saved game has been loaded then the savedGameData and the savedLevelGame data should be cleared. This will stop a user being able to continue a game once the user has finished a game. When savedLevelGame was previously a property of currentGameData, it would have been cleared when a user finished a game and the currentGameData object was partly reset. Actually, it has to be cleared only if the user has finished a game, because otherwise the user may load up a saved game, go back and then try again, but it will fail because the data would have been wiped.
         
         // The system will probably need to set the user's current game's level-game to that of the current game's savedLevelGame if the
         // player, since leaving their last game part-way through, started the process of playing another game, but did not go through with playing 
@@ -261,7 +260,7 @@ var mainController = {
             } else {
                 // The user will have to complete a bonus game before advancing to the next level
             }
-        } else if ((rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null)) {
+        } else if (rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null) {
             // If the user has a saved game then the screen for that level-game will be displayed
             mainController.loadPreviousGame();
         }
@@ -278,7 +277,7 @@ var mainController = {
     logoutPlayer: function () {
         "use strict";
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
-        rocketReadingModel.getCurrentGameData().setCurrentLevel({});
+        rocketReadingModel.getCurrentGameData().setCurrentLevel( {} );
         // The currentGameData should be saved to the player's local storage file, so that the player can return to their un-finished game when they log back in
         storageController.saveCurrentGameData();
         // Save the player's allGamesData in case this has not already been done, ie a player has not finished any games.
@@ -510,17 +509,22 @@ var mainController = {
             mainController.setAccessTo();
         }
         
+        // Clear any saved game data in the Player object. This needs to be done before the currentGameData and allGamesData are saved to LS or else a JSON circular error will occur for some reason.
+		rocketReadingModel.getMyPlayer().addSavedGameData(null, null, null, null, null, null, null, null, null, null, null, null);
+        rocketReadingModel.getMyPlayer().setSavedLevelGame(null);
+        
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
+        
         // Save data to local storage (which will also be done when a player logs out)
         // Saving currentGameData should not be necessary to do but it's good to call this function here in case a player exits the program by closing the window of the browser and not logging out through the game (& see below: the currentGameData will soon be cleared):
         storageController.saveCurrentGameData(); 
         storageController.saveAllGamesData();
+        
         // Clear the current data object
         rocketReadingModel.clearCurrentGameData();
         // Create a new currentGameData object, setting the values for the currentLevelGame, myGame, myLevel and wordList properties which match the level-game which the user has just played - in case the player would like to replay this game.
         mainController.resetCurrentGameData(level, game, wordList, levelGame);
-		// myViewModelRR.finishedGame(); // This method has already been called from viewHTMLModule.displayGameResults()
     },
     
     setSavedGameNull: function () {
@@ -543,7 +547,8 @@ var mainController = {
         "use strict";
         var levelNumber,
             gameNumber,
-            levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
+            levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame(),
+            currentGameData = rocketReadingModel.getCurrentGameData();
         // The system needs to stop the game-timer
         clearInterval(gameTimer);
         // In case the learn word sequence is running when the player leaves the game, the timers which are involved in this sequence are all turned off
@@ -569,14 +574,20 @@ var mainController = {
             clearTimeout(bronzeBar);
             // The current game data is recorded as having a saved game
             rocketReadingModel.getMyPlayer().setSavedLevelGame(levelGame);
-            // The current game data is saved in the Player object as savedGameData (the current level is cleared to prevent 
-            // a JSON circular error from occurring
-            rocketReadingModel.getCurrentGameData().setCurrentLevel({});
-            rocketReadingModel.getMyPlayer().setSavedGameData(rocketReadingModel.getCurrentGameData());
-            // The current game data should be cleared
-            // However there still needs to be a currentGameData object so don't wipe it completely: rocketReadingModel.clearCurrentGameData();
+            // rocketReadingModel.getCurrentGameData().setCurrentLevel({});
+            // rocketReadingModel.getMyPlayer().addSavedGameData(rocketReadingModel.getCurrentGameData());
+            // The current game data is saved in the Player property savedGameData. Note that the current level property is cleared to prevent a JSON circular error from occurring:
+            rocketReadingModel.getMyPlayer().addSavedGameData( {}, currentGameData.myGame, currentGameData.wordList, currentGameData.currentWord, currentGameData. currentLevelGame, currentGameData.gameScore, currentGameData.gameMedals, currentGameData.lastTestTime, currentGameData.totalGameTime, currentGameData.wordsSoundsCorrect, currentGameData.wordsSoundsIncorrect, currentGameData.incorrectWord );
+            
+            // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
+            rocketReadingModel.getCurrentGameData().setCurrentLevel( {} );
+            // Game data will be saved to LS in case the user does not leave the app by logging out
+            storageController.saveCurrentGameData();
+            storageController.saveAllGamesData();
+            
+            // The current game data should be cleared. However there still needs to be the structure of a currentGameData object so don't wipe it completely (which would happen if this method is used: rocketReadingModel.clearCurrentGameData());
             rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], [], null);
-            // The data on the game screen will need to be cleared too and re-initialised - at this point? No need to just yet
+            // The data on the game screen will need to be cleared too and re-initialised - at this point? No need to do this just yet
             // mainController.gameScreenInitialise();
             
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {

@@ -8,11 +8,11 @@ var mainController = {
     
     registerPlayer : function () {
         "use strict";
-        var userName = document.getElementById('registerUserName').value,
-            firstName = document.getElementById('registerFirstName').value,
-            lastName = document.getElementById('registerLastName').value,
-            school = document.getElementById('registerSchool').value,
-            classroom = document.getElementById('registerClass').value;
+        var userName = (document.getElementById('registerUserName').value).trim(),
+            firstName = (document.getElementById('registerFirstName').value).trim(),
+            lastName = (document.getElementById('registerLastName').value).trim(),
+            school = (document.getElementById('registerSchool').value).trim(),
+            classroom = (document.getElementById('registerClass').value).trim();
         rocketReadingModel.registerPlayer(userName, firstName, lastName, school, classroom, 0, [1,1], 1, 450, null, null);
     },    
     

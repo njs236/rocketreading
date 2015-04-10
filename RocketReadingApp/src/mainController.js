@@ -211,7 +211,7 @@ var mainController = {
         // Because the level object wass removed from the saved game data when it was saved, it needs to be restored
             levelObject = rocketReadingModel.findLevelByNumber(rocketReadingModel.getMyPlayer().getSavedLevelGame()[0]);
         // The system will need to load the player's saved game data into the current game data object
-        rocketReadingModel.addCurrentGameData(levelObject, savedGameData.myGame, savedGameData.wordList, savedGameData.currentWord, savedGameData.currentLevelGame, savedGameData.gameScore, savedGameData.gameMedals, savedGameData.lastTestTime, savedGameData.totalGameTime, savedGameData.wordsSoundsCorrect, savedGameData.wordsSoundsIncorrect/*, savedGameData.wordListCount, savedGameData.incorrectWord /*, savedGameData.myTimer, savedGameData.completeWordList*/);
+        rocketReadingModel.addCurrentGameData(levelObject, savedGameData.myGame, savedGameData.wordList, savedGameData.currentWord, savedGameData.currentLevelGame, savedGameData.gameScore, savedGameData.gameMedals, savedGameData.lastTestTime, savedGameData.totalGameTime, savedGameData.wordsSoundsCorrect, savedGameData.wordsSoundsIncorrect, savedGameData.incorrectWord /*, savedGameData.myTimer, savedGameData.completeWordList*/);
         
         // The system will probably need to set the user's current game's level-game to that of the current game's savedLevelGame if the
         // player, since leaving their last game part-way through, started the process of playing another game, but did not go through with playing 
@@ -282,7 +282,7 @@ var mainController = {
         storageController.saveAllGamesData();
         // Clear the data 
         rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);
-        rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, 0, [0,0,0], null, null, [], []);
+        rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], [], null);
         rocketReadingModel.registerPlayer(null, null, null, null, null, null, null, null, null);
     },
     
@@ -572,7 +572,7 @@ var mainController = {
             rocketReadingModel.getMyPlayer().setSavedGameData(rocketReadingModel.getCurrentGameData());
             // The current game data should be cleared
             // However there still needs to be a currentGameData object so don't wipe it completely: rocketReadingModel.clearCurrentGameData();
-            rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], []);
+            rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], [], null);
             // The data on the game screen will need to be cleared too and re-initialised - at this point? No need to just yet
             // mainController.gameScreenInitialise();
             
@@ -1075,7 +1075,7 @@ var mainController = {
     
     resetCurrentGameData: function (newLevel, newGame, newWordList, newCurrentLevelGame) {
         "use strict";
-        rocketReadingModel.addCurrentGameData(newLevel, newGame, newWordList, null, newCurrentLevelGame, null, 0, [0,0,0], 0, 0, [], []);
+        rocketReadingModel.addCurrentGameData(newLevel, newGame, newWordList, null, newCurrentLevelGame, 0, [0,0,0], 0, 0, [], [], null);
     },
     
     // **********************************************

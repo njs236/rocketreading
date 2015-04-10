@@ -1,4 +1,4 @@
-var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord) {
     "use strict";
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
@@ -13,7 +13,7 @@ var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, 
     this.wordsSoundsCorrect = newWordsSoundsCorrect || [];
     this.wordsSoundsIncorrect = newWordsSoundsIncorrect || [];
     this.wordListCount = this.wordList.length;
-	this.incorrectWord = null;
+	this.incorrectWord = newIncorrectWord || null;
     this.myTimer = 0;
     this.completeWordList = [];
     

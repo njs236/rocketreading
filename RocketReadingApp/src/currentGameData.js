@@ -133,11 +133,6 @@ CurrentGameData.prototype.getTimer = function () {
 	return this.myTimer;
 };
 
-CurrentGameData.prototype.getCurrentWord = function () {
-    "use strict";
-	return this.currentWord;
-};
-
 CurrentGameData.prototype.setScore = function (score) {
     "use strict";
 	this.gameScore += score;
@@ -157,6 +152,11 @@ CurrentGameData.prototype.setMedal = function (attr) {
 CurrentGameData.prototype.saveGameTime = function () {
     "use strict";
     this.totalGameTime = gameTimerSecs;
+};
+
+CurrentGameData.prototype.getGameTime = function () {
+    "use strict";
+    return this.totalGameTime;
 };
 
 CurrentGameData.prototype.addToWordSoundsCorrect = function (word){
@@ -217,6 +217,11 @@ CurrentGameData.prototype.getIncorrectWord = function () {
 CurrentGameData.prototype.addWordsSoundsIncorrect = function (word) {
     "use strict";
     this.wordsSoundsIncorrect.push(word);
+};
+
+CurrentGameData.prototype.getWordsSoundsIncorrect = function (word) {
+    "use strict";
+    return this.wordsSoundsIncorrect;
 };  
 
 CurrentGameData.prototype.getGameScore = function () {

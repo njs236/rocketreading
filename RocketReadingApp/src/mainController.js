@@ -557,8 +557,6 @@ var mainController = {
         mainController.disableLearnWord();
         // Also, any text in the space for displaying the word to be learned will be cleared
         myViewModelRR.clearLearnWord();
-         // The system clears the timer vars and timer display
-        mainController.resetGameTimers();
         console.log("mainController: leaveCurrentGame() current word: " + rocketReadingModel.getCurrentGameData().getCurrentWord());
         
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
@@ -572,12 +570,15 @@ var mainController = {
             myViewModelRR.hideBarTimer();
             clearTimeout(silverBar);
             clearTimeout(bronzeBar);
+            // The system clears the timer vars and timer display
+            // Is this necessary?: mainController.resetGameTimers();
+            
             // The current game data is recorded as having a saved game
             rocketReadingModel.getMyPlayer().setSavedLevelGame(levelGame);
             // rocketReadingModel.getCurrentGameData().setCurrentLevel({});
             // rocketReadingModel.getMyPlayer().addSavedGameData(rocketReadingModel.getCurrentGameData());
             // The current game data is saved in the Player property savedGameData. Note that the current level property is cleared to prevent a JSON circular error from occurring:
-            rocketReadingModel.getMyPlayer().addSavedGameData( {}, currentGameData.myGame, currentGameData.wordList, currentGameData.currentWord, currentGameData. currentLevelGame, currentGameData.gameScore, currentGameData.gameMedals, currentGameData.lastTestTime, currentGameData.totalGameTime, currentGameData.wordsSoundsCorrect, currentGameData.wordsSoundsIncorrect, currentGameData.incorrectWord );
+            rocketReadingModel.getMyPlayer().addSavedGameData( {}, currentGameData.getCurrentGame(), currentGameData.getWordList, currentGameData.getCurrentWord(), currentGameData.getCurrentLevelGame(), currentGameData.getGameScore(), currentGameData.getMedalCounts(), currentGameData.lastTestTime, currentGameData.getGameTime(), currentGameData.getWordSoundsCorrect(), currentGameData.wordsSoundsIncorrect, currentGameData.getIncorrectWord() );
             
             // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
             rocketReadingModel.getCurrentGameData().setCurrentLevel( {} );

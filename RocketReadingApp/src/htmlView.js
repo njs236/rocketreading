@@ -626,14 +626,27 @@ var viewHTMLModule = {
 	},
 	
 	displayAvatar: function (avatar) {
+        "use strict";
 		var theAvatar = document.getElementById('gameAvatar');
 		theAvatar.src = "images/" + avatar.getName() + ".png";
 	},
+    
+    displayGameTimer: function () {
+        "use strict";
+        var secsDisplay; 
+        
+        gameTimerMins = Math.floor(gameTimerSecs / 60);
+        secsDisplay = gameTimerSecs % 60;
+        if (secsDisplay < 10) {
+			secsDisplay = '0' + secsDisplay;	
+		}
+        document.getElementById("gameTimer").textContent = gameTimerMins + ":" + secsDisplay;
+    },
 	
-	displayGameTimer: function () {
+	incrementGameTimer: function () {
 		"use strict";
-		var secsDisplay,
-			minsDisplay;
+		var secsDisplay;
+            
 		gameTimerSecs += Number(1);
 		if (gameTimerSecs % 60 === 0) {
 			gameTimerMins += Number(1);

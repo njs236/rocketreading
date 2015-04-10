@@ -212,6 +212,8 @@ var mainController = {
             levelObject = rocketReadingModel.findLevelByNumber(rocketReadingModel.getMyPlayer().getSavedLevelGame()[0]);
         // The system will need to load the player's saved game data into the current game data object
         rocketReadingModel.addCurrentGameData(levelObject, savedGameData.myGame, savedGameData.wordList, savedGameData.currentWord, savedGameData.currentLevelGame, savedGameData.gameScore, savedGameData.gameMedals, savedGameData.lastTestTime, savedGameData.totalGameTime, savedGameData.wordsSoundsCorrect, savedGameData.wordsSoundsIncorrect, savedGameData.incorrectWord /*, savedGameData.myTimer, savedGameData.completeWordList*/);
+        // The gameTimer should be set
+        gameTimerSecs = rocketReadingModel.getCurrentGameData().getGameTime();
         
         // Once the saved game has been loaded then the savedGameData and the savedLevelGame data should be cleared. This will stop a user being able to continue a game once the user has finished a game. When savedLevelGame was previously a property of currentGameData, it would have been cleared when a user finished a game and the currentGameData object was partly reset. Actually, it has to be cleared only if the user has finished a game, because otherwise the user may load up a saved game, go back and then try again, but it will fail because the data would have been wiped.
         
@@ -578,7 +580,7 @@ var mainController = {
             // rocketReadingModel.getCurrentGameData().setCurrentLevel({});
             // rocketReadingModel.getMyPlayer().addSavedGameData(rocketReadingModel.getCurrentGameData());
             // The current game data is saved in the Player property savedGameData. Note that the current level property is cleared to prevent a JSON circular error from occurring:
-            rocketReadingModel.getMyPlayer().addSavedGameData( {}, currentGameData.getCurrentGame(), currentGameData.getWordList, currentGameData.getCurrentWord(), currentGameData.getCurrentLevelGame(), currentGameData.getGameScore(), currentGameData.getMedalCounts(), currentGameData.lastTestTime, currentGameData.getGameTime(), currentGameData.getWordSoundsCorrect(), currentGameData.wordsSoundsIncorrect, currentGameData.getIncorrectWord() );
+            rocketReadingModel.getMyPlayer().addSavedGameData( {}, currentGameData.getCurrentGame(), currentGameData.getWordList(), currentGameData.getCurrentWord(), currentGameData.getCurrentLevelGame(), currentGameData.getGameScore(), currentGameData.getMedalCounts(), currentGameData.lastTestTime, currentGameData.getGameTime(), currentGameData.getWordSoundsCorrect(), currentGameData.getWordsSoundsIncorrect(), currentGameData.getIncorrectWord() );
             
             // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
             rocketReadingModel.getCurrentGameData().setCurrentLevel( {} );
@@ -749,7 +751,7 @@ var mainController = {
 	
     startGameTimer: function () {
         "use strict";
-        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
+        gameTimer = setInterval("myViewModelRR.incrementGameTimer()", 1000);
     },
     
     startGame: function () {
@@ -900,6 +902,7 @@ var mainController = {
         mainController.displayWordsCompletedData();
         mainController.displayCurrentLevelGame();
         mainController.displayAvatar();
+        myViewModelRR.displayGameTimer();
         //mainController.loadGameScreenIntro();
     },
     

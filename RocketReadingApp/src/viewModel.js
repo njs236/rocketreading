@@ -197,6 +197,11 @@ var myViewModelRR = {
         "use strict";
         this.view.displayGameTimer();
     },
+    
+    incrementGameTimer: function () {
+        "use strict";
+        this.view.incrementGameTimer();
+    },
 	
 	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";

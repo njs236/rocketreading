@@ -1,11 +1,11 @@
-var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
     "use strict";
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
 	this.wordList = newWordList || [];
 	this.currentWord = newCurrentWord || null;
     this.currentLevelGame = newCurrentLevelGame || [];
-    this.savedLevelGame = newSavedLevelGame || null;
+    // this.savedLevelGame = newSavedLevelGame || null;
     this.gameScore = newGameScore || 0;
     this.gameMedals = newGameMedals || [0,0,0];
     this.lastTestTime = newLastTestTime || 0;

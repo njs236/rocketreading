@@ -206,14 +206,20 @@ var mainController = {
    
     loadPreviousGame: function () {
         "use strict";
-        // The system may need to set the user's current game's level-game to that of the current game's savedLevelGame if the
-        // player, since leaving their last game part-way through, has started the process of playing another game (which may well 
-        // set the current game's level game to a different one than that of their saved game), but did not go through with playing 
-        // the new game and has instead returned to the home screen and clicked 'Continue'.
-        rocketReadingModel.getCurrentGameData().setCurrentLevelGame(rocketReadingModel.getCurrentGameData().getSavedLevelGame());
-        mainController.setGameAndWordList(rocketReadingModel.getCurrentGameData().getSavedLevelGame()[1].toString());
+        
+        var savedGameData = rocketReadingModel.getMyPlayer().getSavedGameData(),
+        // Because the level object wass removed from the saved game data when it was saved, it needs to be restored
+            levelObject = rocketReadingModel.findLevelByNumber(rocketReadingModel.getMyPlayer().getSavedLevelGame()[0]);
+        // The system will need to load the player's saved game data into the current game data object
+        rocketReadingModel.addCurrentGameData(levelObject, savedGameData.myGame, savedGameData.wordList, savedGameData.currentWord, savedGameData.currentLevelGame, savedGameData.gameScore, savedGameData.gameMedals, savedGameData.lastTestTime, savedGameData.totalGameTime, savedGameData.wordsSoundsCorrect, savedGameData.wordsSoundsIncorrect/*, savedGameData.wordListCount, savedGameData.incorrectWord /*, savedGameData.myTimer, savedGameData.completeWordList*/);
+        
+        // The system will probably need to set the user's current game's level-game to that of the current game's savedLevelGame if the
+        // player, since leaving their last game part-way through, started the process of playing another game, but did not go through with playing 
+        // the new game and has instead returned to the home screen and clicked 'Continue'. (Unless the new game the player started to play was the same level-game as the saved game.)
+        // rocketReadingModel.getCurrentGameData().setCurrentLevelGame(rocketReadingModel.getCurrentGameData().getSavedLevelGame());
+        // mainController.setGameAndWordList(rocketReadingModel.getCurrentGameData().getSavedLevelGame()[1].toString());
         // The system needs to remove from the word list the words which the user has successfully answered
-        rocketReadingModel.getCurrentGameData().removeFromWordList(rocketReadingModel.getCurrentGameData().getWordSoundsCorrect());
+        // rocketReadingModel.getCurrentGameData().removeFromWordList(rocketReadingModel.getCurrentGameData().getWordSoundsCorrect());
         
         // The system gets the user's current game details and opens the particular screen
         mainController.gameInitialise();
@@ -234,7 +240,7 @@ var mainController = {
     resolveContinueBtn: function () {
         "use strict";
         var levelGame;
-        if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === null) {
+        if (rocketReadingModel.getMyPlayer().getSavedLevelGame() === null) {
             // If the user has completed a previous game then the timers and game time display will be reset
             mainController.resetGameTimers();
             // The system will open the highest level game screen which the user has reached. What if the user needs to complete a bonus game before starting the next level-game?
@@ -246,14 +252,13 @@ var mainController = {
                 mainController.gameInitialise();
                 // The game screen is displayed
                 myViewModelRR.showGameScreen();
-                // Ideally an introduction modal screen should be displayed when the game screen is first opened
                 
                 // The game timer is started and the current word is selected
                 mainController.startGame();
             } else {
                 // The user will have to complete a bonus game before advancing to the next level
             }
-        } else if ((rocketReadingModel.getCurrentGameData().getSavedLevelGame() !== null)) {
+        } else if ((rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null)) {
             // If the user has a saved game then the screen for that level-game will be displayed
             mainController.loadPreviousGame();
         }
@@ -271,7 +276,7 @@ var mainController = {
         "use strict";
         // Clear the myLevel property of the currentGamesData object to null or an empty object to prevent a 'converting circular structure to JSON' error from happening
         rocketReadingModel.getCurrentGameData().setCurrentLevel({});
-        // The currentGameData should be saved to the player's local storage file, so that the player can return to their un-finished game when they log back in (although this is not possible atm).
+        // The currentGameData should be saved to the player's local storage file, so that the player can return to their un-finished game when they log back in
         storageController.saveCurrentGameData();
         // Save the player's allGamesData in case this has not already been done, ie a player has not finished any games.
         storageController.saveAllGamesData();
@@ -381,7 +386,7 @@ var mainController = {
 		myViewModelRR.displayGameOptions(outputGameOptions);
 	},    
     
-     checkGameResumption: function () {
+    checkGameResumption: function () {
     // This function will check whether the user has a current saved game for the game which the user is currently choosing to play
         "use strict";
         var game = rocketReadingModel.getCurrentGameData().getCurrentGame(),
@@ -389,12 +394,14 @@ var mainController = {
             level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]),
             wordList = rocketReadingModel.getCurrentGameData().getWordList(),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
-        if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
+        if (rocketReadingModel.getMyPlayer().getSavedLevelGame() === levelGame) {
             // Check with the user whether they wish to resume the old game or start a new game
+            
         } else {
             // The data for the previous game in the current object needs to be cleared and data for the new game set
             // Not all properties will be clobbered by the resetCurrentGameData() function - all the properties of currentGameData should really be set-able by addCurrentGameData()
-            rocketReadingModel.clearCurrentGameData();
+            // Current game data is cleared when the player left the previous game - so this function does not need to be called here
+            // rocketReadingModel.clearCurrentGameData();
             // Create a new current data object, setting it the appropriate values for the currentLevelGame, myGame, myLevel and wordList properties, and then assign it as a property of the Rocket-Reading object
             mainController.resetCurrentGameData(level, game, wordList, levelGame);
             // The system will disable and turn off the learn word mode in case it was turned on when the user was playing another game and then the user left that game without successfully answering that word
@@ -515,8 +522,8 @@ var mainController = {
     
     setSavedGameNull: function () {
         "use strict";
-        // The system clears the current data's saved game data
-        rocketReadingModel.getCurrentGameData().setSavedLevelGame(null);    
+        // The system clears the player's saved game data
+        rocketReadingModel.getMyPlayer().setSavedLevelGame(null);    
     },
 
     
@@ -539,7 +546,13 @@ var mainController = {
         // In case the learn word sequence is running when the player leaves the game, the timers which are involved in this sequence are all turned off
         mainController.disableLearnWordTimers();
         myViewModelRR.learnWordIsFinished();
+        mainController.disableLearnWord();
+        // Also, any text in the space for displaying the word to be learned will be cleared
+        myViewModelRR.clearLearnWord();
+         // The system clears the timer vars and timer display
+        mainController.resetGameTimers();
         console.log("mainController: leaveCurrentGame() current word: " + rocketReadingModel.getCurrentGameData().getCurrentWord());
+        
         if (rocketReadingModel.getCurrentGameData().getCurrentWord() !== null) {
             //If the user has not finished the current game then the system needs to save the current game timer to the current game state object
             console.log("mainController: pauseCurrentGame(): saveGameTime!");
@@ -552,7 +565,17 @@ var mainController = {
             clearTimeout(silverBar);
             clearTimeout(bronzeBar);
             // The current game data is recorded as having a saved game
-            rocketReadingModel.getCurrentGameData().setSavedLevelGame(levelGame);
+            rocketReadingModel.getMyPlayer().setSavedLevelGame(levelGame);
+            // The current game data is saved in the Player object as savedGameData (the current level is cleared to prevent 
+            // a JSON circular error from occurring
+            rocketReadingModel.getCurrentGameData().setCurrentLevel({});
+            rocketReadingModel.getMyPlayer().setSavedGameData(rocketReadingModel.getCurrentGameData());
+            // The current game data should be cleared
+            // However there still needs to be a currentGameData object so don't wipe it completely: rocketReadingModel.clearCurrentGameData();
+            rocketReadingModel.addCurrentGameData(null, null, null, null, null, 0, [0,0,0], null, null, [], []);
+            // The data on the game screen will need to be cleared too and re-initialised - at this point? No need to just yet
+            // mainController.gameScreenInitialise();
+            
         } else if (rocketReadingModel.getCurrentGameData().getCurrentWord() === null) {
             // If the user has completed the current game then the game screen's properties will be cleared and reset, eg the total game time will be reset to 0.
             mainController.resetGameTimers();
@@ -761,6 +784,10 @@ var mainController = {
         "use strict";
         // Start the game timer
         mainController.startGameTimer();
+        // In case the game is in learn word mode when the user left the previous game, the system will disable this mode
+        //mainController.disableLearnWord();
+        // The bar timer needs to be disabled and cleared
+        //mainController.disableBarTimer();        
         // Determine which word the user will be tested on
         mainController.nextWord();
         // The event listener which led to this function being called will be removed
@@ -846,6 +873,11 @@ var mainController = {
         // Set the complete word list as a copy of currentGameData.myGame.myWordList
         rocketReadingModel.getCurrentGameData().setCompleteWordList(completeWordList);
         
+        mainController.gameScreenInitialise();
+    },
+    
+    gameScreenInitialise: function () {
+        "use strict";
         // The game screen is setup
         mainController.createTable();
         mainController.displayMedalCounts();

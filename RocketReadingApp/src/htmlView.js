@@ -401,8 +401,9 @@ var viewHTMLModule = {
 			// This is looking for a tag that determines accessibility. 
 			if (gameOptionsData[count][2] === true) {
 				newDiv.addEventListener("click", this.setGameAndWordList);
-                // The following function will be called later on (or else it can wipe a player's saved game)
-				// newDiv.addEventListener("click", mainController.checkGameResumption);
+                // The following function will be called later on (or else it can wipe a player's saved game) 
+                // Restored!:
+				newDiv.addEventListener("click", mainController.checkGameResumption);
 				newDiv.addEventListener("click", this.showGameScreen);
 			}
             
@@ -844,7 +845,7 @@ var viewHTMLModule = {
     // This function should not be called if the user is returning to a previous game. These event listeners should only be added if the user is starting a new game
         "use strict";
         document.getElementById("gameStart").addEventListener("click", mainController.setSavedGameNull);
-        document.getElementById("gameStart").addEventListener("click", mainController.checkGameResumption);
+        //document.getElementById("gameStart").addEventListener("click", mainController.checkGameResumption);
         document.getElementById("gameStart").addEventListener("click", mainController.startGame);
     },
     

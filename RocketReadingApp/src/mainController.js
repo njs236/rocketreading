@@ -212,6 +212,9 @@ var mainController = {
             levelObject = rocketReadingModel.findLevelByNumber(rocketReadingModel.getMyPlayer().getSavedLevelGame()[0]);
         // The system will need to load the player's saved game data into the current game data object
         rocketReadingModel.addCurrentGameData(levelObject, savedGameData.myGame, savedGameData.wordList, savedGameData.currentWord, savedGameData.currentLevelGame, savedGameData.gameScore, savedGameData.gameMedals, savedGameData.lastTestTime, savedGameData.totalGameTime, savedGameData.wordsSoundsCorrect, savedGameData.wordsSoundsIncorrect, savedGameData.incorrectWord /*, savedGameData.myTimer, savedGameData.completeWordList*/);
+        // Once the saved game has been loaded then the savedGameData and the savedLevelGame data should be cleared. This will stop a user being able to continue a game once the user has finished a game. When savedLevelGame was previously a property of currentGameData, it would have been cleared when a user finished a game and the currentGameData object was partly reset.
+        rocketReadingModel.getMyPlayer().setSavedGameData(null);
+        rocketReadingModel.getMyPlayer().setSavedLevelGame(null);
         
         // The system will probably need to set the user's current game's level-game to that of the current game's savedLevelGame if the
         // player, since leaving their last game part-way through, started the process of playing another game, but did not go through with playing 

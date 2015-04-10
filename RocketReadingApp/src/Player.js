@@ -94,15 +94,15 @@ Player.prototype.getHighScores = function () {
     return this.highScores;
 };
 
-Player.prototype.getSavedLevelGame = function () {
-    "use strict";
-    return this.savedLevelGame;
-};
-
 Player.prototype.setSavedLevelGame = function (levelGame) {
     "use strict";
     this.savedLevelGame = levelGame;
 },
+
+Player.prototype.getSavedLevelGame = function () {
+    "use strict";
+    return this.savedLevelGame;
+};
 
 Player.prototype.setSavedGameData = function (savedGameData) {
     "use strict";

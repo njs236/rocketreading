@@ -962,15 +962,14 @@ var viewHTMLModule = {
         // If the player goes back to the home screen then the game modal screen's 'gameBack' and 'gameStart' event-listeners can be removed
         viewHTMLModule.removeEventListsGameBack();
         viewHTMLModule.removeEventListGameStart();
-        
-        //document.styleSheets[3].deleteRule(document.styleSheets[3].cssRules.length - 1);
+        /*document.styleSheets[3].deleteRule(document.styleSheets[3].cssRules.length - 1);
         styleSheetList[3].deleteRule(styleSheetList[3].cssRules.length - 1);
         if (rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null) {
             styleSheetList[3].insertRule("#homeContinue:hover {background-image: url(images/continueIconGlow.png);}", styleSheetList[3].cssRules.length - 1);
         } else {
             //document.styleSheets[3].insertRule("#homeContinue:hover { }", document.styleSheets[3].cssRules.length - 1);
             styleSheetList[3].insertRule("#homeContinue:hover { }", styleSheetList[3].cssRules.length - 1);
-        }
+        }*/
         
 		console.log("HTMLView.js : Showing home screen");
 	},

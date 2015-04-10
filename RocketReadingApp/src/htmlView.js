@@ -954,6 +954,8 @@ var viewHTMLModule = {
 	
 	showHomeScreen: function () {
 		"use strict";
+        var styleSheetList = document.styleSheets;
+        
 		viewHTMLModule.hideAllPages();
 		viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
@@ -961,14 +963,14 @@ var viewHTMLModule = {
         viewHTMLModule.removeEventListsGameBack();
         viewHTMLModule.removeEventListGameStart();
         
-        /*document.styleSheets[3].deleteRule(document.styleSheets[3].cssRules.length - 1);
-        document.styleSheets[3].deleteRule(54);
+        //document.styleSheets[3].deleteRule(document.styleSheets[3].cssRules.length - 1);
+        styleSheetList[3].deleteRule(styleSheetList[3].cssRules.length - 1);
         if (rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null) {
-            document.styleSheets[3].insertRule("#homeContinue:hover {background-image: url(images/continueIconGlow.png);}", styleSheet.cssRules.length - 1);
+            styleSheetList[3].insertRule("#homeContinue:hover {background-image: url(images/continueIconGlow.png);}", styleSheetList[3].cssRules.length - 1);
         } else {
             //document.styleSheets[3].insertRule("#homeContinue:hover { }", document.styleSheets[3].cssRules.length - 1);
-            document.styleSheets[3].insertRule("#homeContinue:hover { }", 54);
-        }*/
+            styleSheetList[3].insertRule("#homeContinue:hover { }", styleSheetList[3].cssRules.length - 1);
+        }
         
 		console.log("HTMLView.js : Showing home screen");
 	},

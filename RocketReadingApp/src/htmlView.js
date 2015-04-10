@@ -957,9 +957,19 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
-        // The following function will cover a situation in which the user returns to the home page and then clicks the continue button
+        // If the player goes back to the home screen then the game modal screen's 'gameBack' and 'gameStart' event-listeners can be removed
         viewHTMLModule.removeEventListsGameBack();
         viewHTMLModule.removeEventListGameStart();
+        
+        /*document.styleSheets[3].deleteRule(document.styleSheets[3].cssRules.length - 1);
+        document.styleSheets[3].deleteRule(54);
+        if (rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null) {
+            document.styleSheets[3].insertRule("#homeContinue:hover {background-image: url(images/continueIconGlow.png);}", styleSheet.cssRules.length - 1);
+        } else {
+            //document.styleSheets[3].insertRule("#homeContinue:hover { }", document.styleSheets[3].cssRules.length - 1);
+            document.styleSheets[3].insertRule("#homeContinue:hover { }", 54);
+        }*/
+        
 		console.log("HTMLView.js : Showing home screen");
 	},
 	
@@ -969,7 +979,7 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		myViewModelRR.displayLevelList(mainController.requestAllLevels());
 		document.getElementById("levelSelectScreen").hidden = false;
-        // If the player goes back to the level select screen then the game modal screen's 'gameBack' event-listener can be removed
+        // If the player goes back to the level select screen then the game modal screen's 'gameBack' and 'gameStart' event-listeners can be removed
         viewHTMLModule.removeEventListsGameBack();
         viewHTMLModule.removeEventListGameStart();
 		console.log("HTMLView.js : Showing level select screen");

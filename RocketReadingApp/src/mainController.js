@@ -238,7 +238,7 @@ var mainController = {
     resolveContinueBtn: function () {
         "use strict";
         var levelGame;
-        if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === null) {
+        if (rocketReadingModel.getMyPlayer().getSavedLevelGame() === null) {
             // If the user has completed a previous game then the timers and game time display will be reset
             mainController.resetGameTimers();
             // The system will open the highest level game screen which the user has reached. What if the user needs to complete a bonus game before starting the next level-game?
@@ -257,7 +257,7 @@ var mainController = {
             } else {
                 // The user will have to complete a bonus game before advancing to the next level
             }
-        } else if ((rocketReadingModel.getCurrentGameData().getSavedLevelGame() !== null)) {
+        } else if ((rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null)) {
             // If the user has a saved game then the screen for that level-game will be displayed
             mainController.loadPreviousGame();
         }
@@ -393,7 +393,7 @@ var mainController = {
             level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]),
             wordList = rocketReadingModel.getCurrentGameData().getWordList(),
             levelGame = rocketReadingModel.getCurrentGameData().getCurrentLevelGame();
-        if (rocketReadingModel.getCurrentGameData().getSavedLevelGame() === levelGame) {
+        if (rocketReadingModel.getMyPlayer().getSavedLevelGame() === levelGame) {
             // Check with the user whether they wish to resume the old game or start a new game
         } else {
             // The data for the previous game in the current object needs to be cleared and data for the new game set
@@ -563,7 +563,7 @@ var mainController = {
             clearTimeout(bronzeBar);
             
             // The current game data is recorded as having a saved game
-            rocketReadingModel.getCurrentGameData().setSavedLevelGame(levelGame);
+            rocketReadingModel.getMyPlayer().setSavedLevelGame(levelGame);
             // The current game data is saved in the Player property savedGameData. Note that the current level property is cleared to prevent a JSON circular error from occurring:
             rocketReadingModel.getMyPlayer().addSavedGameData( {}, currentGameData.getCurrentGame(), currentGameData.getWordList(), currentGameData.getCurrentWord(), currentGameData.getCurrentLevelGame(), currentGameData.getGameScore(), currentGameData.getMedalCounts(), currentGameData.lastTestTime, currentGameData.getGameTime(), currentGameData.getWordSoundsCorrect(), currentGameData.getWordsSoundsIncorrect(), currentGameData.getIncorrectWord() );
             
@@ -738,7 +738,7 @@ var mainController = {
 	
     startGameTimer: function () {
         "use strict";
-        gameTimer = setInterval("myViewModelRR.displayGameTimer()", 1000);
+        gameTimer = setInterval("myViewModelRR.incrementGameTimer()", 1000);
     },
     
     startGame: function () {
@@ -1049,7 +1049,7 @@ var mainController = {
     
     resetCurrentGameData: function (newLevel, newGame, newWordList, newCurrentLevelGame) {
         "use strict";
-        rocketReadingModel.addCurrentGameData((newLevel, newGame, newWordList, null, newCurrentLevelGame, 0, [0,0,0], 0, 0, [], [], null);
+        rocketReadingModel.addCurrentGameData(newLevel, newGame, newWordList, null, newCurrentLevelGame, 0, [0,0,0], 0, 0, [], [], null);
     },
     
     // **********************************************

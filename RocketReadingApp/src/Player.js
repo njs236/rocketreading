@@ -1,4 +1,4 @@
-var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRoom,  newTotalScore, newLevelGameReached, newBonusGameReached, newPointsToPassLevel) {
+var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRoom,  newTotalScore, newLevelGameReached, newBonusGameReached, newPointsToPassLevel, newSavedLevelGame, newSavedGameData) {
     "use strict";
     // If 'this' is used instead of 'player' does this mean that the object will be a global var and will not need to be returned? 
     this.userName = newUser || null;
@@ -10,6 +10,8 @@ var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRo
     this.levelGameReached = newLevelGameReached || '';
     this.bonusGameReached = newBonusGameReached || '';
     this.pointsToPassLevel = newPointsToPassLevel || '';
+    this.savedLevelGame = newSavedLevelGame || null;
+    this.savedGameData = newSavedGameData || {};
     // The following properties belong to Player, but are created in the course of a game
     // this.highScores = newHighScores || {};
     // this.currentGameData = {};
@@ -90,4 +92,24 @@ Player.prototype.calculateSumHighScores = function (levelNumber) {
 Player.prototype.getHighScores = function () {
     "use strict";
     return this.highScores;
-}
+};
+
+Player.prototype.setSavedLevelGame = function (levelGame) {
+    "use strict";
+    this.savedLevelGame = levelGame;
+},
+
+Player.prototype.getSavedLevelGame = function () {
+    "use strict";
+    return this.savedLevelGame;
+};
+
+Player.prototype.addSavedGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord) {
+    "use strict";
+    this.savedGameData = new CurrentGameData(newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord);
+};
+
+Player.prototype.getSavedGameData = function () {
+    "use strict";
+    return this.savedGameData;
+};

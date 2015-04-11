@@ -138,7 +138,7 @@ var loadGameData = function () {
     
     // These are the first instance of CurrentGameData and AllGamesData
     
-    rocketReadingModel.addCurrentGameData(null, null, null, null, null, null, 0, [0,0,0], null, null, [], []);
+    rocketReadingModel.addCurrentGameData((null, null, null, null, null, 0, [0,0,0], null, null, [], [], null);
     rocketReadingModel.addAllGamesData([], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []);	
     
     // The system will delete any old instances of objects in the system

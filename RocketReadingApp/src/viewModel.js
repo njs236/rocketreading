@@ -197,6 +197,11 @@ var myViewModelRR = {
         "use strict";
         this.view.displayGameTimer();
     },
+    
+    incrementGameTimer: function () {
+        "use strict";
+        this.view.incrementGameTimer();
+    },
 	
 	updateCurrentWord : function (currentWord, attr, characterArray) {
         "use strict";
@@ -292,6 +297,7 @@ var myViewModelRR = {
     displayGameResults : function (levelNumber, gameNumber, medalCounts) {
         this.view.displayGameResults(levelNumber, gameNumber, medalCounts);
     },
+    
     /*
     displayGameIntroConfirm: function () {
         "use strict";
@@ -301,8 +307,22 @@ var myViewModelRR = {
 	finishedGame : function () {
 		"use strict";
 		this.view.finishedGame();
-	
 	},
+    
+    addEventListContinueGameBack: function () {
+        "use strict";
+        this.view.addEventListContinueGameBack();
+    },
+    
+    addEventListGameBackReplay: function () {
+        "use strict";
+        this.view.addEventListGameStartReplay();
+    },
+    
+    removeEventListGameStart: function () {
+        "use strict";
+        this.view.removeEventListGameStart();
+    },
 	
 	// *******************************************
 	// ********* End Game Screen Section *********

@@ -1,11 +1,11 @@
-var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newSavedLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect) {
+var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord) {
     "use strict";
 	this.myLevel = newLevel || {};
 	this.myGame = newGame || {};
 	this.wordList = newWordList || [];
 	this.currentWord = newCurrentWord || null;
     this.currentLevelGame = newCurrentLevelGame || [];
-    this.savedLevelGame = newSavedLevelGame || null;
+    // this.savedLevelGame = newSavedLevelGame || null;
     this.gameScore = newGameScore || 0;
     this.gameMedals = newGameMedals || [0,0,0];
     this.lastTestTime = newLastTestTime || 0;
@@ -13,7 +13,7 @@ var CurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, 
     this.wordsSoundsCorrect = newWordsSoundsCorrect || [];
     this.wordsSoundsIncorrect = newWordsSoundsIncorrect || [];
     this.wordListCount = this.wordList.length;
-	this.incorrectWord = null;
+	this.incorrectWord = newIncorrectWord || null;
     this.myTimer = 0;
     this.completeWordList = [];
     
@@ -133,11 +133,6 @@ CurrentGameData.prototype.getTimer = function () {
 	return this.myTimer;
 };
 
-CurrentGameData.prototype.getCurrentWord = function () {
-    "use strict";
-	return this.currentWord;
-};
-
 CurrentGameData.prototype.setScore = function (score) {
     "use strict";
 	this.gameScore += score;
@@ -159,10 +154,20 @@ CurrentGameData.prototype.saveGameTime = function () {
     this.totalGameTime = gameTimerSecs;
 };
 
+CurrentGameData.prototype.getGameTime = function () {
+    "use strict";
+    return this.totalGameTime;
+};
+
 CurrentGameData.prototype.addToWordSoundsCorrect = function (word){
     "use strict";
 	this.wordsSoundsCorrect.push(word);
-}
+};
+
+CurrentGameData.prototype.getWordSoundsCorrect = function (){
+    "use strict";
+    return this.wordsSoundsCorrect;
+};
 
 CurrentGameData.prototype.getWordListLength = function () {
     "use strict";
@@ -197,7 +202,12 @@ CurrentGameData.prototype.getIncorrectWord = function () {
 CurrentGameData.prototype.addWordsSoundsIncorrect = function (word) {
     "use strict";
     this.wordsSoundsIncorrect.push(word);
-};  
+};
+
+CurrentGameData.prototype.getWordsSoundsIncorrect = function (word) {
+    "use strict";
+    return this.wordsSoundsIncorrect;
+};
 
 CurrentGameData.prototype.getGameScore = function () {
     return this.gameScore;

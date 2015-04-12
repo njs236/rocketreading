@@ -125,6 +125,7 @@ div.homeOptions {
     
 #homeInstructions:hover {
     /*background-image: url(./images/instructionIconGlow.png);*/
+    cursor: default;
 }
 
 #homeInstructions Img {
@@ -256,6 +257,7 @@ div.homeOptions {
 
 #homeDemo:hover {
     /*background-image: url(images/demoIconGlow.png);*/
+    cursor: default;
 }
 
 #homeAvatarContainer {

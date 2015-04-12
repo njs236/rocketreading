@@ -66,7 +66,7 @@ var viewHTMLModule = {
 	attemptLogin : function() {
 		"use strict";
 		// Function is attached as an event listener to the Login Button on the login screen
-		mainController.processLogin(document.getElementById("loginUserName").value, document.getElementById("loginPassword").value);
+		mainController.processLogin(document.getElementById("loginUserName").value.trim(), document.getElementById("loginPassword").value.trim());
 	},
 	
 	loginSuccessful : function() {

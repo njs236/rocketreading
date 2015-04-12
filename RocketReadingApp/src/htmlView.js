@@ -948,6 +948,13 @@ var viewHTMLModule = {
 		"use strict";
 		var styleSheetList = document.styleSheets;
         
+        document.styleSheets[3].deleteRule(1);
+        if (rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null) {
+            document.styleSheets[3].insertRule("#homeContinue:hover {background-image: url(images/continueIconGlow.png); cursor: pointer;}", 1);
+        } else {
+            document.styleSheets[3].insertRule("#homeContinue:hover { cursor: default;}", 1);
+        }
+        
 		viewHTMLModule.hideAllPages();
 		viewHTMLModule.closeModal();
 		document.getElementById("homeScreen").hidden = false;
@@ -955,6 +962,7 @@ var viewHTMLModule = {
         viewHTMLModule.removeEventListsGameBack();
         viewHTMLModule.removeEventListGameStart();
 		console.log("HTMLView.js : Showing home screen");
+        
 	},
 	
 	
@@ -1091,10 +1099,8 @@ var viewHTMLModule = {
 		document.getElementById("gameSelectHomeButton").addEventListener("click", this.showLevelSelectScreen);
 		
 		// Game Screen
-		document.getElementById("gameHomeLink").addEventListener("click", this.showHomeScreen);
-        document.getElementById("gameHomeLink").addEventListener("click", mainController.leaveCurrentGame);
 		// This clears the timer of an individual test in a game if the user returns to the home page
-		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // mainController.leaveCurrentGame() can call this
+		// document.getElementById("gameHomeLink").addEventListener("click", this.clearTimer); // - mainController.leaveCurrentGame() can call this.
 		// If the user clicks the home button while playing the game then the system will have to save the user's details to the currentGameData object
 		
 		// Game Welcome Modal

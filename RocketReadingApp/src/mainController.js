@@ -72,9 +72,10 @@ var mainController = {
 				console.log("User Exists");
 				if ( mainController.loginMethods.validateLogin( userName, userPassword ) ){
 					console.groupEnd();
-					myViewModelRR.loginSuccessful();
 					mainController.setPlayer(userName);
                     mainController.setAccessTo();
+                    // The following function will call the function to display the home screen and needs to be called after the player is set: because whether the rollover for the Continue btn is enabled depends on whether the player has a saved game or not.
+                    myViewModelRR.loginSuccessful();
 				} else {
 					console.log("%cprocessLogin : Bad Password","color:red");
 					myViewModelRR.badLogin();

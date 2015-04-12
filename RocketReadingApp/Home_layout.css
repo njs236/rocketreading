@@ -94,10 +94,10 @@ div.homeOptions {
     background-size: auto 100%;
 }
 
+/* This is set by js insertRule() now:
 #homeContinue:hover {
     background-image: url(images/continueIconGlow.png);
-
-}
+}*/
 
 #homeHighScores {
     background-image: url(images/highScoreIcon.png);
@@ -227,16 +227,6 @@ div.homeOptions {
 
 #homePlayGame:hover {
     background-image: url(images/playIconGlow.png);
-}
-
-#homeContinue {
-    background-image: url(images/continueIcon.png);
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-}
-
-#homeContinue:hover {
-    background-image: url(images/continueIconGlow.png);
 }
 
 #homeHighScores {

@@ -209,6 +209,8 @@ var loadGameData = function () {
     theLevel.addGame("Game 3", wordList23, theLevel.getDescription(), 3, false, false);
     theLevel.addGame("Game 4", wordList24, theLevel.getDescription(), 4, false, false);
     
+    // Adding a blank css rule to the Home_layout.css document which will be used later to set the Home screen's continue button's rollover functionality
+    document.styleSheets[3].insertRule("#homeContinue:hover {}", 1);    
 };
 
 var initialise = function () {

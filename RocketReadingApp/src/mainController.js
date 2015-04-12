@@ -115,18 +115,36 @@ var mainController = {
         when a player access his login, the script will enable access to the games that they have available. This will be setting access to all games and levels they are allowed to access. */
         for (aLevel of rocketReadingModel.getAllLevels()) {
             //The total array is made up of levels that are accessible, and the games in them as accessible, the Level that the current User is upto, being accessible, and its games being accessible upto the reached game, the level that inaccessible and all the games of that level are inaccessible;
-            if (aLevel.getLevelNumber() < levelGameReached[0]) {
+            
+            // Only the first bonus game should be unlocked because this is the only one for which there are audio files
+            if (aLevel.getLevelNumber() === 0) {
+                for (aGame of aLevel.getAllGames()) {
+                    if (aGame.getNumber() !== 1) {
+                        aGame.setAccessTo(false);
+                    }
+                }           
+            } else if (aLevel.getLevelNumber() < levelGameReached[0]) {
                 aLevel.setAccessTo(true);
                 for (aGame of aLevel.getAllGames()) {
                     aGame.setAccessTo(true);
                 };
             } else if (aLevel.getLevelNumber() === levelGameReached[0]) {
                 aLevel.setAccessTo(true)
-                for (aGame of aLevel.getAllGames()) {
-                    if (aGame.gameNumber <= levelGameReached[1]) {
-                        aGame.setAccessTo(true);
-                    } else {
-                        aGame.setAccessTo(false);
+                if (aLevel.getLevelNumber() !== 2) {
+                    for (aGame of aLevel.getAllGames()) {
+                        if (aGame.getNumber() <= levelGameReached[1]) {
+                            aGame.setAccessTo(true);
+                        } else {
+                            aGame.setAccessTo(false);
+                        }
+                    }
+                } else if (aLevel.getLevelNumber() === 2) {
+                    for (aGame of aLevel.getAllGames()) {
+                        if (aGame.getNumber() !== 1) {
+                            aGame.setAccessTo(false);
+                        } else {
+                            aGame.setAccessTo(true);
+                        }
                     }
                 }
             } else {
@@ -170,8 +188,9 @@ var mainController = {
                 temp.push(1);
                 console.log("setAccessTo: " + temp);
                 rocketReadingModel.getMyPlayer().setLevelGameReached(temp);
-                // The next conditional test should not be called if the game number of the player's levelGameReached is higher than the game number of the current game
-            } else if ((gameNumber < currentLevel.getAllGames().length) && (levelGameReached[1] <= gameNumber)){
+                // The next conditional test checks whether the game number of the player's levelGameReached is higher than the game number of the current game
+                // or whether the current levelNumber is 2 - there are no audio files for level-games onwards from this LG 2-2, so players should not be able to progress beyond LG 2-1 - no, now just controlling this in setAccessTo()
+            } else if ((gameNumber < currentLevel.getAllGames().length) && (levelGameReached[1] <= gameNumber) /*&& (currentLevel.getLevelNumber() !== 2)*/){
                 temp.push(level.getLevelNumber());
                 temp.push((game.gameNumber) + 1);
                 console.log("setAccessTo: " + temp);

@@ -109,16 +109,6 @@ div.homeOptions {
     background-image: url(images/highScoreIconGlow.png);
 }
 
-#homeDemo {
-    background-image: url(images/demoIcon.png);
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-}
-
-#homeDemo:hover {
-    background-image: url(images/demoIconGlow.png);
-}
-
 #homeInstructions {
     position: absolute;
     left: 0;
@@ -134,7 +124,7 @@ div.homeOptions {
 }
     
 #homeInstructions:hover {
-    background-image: url(./images/instructionIconGlow.png);
+    /*background-image: url(./images/instructionIconGlow.png);*/
 }
 
 #homeInstructions Img {
@@ -162,7 +152,7 @@ div.homeOptions {
 }
 
 #homeExit img {
- width: 100%;
+    width: 100%;
 /*#homeExit {
     background-color: LawnGreen;*/
 }
@@ -265,7 +255,7 @@ div.homeOptions {
 }
 
 #homeDemo:hover {
-    background-image: url(images/demoIconGlow.png);
+    /*background-image: url(images/demoIconGlow.png);*/
 }
 
 #homeAvatarContainer {
@@ -304,49 +294,6 @@ div.homeOptions {
 
 div.homeOptionsRight {
     margin-right: 2em;
-}
-
-#homeInstructions {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    overflow: auto;
-    background-image: url(./images/instructionIcon.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 3%;
-    margin: 5px;
-    cursor: pointer;
-}
-    
-#homeInstructions:hover {
-    background-image: url(./images/instructionIconGlow.png);
-}
-
-#homeInstructions Img {
-    width: 100%;
-}
-
-#homeExit {
-    position: absolute;
-    right: 0;
-    top: 0;
-    overflow: auto;
-    width: 3%;
-    background-image: url(./images/exitIcon.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin: 5px;
-    cursor: pointer;
-}
-
-#homeExit:hover {
-    background-image: url(./images/exitIconGlow.png);
-}
-
-#homeExit img {
-    width: 100%;
 }
 
 #homeModalContent h1 {

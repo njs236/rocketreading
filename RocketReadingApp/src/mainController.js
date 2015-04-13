@@ -118,20 +118,20 @@ var mainController = {
             //The total array is made up of levels that are accessible, and the games in them as accessible, the Level that the current User is upto, being accessible, and its games being accessible upto the reached game, the level that inaccessible and all the games of that level are inaccessible;
             
             // Only the first bonus game should be unlocked because this is the only one for which there are audio files
-            if (aLevel.getLevelNumber() === 0) {
+            /*if (aLevel.getLevelNumber() === 0) {
                 for (aGame of aLevel.getAllGames()) {
                     if (aGame.getNumber() !== 1) {
                         aGame.setAccessTo(false);
                     }
                 }           
-            } else if (aLevel.getLevelNumber() < levelGameReached[0]) {
+            } else*/ if (aLevel.getLevelNumber() < levelGameReached[0]) {
                 aLevel.setAccessTo(true);
                 for (aGame of aLevel.getAllGames()) {
                     aGame.setAccessTo(true);
                 };
             } else if (aLevel.getLevelNumber() === levelGameReached[0]) {
-                aLevel.setAccessTo(true)
-                if (aLevel.getLevelNumber() !== 2) {
+                aLevel.setAccessTo(true);
+                /*if (aLevel.getLevelNumber() !== 2) {
                     for (aGame of aLevel.getAllGames()) {
                         if (aGame.getNumber() <= levelGameReached[1]) {
                             aGame.setAccessTo(true);
@@ -146,6 +146,13 @@ var mainController = {
                         } else {
                             aGame.setAccessTo(true);
                         }
+                    }
+                }*/
+                for (aGame of aLevel.getAllGames()) {
+                    if (aGame.gameNumber <= levelGameReached[1]) {
+                        aGame.setAccessTo(true);
+                    } else {
+                        aGame.setAccessTo(false);
                     }
                 }
             } else {

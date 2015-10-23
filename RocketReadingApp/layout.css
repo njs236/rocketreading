@@ -21,6 +21,20 @@
 	height:100%;
 }
 
+div.badge {
+    z-index: 99999;
+    background-color: #fff;
+    width: 40em;
+    height: 8em;
+    border: 2px solid #000;
+}
+
+.badge Img {
+    float: left;
+    width: 6em;
+    height: 6em;
+}
+
 div.dummy {
 	clear:both;
 }

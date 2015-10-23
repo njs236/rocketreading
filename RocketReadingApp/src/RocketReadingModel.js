@@ -33,7 +33,7 @@ RocketReadingModel.prototype.getAllLevels = function () {
 
 RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription) {
     var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription);
-    this.allMyBadges.Add(badge);
+    this.allMyBadges.push(badge);
 };
 
 RocketReadingModel.prototype.getAllMyBadges = function () {

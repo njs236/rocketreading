@@ -230,6 +230,10 @@ var myViewModelRR = {
 	displayAvatar : function (avatar) {
 		this.view.displayAvatar(avatar);
 	},
+    
+    displayBadge : function (array) {
+        this.view.displayBadge(array);
+    },
 	
 	eventClickAdd : function () {
 		this.view.eventClickAdd();

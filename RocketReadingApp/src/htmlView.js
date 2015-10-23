@@ -1064,6 +1064,33 @@ var viewHTMLModule = {
 		document.location.hash = "gameNextGameModal";
         console.log("showFinishedGameModal");
 	},
+    
+    // ******************************************
+	// ************* Badge Section **************
+	// ******************************************
+    
+    
+    displayBadge: function (array) {
+        "use strict";
+        //format of Array:
+        // [0] badgeIcon
+        // [1] badgeName
+        // [2] badgeDescription
+        var div = document.createElement('DIV');
+        div.className= "badge";
+        var img = document.createElement('IMG');
+        img.src = array[0];
+        var h1 = document.createElement('H1');
+        h1.textContent = array[1];
+        var p = document.createElement('P');
+        p.textContent = array[2];
+        
+        document.getElementById('loginScreen').appendChild(div);
+        div.appendChild(img);
+        div.appendChild(h1);
+        div.appendChild(p);
+        
+    },
 	
 	// ******************************************
 	// ********** Initialise Section ************

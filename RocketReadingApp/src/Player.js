@@ -12,6 +12,7 @@ var Player = function (newUser, newFirstName, newLastName, newSchool, newClassRo
     this.pointsToPassLevel = newPointsToPassLevel || '';
     this.savedLevelGame = newSavedLevelGame || null;
     this.savedGameData = newSavedGameData || {};
+    this.badges = [];
     // The following properties belong to Player, but are created in the course of a game
     // this.highScores = newHighScores || {};
     // this.currentGameData = {};
@@ -25,12 +26,30 @@ Player.prototype.getLevelGameReached = function () {
     return this.levelGameReached;
 };
 
+Player.prototype.findBadgeById = function (id) {
+    for (n=0; n < this.badges.length; n++) {
+        if (this.badges[n].getId() == id ) {
+            return true;
+        }
+    }
+    return false;
+};
+
 Player.prototype.setLevelGameReached = function (temp) {
     "use strict";
     this.levelGameReached = [];
     this.levelGameReached.push(temp[0]);
     this.levelGameReached.push(temp[1]);
 };
+
+Player.prototype.addBadge = function (badgeId) {
+    badge = new UserBadge(badgeId, Date());
+    this.badges.push (badge);
+};
+
+Player.prototype.getBadges() {
+    return this.badges;
+} ;
 
 Player.prototype.getPointsToPassLevel = function () {
     "use strict";

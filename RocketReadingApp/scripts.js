@@ -226,8 +226,8 @@ var initialise = function () {
     loadGameData();
 	//mainController.initialiseView();
     myViewModelRR.setView(viewHTMLModule);
-    mainController.initialiseAllBadges();
-    mainController.testBadge();
+    /*mainController.initialiseAllBadges();
+    mainController.testBadge();*/
 };
 
 window.requestAnimFrame = (function(callback){

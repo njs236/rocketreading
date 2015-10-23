@@ -47,7 +47,7 @@ Player.prototype.addBadge = function (badgeId) {
     this.badges.push (badge);
 };
 
-Player.prototype.getBadges() {
+Player.prototype.getBadges = function () {
     return this.badges;
 } ;
 

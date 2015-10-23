@@ -69,7 +69,7 @@ var mainController = {
       };
       
       // search the Completion Badge Controller
-      completionBadgeController();
+      mainController.completionBadgeController();
       
       // search the Challenge Badge Controller
       
@@ -89,7 +89,7 @@ var mainController = {
         var game = currentGameData.getCurrentGame();
         var level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]);
         if (player.findBadgeById(1) != true) {
-            if (game.getNumber() == 1 && level.getNumber() == 1) {
+            if (game.getNumber() == 1 && level.getLevelNumber() == 1) {
                 player.addBadge(1);
         }
         }
@@ -618,7 +618,7 @@ var mainController = {
         }
         
         // launches badgeController which works out which badges need to be assigned to player. 
-        initializeBadgeController();
+        mainController.initializeBadgeController();
         
         // Clear any saved game data in the Player object. This needs to be done before the currentGameData and allGamesData are saved to LS or else a JSON circular error will occur for some reason.
 		rocketReadingModel.getMyPlayer().addSavedGameData(null, null, null, null, null, null, null, null, null, null, null, null);

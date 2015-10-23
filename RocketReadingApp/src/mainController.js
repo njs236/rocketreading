@@ -19,6 +19,31 @@ var mainController = {
     // *************************************
 	// ******* Login Screen Section ********
 	// *************************************
+     initialiseAllBadges : function () {
+        n = 1;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "You've only just begun", "For completing the first game");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "I know my ABCs", "For completing the second game");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "Heading into outer space", "For completing the third game");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "I'm ready for the next level", "For completing the fourth game");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "I've got my stripes", "For completing the fifth game");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "I see gold", "For getting 15 gold stars on a game");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "We are the champions", "For getting 450 score on your first level");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "I see stars", "For completing a level with max score");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "For the thrill", "For choosing to accomplish a bonus mission");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "Road Runner", "For achieving 125 seconds on a game");
+        n++;
+        rocketReadingModel.addBadge(n, "images\trophy.png", "Word Wizz", "For getting correct on every word");
+        n++;
+    },
     
     loginMethods: {
         validateLogin: function (userName, userPassword) {

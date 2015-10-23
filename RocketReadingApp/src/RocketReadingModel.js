@@ -7,6 +7,7 @@ var RocketReadingModel = function() {
     this.playerCount = 0;
     this.myPlayer = {};
 	this.myCurrentGameData = {};
+    this.allMyBadges = [];
 	this.myAllGamesData = {};
 	this.allMyAvatars = [];
 	this.avatarCount = 0;
@@ -27,6 +28,17 @@ RocketReadingModel.prototype.addLevel = function (newDescription, newLevelNumber
 RocketReadingModel.prototype.getAllLevels = function () {
     "use strict";
     return this.allMyLevels;
+};
+
+
+RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription) {
+    var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription);
+    this.allMyBadges.Add(badge);
+};
+
+RocketReadingModel.prototype.getAllMyBadges = function () {
+    "use strict";
+    return this.allMyBadges;
 };
 
 RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord) {

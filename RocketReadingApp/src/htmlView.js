@@ -1085,7 +1085,7 @@ var viewHTMLModule = {
         var p = document.createElement('P');
         p.textContent = array[2];
         
-        document.getElementById('loginScreen').appendChild(div);
+        document.getElementById('homeScreen').appendChild(div);
         div.appendChild(img);
         div.appendChild(h1);
         div.appendChild(p);

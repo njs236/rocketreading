@@ -45,6 +45,10 @@ Player.prototype.setLevelGameReached = function (temp) {
 Player.prototype.addBadge = function (badgeId) {
     badge = new UserBadge(badgeId, Date());
     this.badges.push (badge);
+		this.badges.sort(function (a,b) {
+		return a.getDate() - b.getDate();
+	}
+	)
 };
 
 Player.prototype.getBadges = function () {

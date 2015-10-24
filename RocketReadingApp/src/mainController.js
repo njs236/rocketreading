@@ -75,6 +75,9 @@ var mainController = {
 					console.groupEnd();
 					mainController.setPlayer(userName);
 					mainController.initializeBadgeController();
+					
+					// Badges on main screen
+					mainController.testBadge();
                     mainController.setAccessTo();
                     // The following function will call the function to display the home screen and needs to be called after the player is set: because whether the rollover for the Continue btn is enabled depends on whether the player has a saved game or not.
                     myViewModelRR.loginSuccessful();
@@ -1121,10 +1124,19 @@ var mainController = {
     },
     
     testBadge: function () {
-        
-        for (n=0; n< 10; n++) {
-            var myBadge = rocketReadingModel.getAllMyBadges()[n];
-            var myArray = [myBadge.badgeIcon, myBadge.badgeName, myBadge.badgeDescription];
+		console.log("testing badges on home screen");
+        var limit = 5;
+        for (n=0; n< limit; n++) {
+		// check for badge in player badge array
+			if (rocketReadingModel.getMyPlayer().getBadges()[n] == undefined) {
+				break;
+			}
+            var myBadge = rocketReadingModel.getMyPlayer().getBadges()[n];
+			console.log(myBadge);
+			var myDisplayBadge = rocketReadingModel.findBadgeById(myBadge.getId())
+			console.log(myBadge.getId());
+			console.log(myDisplayBadge);
+            var myArray = [myDisplayBadge.badgeIcon, myDisplayBadge.badgeName, myDisplayBadge.badgeDescription];
         myViewModelRR.displayBadge(myArray);
         }
         

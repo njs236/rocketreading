@@ -6,3 +6,7 @@ var UserBadge = function (newBadgeId, newDate) {
 UserBadge.prototype.getId = function () {
     return this.badgeId;
 }
+
+UserBadge.prototype.getDate = function () {
+	return this.date;
+}

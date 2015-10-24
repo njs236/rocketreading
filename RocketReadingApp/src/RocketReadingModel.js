@@ -30,6 +30,15 @@ RocketReadingModel.prototype.getAllLevels = function () {
     return this.allMyLevels;
 };
 
+RocketReadingModel.prototype.findBadgeById = function (id) {
+	for (n=0; n < this.allMyBadges.length; n++) {
+        if (this.allMyBadges[n].getId() == id ) {
+            return this.allMyBadges[n];
+        }
+    }
+    return;
+}
+
 RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription) {
     var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription);
     this.allMyBadges.push(badge);

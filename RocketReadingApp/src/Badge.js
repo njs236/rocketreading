@@ -5,3 +5,7 @@ var Badge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescriptio
     this.badgeDescription = newBadgeDescription;
     this.badgeType = newBadgeType;
 }
+
+Badge.prototype.getId = function () {
+	return this.badgeID;
+}

@@ -227,7 +227,6 @@ var initialise = function () {
 	//mainController.initialiseView();
     myViewModelRR.setView(viewHTMLModule);
     mainController.initialiseAllBadges();
-   /* mainController.testBadge();*/
 };
 
 window.requestAnimFrame = (function(callback){

@@ -30,7 +30,6 @@ RocketReadingModel.prototype.getAllLevels = function () {
     return this.allMyLevels;
 };
 
-
 RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription) {
     var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription);
     this.allMyBadges.push(badge);
@@ -40,6 +39,78 @@ RocketReadingModel.prototype.getAllMyBadges = function () {
     "use strict";
     return this.allMyBadges;
 };
+
+RocketReadingModel.prototype.getBadgeCount = function () {
+	return this.allMyBadges.length;
+}
+
+RocketReadingModel.prototype.checkBadge = function (badge) {
+		console.log("Check Badge " + badge);
+		// initialise needed data for checking badge requirements
+		var player = rocketReadingModel.getMyPlayer(),
+			allGamesData = rocketReadingModel.getAllGamesData();
+        // check for badge in Player
+		if (player.findBadgeById(badge)) {
+			return;
+		}
+		// case statements for badges
+		switch (badge) {
+			case 1:
+			/* for clarification on why I have used this way.
+			when using this function, it returns an object if there are 1 in the array, but all subsequent ones failed because they were not empty when instanced. they were an empty array
+			for some reason trying array.length is also undefined
+			 but the array is treated as an array in that the first index can be isolated. Undefined means that this object is undefined. for empty array of type CurrentGameData, this returns
+			 undefined.*/
+			if (allGamesData.getGameDataArray(1, 1)[0] != undefined) {
+				player.addBadge(badge);
+			}
+			break;
+			case 2:
+			if (allGamesData.getGameDataArray(1, 2)[0] != undefined) {
+				player.addBadge(badge);
+			}
+			break;
+			case 3:
+			if (allGamesData.getGameDataArray(1, 3)[0] != undefined) {
+				player.addBadge(badge);
+			}
+			break;
+			case 4:
+			if (allGamesData.getGameDataArray(1, 4)[0] != undefined) {
+				player.addBadge(badge);
+			}
+			break;
+			case 5:
+			if (allGamesData.getGameDataArray(2, 1)[0] != undefined) {
+				player.addBadge(badge);
+			}
+			break;
+			case 6:
+			
+			break;
+			case 7:
+			
+			break;
+			case 8:
+			
+			break;
+			case 9:
+			
+			break;
+			case 10:
+			
+			break;
+			
+			case 11:
+			
+			break;
+			
+			default: 
+			
+			break;
+		}
+
+    };
 
 RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord) {
 	var newCurrentGameData = new CurrentGameData(newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord);

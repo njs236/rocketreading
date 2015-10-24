@@ -19,92 +19,7 @@ var mainController = {
     // *************************************
 	// ******* Login Screen Section ********
 	// *************************************
-     initialiseAllBadges : function () {
-        n = 1;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "You've only just begun", "For completing the first game", 1);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I know my ABCs", "For completing the second game", 1);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "Heading into outer space", "For completing the third game", 1);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I'm ready for the next level", "For completing the fourth game", 1);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I've got my stripes", "For completing the fifth game", 1);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I see gold", "For getting 15 gold stars on a game", 2);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "We are the champions", "For getting 450 score on your first level", 2);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a level with max score", 2);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "For the thrill", "For choosing to accomplish a bonus mission", 3);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "Road Runner", "For achieving 125 seconds on a game", 2);
-        n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "Word Wizz", "For getting correct on every word", 2);
-        n++;
-    },
-    
-    badgeTypes : {
-        
-        1: 'Completion',
-        2: 'Challenge',
-        3: 'Bonus'
-    },
-    
-    testBadge: function () {
-        
-        for (n=0; n< 10; n++) {
-            var myBadge = rocketReadingModel.getAllMyBadges()[n];
-            var myArray = [myBadge.badgeIcon, myBadge.badgeName, myBadge.badgeDescription];
-        myViewModelRR.displayBadge(myArray);
-        }
-        
-    },
-    
-    initializeBadgeController: function () {
-      // search players, badges for badgeIds,
-      if (rocketReadingModel.getMyPlayer().getBadges != []) {
-          
-      };
-      
-      // search the Completion Badge Controller
-      mainController.completionBadgeController();
-      
-      // search the Challenge Badge Controller
-      
-      
-      // search the Bonus Badge Controller
-      
-      
-    },
-    
-    completionBadgeController : function () {
-        // event of finishing game
-        
-        // event of badge 1
-        
-        var player = rocketReadingModel.getMyPlayer();
-        var currentGameData = rocketReadingModel.getCurrentGameData();
-        var game = currentGameData.getCurrentGame();
-        var level = rocketReadingModel.findLevelByNumber(rocketReadingModel.getCurrentGameData().getCurrentLevelGame()[0]);
-        if (player.findBadgeById(1) != true) {
-            if (game.getNumber() == 1 && level.getLevelNumber() == 1) {
-                player.addBadge(1);
-        }
-        }
-        
-        
-        
-        
-        // event of starting Rocket Reading
-        
-        
-        
-        
-        
-        
-    },
+     
     
     loginMethods: {
         validateLogin: function (userName, userPassword) {
@@ -159,6 +74,7 @@ var mainController = {
 				if ( mainController.loginMethods.validateLogin( userName, userPassword ) ){
 					console.groupEnd();
 					mainController.setPlayer(userName);
+					mainController.initializeBadgeController();
                     mainController.setAccessTo();
                     // The following function will call the function to display the home screen and needs to be called after the player is set: because whether the rollover for the Continue btn is enabled depends on whether the player has a saved game or not.
                     myViewModelRR.loginSuccessful();
@@ -615,9 +531,9 @@ var mainController = {
             // Passing setLevelGameReached() the gameNumber to determine the level which will be looked at. Passing null for the second parameter - will this work? Seems to
             mainController.setLevelGameReached(rocketReadingModel.findLevelByNumber(gameNumber), null);
             mainController.setAccessTo();
-        }
-        
-        // launches badgeController which works out which badges need to be assigned to player. 
+        };
+				
+		// launches badgeController which works out which badges need to be assigned to player. 
         mainController.initializeBadgeController();
         
         // Clear any saved game data in the Player object. This needs to be done before the currentGameData and allGamesData are saved to LS or else a JSON circular error will occur for some reason.
@@ -631,6 +547,7 @@ var mainController = {
         // Saving currentGameData should not be necessary to do but it's good to call this function here in case a player exits the program by closing the window of the browser and not logging out through the game (& see below: the currentGameData will soon be cleared):
         storageController.saveCurrentGameData(); 
         storageController.saveAllGamesData();
+
         
         // Clear the current data object
         rocketReadingModel.clearCurrentGameData();
@@ -1166,6 +1083,62 @@ var mainController = {
     resetCurrentGameData: function (newLevel, newGame, newWordList, newCurrentLevelGame) {
         "use strict";
         rocketReadingModel.addCurrentGameData(newLevel, newGame, newWordList, null, newCurrentLevelGame, 0, [0,0,0], 0, 0, [], [], null);
+    },
+    // **********************************************
+	// *************** Badges Section ***************
+	// **********************************************	
+	
+	initialiseAllBadges : function () {
+        n = 1;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "You've only just begun", "For completing the first game", 1);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I know my ABCs", "For completing the second game", 1);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "Heading into outer space", "For completing the third game", 1);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I'm ready for the next level", "For completing the fourth game", 1);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I've got my stripes", "For completing the fifth game", 1);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I see gold", "For getting 15 gold stars on a game", 2);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "We are the champions", "For getting 450 score on your first level", 2);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a level with max score", 2);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "For the thrill", "For choosing to accomplish a bonus mission", 3);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "Road Runner", "For achieving 125 seconds on a game", 2);
+        n++;
+        rocketReadingModel.addBadge(n, "images/trophy.png", "Word Wizz", "For getting correct on every word", 2);
+    },
+    
+    badgeTypes : {
+        
+        1: 'Completion',
+        2: 'Challenge',
+        3: 'Bonus'
+    },
+    
+    testBadge: function () {
+        
+        for (n=0; n< 10; n++) {
+            var myBadge = rocketReadingModel.getAllMyBadges()[n];
+            var myArray = [myBadge.badgeIcon, myBadge.badgeName, myBadge.badgeDescription];
+        myViewModelRR.displayBadge(myArray);
+        }
+        
+    },
+    
+    initializeBadgeController: function () {
+      // search
+	  console.log("going through badges")
+	  var n;
+		var badgeCount = rocketReadingModel.getBadgeCount();
+		console.log("test: BadgeCount " + badgeCount);
+		for (n=1; n<= badgeCount; n++) {
+			rocketReadingModel.checkBadge(n);
+		}
     },
     
     // **********************************************

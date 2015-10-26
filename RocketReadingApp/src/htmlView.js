@@ -1070,14 +1070,14 @@ var viewHTMLModule = {
 	// ******************************************
     
     
-    displayBadge: function (array) {
+    displayBadge: function (array, div) {
         "use strict";
         //format of Array:
         // [0] badgeIcon
         // [1] badgeName
         // [2] badgeDescription
-        var div = document.createElement('DIV');
-        div.className= "badge";
+        var child = document.createElement('DIV');
+        child.className= "badge";
         var img = document.createElement('IMG');
         img.src = array[0];
         var h1 = document.createElement('H1');
@@ -1085,12 +1085,43 @@ var viewHTMLModule = {
         var p = document.createElement('P');
         p.textContent = array[2];
         
-        document.getElementById('homeScreen').appendChild(div);
-        div.appendChild(img);
-        div.appendChild(h1);
-        div.appendChild(p);
+        document.getElementById(div).appendChild(child);
+        child.appendChild(img);
+        child.appendChild(h1);
+        child.appendChild(p);
         
     },
+	
+	displayNotification: function (array) {
+		"use strict";
+		//format of Array;
+		// [0] badgeIcon
+		// [1] badgeName
+		var div = document.createElement('DIV');
+		div.className = "notification";
+		var img = document.createElement('IMG');
+		img.src = array[0];
+		var h1 = document.createElement('H1');
+		h1.textContent = array[1];
+		
+		document.getElementById('homeNotification').appendChild(div);
+		div.appendChild(img);
+		div.appendChild(h1);
+		
+		window.setTimeout(function () {
+			document.getElementById('homeNotification').removeChild();
+		}, 3000);
+	},
+	
+	displayHighScoreForPlayer : function (sum) {
+	var home = document.getElementById('homeScoreNum');
+		home.textContent = sum;
+	},
+	
+	displayNextTask : function (icon) {
+		var home = document.getElementById('homeNextTask');
+		home.style.backgroundImage = "url(images/" + encodeURIComponent(icon) + ".png)";
+	},
 	
 	// ******************************************
 	// ********** Initialise Section ************

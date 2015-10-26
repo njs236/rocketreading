@@ -74,13 +74,15 @@ var mainController = {
 				if ( mainController.loginMethods.validateLogin( userName, userPassword ) ){
 					console.groupEnd();
 					mainController.setPlayer(userName);
+                    mainController.setAccessTo();
+                    // The following function will call the function to display the home screen and needs to be called after the player is set: because whether the rollover for the Continue btn is enabled depends on whether the player has a saved game or not.
+                    myViewModelRR.loginSuccessful();
 					mainController.initializeBadgeController();
 					
 					// Badges on main screen
 					mainController.testBadge();
-                    mainController.setAccessTo();
-                    // The following function will call the function to display the home screen and needs to be called after the player is set: because whether the rollover for the Continue btn is enabled depends on whether the player has a saved game or not.
-                    myViewModelRR.loginSuccessful();
+					mainController.displayHighScoreForPlayer();
+					mainController.determineNextTask();
 				} else {
 					console.log("%cprocessLogin : Bad Password","color:red");
 					myViewModelRR.badLogin();
@@ -538,6 +540,11 @@ var mainController = {
 				
 		// launches badgeController which works out which badges need to be assigned to player. 
         mainController.initializeBadgeController();
+		
+		//repopulates mainscreen table
+		mainController.testBadge();
+		mainController.displayHighScoreForPlayer();
+		mainController.determineNextTask();
         
         // Clear any saved game data in the Player object. This needs to be done before the currentGameData and allGamesData are saved to LS or else a JSON circular error will occur for some reason.
 		rocketReadingModel.getMyPlayer().addSavedGameData(null, null, null, null, null, null, null, null, null, null, null, null);
@@ -1124,8 +1131,14 @@ var mainController = {
     },
     
     testBadge: function () {
+	// currently displays latest Achievements
 		console.log("testing badges on home screen");
         var limit = 5;
+		// remove all child elements from div
+		var achievementDiv = document.getElementById('homeAchievements');
+		for(n=0; n< achievementDiv.childNodes.length; n++ ) {
+			achievementDiv.removeChild(achievementDiv.childNodes[n]);
+		};
         for (n=0; n< limit; n++) {
 		// check for badge in player badge array
 			if (rocketReadingModel.getMyPlayer().getBadges()[n] == undefined) {
@@ -1137,7 +1150,7 @@ var mainController = {
 			console.log(myBadge.getId());
 			console.log(myDisplayBadge);
             var myArray = [myDisplayBadge.badgeIcon, myDisplayBadge.badgeName, myDisplayBadge.badgeDescription];
-        myViewModelRR.displayBadge(myArray);
+        myViewModelRR.displayBadge(myArray, "homeAchievements");
         }
         
     },
@@ -1149,9 +1162,44 @@ var mainController = {
 		var badgeCount = rocketReadingModel.getBadgeCount();
 		console.log("test: BadgeCount " + badgeCount);
 		for (n=1; n<= badgeCount; n++) {
-			rocketReadingModel.checkBadge(n);
+			mainController.checkBadge(n);
 		}
     },
+	
+	checkBadge : function (badge) {
+		var badge = rocketReadingModel.checkBadge(badge);
+		if (badge != null) {
+			var myArray = [badge.badgeIcon, badge.badgeName];
+			myViewModelRR.displayNotification(myArray)
+		}
+
+	},
+	
+	displayHighScoreForPlayer: function () {
+	var sum = 0;
+	var LevelCount = rocketReadingModel.getLevelCount();
+		for(n=0; n < LevelCount; n++) {
+			var array = mainController.getHighScoresForLevel(n)
+			var levelScore = array.length-1;
+			sum += array[levelScore];
+		}
+		
+		myViewModelRR.displayHighScoreForPlayer(sum);
+	},
+	
+	determineNextTask: function () {
+	//it is just an icon for now.
+		var gamereached = rocketReadingModel.getMyPlayer().getLevelGameReached();
+		var hasDoneBonus = rocketReadingModel.getAllGamesData().getGameDataArray(0,1)[0] != undefined;
+		var icon = rocketReadingModel.findGameByLevelAndNumber(gamereached[0], gamereached[1]).getGameName();
+		
+		if (gamereached == [2,1]) {
+			var avatar = rocketReadingModel.findLevelByNumber(gamereached[0]).getAvatar();
+			icon = avatar.getName();
+		};
+		
+		myViewModelRR.displayNextTask(icon);
+	},
     
     // **********************************************
 	// ************ High Scores Section *************

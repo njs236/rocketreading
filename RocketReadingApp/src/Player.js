@@ -26,6 +26,22 @@ Player.prototype.getLevelGameReached = function () {
     return this.levelGameReached;
 };
 
+Player.prototype.setBadges = function (newBadges) {
+
+//	I can't get a length of an array of objects. newBadges is an array of objects
+	console.log(newBadges);
+	console.log(newBadges[0]);
+	var length = 0;
+	while (newBadges[length] != undefined) {
+		length++;
+	}
+	console.log(length);
+	for (n=0; n < length; n++) {
+		badge = new UserBadge(newBadges[n].badgeId, newBadges[n].date);
+		this.badges.push(badge);
+	}
+};
+
 Player.prototype.findBadgeById = function (id) {
     for (n=0; n < this.badges.length; n++) {
         if (this.badges[n].getId() == id ) {

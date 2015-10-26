@@ -25,6 +25,10 @@ RocketReadingModel.prototype.addLevel = function (newDescription, newLevelNumber
     this.levelCount += Number(1);
 };
 
+RocketReadingModel.prototype.getLevelCount = function () {
+	return this.levelCount;
+};
+
 RocketReadingModel.prototype.getAllLevels = function () {
     "use strict";
     return this.allMyLevels;
@@ -72,26 +76,31 @@ RocketReadingModel.prototype.checkBadge = function (badge) {
 			 undefined.*/
 			if (allGamesData.getGameDataArray(1, 1)[0] != undefined) {
 				player.addBadge(badge);
+				return rocketReadingModel.findBadgeById(badge);
 			}
 			break;
 			case 2:
 			if (allGamesData.getGameDataArray(1, 2)[0] != undefined) {
 				player.addBadge(badge);
+				return rocketReadingModel.findBadgeById(badge);
 			}
 			break;
 			case 3:
 			if (allGamesData.getGameDataArray(1, 3)[0] != undefined) {
 				player.addBadge(badge);
+				return rocketReadingModel.findBadgeById(badge);
 			}
 			break;
 			case 4:
 			if (allGamesData.getGameDataArray(1, 4)[0] != undefined) {
 				player.addBadge(badge);
+				return rocketReadingModel.findBadgeById(badge);
 			}
 			break;
 			case 5:
 			if (allGamesData.getGameDataArray(2, 1)[0] != undefined) {
 				player.addBadge(badge);
+				return rocketReadingModel.findBadgeById(badge);
 			}
 			break;
 			case 6:
@@ -115,9 +124,11 @@ RocketReadingModel.prototype.checkBadge = function (badge) {
 			break;
 			
 			default: 
+			console.log("invalid case");
 			
 			break;
 		}
+		return null;
 
     };
 
@@ -197,7 +208,8 @@ RocketReadingModel.prototype.loadCurrentGameData = function (gameDataArray) {
 
 RocketReadingModel.prototype.setPlayer = function (player) {
     "use strict";
-    var newPlayer = new Player( player.userName, player.firstName, player.lastName, player.school, player.classRoom, player.totalScore, player.levelGameReached, player.bonusGameReached, player.pointsToPassLevel, player.savedLevelGame, player.savedGameData ),
+	console.log(player.badges);
+    var newPlayer = new Player( player.userName, player.firstName, player.lastName, player.school, player.classRoom, player.totalScore, player.levelGameReached, player.bonusGameReached, player.pointsToPassLevel, player.savedLevelGame, player.savedGameData),
     
     newAllGamesData = new AllGamesData(this.loadCurrentGameData(player.allGamesData.level0Game1), this.loadCurrentGameData(player.allGamesData.level0Game2), this.loadCurrentGameData(player.allGamesData.level0Game3), this.loadCurrentGameData(player.allGamesData.level0Game4), this.loadCurrentGameData(player.allGamesData.level0Game5),  this.loadCurrentGameData(player.allGamesData.level0Game6), this.loadCurrentGameData(player.allGamesData.level1Game1), this.loadCurrentGameData(player.allGamesData.level1Game2), this.loadCurrentGameData(player.allGamesData.level1Game3), this.loadCurrentGameData(player.allGamesData.level1Game4), this.loadCurrentGameData(player.allGamesData.level2Game1), this.loadCurrentGameData(player.allGamesData.level2Game2), this.loadCurrentGameData(player.allGamesData.level2Game3), this.loadCurrentGameData(player.allGamesData.level2Game4), this.loadCurrentGameData(player.allGamesData.level3Game1), this.loadCurrentGameData(player.allGamesData.level3Game2), this.loadCurrentGameData(player.allGamesData.level3Game3), this.loadCurrentGameData(player.allGamesData.level3Game4), this.loadCurrentGameData(player.allGamesData.level4Game1),  this.loadCurrentGameData(player.allGamesData.level4Game2), this.loadCurrentGameData(player.allGamesData.level4Game3), this.loadCurrentGameData(player.allGamesData.level4Game4), this.loadCurrentGameData(player.allGamesData.level5Game1), this.loadCurrentGameData(player.allGamesData.level5Game2), this.loadCurrentGameData(player.allGamesData.level5Game3), this.loadCurrentGameData(player.allGamesData.level5Game4), this.loadCurrentGameData(player.allGamesData.level6Game1), this.loadCurrentGameData(player.allGamesData.level6Game2), this.loadCurrentGameData(player.allGamesData.level6Game3), this.loadCurrentGameData(player.allGamesData.level6Game4)),
     
@@ -205,6 +217,7 @@ RocketReadingModel.prototype.setPlayer = function (player) {
 	
     newPlayer.addHighScores(player.highScores.level0Game1HS, player.highScores.level0Game2HS, player.highScores.level0Game3HS, player.highScores.level0Game4HS, player.highScores.level0Game5HS, player.highScores.level0Game6HS, player.highScores.level1Game1HS, player.highScores.level1Game2HS, player.highScores.level1Game3HS, player.highScores.level1Game4HS, player.highScores.level2Game1HS, player.highScores.level2Game2HS, player.highScores.level2Game3HS, player.highScores.level2Game4HS, player.highScores.level3Game1HS, player.highScores.level3Game2HS, player.highScores.level3Game3HS, player.highScores.level3Game4HS,player.highScores.level4Game1HS, player.highScores.level4Game2HS, player.highScores.level4Game3HS, player.highScores.level4Game4HS, player.highScores.level5Game1HS, player.highScores.level5Game2HS, player.highScores.level5Game3HS, player.highScores.level5Game4HS, player.highScores.level6Game1HS, player.highScores.level6Game2HS, player.highScores.level6Game3HS, player.highScores.level6Game4HS);
     
+	newPlayer.setBadges(player.badges);
     if (newPlayer.savedLevelGame !== null) {
         newPlayer.addSavedGameData( this.findLevelByNumber(player.savedLevelGame[0]), this.loadGameData(player.savedGameData.myGame), player.savedGameData.wordList, player.savedGameData.currentWord, player.savedGameData.currentLevelGame, player.savedGameData.gameScore, player.savedGameData.gameMedals, player.savedGameData.lastTestTime, player.savedGameData.totalGameTime, player.savedGameData.wordsSoundsCorrect, player.savedGameData.wordsSoundsIncorrect,  player.savedGameData.incorrectWord );
     }
@@ -260,6 +273,19 @@ RocketReadingModel.prototype.findGameByNumber = function (number) {
 	}
 		alert("Game Not Found");
 };
+
+RocketReadingModel.prototype.findGameByLevelAndNumber = function (levelNumber, gameNumber) {
+	var aLevel = rocketReadingModel.findLevelByNumber(levelNumber);
+	var aGame;
+	for (aGame of aLevel.allMyGames) {
+		if (aGame.getNumber() == gameNumber) {
+			console.log("aGame:" + aGame);
+				return aGame;
+		}
+	}
+	
+	alert("Game Not Found");
+}
 
 /*RocketReadingModel.prototype.findGame = function (levelName, name) {
     "use strict";

@@ -57,6 +57,33 @@
     float: left;
 }
 
+#homeAchievements {
+	position: absolute;
+	left: 15%;
+	top: 25%;
+}
+
+#homeScore {
+	z-index:99999;
+	position: absolute;
+	right: 5%;
+	top: 5%;
+}
+
+#homeNextTask {
+	z-index: 99999;
+	position: absolute;
+	right: 1%;
+	top: 14%;
+	width: 200px;
+	height: 200px;
+}
+
+#homeScore h1 {
+	font-size: 4em;
+	color: #f33;
+}
+
 div.homeSideDivs {
     height: 20%;
     width: 100%;

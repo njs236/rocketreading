@@ -231,9 +231,21 @@ var myViewModelRR = {
 		this.view.displayAvatar(avatar);
 	},
     
-    displayBadge : function (array) {
-        this.view.displayBadge(array);
+    displayBadge : function (array, div) {
+        this.view.displayBadge(array, div);
     },
+	
+	displayHighScoreForPlayer : function (sum) {
+		this.view.displayHighScoreForPlayer(sum);
+	},
+	
+	displayNextTask : function (icon) {
+		this.view.displayNextTask(icon);
+	},
+	
+	displayNotification : function (array) {
+		this.view.displayNotification(array);
+	},
 	
 	eventClickAdd : function () {
 		this.view.eventClickAdd();

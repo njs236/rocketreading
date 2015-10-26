@@ -2,12 +2,18 @@ controller must be able to:
 
 1. event with the finishing of a game to post any new badges (tick)
 2. interact with player data for storing the badgeId of each badge the user has (in an array) (tick)
-3. display latest achievements
-4. display total score of player
-5. being able to suggest new tasks whenever you go back to main screen
+3. display latest achievements (tick)
+4. display total score of player (tick)
+5. being able to suggest new tasks whenever you go back to main screen (tick)
 6. list outcomes of the program
 7. produce badges from the data that comes from a saved game (tick)
     a. completion badges (posting from game end script )
     b. champion badges (posting from game end script, data provided in model)
     c. bonus badges (related to bonus games)
     d. conditions for all badges, structured in the type of badge they are. (tick)
+	
+Should haves:
+
+progress bar on current level. (450 max)
+
+

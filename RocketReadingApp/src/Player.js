@@ -39,7 +39,14 @@ Player.prototype.setBadges = function (newBadges) {
 	for (n=0; n < length; n++) {
 		badge = new UserBadge(newBadges[n].badgeId, newBadges[n].date);
 		this.badges.push(badge);
+		this.badges.sort(function (a,b) {
+            if (a.getDate() < b.getDate()) {
+                return 1;
+            }
+                return 0;
+        })
 	}
+    
 };
 
 Player.prototype.findBadgeById = function (id) {
@@ -62,9 +69,11 @@ Player.prototype.addBadge = function (badgeId) {
     badge = new UserBadge(badgeId, Date());
     this.badges.push (badge);
 		this.badges.sort(function (a,b) {
-		return a.getDate() - b.getDate();
-	}
-	)
+            if (a.getDate() < b.getDate()) {
+                return 1;
+            }
+                return 0;
+        })
 };
 
 Player.prototype.getBadges = function () {

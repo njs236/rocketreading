@@ -1150,6 +1150,7 @@ var mainController = {
     testBadge: function () {
 	// currently displays latest Achievements
 		console.log("testing badges on home screen");
+		var n;
         var limit = 5;
 		// remove all child elements from div
 		var achievementDiv = document.getElementById('homeAchievements');
@@ -1159,6 +1160,7 @@ var mainController = {
 			if (rocketReadingModel.getMyPlayer().getBadges()[n] == undefined) {
 				break;
 			}
+			console.log(n);
             var myBadge = rocketReadingModel.getMyPlayer().getBadges()[n];
 			console.log(myBadge);
 			var myDisplayBadge = rocketReadingModel.findBadgeById(myBadge.getId())
@@ -1256,7 +1258,7 @@ var mainController = {
         for (n=0; n< badgesArray.length; n++) {
             if (badgesArray[n].getType() == number) {
                 console.log("array " + badgesArray[n].getId() + " is completion");
-                if (rocketReadingModel.getMyPlayer().findBadgeById(n)) {
+                if (rocketReadingModel.getMyPlayer().findBadgeById(badgesArray[n].getId())) {
                     array = [badgesArray[n].getIcon(),badgesArray[n].getName(), badgesArray[n].getDescription(), true];
                     myViewModelRR.displayBadgeWithPossession(array, "achievementsDisplay");
                 } else {

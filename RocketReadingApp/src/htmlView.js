@@ -1116,7 +1116,7 @@ var viewHTMLModule = {
 		div.appendChild(h1);
 		
 		window.setTimeout(function () {
-			document.getElementById('homeNotification').removeChild();
+			document.getElementById('homeNotification').innerHTML = "";
 		}, 3000);
 	},
 	

@@ -1243,14 +1243,17 @@ var mainController = {
     
     displayBadgesByType : function (number) {
         console.log(number);
+        var n;
         var array = [];
     var badgesArray = rocketReadingModel.getAllMyBadges();
-    
-    //refresh the div.
+    console.log(rocketReadingModel.getMyPlayer().constructor == Player);
+    var hasplayer = (rocketReadingModel.getMyPlayer().constructor == Player);
+     //refresh the div.
         var achievementDiv = document.getElementById('achievementsDisplay');
 		for(n=0; n< achievementDiv.childNodes.length; n++ ) {
 			achievementDiv.removeChild(achievementDiv.childNodes[n]);
 		};
+    if (hasplayer) {
         console.log("empty div");
         console.log("badgesArray: " + badgesArray.length);
         for (n=0; n< badgesArray.length; n++) {
@@ -1265,6 +1268,11 @@ var mainController = {
                 }
             }
         }
+    } else {
+        myViewModelRR.displayNotice();
+    }
+  
+        
     },
     
     // **********************************************

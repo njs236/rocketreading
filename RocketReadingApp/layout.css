@@ -29,7 +29,21 @@ div.badge {
     border: 2px solid #000;
 }
 
+div.regularBadge {
+    z-index: 99999;
+    background-color: #666;
+    width: 40em;
+    height: 8em;
+    border: 2px solid #000;
+}
+
 .badge Img {
+    float: left;
+    width: 6em;
+    height: 6em;
+}
+
+.regularBadge img {
     float: left;
     width: 6em;
     height: 6em;

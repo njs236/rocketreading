@@ -1140,9 +1140,9 @@ var viewHTMLModule = {
         var child = document.createElement('DIV');
         //test if player has badge or not
         if (array[3]) {
-            div.className = 'badge';
+            child.className = 'badge';
         } else {
-            div.className = 'regularBadge';
+            child.className = 'regularBadge';
         };
         
         var img = document.createElement('IMG');
@@ -1157,6 +1157,14 @@ var viewHTMLModule = {
         child.appendChild(h1);
         child.appendChild(p);
         
+    },
+    
+    displayNotice: function () {
+        var div = document.getElementById('achievementsDisplay');
+        var child = document.createElement('DIV');
+        child.textContent = "Come back here with a logged in player";
+        
+        div.appendChild(child);
     },
 	
 	// ******************************************

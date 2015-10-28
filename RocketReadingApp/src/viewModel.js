@@ -235,6 +235,10 @@ var myViewModelRR = {
         this.view.displayBadgeWithPossession(array, div);
     },
     
+    displayNotice : function () {
+        this.view.displayNotice();
+    },
+    
     displayBadge : function (array, div) {
         this.view.displayBadge(array, div);
     },

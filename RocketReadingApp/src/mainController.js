@@ -1125,19 +1125,19 @@ var mainController = {
     
     badgeTypes : {
         
-        Completion: 1,
-        Challenge: 2,
-        Bonus: 3,
+        one: 'Completion' ,
+        two: 'Challenge',
+        three: 'Bonus',
         returnType: function (number) {
             switch (number) {
                 case 1:
-                return this.Completion;
+                return this.one;
                 break;
                 case 2:
-                return this.Challenge;
+                return this.two;
                 break;
                 case 3:
-                return this.Bonus;
+                return this.three;
                 break;
                 default:
                 console.log("invalid value");
@@ -1153,9 +1153,7 @@ var mainController = {
         var limit = 5;
 		// remove all child elements from div
 		var achievementDiv = document.getElementById('homeAchievements');
-		for(n=0; n< achievementDiv.childNodes.length; n++ ) {
-			achievementDiv.removeChild(achievementDiv.childNodes[n]);
-		};
+		achievementDiv.innerHTML = "<h1>Latest Achievements</h1>";
         for (n=0; n< limit; n++) {
 		// check for badge in player badge array
 			if (rocketReadingModel.getMyPlayer().getBadges()[n] == undefined) {
@@ -1219,17 +1217,18 @@ var mainController = {
 	},
     
     returnBadgesByType: function (number) {
+	console.log(mainController.badgeTypes.returnType(number));
         var data;
         switch (mainController.badgeTypes.returnType(number)) {
-            case 1:
+            case 'Completion':
                 console.log("badgeType: Completion");
                 data = mainController.displayBadgesByType(1);
             break;
-            case 2:
+            case 'Challenge':
                 console.log("badgeType: Challenge");
                 data = mainController.displayBadgesByType(2);
             break;
-            case 3:
+            case 'Bonus':
                 console.log("badgeType: Bonus");
                 data = mainController.displayBadgesByType(3);
             break;
@@ -1250,9 +1249,7 @@ var mainController = {
     var hasplayer = (rocketReadingModel.getMyPlayer().constructor == Player);
      //refresh the div.
         var achievementDiv = document.getElementById('achievementsDisplay');
-		for(n=0; n< achievementDiv.childNodes.length; n++ ) {
-			achievementDiv.removeChild(achievementDiv.childNodes[n]);
-		};
+		achievementDiv.innerHTML = "<!-- will dynamically create content for each achievement type-->";
     if (hasplayer) {
         console.log("empty div");
         console.log("badgesArray: " + badgesArray.length);

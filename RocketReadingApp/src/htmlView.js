@@ -1009,6 +1009,13 @@ var viewHTMLModule = {
 		document.getElementById("registerScreen").hidden = false;
 		console.log("HTMLView.js: Showing Register Screen");
 	},
+    showAchievementsScreen : function () {
+		"use strict";
+		viewHTMLModule.hideAllPages();
+		document.getElementById("achievementsScreen").hidden = false;
+        mainController.returnBadgesByType(1);
+		console.log("HTMLView.js: Showing Achievements Screen");
+	},
 	
 	closeModal : function () {
 		"use strict";
@@ -1122,6 +1129,35 @@ var viewHTMLModule = {
 		var home = document.getElementById('homeNextTask');
 		home.style.backgroundImage = "url(images/" + encodeURIComponent(icon) + ".png)";
 	},
+    
+    displayBadgeWithPossession : function (array, div) {
+        //the format of the array being sent is:
+        // [0] badgeIcon
+        // [1] badgeName
+        // [2] badgeDescription
+        // [3] has
+        
+        var child = document.createElement('DIV');
+        //test if player has badge or not
+        if (array[3]) {
+            div.className = 'badge';
+        } else {
+            div.className = 'regularBadge';
+        };
+        
+        var img = document.createElement('IMG');
+        img.src = array[0];
+        var h1 = document.createElement('H1');
+        h1.textContent = array[1];
+        var p = document.createElement('P');
+        p.textContent = array[2];
+        
+        document.getElementById(div).appendChild(child);
+        child.appendChild(img);
+        child.appendChild(h1);
+        child.appendChild(p);
+        
+    },
 	
 	// ******************************************
 	// ********** Initialise Section ************
@@ -1149,7 +1185,11 @@ var viewHTMLModule = {
 		document.getElementById("homeLogoutYes").addEventListener("click",this.closeModal);
 		document.getElementById("homeLogoutYes").addEventListener("click",this.logoutPlayer);
 		document.getElementById("homeLogoutNo").addEventListener("click",this.closeModal);
+        
 		
+        // Achievements Screen
+        
+        
 		// Level Select Screen
 		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);
 		

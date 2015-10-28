@@ -1125,9 +1125,26 @@ var mainController = {
     
     badgeTypes : {
         
-        1: 'Completion',
-        2: 'Challenge',
-        3: 'Bonus'
+        Completion: 1,
+        Challenge: 2,
+        Bonus: 3,
+        returnType: function (number) {
+            switch (number) {
+                case 1:
+                return this.Completion;
+                break;
+                case 2:
+                return this.Challenge;
+                break;
+                case 3:
+                return this.Bonus;
+                break;
+                default:
+                console.log("invalid value");
+                return;
+                break;
+            }
+        }
     },
     
     testBadge: function () {
@@ -1200,6 +1217,55 @@ var mainController = {
 		
 		myViewModelRR.displayNextTask(icon);
 	},
+    
+    returnBadgesByType: function (number) {
+        var data;
+        switch (mainController.badgeTypes.returnType(number)) {
+            case 1:
+                console.log("badgeType: Completion");
+                data = mainController.displayBadgesByType(1);
+            break;
+            case 2:
+                console.log("badgeType: Challenge");
+                data = mainController.displayBadgesByType(2);
+            break;
+            case 3:
+                console.log("badgeType: Bonus");
+                data = mainController.displayBadgesByType(3);
+            break;
+            
+            default:
+            console.log("invalid type");
+            break;
+            
+        }
+    },
+    
+    displayBadgesByType : function (number) {
+        console.log(number);
+        var array = [];
+    var badgesArray = rocketReadingModel.getAllMyBadges();
+    
+    //refresh the div.
+        var achievementDiv = document.getElementById('achievementsDisplay');
+		for(n=0; n< achievementDiv.childNodes.length; n++ ) {
+			achievementDiv.removeChild(achievementDiv.childNodes[n]);
+		};
+        console.log("empty div");
+        console.log("badgesArray: " + badgesArray.length);
+        for (n=0; n< badgesArray.length; n++) {
+            if (badgesArray[n].getType() == number) {
+                console.log("array " + badgesArray[n].getId() + " is completion");
+                if (rocketReadingModel.getMyPlayer().findBadgeById(n)) {
+                    array = [badgesArray[n].getIcon(),badgesArray[n].getName(), badgesArray[n].getDescription(), true];
+                    myViewModelRR.displayBadgeWithPossession(array, "achievementsDisplay");
+                } else {
+                    array = [badgesArray[n].getIcon(),badgesArray[n].getName(), badgesArray[n].getDescription(), false];
+                    myViewModelRR.displayBadgeWithPossession(array, "achievementsDisplay");
+                }
+            }
+        }
+    },
     
     // **********************************************
 	// ************ High Scores Section *************

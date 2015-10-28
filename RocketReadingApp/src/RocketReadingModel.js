@@ -43,8 +43,8 @@ RocketReadingModel.prototype.findBadgeById = function (id) {
     return;
 }
 
-RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription) {
-    var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription);
+RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeType) {
+    var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeType);
     this.allMyBadges.push(badge);
 };
 
@@ -131,6 +131,10 @@ RocketReadingModel.prototype.checkBadge = function (badge) {
 		return null;
 
     };
+    
+RocketReadingModel.prototype.query = function (number) {
+    
+}    
 
 RocketReadingModel.prototype.addCurrentGameData = function (newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord) {
 	var newCurrentGameData = new CurrentGameData(newLevel, newGame, newWordList, newCurrentWord, newCurrentLevelGame, newGameScore, newGameMedals, newLastTestTime, newTotalGameTime, newWordsSoundsCorrect, newWordsSoundsIncorrect, newIncorrectWord);

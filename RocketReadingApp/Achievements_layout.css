@@ -1,0 +1,26 @@
+#achievementsContainer {
+	position:absolute;
+	height:100%;
+	width:100%;
+    background-image: url(./images/homeScreenBackground.jpg);
+    background-size: 100% 100%;
+}
+
+#achievementsLeft {
+    float: left;
+    height: 100%;
+    width: 25%;
+    
+}
+
+#achievementsDisplay {
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+
+#achievementsNavigation {
+    float: left;
+    height:100%;
+    width: 25%;
+}

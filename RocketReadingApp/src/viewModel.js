@@ -231,6 +231,10 @@ var myViewModelRR = {
 		this.view.displayAvatar(avatar);
 	},
     
+    displayBadgeWithPossession: function (array, div) {
+        this.view.displayBadgeWithPossession(array, div);
+    },
+    
     displayBadge : function (array, div) {
         this.view.displayBadge(array, div);
     },

@@ -8,4 +8,18 @@ var Badge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescriptio
 
 Badge.prototype.getId = function () {
 	return this.badgeID;
+};
+
+Badge.prototype.getIcon = function () {
+    return this.badgeIcon;
+};
+Badge.prototype.getName = function () {
+    return this.badgeName;
+};
+Badge.prototype.getDescription = function () {
+    return this.badgeDescription;
+};
+
+Badge.prototype.getType = function () {
+    return this.badgeType;
 }

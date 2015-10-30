@@ -1210,7 +1210,7 @@ var mainController = {
 		var hasDoneBonus = rocketReadingModel.getAllGamesData().getGameDataArray(0,1)[0] != undefined;
 		var icon = rocketReadingModel.findGameByLevelAndNumber(gamereached[0], gamereached[1]).getGameName();
 		
-		if (gamereached == [2,1]) {
+		if (gamereached[0] == 2 && gamereached[1] == 1) {
 			var avatar = rocketReadingModel.findLevelByNumber(gamereached[0]).getAvatar();
 			icon = avatar.getName();
 		};

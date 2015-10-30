@@ -23,18 +23,35 @@
 
 div.badge {
     z-index: 99999;
-    background-color: #fff;
+    background-color: rgba(114, 6, 6, .8);
+    box-shadow: .5em .5em 1em rgba(0, 0, 0, 1);
     width: 40em;
     height: 8em;
     border: 2px solid #000;
+    padding:.5em 0em;
+	padding: /*1*/.5em 0em;
+	text-align:center;
+	border: solid 1px;
+	border-color: black;
+    border-radius:0.5em;
+    cursor: pointer;
+
 }
 
 div.regularBadge {
     z-index: 99999;
-    background-color: #666;
+    background-color: rgba(100, 100, 100, .8);
+    box-shadow: .5em .5em 1em rgba(0, 0, 0, 1);
     width: 40em;
     height: 8em;
     border: 2px solid #000;
+    padding:.5em 0em;
+	padding: /*1*/.5em 0em;
+	text-align:center;
+	border: solid 1px;
+	border-color: black;
+    border-radius:0.5em;
+    cursor: pointer;
 }
 
 .badge Img {

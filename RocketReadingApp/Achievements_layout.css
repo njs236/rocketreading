@@ -14,10 +14,19 @@
 }
 
 #achievementsLeft div {
-    width: 100%;
-    height: 4em;
-    background-color: #fff;
-    border: 2px solid #000;
+    position: relative;
+    top: 10%;
+    transform: translateY(-50%);
+    width:calc(100% - 2em);
+	padding:.5em 0em;
+	padding: /*1*/.5em 0em;
+	text-align:center;
+	border: solid 1px;
+	border-color: black;
+    border-radius:0.5em;
+    cursor: pointer;
+    background-color: rgba(114, 6, 6, .8);
+    box-shadow: .5em .5em 1em rgba(0, 0, 0, 1)
 }
 #achievementsLeft div.selected {
     background-color: #666;
@@ -41,5 +50,6 @@
     height: 4em;
     left: 10%;
     top: 80%;
+    color: rgba(000, 251, 126, .6)
 }
 

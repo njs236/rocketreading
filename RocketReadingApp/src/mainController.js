@@ -1277,12 +1277,7 @@ var mainController = {
         var array = [1,2,3];
         var n;
         for (n=0; n<array.length; n++) {
-            if (array[n] == 1) {
-                // Completion badge selected first.
-                myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n], true);
-            } else {
-                myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n], false)
-            }
+                myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n]);
             ;
         }        
     },

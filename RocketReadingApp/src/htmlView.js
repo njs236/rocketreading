@@ -1012,12 +1012,13 @@ var viewHTMLModule = {
     showAchievementsScreen : function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
+        document.getElementById('achievementsLeft').innerHTML = "";
 		document.getElementById("achievementsScreen").hidden = false;
-        mainController.returnBadgesByType(1);
         mainController.displayTypes();
         document.getElementById('achievementsHome').addEventListener("click", function () {
             viewHTMLModule.showHomeScreen();
         });
+        mainController.returnBadgesByType(1);
 		console.log("HTMLView.js: Showing Achievements Screen");
         
 	},
@@ -1172,13 +1173,10 @@ var viewHTMLModule = {
         div.appendChild(child);
     },
     
-    displayType: function (item, number, selected) {
+    displayType: function (item, number) {
         console.log("display Type");
         var div = document.getElementById('achievementsLeft');
         var child = document.createElement('DIV');
-        if (selected) {
-            child.className = "selected";
-        }
         child.addEventListener("click",function () {
           mainController.returnBadgesByType(number)  
         });

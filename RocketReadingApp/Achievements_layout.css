@@ -19,6 +19,9 @@
     background-color: #fff;
     border: 2px solid #000;
 }
+#achievementsLeft div.selected {
+    background-color: #666;
+}
 
 #achievementsDisplay {
     float: left;
@@ -39,3 +42,4 @@
     left: 10%;
     top: 80%;
 }
+

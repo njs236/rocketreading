@@ -1114,7 +1114,7 @@ var mainController = {
         n++;
         rocketReadingModel.addBadge(n, "images/trophy.png", "We are the champions", "For getting 450 score on your first level", 2);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a level with max score", 2);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a game with max score", 2);
         n++;
         rocketReadingModel.addBadge(n, "images/trophy.png", "For the thrill", "For choosing to accomplish a bonus mission", 3);
         n++;

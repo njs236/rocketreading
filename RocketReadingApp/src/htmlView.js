@@ -1128,11 +1128,14 @@ var viewHTMLModule = {
 	
 	displayHighScoreForPlayer : function (sum) {
 	var home = document.getElementById('homeScoreNum');
-		home.textContent = sum;
+    var text = document.getElementById('homeScoreText');
+    text.innerHTML = "Total Score";
+		home.innerHTML =  sum;
 	},
 	
 	displayNextTask : function (icon) {
 		var home = document.getElementById('homeNextTask');
+        home.innerHTML = "<h1>Try out</h1>"
 		home.style.backgroundImage = "url(images/" + encodeURIComponent(icon) + ".png)";
 	},
     

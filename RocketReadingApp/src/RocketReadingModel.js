@@ -104,16 +104,24 @@ RocketReadingModel.prototype.checkBadge = function (badge) {
 			}
 			break;
 			case 6:
-			
+
 			break;
 			case 7:
-			
+            var highscore = mainController.getHighScoresForLevel(1),
+            Total = highscore[highscore.length-1];
+            if (Total > 450) {
+                player.addBadge(badge);
+                return rocketReadingModel.findBadgeById(badge);
+            }
 			break;
 			case 8:
 			
 			break;
 			case 9:
-			
+			if (allGamesData.getGameDataArray(0, 1)[0] != undefined) {
+				player.addBadge(badge);
+				return rocketReadingModel.findBadgeById(badge);
+			}
 			break;
 			case 10:
 			

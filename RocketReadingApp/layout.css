@@ -22,14 +22,18 @@
 }
 
 div.badge {
+    position: relative;
+    top: 10%;
+    transform: translateY(-50%);
     z-index: 99999;
     background-color: rgba(114, 6, 6, .8);
     box-shadow: .5em .5em 1em rgba(0, 0, 0, 1);
-    width: 40em;
-    height: 8em;
+    width:calc(100% - 2em);
+    height: 15%;
     border: 2px solid #000;
     padding:.5em 0em;
 	padding: /*1*/.5em 0em;
+    margin-bottom: 1em;
 	text-align:center;
 	border: solid 1px;
 	border-color: black;
@@ -39,14 +43,18 @@ div.badge {
 }
 
 div.regularBadge {
+    position: relative;
+    top: 10%;
+    transform: translateY(-50%);
     z-index: 99999;
     background-color: rgba(100, 100, 100, .8);
     box-shadow: .5em .5em 1em rgba(0, 0, 0, 1);
-    width: 40em;
-    height: 8em;
+    width:calc(100% - 2em);
+    height: 15%;
     border: 2px solid #000;
     padding:.5em 0em;
 	padding: /*1*/.5em 0em;
+    margin-bottom: 1em;
 	text-align:center;
 	border: solid 1px;
 	border-color: black;
@@ -56,14 +64,18 @@ div.regularBadge {
 
 .badge Img {
     float: left;
-    width: 6em;
-    height: 6em;
+    width: 15%;
+    min-width: 3em;
+    height: 100%;
+    min-height: 3em;
 }
 
 .regularBadge img {
     float: left;
-    width: 6em;
-    height: 6em;
+    width: 15%;
+    min-width: 3em;
+    height: 100%;
+    min-height: 3em;
 }
 
 div.dummy {

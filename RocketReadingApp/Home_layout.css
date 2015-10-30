@@ -60,7 +60,11 @@
 #homeAchievements {
 	position: absolute;
 	left: 15%;
-	top: 25%;
+	top: 40%;
+    width: 40%;
+    min-width: 15em;
+    height: 50%;
+    float: left;
     
 }
 
@@ -69,6 +73,7 @@
 }
 
 #homeScore {
+    color: rgba(000, 251, 126, .6);
 	z-index:99999;
 	position: absolute;
 	right: 5%;
@@ -76,16 +81,17 @@
 }
 
 #homeNextTask {
+    color: rgba(000, 251, 126, .6);
 	z-index: 99999;
 	position: absolute;
 	right: 1%;
-	top: 14%;
+	top: 16%;
 	width: 200px;
 	height: 200px;
 }
 
-#homeScore h1 {
-	font-size: 4em;
+#homeScore h1.score {
+    font-size: 8em;
 	color: #f33;
 }
 
@@ -223,15 +229,14 @@ div.homeOptions {
 #homeLeft, #homeRight {
     position: absolute;
     right: 15%;
-    bottom: -10%;
+    bottom: 10%;
     width: 30%;
     min-width: 15em;
-    height: 70%;
+    height: 50%;
     float: left;
 }
 
 div.homeSideDivs {
-    height: 20%;
     width: 100%;
 }
 

@@ -1014,7 +1014,12 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		document.getElementById("achievementsScreen").hidden = false;
         mainController.returnBadgesByType(1);
+        mainController.displayTypes();
+        document.getElementById('achievementsHome').addEventListener("click", function () {
+            viewHTMLModule.showHomeScreen();
+        });
 		console.log("HTMLView.js: Showing Achievements Screen");
+        
 	},
 	
 	closeModal : function () {
@@ -1166,6 +1171,43 @@ var viewHTMLModule = {
         
         div.appendChild(child);
     },
+    
+    displayType: function (item, number, selected) {
+        console.log("display Type");
+        var div = document.getElementById('achievementsLeft');
+        var child = document.createElement('DIV');
+        if (selected) {
+            child.className = "selected";
+        }
+        child.addEventListener("click",function () {
+          mainController.returnBadgesByType(number)  
+        });
+        child.textContent = item;
+        
+        div.appendChild(child);
+        
+    },
+    
+    deselectAllTypes : function () {
+        var nodes = document.getElementById('achievementsLeft').childNodes;
+        var n;
+        
+        for (n= 0; n<nodes.length; n++) {
+            nodes[n].className = "";
+        }
+    },
+    
+    selectType : function (number) {
+        var nodes = document.getElementById('achievementsLeft').childNodes,
+            array = [1,2,3],
+            n;
+        viewHTMLModule.deselectAllTypes();
+        for (n=0; n<array.length; n++) {
+            if (array[n] == number) {
+                nodes[n].className = "selected";
+            }
+        }
+    },
 	
 	// ******************************************
 	// ********** Initialise Section ************
@@ -1184,6 +1226,7 @@ var viewHTMLModule = {
 		document.getElementById("loginRegisterBtn").addEventListener("click", this.showRegisterScreen);
 		
 		// Home Screen
+        document.getElementById("homeAchievementsButton").addEventListener("click", this.showAchievementsScreen);
 		document.getElementById("homePlayGame").addEventListener("click", this.showLevelSelectScreen);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
 		document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);

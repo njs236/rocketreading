@@ -254,7 +254,15 @@ var myViewModelRR = {
 	displayNotification : function (array) {
 		this.view.displayNotification(array);
 	},
+    
+    displayType : function (item, number) {
+        this.view.displayType(item, number);
+    },
 	
+    selectType: function (number) {
+        this.view.selectType(number);
+    },
+    
 	eventClickAdd : function () {
 		this.view.eventClickAdd();
 	},

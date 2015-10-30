@@ -52,7 +52,7 @@
     bottom: -10%;
     width: 30%;
     min-width: 15em;
-    height: 70%;
+    height: 50%;
     /*height: 100%;*/
     float: left;
 }
@@ -61,6 +61,11 @@
 	position: absolute;
 	left: 15%;
 	top: 25%;
+    
+}
+
+#homeAchievements h1 {
+    color: rgba(000, 251, 126, .6)
 }
 
 #homeScore {

@@ -38,6 +38,9 @@
 		<!-- Login Screen Section -->
 		<link rel="stylesheet" href="Login_layout.css">
 		<script type="text/javascript" src="Login_scripts.js"></script>
+
+		<!-- User Screen Section -->
+		<link rel="stylesheet" href="User_layout.css">
 		
 		<!-- Home Screen Section -->
 		<link rel="stylesheet" href="Home_layout.css">
@@ -152,6 +155,24 @@
                     </fieldset>
                 </form>
 			</div>
+			<div id="userScreen" class="navScreen" hidden>
+				<div id="userContainer">
+					<div id="homeScore">
+						<h1 id="homeScoreText"></h1>
+						<h1 id="homeScoreNum" class="score"></h1>
+					</div>
+
+					<div id="homeNextTask">
+
+					</div>
+					<div id="homeAchievements">
+
+					</div>
+					<div id="homeNotification">
+
+					</div>
+				</div>
+			</div>
 			<div id="homeScreen" class="navScreen" hidden>
                 <div>
                     <div id="homeCheckLogoutModal" class="modalDialog">
@@ -209,14 +230,7 @@
                         
                     </div>
 					
-					<div id="homeScore">
-                    <h1 id="homeScoreText"></h1>
-						<h1 id="homeScoreNum" class="score"></h1>
-					</div>
-					
-					<div id="homeNextTask">
-						
-					</div>
+
                     
                     <div id="homeAvatarContainer">
                         <div id="homeAvatar">
@@ -232,15 +246,11 @@
                     <div id="homeExit">
                         <img src="images/spacer.png" title="Click to exit"></img>
                     </div>
-					<div id="homeAchievements">
-                    
-					</div>
+
                 </div>
 
 				
-				<div id="homeNotification">
-				
-				</div>
+
                 
 			</div>
             

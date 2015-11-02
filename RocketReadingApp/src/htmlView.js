@@ -948,11 +948,11 @@ var viewHTMLModule = {
 		"use strict";
 		var styleSheetList = document.styleSheets;
         
-        document.styleSheets[3].deleteRule(1);
+        document.styleSheets[4].deleteRule(1);
         if (rocketReadingModel.getMyPlayer().getSavedLevelGame() !== null) {
-            document.styleSheets[3].insertRule("#homeContinue:hover {background-image: url(images/continueIconGlow.png); cursor: pointer;}", 1);
+            document.styleSheets[4].insertRule("#homeContinue:hover {background-image: url(images/continueIconGlow.png); cursor: pointer;}", 1);
         } else {
-            document.styleSheets[3].insertRule("#homeContinue:hover { cursor: default;}", 1);
+            document.styleSheets[4].insertRule("#homeContinue:hover { cursor: default;}", 1);
         }
         
 		viewHTMLModule.hideAllPages();
@@ -1021,6 +1021,12 @@ var viewHTMLModule = {
         mainController.returnBadgesByType(1);
 		console.log("HTMLView.js: Showing Achievements Screen");
         
+	},
+	showUserScreen: function () {
+		"use strict";
+		viewHTMLModule.hideAllPages();
+		document.getElementById('userScreen').hidden=false;
+		console.log("HTMLView.js: Showing User Screen");
 	},
 	
 	closeModal : function () {

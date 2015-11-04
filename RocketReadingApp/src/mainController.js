@@ -1153,7 +1153,7 @@ var mainController = {
 		var n;
         var limit = 5;
 		// remove all child elements from div
-		var achievementDiv = document.getElementById('homeAchievements');
+		var achievementDiv = document.getElementById('userAchievements');
 		achievementDiv.innerHTML = "<h1>Latest Achievements</h1>";
         for (n=0; n< limit; n++) {
 		// check for badge in player badge array
@@ -1167,7 +1167,7 @@ var mainController = {
 			console.log(myBadge.getId());
 			console.log(myDisplayBadge);
             var myArray = [myDisplayBadge.badgeIcon, myDisplayBadge.badgeName, myDisplayBadge.badgeDescription];
-        myViewModelRR.displayBadge(myArray, "homeAchievements");
+        myViewModelRR.displayBadge(myArray, "userAchievements");
         }
         
     },

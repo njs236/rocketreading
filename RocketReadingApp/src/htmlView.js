@@ -1123,24 +1123,24 @@ var viewHTMLModule = {
 		var h1 = document.createElement('H1');
 		h1.textContent = array[1];
 		
-		document.getElementById('homeNotification').appendChild(div);
+		document.getElementById('userNotification').appendChild(div);
 		div.appendChild(img);
 		div.appendChild(h1);
 		
 		window.setTimeout(function () {
-			document.getElementById('homeNotification').innerHTML = "";
+			document.getElementById('userNotification').innerHTML = "";
 		}, 3000);
 	},
 	
 	displayHighScoreForPlayer : function (sum) {
-	var home = document.getElementById('homeScoreNum');
-    var text = document.getElementById('homeScoreText');
+	var home = document.getElementById('userScoreNum');
+    var text = document.getElementById('userScoreText');
     text.innerHTML = "Total Score";
 		home.innerHTML =  sum;
 	},
 	
 	displayNextTask : function (icon) {
-		var home = document.getElementById('homeNextTask');
+		var home = document.getElementById('userNextTask');
         home.innerHTML = "<h1>Try out</h1>"
 		home.style.backgroundImage = "url(images/" + encodeURIComponent(icon) + ".png)";
 	},

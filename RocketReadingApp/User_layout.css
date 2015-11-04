@@ -1,0 +1,46 @@
+
+#userContainer {
+	position:absolute;
+	height:100%;
+	width:100%;
+    background-size: 100% 100%;
+}
+
+#userAchievements {
+	position: absolute;
+	left: 15%;
+	top: 40%;
+    width: 40%;
+    min-width: 15em;
+    height: 50%;
+    float: left;
+    
+}
+
+#userAchievements h1 {
+    color: rgba(000, 251, 126, .6)
+}
+
+#userScore {
+    color: rgba(000, 251, 126, .6);
+	z-index:99999;
+	position: absolute;
+	right: 15%;
+	top: 1%;
+}
+
+#userNextTask {
+    color: rgba(000, 251, 126, .6);
+	z-index: 99999;
+	position: absolute;
+	right: 1%;
+	top: 1%;
+	width: 200px;
+	height: 200px;
+}
+
+#userScore h1.score {
+    font-size: 8em;
+	color: #f33;
+}
+

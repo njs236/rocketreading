@@ -42,6 +42,34 @@ div.badge {
 
 }
 
+div.suggestion {
+    position: relative;
+    top: 10%;
+    transform: translateY(-50%);
+    z-index: 99999;
+    background-color: rgba(114, 6, 6, .8);
+    box-shadow: .5em .5em 1em rgba(0, 0, 0, 1);
+    width:calc(100% - 2em);
+    height: 15%;
+    border: 2px solid #000;
+    padding:.5em 0em;
+	padding: /*1*/.5em 0em;
+    margin-bottom: 1em;
+	text-align:center;
+	border: solid 1px;
+	border-color: black;
+    border-radius:0.5em;
+    cursor: pointer;
+
+}
+.suggestion Img {
+    float: left;
+    width: 15%;
+    min-width: 3em;
+    height: 100%;
+    min-height: 3em;
+}
+
 div.regularBadge {
     position: relative;
     top: 10%;

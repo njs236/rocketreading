@@ -72,7 +72,7 @@ var viewHTMLModule = {
 	loginSuccessful : function() {
 		"use strict";
 		// Function occurs when the view is told login is successful from the controller
-		this.showHomeScreen();
+		this.showUserScreen();
 	},
 	
 	badLogin : function () {
@@ -1012,13 +1012,7 @@ var viewHTMLModule = {
     showAchievementsScreen : function () {
 		"use strict";
 		viewHTMLModule.hideAllPages();
-        document.getElementById('achievementsLeft').innerHTML = "";
 		document.getElementById("achievementsScreen").hidden = false;
-        mainController.displayTypes();
-        document.getElementById('achievementsHome').addEventListener("click", function () {
-            viewHTMLModule.showHomeScreen();
-        });
-        mainController.returnBadgesByType(1);
 		console.log("HTMLView.js: Showing Achievements Screen");
         
 	},
@@ -1027,6 +1021,7 @@ var viewHTMLModule = {
 		viewHTMLModule.hideAllPages();
 		document.getElementById('userScreen').hidden=false;
 		console.log("HTMLView.js: Showing User Screen");
+		mainController.randomlySelectAchievementsForDisplay();
 	},
 	
 	closeModal : function () {
@@ -1182,9 +1177,9 @@ var viewHTMLModule = {
         div.appendChild(child);
     },
     
-    displayType: function (item, number) {
+    displayType: function (item, number, id) {
         console.log("display Type");
-        var div = document.getElementById('achievementsLeft');
+        var div = document.getElementById(id);
         var child = document.createElement('DIV');
         child.addEventListener("click",function () {
           mainController.returnBadgesByType(number)  
@@ -1208,13 +1203,34 @@ var viewHTMLModule = {
         var nodes = document.getElementById('achievementsLeft').childNodes,
             array = [1,2,3],
             n;
+			console.log(nodes);
         viewHTMLModule.deselectAllTypes();
         for (n=0; n<array.length; n++) {
             if (array[n] == number) {
                 nodes[n].className = "selected";
+				viewHTMLModule.showAchievementsScreen();
             }
         }
     },
+	
+	displaySuggestion: function (array) {
+	// format of array:
+	// [0] Icon
+	// [1] Suggestion
+	
+	var suggestionDiv = document.getElementById('userSuggestion');
+	
+	var div = document.createElement('DIV');
+	div.className = "suggestion";
+	var img = document.createElement('IMG');
+	img.src = array[0];
+	var p = document.createElement('P');
+	p.textContent = array[1];
+	
+	suggestionDiv.appendChild(div);
+	div.appendChild(img);
+	div.appendChild(p);
+ 	},
 	
 	// ******************************************
 	// ********** Initialise Section ************
@@ -1235,6 +1251,7 @@ var viewHTMLModule = {
 		// Home Screen
         document.getElementById("homeAchievementsButton").addEventListener("click", this.showAchievementsScreen);
 		document.getElementById("homePlayGame").addEventListener("click", this.showLevelSelectScreen);
+				document.getElementById("homeUserButton").addEventListener("click", this.showUserScreen);
 		document.getElementById("homeHighScores").addEventListener("click", this.showHighScoresScreen);
 		document.getElementById("homeContinue").addEventListener("click", mainController.resolveContinueBtn);
         document.getElementById("homeContinue").addEventListener("click", this.addEventListGameStartContinue);
@@ -1246,7 +1263,9 @@ var viewHTMLModule = {
         
 		
         // Achievements Screen
-        
+        document.getElementById('achievementsHome').addEventListener("click", function () {
+            viewHTMLModule.showUserScreen();
+        });
         
 		// Level Select Screen
 		document.getElementById("levelSelectHomeButton").addEventListener("click", this.showHomeScreen);

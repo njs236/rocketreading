@@ -50,6 +50,7 @@ Player.prototype.setBadges = function (newBadges) {
 };
 
 Player.prototype.findBadgeById = function (id) {
+var n;
     for (n=0; n < this.badges.length; n++) {
         if (this.badges[n].getId() == id ) {
             return true;

@@ -80,6 +80,7 @@ var mainController = {
 					mainController.initializeBadgeController();
 					
 					// Badges on main screen
+					mainController.displayTypes();
 					mainController.testBadge();
 					mainController.displayHighScoreForPlayer();
 					mainController.determineNextTask();
@@ -1100,27 +1101,27 @@ var mainController = {
 	
 	initialiseAllBadges : function () {
         n = 1;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "You've only just begun", "For completing the first game", 1);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "You've only just begun", "For completing the first game", "try completing first game", 1);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I know my ABCs", "For completing the second game", 1);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I know my ABCs", "For completing the second game","try completing second game", 1);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "Heading into outer space", "For completing the third game", 1);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "Heading into outer space", "For completing the third game", "try completing third game", 1);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I'm ready for the next level", "For completing the fourth game", 1);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I'm ready for the next level", "For completing the fourth game", "try completing fourth game", 1);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I've got my stripes", "For completing the fifth game", 1);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I've got my stripes", "For completing the fifth game", "try completing fifth game", 1);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I see gold", "For getting 15 gold stars on a game", 2);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I see gold", "For getting 15 gold stars on a game", "try getting 15 gold stars on a game", 2);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "We are the champions", "For getting 450 score on your first level", 2);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "We are the champions", "For getting 450 score on your first level", "try getting 450 on your first level", 2);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a game with max score", 2);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a game with max score", "try getting every word correct", 2);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "For the thrill", "For choosing to accomplish a bonus mission", 3);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "For the thrill", "For choosing to accomplish a bonus mission", "try to do a bonus game", 3);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "Road Runner", "For achieving 125 seconds on a game", 2);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "Road Runner", "For achieving 125 seconds on a game", "try getting 125 seconds on a game", 2);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "Word Wizz", "For getting correct on every word", 2);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "Word Wizz", "For getting correct on every word", "try getting all words correct", 2);
     },
     
     badgeTypes : {
@@ -1277,10 +1278,59 @@ var mainController = {
         var array = [1,2,3];
         var n;
         for (n=0; n<array.length; n++) {
-                myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n]);
+                myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n], "achievementsLeft");
+				myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n], 'userLeft');
             ;
         }        
     },
+	
+	randomlySelectAchievementsForDisplay : function () {
+	
+	//V1.0 creates an array of allowable achievements for display 
+	// 
+	//
+	//
+	// Randomly selects three items from the allowable Achievements (which are IDs from badges)
+	// and passes them to a function which displays the badges, along with their requirements
+	//
+	//this array is the randomly selected numbers from allowableAchievements.
+		var array = [];
+		var player = rocketReadingModel.getMyPlayer();
+		var badges = rocketReadingModel.getAllMyBadges();
+		var i;
+		var found;
+		// this is the array of AllowableAchievements for the player. 
+		var AllowableAchievements = [];
+
+		
+		// looks in user Badge and if it finds a badge, then skips, but if its not found then it pushes to allowable Achievements
+		// it must set found to false before it cycles through user badges because it is a global condition. 
+
+		for (i=0; i<badges.length ; i++) {
+			found = player.findBadgeById(badges[i].getId());
+		if (!found) {
+			AllowableAchievements.push(badges[i].getId());
+		}
+		}
+		// allowable Achievements is spliced away so that subsequent random numbers are no longer in the array.
+		var	limit = 0;
+		while(limit < 3){
+			if (limit == AllowableAchievements.length) {
+				break;
+			}
+			var random = Math.floor ( Math.random * (AllowableAchievements.Length));
+			array.push(AllowableAchievements.splice(random,1 ));
+			limit++;
+		}
+				var suggestionDiv = document.getElementById('userSuggestion');
+		suggestionDiv.innerHTML = "<h1>Try these</h1>";
+		
+		for (i=0; i<array.length; i++) {
+			var badge = rocketReadingModel.findBadgeById(array[i]);;
+			var displayInfo = [badge.getIcon(), badge.getSuggestion()];
+			myViewModelRR.displaySuggestion(displayInfo);
+		}
+	},
     
     // **********************************************
 	// ************ High Scores Section *************

@@ -1,8 +1,9 @@
-var Badge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeType) {
+var Badge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeSuggestion, newBadgeType) {
     this.badgeID = newBadgeId;
     this.badgeIcon = newBadgeIcon;
     this.badgeName = newBadgeName;
     this.badgeDescription = newBadgeDescription;
+	this.badgeSuggestion = newBadgeSuggestion;
     this.badgeType = newBadgeType;
 }
 
@@ -22,4 +23,8 @@ Badge.prototype.getDescription = function () {
 
 Badge.prototype.getType = function () {
     return this.badgeType;
+};
+
+Badge.prototype.getSuggestion = function () {
+	return this.badgeSuggestion;
 }

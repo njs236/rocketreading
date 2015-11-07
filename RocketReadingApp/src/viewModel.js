@@ -251,12 +251,16 @@ var myViewModelRR = {
 		this.view.displayNextTask(icon);
 	},
 	
+	displaySuggestion : function (array) {
+		this.view.displaySuggestion(array);
+	},
+	
 	displayNotification : function (array) {
 		this.view.displayNotification(array);
 	},
     
-    displayType : function (item, number) {
-        this.view.displayType(item, number);
+    displayType : function (item, number, id) {
+        this.view.displayType(item, number, id);
     },
 	
     selectType: function (number) {

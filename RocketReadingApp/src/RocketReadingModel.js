@@ -43,8 +43,8 @@ RocketReadingModel.prototype.findBadgeById = function (id) {
     return;
 }
 
-RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeType) {
-    var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeType);
+RocketReadingModel.prototype.addBadge = function (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeSuggestion, newBadgeType) {
+    var badge = new Badge (newBadgeId, newBadgeIcon, newBadgeName, newBadgeDescription, newBadgeSuggestion, newBadgeType);
     this.allMyBadges.push(badge);
 };
 

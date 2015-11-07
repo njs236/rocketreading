@@ -1191,7 +1191,7 @@ var viewHTMLModule = {
     },
     
     deselectAllTypes : function () {
-        var nodes = document.getElementById('achievementsLeft').childNodes;
+        var nodes = document.getElementById('achievementsLeft').getElementsByTagName('div');
         var n;
         
         for (n= 0; n<nodes.length; n++) {
@@ -1200,7 +1200,7 @@ var viewHTMLModule = {
     },
     
     selectType : function (number) {
-        var nodes = document.getElementById('achievementsLeft').childNodes,
+        var nodes = document.getElementById('achievementsLeft').getElementsByTagName('div'),
             array = [1,2,3],
             n;
 			console.log(nodes);
@@ -1261,6 +1261,11 @@ var viewHTMLModule = {
 		document.getElementById("homeLogoutYes").addEventListener("click",this.logoutPlayer);
 		document.getElementById("homeLogoutNo").addEventListener("click",this.closeModal);
         
+		// User Screen
+		
+		document.getElementById('userHome').addEventListener("click", function () {
+            viewHTMLModule.showHomeScreen();
+        });
 		
         // Achievements Screen
         document.getElementById('achievementsHome').addEventListener("click", function () {

@@ -1115,7 +1115,7 @@ var mainController = {
         n++;
         rocketReadingModel.addBadge(n, "images/trophy.png", "We are the champions", "For getting 450 score on your first level", "try getting 450 on your first level", 2);
         n++;
-        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a game with max score", "try getting every word correct", 2);
+        rocketReadingModel.addBadge(n, "images/trophy.png", "I see stars", "For completing a game with max score", "try getting every gold star", 2);
         n++;
         rocketReadingModel.addBadge(n, "images/trophy.png", "For the thrill", "For choosing to accomplish a bonus mission", "try to do a bonus game", 3);
         n++;
@@ -1155,7 +1155,13 @@ var mainController = {
         var limit = 5;
 		// remove all child elements from div
 		var achievementDiv = document.getElementById('userAchievements');
-		achievementDiv.innerHTML = "<h1>Latest Achievements</h1>";
+		
+		if (rocketReadingModel.getMyPlayer().getBadges().length == 0) {
+			achievementDiv.innerHTML = "<p>I will begin filling out as you progress through the game.</p>"
+		} else {
+			achievementDiv.innerHTML = "<h1>Latest Achievements</h1>";
+		}
+		
         for (n=0; n< limit; n++) {
 		// check for badge in player badge array
 			if (rocketReadingModel.getMyPlayer().getBadges()[n] == undefined) {
@@ -1279,7 +1285,10 @@ var mainController = {
         var n;
         for (n=0; n<array.length; n++) {
                 myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n], "achievementsLeft");
-				myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n], 'userLeft');
+				if (rocketReadingModel.getMyPlayer().getBadges().length != 0) {
+					myViewModelRR.displayType(mainController.badgeTypes.returnType(array[n]), array[n], 'userLeft');
+				}
+				
             ;
         }        
     },
@@ -1318,7 +1327,7 @@ var mainController = {
 			if (limit == AllowableAchievements.length) {
 				break;
 			}
-			var random = Math.floor ( Math.random * (AllowableAchievements.Length));
+			var random = Math.floor ( Math.random() * (AllowableAchievements.length));
 			array.push(AllowableAchievements.splice(random,1 ));
 			limit++;
 		}
